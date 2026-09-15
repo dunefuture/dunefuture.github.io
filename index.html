@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Dune Future community website">
+  <title>Dune Future — Community</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <a class="brand" href="#home"><span>◈</span> DUNE FUTURE</a>
+    <div class="links">
+      <a href="#about">About</a><a href="#games">Games</a>
+      <a href="#leaderboard">Leaderboard</a><a href="#community">Community</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="glow"></div>
+      <p class="eyebrow">WELCOME TO THE COMMUNITY</p>
+      <h1>DUNE<br><span>FUTURE</span></h1>
+      <p class="lead">Play. Compete. Laugh. Repeat.<br>A home for games, tournaments, memes and good company.</p>
+      <div class="actions">
+        <a class="btn primary" href="#community">JOIN THE COMMUNITY</a>
+        <a class="btn" href="#leaderboard">VIEW LEADERBOARD</a>
+      </div>
+      <div class="stats">
+        <div><b>LEVEL 1</b><small>SERVER BOOST</small></div>
+        <div><b>2</b><small>ACTIVE BOOSTS</small></div>
+        <div><b>24/7</b><small>COMMUNITY</small></div>
+      </div>
+    </section>
+
+    <section id="about">
+      <p class="eyebrow">ABOUT US</p>
+      <h2>More than a server.</h2>
+      <p class="copy">Dune Future is a gaming community built around friendly competition, memorable matches and the people who make them fun.</p>
+    </section>
+
+    <section id="games">
+      <p class="eyebrow">GAMES & EVENTS</p>
+      <h2>Choose your arena.</h2>
+      <div class="cards">
+        <article><span>⚔️</span><h3>1 vs 1</h3><p>Settle rivalries and prove who's best.</p></article>
+        <article><span>🤝</span><h3>2 vs 2</h3><p>Bring a teammate and coordinate the win.</p></article>
+        <article><span>🔥</span><h3>3 vs 3</h3><p>Team battles for bigger bragging rights.</p></article>
+        <article><span>🏆</span><h3>Events</h3><p>Community tournaments and special matches.</p></article>
+      </div>
+    </section>
+
+    <section id="leaderboard">
+      <p class="eyebrow">HALL OF FAME</p>
+      <h2>Leaderboard</h2>
+      <div class="board">
+        <div class="row head"><span>RANK</span><span>PLAYER</span><span>STATUS</span></div>
+        <div class="row"><span>#01</span><strong>Champion</strong><span class="tag">TOP PLAYER</span></div>
+        <div class="row"><span>#02</span><strong>Challenger</strong><span>Rising</span></div>
+        <div class="row"><span>#03</span><strong>Contender</strong><span>Ready</span></div>
+      </div>
+      <p class="note">Edit these names in <code>index.html</code> whenever your rankings change.</p>
+    </section>
+
+    <section id="community" class="cta">
+      <p class="eyebrow">DUNE FUTURE</p>
+      <h2>Ready for the next game?</h2>
+      <p>Add your Discord invite URL to the button below, then publish the site for free.</p>
+      <a class="btn primary" id="discord" href="#" onclick="return missingInvite()">JOIN DISCORD</a>
+    </section>
+  </main>
+
+  <footer>© <span id="year"></span> Dune Future · Built for the community.</footer>
+  <script src="script.js"></script>
+</body>
+</html>
