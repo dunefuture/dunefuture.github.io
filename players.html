@@ -493,7 +493,44 @@
   </div>
 
 </div>
+<!-- GAME DETAILS MODAL -->
 
+<div
+    class="game-details-overlay"
+    id="gameDetailsOverlay"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="gameDetailsTitle"
+>
+    <div class="game-details-card">
+
+        <button
+            class="game-details-close"
+            type="button"
+            onclick="closeGameDetails()"
+            aria-label="Close game details"
+        >
+            &times;
+        </button>
+
+        <div class="game-details-label">
+            GAME DETAILS
+        </div>
+
+        <div
+            class="game-details-title"
+            id="gameDetailsTitle"
+        >
+            GAME
+        </div>
+
+        <div
+            class="game-details-content"
+            id="gameDetailsContent"
+        ></div>
+
+    </div>
+</div>
 <!-- PLAYER PROFILE MODAL -->
 
 <div
@@ -924,18 +961,56 @@ function openGameDetails(event, seriesId, gameNumber) {
         return;
     }
 
-alert(
-    `GAME ${game.gameNumber}\n\n` +
-    `DATE: ${game.date}\n` +
-    `STARTED: ${game.started}\n` +
-    `MAP: ${game.map}\n` +
-    `MATCH: ${game.player1} vs ${game.player2}\n` +
-    `WINNER: ${game.winner}`
-);
+const gameOverlay = document.getElementById("gameDetailsOverlay");
+const gameTitle = document.getElementById("gameDetailsTitle");
+const gameContent = document.getElementById("gameDetailsContent");
+
+if (!gameOverlay || !gameTitle || !gameContent) {
+    console.error("Game details modal elements not found.");
+    return;
+}
+
+gameTitle.textContent = `GAME ${game.gameNumber}`;
+
+gameContent.innerHTML = `
+    <div class="game-detail-row">
+        <div class="game-detail-label">DATE</div>
+        <div class="game-detail-value">${game.date}</div>
+    </div>
+
+    <div class="game-detail-row">
+        <div class="game-detail-label">STARTED</div>
+        <div class="game-detail-value">${game.started}</div>
+    </div>
+
+    <div class="game-detail-row">
+        <div class="game-detail-label">MAP</div>
+        <div class="game-detail-value">${game.map}</div>
+    </div>
+
+    <div class="game-detail-row">
+        <div class="game-detail-label">MATCH</div>
+        <div class="game-detail-value">${game.player1} vs ${game.player2}</div>
+    </div>
+
+    <div class="game-detail-row">
+        <div class="game-detail-label">WINNER</div>
+        <div class="game-detail-value game-detail-winner">${game.winner}</div>
+    </div>
+`;
+
+gameOverlay.classList.add("active");
 
 } 
 
+function closeGameDetails() {
+    const gameOverlay =
+        document.getElementById("gameDetailsOverlay");
 
+    if (!gameOverlay) return;
+
+    gameOverlay.classList.remove("active");
+}
 function toggleGameStats(id) {
 
   const stats =
