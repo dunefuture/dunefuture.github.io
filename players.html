@@ -790,7 +790,11 @@ function openSeriesDetails(event, seriesId) {
   seriesGames.innerHTML = series.games.map(game => {
 
     return `
-      <div class="series-game">
+     <div
+    class="series-game"
+    onclick="openGameDetails(event, '${seriesId}', '${game.gameNumber}')"
+    title="View Game Details"
+>
 
         <div class="series-game-header">
 
@@ -886,17 +890,50 @@ function openSeriesDetails(event, seriesId) {
   document.body.style.overflow = "hidden";
 }
 
+
 function closeSeriesDetails() {
 
-  const overlay =
-    document.getElementById("seriesDetailsOverlay");
+    const overlay =
+        document.getElementById("seriesDetailsOverlay");
 
-  if (!overlay) return;
+    if (!overlay) return;
 
-  overlay.classList.remove("active");
+    overlay.classList.remove("active");
 
-  document.body.style.overflow = "";
+    document.body.style.overflow = "";
 }
+function openGameDetails(event, seriesId, gameNumber) {
+
+    if (event) {
+        event.stopPropagation();
+    }
+
+    const series = seriesData[seriesId];
+
+    if (!series) {
+        console.error("Series not found:", seriesId);
+        return;
+    }
+
+    const game = series.games.find(
+        game => game.gameNumber === Number(gameNumber)
+    );
+
+    if (!game) {
+        console.error("Game not found:", gameNumber);
+        return;
+    }
+
+alert(
+    `GAME ${game.gameNumber}\n\n` +
+    `DATE: ${game.date}\n` +
+    `STARTED: ${game.started}\n` +
+    `MAP: ${game.map}\n` +
+    `MATCH: ${game.player1} vs ${game.player2}\n` +
+    `WINNER: ${game.winner}`
+);
+
+} 
 
 
 function toggleGameStats(id) {
