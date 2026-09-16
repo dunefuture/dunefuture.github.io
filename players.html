@@ -8,7 +8,200 @@
   <title>Players — Dune Future</title>
 
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* =========================================
+       PLAYERS V3.2.1 — INTERACTIVE PROFILE
+       ========================================= */
+
+    .player-chip {
+      cursor: pointer;
+      transition: border-color .2s ease,
+                  color .2s ease,
+                  transform .2s ease;
+    }
+
+    .player-chip:hover {
+      border-color: #e83df3;
+      color: #e83df3;
+      transform: translateY(-2px);
+    }
+
+    .player-stats {
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid #292633;
+      display: flex;
+      gap: 50px;
+      flex-wrap: wrap;
+    }
+
+    .player-stat strong {
+      font-size: 24px;
+      display: block;
+    }
+
+    .player-stat span {
+      font-size: 11px;
+      opacity: .65;
+    }
+
+
+    /* MODAL */
+
+    .profile-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .78);
+
+      display: none;
+      align-items: center;
+      justify-content: center;
+
+      padding: 20px;
+
+      z-index: 9999;
+    }
+
+    .profile-overlay.active {
+      display: flex;
+    }
+
+    .profile-card {
+      width: min(560px, 100%);
+
+      background: #111018;
+      border: 1px solid #302d3b;
+      border-radius: 14px;
+
+      padding: 32px;
+
+      box-shadow:
+        0 20px 70px rgba(0,0,0,.55),
+        0 0 35px rgba(232,61,243,.08);
+
+      position: relative;
+    }
+
+    .profile-label {
+      color: #e83df3;
+
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+
+      margin-bottom: 10px;
+    }
+
+    .profile-name {
+      margin: 0 0 6px;
+
+      font-size: 42px;
+      line-height: 1;
+    }
+
+    .profile-community {
+      opacity: .65;
+      font-size: 13px;
+
+      margin-bottom: 30px;
+    }
+
+    .profile-info {
+      border-top: 1px solid #292633;
+      border-bottom: 1px solid #292633;
+
+      padding: 18px 0;
+
+      display: grid;
+      grid-template-columns: 110px 1fr;
+
+      gap: 12px;
+    }
+
+    .profile-info .label {
+      opacity: .55;
+      font-size: 12px;
+    }
+
+    .profile-info .value {
+      font-size: 13px;
+    }
+
+    .match-record {
+      margin-top: 26px;
+    }
+
+    .match-record-title {
+      color: #e83df3;
+
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+
+      margin-bottom: 12px;
+    }
+
+    .match-row {
+      border: 1px solid #292633;
+      border-radius: 9px;
+
+      padding: 15px 16px;
+
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+
+      font-size: 13px;
+    }
+
+    .match-score {
+      color: #e83df3;
+      font-weight: 800;
+      font-size: 18px;
+    }
+
+    .no-record {
+      opacity: .55;
+      font-size: 13px;
+    }
+
+    .profile-close {
+      position: absolute;
+
+      top: 18px;
+      right: 20px;
+
+      border: 0;
+      background: transparent;
+
+      color: #aaa;
+
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    .profile-close:hover {
+      color: #e83df3;
+    }
+
+    @media (max-width: 600px) {
+      .profile-card {
+        padding: 26px 22px;
+      }
+
+      .profile-name {
+        font-size: 34px;
+      }
+
+      .profile-info {
+        grid-template-columns: 90px 1fr;
+      }
+    }
+  </style>
+
 </head>
+
 
 <body>
 
@@ -19,6 +212,7 @@
   </a>
 
   <div class="links">
+
     <a href="index.html">HOME</a>
     <a href="players.html">PLAYERS</a>
     <a href="matches.html">MATCHES</a>
@@ -26,9 +220,11 @@
     <a href="guides.html">GUIDES</a>
     <a href="gallery.html">GALLERY</a>
 
-    <a class="join" href="https://discord.gg/j5vbakqmg">
+    <a class="join"
+       href="https://discord.gg/j5vbakqmg">
       JOIN DISCORD
     </a>
+
   </div>
 
 </nav>
@@ -46,95 +242,54 @@
 
   <p>
     Meet the commanders of the Dune Future community.
+    Click a player to view their profile.
   </p>
 
 
   <div class="chips">
 
-    <span class="chip">Aisi</span>
-    <span class="chip">Dan</span>
-    <span class="chip">Arma</span>
-    <span class="chip">Kipp</span>
-    <span class="chip">Perc</span>
+    <span class="chip player-chip" data-player="Aisi">Aisi</span>
+    <span class="chip player-chip" data-player="Dan">Dan</span>
+    <span class="chip player-chip" data-player="Arma">Arma</span>
+    <span class="chip player-chip" data-player="Kipp">Kipp</span>
+    <span class="chip player-chip" data-player="Perc">Perc</span>
 
-    <span class="chip">Gala</span>
-    <span class="chip">USB</span>
-    <span class="chip">Helkor</span>
-    <span class="chip">Bal</span>
-    <span class="chip">Carlos</span>
+    <span class="chip player-chip" data-player="Gala">Gala</span>
+    <span class="chip player-chip" data-player="USB">USB</span>
+    <span class="chip player-chip" data-player="Helkor">Helkor</span>
+    <span class="chip player-chip" data-player="Bal">Bal</span>
+    <span class="chip player-chip" data-player="Carlos">Carlos</span>
 
-    <span class="chip">Neko</span>
-    <span class="chip">NJ</span>
-    <span class="chip">Frank</span>
-    <span class="chip">Manuel</span>
-    <span class="chip">Jo</span>
+    <span class="chip player-chip" data-player="Neko">Neko</span>
+    <span class="chip player-chip" data-player="NJ">NJ</span>
+    <span class="chip player-chip" data-player="Frank">Frank</span>
+    <span class="chip player-chip" data-player="Manuel">Manuel</span>
+    <span class="chip player-chip" data-player="Jo">Jo</span>
 
-    <span class="chip">Harun</span>
-    <span class="chip">X-Noname</span>
-    <span class="chip">BSGRCD</span>
-    <span class="chip">Redace</span>
-    <span class="chip">DZ14</span>
+    <span class="chip player-chip" data-player="Harun">Harun</span>
+    <span class="chip player-chip" data-player="X-Noname">X-Noname</span>
+    <span class="chip player-chip" data-player="BSGRCD">BSGRCD</span>
+    <span class="chip player-chip" data-player="Redace">Redace</span>
+    <span class="chip player-chip" data-player="DZ14">DZ14</span>
 
   </div>
 
 
-  <div style="
-      margin-top:40px;
-      padding-top:24px;
-      border-top:1px solid #292633;
-      display:flex;
-      gap:50px;
-      flex-wrap:wrap;
-  ">
+  <div class="player-stats">
 
-    <div>
-      <strong style="
-          font-size:24px;
-          display:block;
-      ">
-        20
-      </strong>
-
-      <span style="
-          font-size:11px;
-          opacity:.65;
-      ">
-        COMMUNITY PLAYERS
-      </span>
+    <div class="player-stat">
+      <strong>20</strong>
+      <span>COMMUNITY PLAYERS</span>
     </div>
 
-
-    <div>
-      <strong style="
-          font-size:24px;
-          display:block;
-      ">
-        DUNE 2000
-      </strong>
-
-      <span style="
-          font-size:11px;
-          opacity:.65;
-      ">
-        COMMUNITY
-      </span>
+    <div class="player-stat">
+      <strong>DUNE 2000</strong>
+      <span>COMMUNITY</span>
     </div>
 
-
-    <div>
-      <strong style="
-          font-size:24px;
-          display:block;
-      ">
-        1v1 · 2v2 · 3v3
-      </strong>
-
-      <span style="
-          font-size:11px;
-          opacity:.65;
-      ">
-        GAME MODES
-      </span>
+    <div class="player-stat">
+      <strong>1v1 · 2v2 · 3v3</strong>
+      <span>GAME MODES</span>
     </div>
 
   </div>
@@ -149,7 +304,192 @@
 </footer>
 
 
+<!-- PLAYER PROFILE MODAL -->
+
+<div
+  class="profile-overlay"
+  id="profileOverlay"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="profileName"
+>
+
+  <div class="profile-card">
+
+    <button
+      class="profile-close"
+      id="profileClose"
+      type="button"
+      aria-label="Close player profile"
+    >
+      ×
+    </button>
+
+    <div class="profile-label">
+      DUNE FUTURE PLAYER
+    </div>
+
+    <h2
+      class="profile-name"
+      id="profileName">
+      PLAYER
+    </h2>
+
+    <div class="profile-community">
+      Dune Future · Dune 2000 Community
+    </div>
+
+
+    <div class="profile-info">
+
+      <div class="label">GAME</div>
+      <div class="value">Dune 2000</div>
+
+      <div class="label">COMMUNITY</div>
+      <div class="value">Dune Future</div>
+
+    </div>
+
+
+    <div
+      class="match-record"
+      id="matchRecord">
+    </div>
+
+  </div>
+
+</div>
+
+
 <script src="script.js"></script>
+
+<script>
+
+  const playerData = {
+
+    "DZ14": {
+      match:
+        "vs X-Noname",
+      score:
+        "2–0"
+    },
+
+    "X-Noname": {
+      match:
+        "vs DZ14",
+      score:
+        "0–2"
+    }
+
+  };
+
+
+  const overlay =
+    document.getElementById("profileOverlay");
+
+  const profileName =
+    document.getElementById("profileName");
+
+  const matchRecord =
+    document.getElementById("matchRecord");
+
+  const closeButton =
+    document.getElementById("profileClose");
+
+
+  document
+    .querySelectorAll(".player-chip")
+    .forEach(player => {
+
+      player.addEventListener("click", () => {
+
+        const name =
+          player.dataset.player;
+
+        profileName.textContent =
+          name;
+
+        const data =
+          playerData[name];
+
+
+        if (data) {
+
+          matchRecord.innerHTML = `
+            <div class="match-record-title">
+              MATCH RECORD
+            </div>
+
+            <div class="match-row">
+
+              <span>
+                ${data.match}
+              </span>
+
+              <span class="match-score">
+                ${data.score}
+              </span>
+
+            </div>
+          `;
+
+        } else {
+
+          matchRecord.innerHTML = `
+            <div class="match-record-title">
+              MATCH RECORD
+            </div>
+
+            <div class="no-record">
+              No match record published yet.
+            </div>
+          `;
+
+        }
+
+
+        overlay.classList.add("active");
+
+      });
+
+    });
+
+
+  function closeProfile() {
+    overlay.classList.remove("active");
+  }
+
+
+  closeButton.addEventListener(
+    "click",
+    closeProfile
+  );
+
+
+  overlay.addEventListener(
+    "click",
+    event => {
+
+      if (event.target === overlay) {
+        closeProfile();
+      }
+
+    }
+  );
+
+
+  document.addEventListener(
+    "keydown",
+    event => {
+
+      if (event.key === "Escape") {
+        closeProfile();
+      }
+
+    }
+  );
+
+</script>
 
 </body>
 </html>
