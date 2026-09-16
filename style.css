@@ -34,6 +34,27 @@
   right: 16px;
   border: 0;
   background: transparent;
+   /* =========================
+   NESTED MODAL IMPROVEMENT
+   ========================= */
+
+/* Game Details berada di atas Series Details */
+.game-details-overlay {
+  background: rgba(0, 0, 0, 0.48);
+  z-index: 11000;
+}
+
+/* Series modal tetap terlihat saat Game Details terbuka */
+.series-details-overlay {
+  z-index: 10000;
+}
+
+/* Game Details card lebih menonjol */
+.game-details-card {
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.70),
+    0 0 0 1px rgba(255, 53, 239, 0.08);
+}
   color: #aaa;
   font-size: 24px;
   cursor: pointer;
