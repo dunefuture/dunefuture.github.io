@@ -800,16 +800,29 @@
    SERIES DETAILS
 ======================================== */
 
-function openSeriesDetails() {
+function openSeriesDetails(event) {
 
-  const overlay =
-    document.getElementById("seriesDetailsOverlay");
+    if (event) {
+        event.stopPropagation();
+    }
 
-  if (!overlay) return;
+    const profileOverlay =
+        document.getElementById("profileOverlay");
 
-  overlay.classList.add("active");
+    const seriesOverlay =
+        document.getElementById("seriesDetailsOverlay");
 
-  document.body.style.overflow = "hidden";
+    if (!seriesOverlay) return;
+
+    // Close player profile first
+    if (profileOverlay) {
+        profileOverlay.classList.remove("active");
+    }
+
+    // Open Series Details
+    seriesOverlay.classList.add("active");
+
+    document.body.style.overflow = "hidden";
 }
 
 
