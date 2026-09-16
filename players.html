@@ -486,123 +486,9 @@
     </div>
 
 
-    <!-- GAME 1 -->
-
-    <div class="series-game">
-
-      <div class="series-game-header">
-
-        <div class="series-game-number">
-          GAME 1
-        </div>
-
-        <div class="series-game-result">
-          DZ14 WIN
-        </div>
-
-      </div>
-
-      <div class="series-game-info">
-
-        <div class="label">DATE</div>
-        <div class="value">
-          10 September 2026
-        </div>
-
-        <div class="label">STARTED</div>
-        <div class="value">
-          16:40:44
-        </div>
-
-        <div class="label">MAP</div>
-        <div class="value">
-          Habbanya Erg 5.4.7
-        </div>
-
-        <div class="label">MATCH</div>
-        <div class="value">
-          DZ14 vs X-Noname
-        </div>
-
-        <div class="label">WINNER</div>
-        <div class="value">
-          DZ14
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- GAME 2 -->
-
-    <div class="series-game">
-
-      <div class="series-game-header">
-
-        <div class="series-game-number">
-          GAME 2
-        </div>
-
-        <div class="series-game-result">
-          DZ14 WIN
-        </div>
-
-      </div>
-
-      <div class="series-game-info">
-
-        <div class="label">DATE</div>
-        <div class="value">
-          14 September 2026
-        </div>
-
-        <div class="label">STARTED</div>
-        <div class="value">
-          20:24:22
-        </div>
-
-        <div class="label">MAP</div>
-        <div class="value">
-          Habbanya Erg 5.4.7
-        </div>
-
-        <div class="label">MATCH</div>
-        <div class="value">
-          DZ14 vs X-Noname
-        </div>
-
-        <div class="label">WINNER</div>
-        <div class="value">
-          DZ14
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- FINAL RESULT -->
-
-    <div class="series-final">
-
-      <div>
-
-        <div class="series-details-label">
-          FINAL SERIES RESULT
-        </div>
-
-        <strong>
-          DZ14 wins the series
-        </strong>
-
-      </div>
-
-      <div class="series-final-score">
-        2–0
-      </div>
-
-    </div>
+   <!-- DATA-DRIVEN SERIES CONTENT -->
+<div id="seriesGames"></div>
+<div id="seriesFinalResult"></div>
 
   </div>
 
@@ -669,23 +555,73 @@
 
 <script>
 
-  const playerData = {
+ const playerData = {
 
-    "DZ14": {
-      match:
-        "vs X-Noname",
-      score:
-        "2–0"
-    },
+  "DZ14": {
+    game: "Dune 2000",
+    community: "Dune Future",
 
-    "X-Noname": {
-      match:
-        "vs DZ14",
-      score:
-        "0–2"
-    }
+    series: [
+      {
+        id: "dz14-xnoname-2026",
+        opponent: "X-Noname",
+        score: "2-0"
+      }
+    ]
+  },
 
-  };
+  "X-Noname": {
+    game: "Dune 2000",
+    community: "Dune Future",
+
+    series: [
+      {
+        id: "dz14-xnoname-2026",
+        opponent: "DZ14",
+        score: "0-2"
+      }
+    ]
+  }
+
+};
+  const seriesData = {
+
+  "dz14-xnoname-2026": {
+
+    player1: "DZ14",
+    player2: "X-Noname",
+
+    format: "1v1 Series",
+    finalScore: "2-0",
+    winner: "DZ14",
+
+    games: [
+
+      {
+        gameNumber: 1,
+        date: "10 September 2026",
+        started: "16:40:44",
+        map: "Habbanya Erg 5.4.7",
+        player1: "DZ14",
+        player2: "X-Noname",
+        winner: "DZ14"
+      },
+
+      {
+        gameNumber: 2,
+        date: "14 September 2026",
+        started: "20:24:22",
+        map: "Habbanya Erg 5.4.7",
+        player1: "DZ14",
+        player2: "X-Noname",
+        winner: "DZ14"
+      }
+
+    ]
+
+  }
+
+};
 
 
   const overlay =
@@ -717,29 +653,33 @@
           playerData[name];
 
 
-        if (data) {
+        if (data && data.series && data.series.length > 0) {
 
-          matchRecord.innerHTML = `
-            <div class="match-record-title">
-              MATCH RECORD
-            </div>
+         matchRecord.innerHTML = `
+  <div class="match-record-title">
+    MATCH RECORD
+  </div>
 
-            <div class="match-row">
+  ${data.series.map(series => `
 
-              <span>
-                ${data.match}
-              </span>
+    <div class="match-row">
 
-              <span
-    class="match-score"
-    onclick="openSeriesDetails(event)"
-    title="View Series Details"
->
-    ${data.score}
-</span>
+      <span>
+        vs ${series.opponent}
+      </span>
 
-            </div>
-          `;
+      <span
+        class="match-score"
+        onclick="openSeriesDetails(event, '${series.id}')"
+        title="View Series Details"
+      >
+        ${series.score}
+      </span>
+
+    </div>
+
+  `).join("")}
+`;
 
         } else {
 
@@ -800,31 +740,151 @@
    SERIES DETAILS
 ======================================== */
 
-function openSeriesDetails(event) {
+function openSeriesDetails(event, seriesId) {
+  if (event) {
+    event.stopPropagation();
+  }
 
-    if (event) {
-        event.stopPropagation();
+  const profileOverlay =
+    document.getElementById("profileOverlay");
+
+  const seriesOverlay =
+    document.getElementById("seriesDetailsOverlay");
+
+  const seriesGames =
+    document.getElementById("seriesGames");
+
+  const seriesFinalResult =
+    document.getElementById("seriesFinalResult");
+
+  if (!seriesOverlay || !seriesGames || !seriesFinalResult) return;
+
+  const series = seriesData[seriesId];
+
+  if (!series) {
+    console.error("Series not found:", seriesId);
+    return;
+  }
+
+  // Close Player Profile first
+  if (profileOverlay) {
+    profileOverlay.classList.remove("active");
+  }
+
+  // =========================
+  // SERIES HEADER
+  // =========================
+
+  const seriesTitle =
+    document.querySelector(".series-details-title");
+
+  if (seriesTitle) {
+    seriesTitle.textContent =
+      `${series.player1} vs ${series.player2}`;
+  }
+
+  // =========================
+  // RENDER ALL GAMES
+  // =========================
+
+  seriesGames.innerHTML = series.games.map(game => {
+
+    return `
+      <div class="series-game">
+
+        <div class="series-game-header">
+
+          <div class="series-game-number">
+            GAME ${game.gameNumber}
+          </div>
+
+          <div class="series-game-result">
+            ${game.winner} WIN
+          </div>
+
+        </div>
+
+        <div class="series-game-info">
+
+          <div class="label">DATE</div>
+          <div class="value">
+            ${game.date}
+          </div>
+
+          <div class="label">STARTED</div>
+          <div class="value">
+            ${game.started}
+          </div>
+
+          <div class="label">MAP</div>
+          <div class="value">
+            ${game.map}
+          </div>
+
+          <div class="label">MATCH</div>
+          <div class="value">
+            ${game.player1} vs ${game.player2}
+          </div>
+
+          <div class="label">WINNER</div>
+          <div class="value">
+            ${game.winner}
+          </div>
+
+        </div>
+
+      </div>
+    `;
+  }).join("");
+
+  // =========================
+  // FINAL SERIES RESULT
+  // =========================
+
+  const wins = {};
+
+  series.games.forEach(game => {
+    wins[game.winner] =
+      (wins[game.winner] || 0) + 1;
+  });
+
+  let seriesWinner = null;
+  let highestWins = -1;
+
+  Object.entries(wins).forEach(([player, totalWins]) => {
+    if (totalWins > highestWins) {
+      highestWins = totalWins;
+      seriesWinner = player;
     }
+  });
 
-    const profileOverlay =
-        document.getElementById("profileOverlay");
+  seriesFinalResult.innerHTML = `
+    <div class="series-final">
 
-    const seriesOverlay =
-        document.getElementById("seriesDetailsOverlay");
+      <div>
+        <div class="series-details-label">
+          FINAL SERIES RESULT
+        </div>
 
-    if (!seriesOverlay) return;
+        <strong>
+          ${seriesWinner} wins the series
+        </strong>
+      </div>
 
-    // Close player profile first
-    if (profileOverlay) {
-        profileOverlay.classList.remove("active");
-    }
+      <div class="series-final-score">
+        ${series.score}
+      </div>
 
-    // Open Series Details
-    seriesOverlay.classList.add("active");
+    </div>
+  `;
 
-    document.body.style.overflow = "hidden";
+  // =========================
+  // OPEN SERIES DETAILS
+  // =========================
+
+  seriesOverlay.classList.add("active");
+  document.body.style.overflow = "hidden";
 }
-
 
 function closeSeriesDetails() {
 
