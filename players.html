@@ -198,6 +198,153 @@
         grid-template-columns: 90px 1fr;
       }
     }
+    /* =========================================
+   SERIES DETAILS
+   ========================================= */
+
+.series-score {
+  cursor: pointer;
+  color: #e83df3;
+  font-weight: 800;
+  transition: 0.2s ease;
+}
+
+.series-score:hover {
+  text-shadow: 0 0 12px rgba(232, 61, 243, 0.75);
+  transform: scale(1.05);
+}
+
+.series-details-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.82);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.series-details-overlay.active {
+  display: flex;
+}
+
+.series-details-card {
+  width: 100%;
+  max-width: 620px;
+  max-height: 85vh;
+  overflow-y: auto;
+  background: #111018;
+  border: 1px solid #332d40;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.65);
+  position: relative;
+}
+
+.series-details-close {
+  position: absolute;
+  top: 15px;
+  right: 18px;
+  border: 0;
+  background: transparent;
+  color: #aaa;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.series-details-close:hover {
+  color: #e83df3;
+}
+
+.series-details-label {
+  color: #e83df3;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.series-details-title {
+  font-size: 30px;
+  font-weight: 800;
+  margin-bottom: 5px;
+}
+
+.series-details-subtitle {
+  opacity: 0.6;
+  font-size: 13px;
+  margin-bottom: 24px;
+}
+
+.series-game {
+  border: 1px solid #292633;
+  border-radius: 12px;
+  padding: 18px;
+  margin-top: 14px;
+}
+
+.series-game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.series-game-number {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.series-game-result {
+  color: #e83df3;
+  font-weight: 800;
+}
+
+.series-game-info {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 8px 14px;
+  font-size: 13px;
+}
+
+.series-game-info .label {
+  opacity: 0.55;
+}
+
+.series-game-info .value {
+  font-weight: 600;
+}
+
+.series-final {
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid #292633;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.series-final-score {
+  color: #e83df3;
+  font-size: 26px;
+  font-weight: 900;
+}
+
+@media (max-width: 600px) {
+  .series-details-card {
+    padding: 24px 20px;
+  }
+
+  .series-details-title {
+    font-size: 25px;
+  }
+
+  .series-game-info {
+    grid-template-columns: 90px 1fr;
+  }
+}
   </style>
 
 </head>
@@ -302,7 +449,164 @@
 <footer>
   © 2026 Dune Future · Dune 2000 Community
 </footer>
+<!-- SERIES DETAILS MODAL -->
 
+<div
+  class="series-details-overlay"
+  id="seriesDetailsOverlay"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="seriesDetailsTitle"
+>
+
+  <div class="series-details-card">
+
+    <button
+      class="series-details-close"
+      type="button"
+      onclick="closeSeriesDetails()"
+      aria-label="Close series details"
+    >
+      &times;
+    </button>
+
+    <div class="series-details-label">
+      SERIES DETAILS
+    </div>
+
+    <div
+      class="series-details-title"
+      id="seriesDetailsTitle"
+    >
+      DZ14 vs X-Noname
+    </div>
+
+    <div class="series-details-subtitle">
+      Dune Future · 1v1 Series
+    </div>
+
+
+    <!-- GAME 1 -->
+
+    <div class="series-game">
+
+      <div class="series-game-header">
+
+        <div class="series-game-number">
+          GAME 1
+        </div>
+
+        <div class="series-game-result">
+          DZ14 WIN
+        </div>
+
+      </div>
+
+      <div class="series-game-info">
+
+        <div class="label">DATE</div>
+        <div class="value">
+          10 September 2026
+        </div>
+
+        <div class="label">STARTED</div>
+        <div class="value">
+          16:40:44
+        </div>
+
+        <div class="label">MAP</div>
+        <div class="value">
+          Habbanya Erg 5.4.7
+        </div>
+
+        <div class="label">MATCH</div>
+        <div class="value">
+          DZ14 vs X-Noname
+        </div>
+
+        <div class="label">WINNER</div>
+        <div class="value">
+          DZ14
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- GAME 2 -->
+
+    <div class="series-game">
+
+      <div class="series-game-header">
+
+        <div class="series-game-number">
+          GAME 2
+        </div>
+
+        <div class="series-game-result">
+          DZ14 WIN
+        </div>
+
+      </div>
+
+      <div class="series-game-info">
+
+        <div class="label">DATE</div>
+        <div class="value">
+          14 September 2026
+        </div>
+
+        <div class="label">STARTED</div>
+        <div class="value">
+          20:24:22
+        </div>
+
+        <div class="label">MAP</div>
+        <div class="value">
+          Habbanya Erg 5.4.7
+        </div>
+
+        <div class="label">MATCH</div>
+        <div class="value">
+          DZ14 vs X-Noname
+        </div>
+
+        <div class="label">WINNER</div>
+        <div class="value">
+          DZ14
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- FINAL RESULT -->
+
+    <div class="series-final">
+
+      <div>
+
+        <div class="series-details-label">
+          FINAL SERIES RESULT
+        </div>
+
+        <strong>
+          DZ14 wins the series
+        </strong>
+
+      </div>
+
+      <div class="series-final-score">
+        2–0
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
 
 <!-- PLAYER PROFILE MODAL -->
 
@@ -426,9 +730,13 @@
                 ${data.match}
               </span>
 
-              <span class="match-score">
-                ${data.score}
-              </span>
+              <span
+    class="match-score"
+    onclick="openSeriesDetails(event)"
+    title="View Series Details"
+>
+    ${data.score}
+</span>
 
             </div>
           `;
@@ -488,7 +796,79 @@
 
     }
   );
+/* ========================================
+   SERIES DETAILS
+======================================== */
 
+function openSeriesDetails() {
+
+  const overlay =
+    document.getElementById("seriesDetailsOverlay");
+
+  if (!overlay) return;
+
+  overlay.classList.add("active");
+
+  document.body.style.overflow = "hidden";
+}
+
+
+function closeSeriesDetails() {
+
+  const overlay =
+    document.getElementById("seriesDetailsOverlay");
+
+  if (!overlay) return;
+
+  overlay.classList.remove("active");
+
+  document.body.style.overflow = "";
+}
+
+
+function toggleGameStats(id) {
+
+  const stats =
+    document.getElementById(id);
+
+  if (!stats) return;
+
+  stats.classList.toggle("active");
+}
+
+
+/* close by clicking background */
+
+document
+  .getElementById("seriesDetailsOverlay")
+  ?.addEventListener("click", function(event) {
+
+    if (event.target === this) {
+      closeSeriesDetails();
+    }
+
+  });
+
+
+/* ESC key */
+
+document.addEventListener("keydown", function(event) {
+
+  if (event.key === "Escape") {
+
+    const seriesOverlay =
+      document.getElementById("seriesDetailsOverlay");
+
+    if (
+      seriesOverlay &&
+      seriesOverlay.classList.contains("active")
+    ) {
+      closeSeriesDetails();
+    }
+
+  }
+
+});
 </script>
 
 </body>
