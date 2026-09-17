@@ -261,3 +261,215 @@
 .game-stats-result > div:nth-child(3) {
   color: #9a94a1;
 }
+/* =========================================================
+   COMPACT MATCH STATISTICS
+   ========================================================= */
+
+.game-stats-panel {
+  margin-top: 8px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+/* 3 columns: Statistic | Player 1 | Player 2 */
+.game-stats-header,
+.game-stats-row {
+  display: grid;
+  grid-template-columns: 1.7fr 1fr 1fr;
+  align-items: center;
+}
+
+/* Make the table significantly more compact */
+.game-stats-header > div {
+  padding: 7px 9px;
+}
+
+.game-stats-row > div {
+  padding: 5px 9px;
+}
+
+/* Statistic labels */
+.game-stats-row > div:first-child {
+  color: #918b99;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.15px;
+  line-height: 1.15;
+}
+
+/* Player values */
+.game-stats-row > div:not(:first-child) {
+  color: #ffffff;
+  text-align: center;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+/* Column header */
+.game-stats-label {
+  font-size: 8px;
+  letter-spacing: 0.8px;
+}
+
+.game-stats-player {
+  font-size: 9px;
+}
+
+/* Softer row separator */
+.game-stats-row {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.045);
+}
+
+/* Keep Result slightly more prominent */
+.game-stats-result > div {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.game-stats-result > div:nth-child(2) {
+  color: #ff35f2;
+  font-weight: 800;
+}
+
+.game-stats-result > div:nth-child(3) {
+  color: #9a94a1;
+  font-weight: 800;
+}
+
+/* Long labels must stay inside the first column */
+.game-stats-row > div:first-child {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .game-stats-header,
+  .game-stats-row {
+    grid-template-columns: 1.55fr 1fr 1fr;
+  }
+
+  .game-stats-header > div {
+    padding: 6px 6px;
+  }
+
+  .game-stats-row > div {
+    padding: 5px 6px;
+  }
+
+  .game-stats-row > div:first-child {
+    font-size: 7.5px;
+  }
+
+  .game-stats-row > div:not(:first-child),
+  .game-stats-player {
+    font-size: 8px;
+  }
+}
+/* =========================================================
+   COMPACT MATCH STATISTICS
+   ========================================================= */
+
+.game-stats-panel {
+  margin-top: 8px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+/* 3 columns: Statistic | Player 1 | Player 2 */
+.game-stats-header,
+.game-stats-row {
+  display: grid;
+  grid-template-columns: 1.7fr 1fr 1fr;
+  align-items: center;
+}
+
+/* Make the table significantly more compact */
+.game-stats-header > div {
+  padding: 7px 9px;
+}
+
+.game-stats-row > div {
+  padding: 5px 9px;
+}
+
+/* Statistic labels */
+.game-stats-row > div:first-child {
+  color: #918b99;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.15px;
+  line-height: 1.15;
+}
+
+/* Player values */
+.game-stats-row > div:not(:first-child) {
+  color: #ffffff;
+  text-align: center;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+/* Column header */
+.game-stats-label {
+  font-size: 8px;
+  letter-spacing: 0.8px;
+}
+
+.game-stats-player {
+  font-size: 9px;
+}
+
+/* Softer row separator */
+.game-stats-row {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.045);
+}
+
+/* Keep Result slightly more prominent */
+.game-stats-result > div {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.game-stats-result > div:nth-child(2) {
+  color: #ff35f2;
+  font-weight: 800;
+}
+
+.game-stats-result > div:nth-child(3) {
+  color: #9a94a1;
+  font-weight: 800;
+}
+
+/* Long labels must stay inside the first column */
+.game-stats-row > div:first-child {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .game-stats-header,
+  .game-stats-row {
+    grid-template-columns: 1.55fr 1fr 1fr;
+  }
+
+  .game-stats-header > div {
+    padding: 6px 6px;
+  }
+
+  .game-stats-row > div {
+    padding: 5px 6px;
+  }
+
+  .game-stats-row > div:first-child {
+    font-size: 7.5px;
+  }
+
+  .game-stats-row > div:not(:first-child),
+  .game-stats-player {
+    font-size: 8px;
+  }
+}
