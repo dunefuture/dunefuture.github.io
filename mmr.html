@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>MMR Leaderboard — Dune Future</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ==============================
+       DUNE FUTURE MMR
+       ============================== */
+
+    .mmr-page {
+      min-height: calc(100vh - 140px);
+      padding: 90px 20px 70px;
+      background: #07060b;
+      color: #fff;
+    }
+
+    .mmr-container {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .mmr-heading {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .mmr-eyebrow {
+      color: #e83df3;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      margin-bottom: 12px;
+    }
+
+    .mmr-heading h1 {
+      margin: 0;
+      font-size: 42px;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .mmr-heading h1 span {
+      color: #e83df3;
+    }
+
+    .mmr-description {
+      margin-top: 10px;
+      color: #8f8999;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    .mmr-updated {
+      margin-top: 8px;
+      color: #625d68;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    /* TOP 3 */
+
+    .mmr-podium {
+      display: grid;
+      grid-template-columns: 1fr 1.12fr 1fr;
+      gap: 14px;
+      align-items: end;
+      margin: 35px auto 28px;
+      max-width: 680px;
+    }
+
+    .mmr-podium-card {
+      position: relative;
+      text-align: center;
+      padding: 24px 12px;
+      border: 1px solid rgba(232, 61, 243, .22);
+      border-radius: 14px;
+      background:
+        radial-gradient(circle at 50% 0%,
+          rgba(232,61,243,.10),
+          transparent 55%),
+        #111017;
+    }
+
+    .mmr-podium-card.first {
+      padding-top: 34px;
+      padding-bottom: 30px;
+      border-color: rgba(255, 193, 61, .55);
+      background:
+        radial-gradient(circle at 50% 0%,
+          rgba(255,193,61,.15),
+          transparent 58%),
+        #151117;
+      box-shadow: 0 0 28px rgba(255,193,61,.07);
+    }
+
+    .mmr-medal {
+      font-size: 25px;
+      margin-bottom: 8px;
+    }
+
+    .mmr-rank-label {
+      color: #77717f;
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+
+    .mmr-podium-card.first .mmr-rank-label {
+      color: #ffc43d;
+    }
+
+    .mmr-podium-name {
+      margin-top: 7px;
+      font-size: 16px;
+      font-weight: 900;
+    }
+
+    .mmr-points {
+      margin-top: 8px;
+      color: #e83df3;
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .mmr-podium-card.first .mmr-points {
+      color: #ffc43d;
+      font-size: 22px;
+    }
+
+    .mmr-unit {
+      margin-left: 3px;
+      color: #77717f;
+      font-size: 8px;
+      letter-spacing: 1px;
+    }
+
+    /* LEADERBOARD */
+
+    .mmr-board {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 22px;
+      border: 1px solid rgba(232,61,243,.25);
+      border-radius: 16px;
+
+      background:
+        radial-gradient(circle at 50% 0%,
+          rgba(232,61,243,.08),
+          transparent 45%),
+        #0e0d13;
+    }
+
+    .mmr-board-title {
+      display: grid;
+      grid-template-columns: 55px 1fr 120px 85px;
+      padding: 0 14px 10px;
+
+      color: #625d68;
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+    }
+
+    .mmr-board-title div:nth-child(3),
+    .mmr-board-title div:nth-child(4) {
+      text-align: right;
+    }
+
+    .mmr-row {
+      display: grid;
+      grid-template-columns: 55px 1fr 120px 85px;
+      align-items: center;
+
+      min-height: 44px;
+      margin-bottom: 6px;
+      padding: 0 14px;
+
+      background: rgba(255,255,255,.018);
+      border: 1px solid rgba(255,255,255,.045);
+      border-radius: 8px;
+
+      transition:
+        transform .18s ease,
+        background .18s ease,
+        border-color .18s ease;
+    }
+
+    .mmr-row:hover {
+      transform: translateX(4px);
+      background: rgba(232,61,243,.055);
+      border-color: rgba(232,61,243,.30);
+    }
+
+    .mmr-rank {
+      color: #706a77;
+      font-size: 10px;
+      font-weight: 900;
+    }
+
+    .mmr-name {
+      color: #f0edf2;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .mmr-value {
+      text-align: right;
+      color: #e83df3;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .mmr-tier {
+      text-align: right;
+      color: #625d68;
+      font-size: 7px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+    }
+
+    .mmr-row.elite {
+      border-left: 2px solid rgba(232,61,243,.65);
+    }
+
+    .mmr-row.elite .mmr-rank,
+    .mmr-row.elite .mmr-tier {
+      color: #e83df3;
+    }
+
+    /* INFORMATION */
+
+    .mmr-info {
+      max-width: 720px;
+      margin: 18px auto 0;
+      padding: 15px 18px;
+
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 10px;
+      background: rgba(255,255,255,.015);
+
+      text-align: center;
+      color: #77717f;
+      font-size: 9px;
+      line-height: 1.7;
+    }
+
+    .mmr-info strong {
+      color: #e83df3;
+    }
+
+    @media (max-width: 650px) {
+
+      .mmr-page {
+        padding: 60px 14px 50px;
+      }
+
+      .mmr-heading h1 {
+        font-size: 30px;
+      }
+
+      .mmr-podium {
+        grid-template-columns: 1fr;
+        align-items: stretch;
+      }
+
+      .mmr-podium-card.first {
+        order: -1;
+      }
+
+      .mmr-board {
+        padding: 12px;
+      }
+
+      .mmr-board-title,
+      .mmr-row {
+        grid-template-columns: 42px 1fr 85px;
+      }
+
+      .mmr-board-title div:last-child,
+      .mmr-tier {
+        display: none;
+      }
+
+      .mmr-name {
+        font-size: 10px;
+      }
+
+      .mmr-value {
+        font-size: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <a href="index.html">HOME</a>
+    <a href="players.html">PLAYERS</a>
+    <a href="mmr.html" class="active">MMR</a>
+    <a href="matches.html">MATCHES</a>
+    <a href="rankings.html">RANKINGS</a>
+    <a href="guides.html">GUIDES</a>
+    <a href="gallery.html">GALLERY</a>
+  </nav>
+
+
+  <main class="mmr-page">
+
+    <div class="mmr-container">
+
+      <div class="mmr-heading">
+
+        <div class="mmr-eyebrow">
+          COMPETITIVE RATING
+        </div>
+
+        <h1>
+          DUNE FUTURE <span>MMR</span>
+        </h1>
+
+        <div class="mmr-description">
+          1v1 Competitive Player Rating
+        </div>
+
+        <div class="mmr-updated">
+          TOP 20 · LAST UPDATED 17 SEPTEMBER 2026
+        </div>
+
+      </div>
+
+
+      <!-- TOP 3 -->
+
+      <div class="mmr-podium">
+
+        <div class="mmr-podium-card">
+          <div class="mmr-medal">🥈</div>
+          <div class="mmr-rank-label">RANK #2</div>
+          <div class="mmr-podium-name">Carlos</div>
+
+          <div class="mmr-points">
+            950
+            <span class="mmr-unit">MMR</span>
+          </div>
+        </div>
+
+
+        <div class="mmr-podium-card first">
+          <div class="mmr-medal">👑</div>
+          <div class="mmr-rank-label">RANK #1</div>
+          <div class="mmr-podium-name">Kipp</div>
+
+          <div class="mmr-points">
+            1000
+            <span class="mmr-unit">MMR</span>
+          </div>
+        </div>
+
+
+        <div class="mmr-podium-card">
+          <div class="mmr-medal">🥉</div>
+          <div class="mmr-rank-label">RANK #3</div>
+          <div class="mmr-podium-name">Balrog</div>
+
+          <div class="mmr-points">
+            900
+            <span class="mmr-unit">MMR</span>
+          </div>
+        </div>
+
+      </div>
+
+
+      <!-- RANK 4 - 20 -->
+
+      <div class="mmr-board">
+
+        <div class="mmr-board-title">
+          <div>RANK</div>
+          <div>PLAYER</div>
+          <div>MMR</div>
+          <div>TIER</div>
+        </div>
+
+
+        <div class="mmr-row elite">
+          <div class="mmr-rank">#04</div>
+          <div class="mmr-name">Arthur</div>
+          <div class="mmr-value">850</div>
+          <div class="mmr-tier">ELITE</div>
+        </div>
+
+        <div class="mmr-row elite">
+          <div class="mmr-rank">#05</div>
+          <div class="mmr-name">Dan</div>
+          <div class="mmr-value">800</div>
+          <div class="mmr-tier">ELITE</div>
+        </div>
+
+        <div class="mmr-row elite">
+          <div class="mmr-rank">#06</div>
+          <div class="mmr-name">Joseph</div>
+          <div class="mmr-value">750</div>
+          <div class="mmr-tier">ELITE</div>
+        </div>
+
+        <div class="mmr-row elite">
+          <div class="mmr-rank">#07</div>
+          <div class="mmr-name">Neko</div>
+          <div class="mmr-value">700</div>
+          <div class="mmr-tier">ELITE</div>
+        </div>
+
+        <div class="mmr-row elite">
+          <div class="mmr-rank">#08</div>
+          <div class="mmr-name">DZ14</div>
+          <div class="mmr-value">650</div>
+          <div class="mmr-tier">ELITE</div>
+        </div>
+
+        <div class="mmr-row elite">
+          <div class="mmr-rank">#09</div>
+          <div class="mmr-name">NewNamE</div>
+          <div class="mmr-value">600</div>
+          <div class="mmr-tier">ELITE</div>
+        </div>
+
+        <div class="mmr-row elite">
+          <div class="mmr-rank">#10</div>
+          <div class="mmr-name">BSGRCD</div>
+          <div class="mmr-value">550</div>
+          <div class="mmr-tier">ELITE</div>
+        </div>
+
+        <div class="mmr-row">
+          <div class="mmr-rank">#11</div>
+          <div class="mmr-name">X-Noname</div>
+          <div class="mmr-value">500</div>
+          <div class="mmr-tier">TOP 20</div>
+        </div>
+
+        <div class="mmr-row">
+          <div class="mmr-rank">#12</div>
+          <div class="mmr-name">Jadg</div>
+          <div class="mmr-value">450</div>
+          <div class="mmr-tier">TOP 20</div>
+        </div>
+
+        <div class="mmr-row">
+          <div class="mmr-rank">#13</div>
+          <div class="mmr-name">Sardat</div>
+          <div class="mmr-value">400</div>
+          <div class="mmr-tier">TOP 20</div>
+        </div>
+
+        <div class="mmr-row">
+          <div class="mmr-rank">#14</div>
+          <div class="mmr-name">ALGERINO</div>
+          <div class="mmr-value">350</div>
+          <div class="mmr-tier">TOP 20</div>
+        </div>
+
+        <div class="mmr-row">
+          <div class="mmr-rank">#15</div>
+          <div class="mmr-name">Harun</div>
+          <div class="mmr-value">300</div>
+          <div class="mmr-tier">TOP 20</div>
+        </div>
+
+        <div class="mmr-row">
+          <div class="mmr-rank">#16</div>
+          <div class="mmr-name">worm</div>
+          <div class="mmr-value">250</div>
+          <div class="mmr-tier">TOP 20</div>
+        </div>
+
+        <div class="mmr-row">
+          <div class="mmr-rank">#17</div>
+          <div class="mmr-name">Standby</div>
+          <div class="mmr-value">200</div>
+          <div class="mmr-tier">TOP 20</div>
+        </div>
+
+        <div class="mmr-row">
+          <div class="mmr-rank">#18</div>
+          <div class="mmr-name">pyrou</div>
+          <div class="mmr-value">150</div>
+          <div class="mmr-tier">TOP 20</div>
+        </div>
+
+        <div class="mmr-row">
+          <div class="mmr-rank">#19</div>
+          <div class="mmr-name">Djoko78</div>
+          <div class="mmr-value">100</div>
+          <div class="mmr-tier">TOP 20</div>
+        </div>
+
+        <div class="mmr-row">
+          <div class="mmr-rank">#20</div>
+          <div class="mmr-name">sebus</div>
+          <div class="mmr-value">50</div>
+          <div class="mmr-tier">TOP 20</div>
+        </div>
+
+      </div>
+
+
+      <div class="mmr-info">
+        <strong>MMR</strong> represents the competitive rating of
+        Dune Future players. Higher MMR indicates a higher position
+        on the competitive leaderboard.
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <footer>
+    © 2026 Dune Future · Dune 2000 Community
+  </footer>
+
+</body>
+</html>
