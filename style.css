@@ -147,3 +147,117 @@
     0 25px 70px rgba(0, 0, 0, 0.70),
     0 0 0 1px rgba(255, 53, 239, 0.08);
 }
+/* ================================
+   MATCH STATISTICS
+================================ */
+
+.game-stats-wrapper {
+  margin-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 14px;
+}
+
+.game-stats-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+
+  background: rgba(255, 0, 255, 0.05);
+  border: 1px solid rgba(255, 0, 255, 0.18);
+  border-radius: 8px;
+
+  color: #ff35f2;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.game-stats-toggle:hover {
+  background: rgba(255, 0, 255, 0.10);
+  border-color: rgba(255, 0, 255, 0.35);
+}
+
+.game-stats-toggle-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.game-stats-panel {
+  display: none;
+  margin-top: 10px;
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.game-stats-panel.active {
+  display: block;
+}
+
+.game-stats-header,
+.game-stats-row {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  align-items: center;
+}
+
+.game-stats-header {
+  background: rgba(255, 0, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.game-stats-header > div,
+.game-stats-row > div {
+  padding: 9px 10px;
+}
+
+.game-stats-label {
+  color: #8f8998;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.game-stats-player {
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.game-stats-row {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 10px;
+}
+
+.game-stats-row:last-child {
+  border-bottom: none;
+}
+
+.game-stats-row > div:first-child {
+  color: #918b99;
+  font-weight: 700;
+  font-size: 9px;
+}
+
+.game-stats-row > div:not(:first-child) {
+  color: #ffffff;
+  text-align: center;
+  font-weight: 700;
+}
+
+.game-stats-result > div:nth-child(2) {
+  color: #ff35f2;
+}
+
+.game-stats-result > div:nth-child(3) {
+  color: #9a94a1;
+}
