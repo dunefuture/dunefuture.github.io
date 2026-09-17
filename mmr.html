@@ -299,6 +299,35 @@
         font-size: 10px;
       }
     }
+    /* =========================
+   MMR RANK MOVEMENT
+   ========================= */
+
+.mmr-rank-up .mmr-name {
+  color: #39ff88;
+}
+
+.mmr-rank-down .mmr-name {
+  color: #ff4d67;
+}
+
+.mmr-movement-up {
+  color: #39ff88;
+  font-size: 8px;
+  font-weight: 900;
+  margin-left: 8px;
+  letter-spacing: .5px;
+  white-space: nowrap;
+}
+
+.mmr-movement-down {
+  color: #ff4d67;
+  font-size: 8px;
+  font-weight: 900;
+  margin-left: 8px;
+  letter-spacing: .5px;
+  white-space: nowrap;
+}
   </style>
 
 <link rel="stylesheet" href="style.css">
@@ -352,7 +381,7 @@
         </div>
 
         <div class="mmr-updated">
-          TOP 20 · LAST UPDATED 17 SEPTEMBER 2026
+          TOP 20 · LAST UPDATED 18 SEPTEMBER 2026
         </div>
 
       </div>
@@ -482,19 +511,19 @@
           <div class="mmr-tier">TOP 20</div>
         </div>
 
-        <div class="mmr-row">
-          <div class="mmr-rank">#14</div>
-          <div class="mmr-name">ALGERINO</div>
-          <div class="mmr-value">350</div>
-          <div class="mmr-tier">TOP 20</div>
-        </div>
+     <div class="mmr-row mmr-rank-up">
+  <div class="mmr-rank">#14</div>
+  <div class="mmr-name">Harun <span class="mmr-movement-up">▲ +1</span></div>
+  <div class="mmr-value">325</div>
+  <div class="mmr-tier">TOP 20</div>
+</div>
 
-        <div class="mmr-row">
-          <div class="mmr-rank">#15</div>
-          <div class="mmr-name">Harun</div>
-          <div class="mmr-value">300</div>
-          <div class="mmr-tier">TOP 20</div>
-        </div>
+<div class="mmr-row mmr-rank-down">
+  <div class="mmr-rank">#15</div>
+  <div class="mmr-name">ALGERINO <span class="mmr-movement-down">▼ -1</span></div>
+  <div class="mmr-value">325</div>
+  <div class="mmr-tier">TOP 20</div>
+</div>
 
         <div class="mmr-row">
           <div class="mmr-rank">#16</div>
