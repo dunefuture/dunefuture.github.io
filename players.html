@@ -46,7 +46,343 @@
       opacity: .65;
     }
 
+/* =========================================
+   DUNE FUTURE RANKER — TOP 20
+   ========================================= */
 
+.community-directory-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(360px, .85fr);
+  gap: 42px;
+  align-items: start;
+}
+
+.ranker-panel {
+  position: relative;
+  overflow: hidden;
+
+  background:
+    radial-gradient(circle at 50% 0%,
+      rgba(232, 61, 243, .16),
+      transparent 42%),
+    linear-gradient(180deg, #15121d 0%, #0d0c12 100%);
+
+  border: 1px solid rgba(232, 61, 243, .30);
+  border-radius: 18px;
+
+  padding: 25px;
+
+  box-shadow:
+    0 18px 55px rgba(0,0,0,.38),
+    0 0 35px rgba(232,61,243,.06);
+}
+
+.ranker-panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #e83df3,
+    transparent
+  );
+
+  box-shadow: 0 0 16px rgba(232,61,243,.8);
+}
+
+.ranker-heading {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.ranker-icon {
+  font-size: 28px;
+  margin-bottom: 7px;
+
+  filter: drop-shadow(0 0 9px rgba(255,211,75,.35));
+}
+
+.ranker-title {
+  margin: 0;
+
+  color: #fff;
+  font-size: 22px;
+  font-weight: 900;
+
+  letter-spacing: 2px;
+}
+
+.ranker-title span {
+  color: #e83df3;
+}
+
+.ranker-updated {
+  margin-top: 6px;
+
+  color: #8f8998;
+  font-size: 9px;
+  font-weight: 700;
+
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+
+/* TOP 3 */
+
+.ranker-podium {
+  display: grid;
+  grid-template-columns: 1fr 1.12fr 1fr;
+  gap: 8px;
+
+  align-items: end;
+
+  margin: 27px 0 22px;
+}
+
+.ranker-podium-card {
+  position: relative;
+
+  min-width: 0;
+
+  text-align: center;
+
+  background: rgba(255,255,255,.025);
+
+  border: 1px solid #292633;
+  border-radius: 12px;
+
+  padding: 15px 5px 13px;
+
+  transition:
+    transform .22s ease,
+    border-color .22s ease,
+    box-shadow .22s ease;
+}
+
+.ranker-podium-card:hover {
+  transform: translateY(-4px);
+}
+
+.ranker-podium-card.first {
+  padding-top: 22px;
+  padding-bottom: 18px;
+
+  border-color: rgba(255,211,75,.55);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,211,75,.10),
+      rgba(255,211,75,.015)
+    );
+
+  box-shadow:
+    0 0 25px rgba(255,211,75,.08),
+    inset 0 0 18px rgba(255,211,75,.025);
+}
+
+.ranker-podium-card.second {
+  border-color: rgba(210,215,225,.30);
+}
+
+.ranker-podium-card.third {
+  border-color: rgba(205,127,50,.35);
+}
+
+.ranker-medal {
+  display: block;
+  font-size: 20px;
+  margin-bottom: 7px;
+}
+
+.ranker-position {
+  color: #77717f;
+
+  font-size: 8px;
+  font-weight: 900;
+
+  letter-spacing: 1.4px;
+}
+
+.ranker-podium-card.first .ranker-position {
+  color: #ffd34b;
+}
+
+.ranker-podium-name {
+  display: block;
+
+  margin-top: 5px;
+
+  color: #fff;
+
+  font-size: 13px;
+  font-weight: 900;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ranker-podium-card.first .ranker-podium-name {
+  color: #ffd34b;
+
+  text-shadow:
+    0 0 10px rgba(255,211,75,.25);
+}
+
+
+/* RANK 4 - 20 */
+
+.ranker-list {
+  display: grid;
+  gap: 5px;
+}
+
+.ranker-row {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: 38px 1fr auto;
+  align-items: center;
+
+  min-height: 37px;
+
+  padding: 0 12px;
+
+  background: rgba(255,255,255,.018);
+
+  border: 1px solid rgba(255,255,255,.045);
+  border-radius: 8px;
+
+  transition:
+    transform .18s ease,
+    background .18s ease,
+    border-color .18s ease;
+}
+
+.ranker-row:hover {
+  transform: translateX(4px);
+
+  background: rgba(232,61,243,.055);
+
+  border-color: rgba(232,61,243,.32);
+}
+
+.ranker-number {
+  color: #706a77;
+
+  font-size: 10px;
+  font-weight: 900;
+
+  font-variant-numeric: tabular-nums;
+}
+
+.ranker-name {
+  color: #e7e3ea;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: .25px;
+}
+
+.ranker-tier {
+  color: #625d68;
+
+  font-size: 7px;
+  font-weight: 800;
+
+  letter-spacing: 1px;
+}
+
+
+/* ELITE #4 - #10 */
+
+.ranker-row.elite {
+  border-left: 2px solid rgba(232,61,243,.50);
+}
+
+.ranker-row.elite .ranker-number {
+  color: #e83df3;
+}
+
+.ranker-row.elite .ranker-tier {
+  color: #a72cb0;
+}
+
+
+/* CALL TO ACTION */
+
+.ranker-challenge {
+  margin-top: 19px;
+
+  padding-top: 17px;
+
+  border-top: 1px solid #292633;
+
+  text-align: center;
+}
+
+.ranker-challenge strong {
+  display: block;
+
+  color: #e83df3;
+
+  font-size: 11px;
+
+  letter-spacing: 2px;
+}
+
+.ranker-challenge span {
+  display: block;
+
+  margin-top: 6px;
+
+  color: #77717f;
+
+  font-size: 8px;
+
+  letter-spacing: 1px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 850px) {
+
+  .community-directory-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ranker-panel {
+    margin-top: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .ranker-panel {
+    padding: 20px 14px;
+  }
+
+  .ranker-podium {
+    gap: 5px;
+  }
+
+  .ranker-podium-name {
+    font-size: 11px;
+  }
+
+  .ranker-row {
+    padding: 0 9px;
+  }
+}
     /* MODAL */
 
     .profile-overlay {
@@ -392,7 +728,9 @@
     Click a player to view their profile.
   </p>
 
+<div class="community-directory-grid">
 
+  <div class="players-directory">
   <div class="chips">
 
     <span class="chip player-chip" data-player="Aisi">Aisi</span>
@@ -440,7 +778,175 @@
     </div>
 
   </div>
+  </div><!-- /players-directory -->
 
+
+  <!-- =====================================
+       DUNE FUTURE RANKER — TOP 20
+       ===================================== -->
+
+  <aside class="ranker-panel">
+
+    <div class="ranker-heading">
+      <div class="ranker-icon">🏆</div>
+
+      <h3 class="ranker-title">
+        DUNE FUTURE <span>RANKER</span>
+      </h3>
+
+      <div class="ranker-updated">
+        TOP 20 · LAST UPDATED 17 SEPTEMBER 2026
+      </div>
+    </div>
+
+
+    <!-- TOP 3 -->
+    <div class="ranker-podium">
+
+      <!-- #2 -->
+      <div class="ranker-podium-card second">
+        <span class="ranker-medal">🥈</span>
+        <div class="ranker-position">RANK #2</div>
+        <span class="ranker-podium-name">Carlos</span>
+      </div>
+
+      <!-- #1 -->
+      <div class="ranker-podium-card first">
+        <span class="ranker-medal">👑</span>
+        <div class="ranker-position">RANK #1</div>
+        <span class="ranker-podium-name">Kipp</span>
+      </div>
+
+      <!-- #3 -->
+      <div class="ranker-podium-card third">
+        <span class="ranker-medal">🥉</span>
+        <div class="ranker-position">RANK #3</div>
+        <span class="ranker-podium-name">Balrog</span>
+      </div>
+
+    </div>
+
+
+    <!-- RANK #4 - #20 -->
+    <div class="ranker-list">
+
+      <div class="ranker-row elite">
+        <span class="ranker-number">#04</span>
+        <span class="ranker-name">Arthur</span>
+        <span class="ranker-tier">ELITE</span>
+      </div>
+
+      <div class="ranker-row elite">
+        <span class="ranker-number">#05</span>
+        <span class="ranker-name">Dan</span>
+        <span class="ranker-tier">ELITE</span>
+      </div>
+
+      <div class="ranker-row elite">
+        <span class="ranker-number">#06</span>
+        <span class="ranker-name">Joseph</span>
+        <span class="ranker-tier">ELITE</span>
+      </div>
+
+      <div class="ranker-row elite">
+        <span class="ranker-number">#07</span>
+        <span class="ranker-name">Neko</span>
+        <span class="ranker-tier">ELITE</span>
+      </div>
+
+      <div class="ranker-row elite">
+        <span class="ranker-number">#08</span>
+        <span class="ranker-name">DZ14</span>
+        <span class="ranker-tier">ELITE</span>
+      </div>
+
+      <div class="ranker-row elite">
+        <span class="ranker-number">#09</span>
+        <span class="ranker-name">NewNamE</span>
+        <span class="ranker-tier">ELITE</span>
+      </div>
+
+      <div class="ranker-row elite">
+        <span class="ranker-number">#10</span>
+        <span class="ranker-name">BSGRCD</span>
+        <span class="ranker-tier">ELITE</span>
+      </div>
+
+      <div class="ranker-row">
+        <span class="ranker-number">#11</span>
+        <span class="ranker-name">X-Noname</span>
+        <span class="ranker-tier">TOP 20</span>
+      </div>
+
+      <div class="ranker-row">
+        <span class="ranker-number">#12</span>
+        <span class="ranker-name">Jadg</span>
+        <span class="ranker-tier">TOP 20</span>
+      </div>
+
+      <div class="ranker-row">
+        <span class="ranker-number">#13</span>
+        <span class="ranker-name">Sardat</span>
+        <span class="ranker-tier">TOP 20</span>
+      </div>
+
+      <div class="ranker-row">
+        <span class="ranker-number">#14</span>
+        <span class="ranker-name">ALGERINO</span>
+        <span class="ranker-tier">TOP 20</span>
+      </div>
+
+      <div class="ranker-row">
+        <span class="ranker-number">#15</span>
+        <span class="ranker-name">Harun</span>
+        <span class="ranker-tier">TOP 20</span>
+      </div>
+
+      <div class="ranker-row">
+        <span class="ranker-number">#16</span>
+        <span class="ranker-name">worm</span>
+        <span class="ranker-tier">TOP 20</span>
+      </div>
+
+      <div class="ranker-row">
+        <span class="ranker-number">#17</span>
+        <span class="ranker-name">Standby</span>
+        <span class="ranker-tier">TOP 20</span>
+      </div>
+
+      <div class="ranker-row">
+        <span class="ranker-number">#18</span>
+        <span class="ranker-name">pyrou</span>
+        <span class="ranker-tier">TOP 20</span>
+      </div>
+
+      <div class="ranker-row">
+        <span class="ranker-number">#19</span>
+        <span class="ranker-name">Djoko78</span>
+        <span class="ranker-tier">TOP 20</span>
+      </div>
+
+      <div class="ranker-row">
+        <span class="ranker-number">#20</span>
+        <span class="ranker-name">sebus</span>
+        <span class="ranker-tier">TOP 20</span>
+      </div>
+
+    </div>
+
+
+    <div class="ranker-challenge">
+      <strong>⚔ CLIMB THE RANKS ⚔</strong>
+
+      <span>
+        COMPETE · WIN · EARN YOUR PLACE
+      </span>
+    </div>
+
+  </aside>
+
+
+</div><!-- /community-directory-grid -->
 </section>
 
 </main>
