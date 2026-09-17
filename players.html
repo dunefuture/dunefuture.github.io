@@ -635,26 +635,30 @@
     games: [
 
 {
-  gameNumber: 1,
-  date: "10 September 2026",
-  started: "16:40:44",
-  map: "Habbanya Erg 5.4.7",
-  player1: "DZ14",
-  player2: "X-Noname",
-  winner: "DZ14",
-  observer: "I___"
+    gameNumber: 1,
+    date: "10 September 2026",
+    started: "16:40:44",
+    map: "Habbanya Erg 5.4.7",
+    player1: "DZ14",
+    player2: "X-Noname",
+    winner: "DZ14",
+    observer: "I___",
+    status: "Completed",
+    duration: "N/A"
 },
 
-   {
-  gameNumber: 2,
-  date: "14 September 2026",
-  started: "20:24:22",
-  map: "Habbanya Erg 5.4.7",
-  player1: "DZ14",
-  player2: "X-Noname",
-  winner: "DZ14",
-  observer: "None",
-  broadcast: "Discord Live"
+ {
+    gameNumber: 2,
+    date: "14 September 2026",
+    started: "20:24:22",
+    map: "Habbanya Erg 5.4.7",
+    player1: "DZ14",
+    player2: "X-Noname",
+    winner: "DZ14",
+    observer: "None",
+    broadcast: "Discord Live",
+    status: "Completed",
+    duration: "N/A"
 }
 
     ]
@@ -973,7 +977,10 @@ if (!gameOverlay || !gameTitle || !gameContent) {
     return;
 }
 
-gameTitle.textContent = `GAME ${game.gameNumber}`;
+gameTitle.innerHTML = `
+    <span>GAME ${game.gameNumber}</span>
+    <span class="game-status">${game.status || "Completed"}</span>
+`;
 
 gameContent.innerHTML = `
     <div class="game-detail-row">
@@ -985,16 +992,26 @@ gameContent.innerHTML = `
         <div class="game-detail-label">STARTED</div>
         <div class="game-detail-value">${game.started}</div>
     </div>
+    
+<div class="game-detail-row">
+    <div class="game-detail-label">DURATION</div>
+    <div class="game-detail-value">${game.duration || "N/A"}</div>
+</div>
 
     <div class="game-detail-row">
         <div class="game-detail-label">MAP</div>
         <div class="game-detail-value">${game.map}</div>
     </div>
 
-    <div class="game-detail-row">
-        <div class="game-detail-label">MATCH</div>
-        <div class="game-detail-value">${game.player1} vs ${game.player2}</div>
+    <div class="game-match-section">
+    <div class="game-detail-label">MATCH</div>
+
+    <div class="game-matchup">
+        <span class="game-player">${game.player1}</span>
+        <span class="game-vs">VS</span>
+        <span class="game-player">${game.player2}</span>
     </div>
+</div>
 
     <div class="game-detail-row">
         <div class="game-detail-label">WINNER</div>
