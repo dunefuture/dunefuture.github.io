@@ -52,7 +52,7 @@
 
 .community-directory-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(360px, .85fr);
+  grid-template-columns: minmax(0, 1fr) minmax(430px, 1fr);
   gap: 42px;
   align-items: start;
 }
@@ -291,6 +291,9 @@
   font-weight: 800;
 
   letter-spacing: .25px;
+  white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
 }
 
 .ranker-tier {
@@ -300,6 +303,8 @@
   font-weight: 800;
 
   letter-spacing: 1px;
+  white-space: nowrap;
+margin-left: 6px;
 }
 
 
