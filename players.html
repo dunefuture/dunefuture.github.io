@@ -1206,7 +1206,53 @@ ${game.stats ? `
                 <div>${game.stats.player1.productionEfficiency}</div>
                 <div>${game.stats.player2.productionEfficiency}</div>
             </div>
+<div class="game-stats-row">
+    <div>EFF. EXCL. REFINERIES</div>
+    <div>${game.stats.player1.efficiencyExcludingRefineries}</div>
+    <div>${game.stats.player2.efficiencyExcludingRefineries}</div>
+</div>
 
+<div class="game-stats-row">
+    <div>EFF. INCL. REFINERIES</div>
+    <div>${game.stats.player1.efficiencyIncludingRefineries}</div>
+    <div>${game.stats.player2.efficiencyIncludingRefineries}</div>
+</div>
+
+<div class="game-stats-row">
+    <div>FREEZE SECONDS</div>
+    <div>${game.stats.player1.freezeSeconds.toLocaleString()}</div>
+    <div>${game.stats.player2.freezeSeconds.toLocaleString()}</div>
+</div>
+
+<div class="game-stats-row">
+    <div>LOW POWER TICKS</div>
+    <div>${game.stats.player1.lowPowerTicks.toLocaleString()}</div>
+    <div>${game.stats.player2.lowPowerTicks.toLocaleString()}</div>
+</div>
+
+<div class="game-stats-row">
+    <div>LOW POWER SECONDS</div>
+    <div>${game.stats.player1.lowPowerSeconds.toLocaleString()}</div>
+    <div>${game.stats.player2.lowPowerSeconds.toLocaleString()}</div>
+</div>
+
+<div class="game-stats-row">
+    <div>HARVESTERS OWNED</div>
+    <div>${game.stats.player1.harvestersOwned.toLocaleString()}</div>
+    <div>${game.stats.player2.harvestersOwned.toLocaleString()}</div>
+</div>
+
+<div class="game-stats-row">
+    <div>REFINERIES OWNED</div>
+    <div>${game.stats.player1.refineriesOwned.toLocaleString()}</div>
+    <div>${game.stats.player2.refineriesOwned.toLocaleString()}</div>
+</div>
+
+<div class="game-stats-row">
+    <div>STARPORT DELIVERIES</div>
+    <div>${game.stats.player1.starportDeliveries.toLocaleString()}</div>
+    <div>${game.stats.player2.starportDeliveries.toLocaleString()}</div>
+</div>
             <div class="game-stats-row">
                 <div>CNCNET EFF.</div>
                 <div>${game.stats.player1.cncnetEfficiency}</div>
