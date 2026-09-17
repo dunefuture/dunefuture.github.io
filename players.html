@@ -644,7 +644,60 @@
     player2: "X-Noname",
     winner: "DZ14",
     observer: "I___",
-    status: "Completed"
+   status: "Completed",
+  stats: {
+    player1: {
+        side: "Harkonnen",
+        result: "Win",
+        finishingPlace: 1,
+        credits: 55540,
+        spiceHarvested: 778400,
+        buildingsDestroyed: 34,
+        buildingsLost: 9,
+        unitsKilled: 1880,
+        unitsLost: 1797,
+        unitsKilledScore: 654461,
+        unitsLostScore: 582544,
+        lowPowerTicks: 2485,
+        lowPowerSeconds: 43,
+        harvesterCount: 14,
+        harvestersOwned: 147,
+        refineriesOwned: 114,
+        starportDeliveries: 34,
+        averageOPM: 87.41,
+        freezeSeconds: 20,
+        productionEfficiency: "61.59%",
+        efficiencyExcludingRefineries: "82.08%",
+        efficiencyIncludingRefineries: "99.38%",
+        cncnetEfficiency: 82.82
+    },
+
+    player2: {
+        side: "Harkonnen",
+        result: "Loss",
+        finishingPlace: 2,
+        credits: 120477,
+        spiceHarvested: 1002100,
+        buildingsDestroyed: 11,
+        buildingsLost: 36,
+        unitsKilled: 1763,
+        unitsLost: 1878,
+        unitsKilledScore: 576772,
+        unitsLostScore: 653512,
+        lowPowerTicks: 4070,
+        lowPowerSeconds: 74,
+        harvesterCount: 2,
+        harvestersOwned: 126,
+        refineriesOwned: 90,
+        starportDeliveries: 53,
+        averageOPM: 117.68,
+        freezeSeconds: 150,
+        productionEfficiency: "68.87%",
+        efficiencyExcludingRefineries: "87.97%",
+        efficiencyIncludingRefineries: "101.62%",
+        cncnetEfficiency: 88.71
+    }
+}
 },
 
 {
@@ -656,9 +709,61 @@
     player1: "DZ14",
     player2: "X-Noname",
     winner: "DZ14",
-    observer: "None",
+       observer: "None",
     broadcast: "Discord Live",
-    status: "Completed"
+    status: "Completed",
+
+    stats: {
+player1: {
+    side: "Harkonnen",
+    result: "Win",
+    finishingPlace: 1,
+    credits: 262787,
+    spiceHarvested: 2297700,
+    buildingsDestroyed: 7,
+    buildingsLost: 14,
+    unitsKilled: 3481,
+    unitsLost: 3887,
+    unitsKilledScore: 1074134,
+    unitsLostScore: 1025682,
+    lowPowerTicks: 344,
+    lowPowerSeconds: 6,
+    harvesterCount: 5,
+    harvestersOwned: 231,
+    refineriesOwned: 182,
+    starportDeliveries: 65,
+    averageOPM: 97.14,
+    freezeSeconds: 127,
+    productionEfficiency: "57.99%",
+    efficiencyExcludingRefineries: "75.65%",
+    efficiencyIncludingRefineries: "90.54%",
+    cncnetEfficiency: 75.78
+},
+
+player2: {
+    side: "Harkonnen",
+    result: "Loss",
+    finishingPlace: 2,
+    credits: 291711,
+    spiceHarvested: 1689100,
+    buildingsDestroyed: 16,
+    buildingsLost: 9,
+    unitsKilled: 4098,
+    unitsLost: 3789,
+    unitsKilledScore: 1087025,
+    unitsLostScore: 1145582,
+    lowPowerTicks: 1702,
+    lowPowerSeconds: 30,
+    harvesterCount: 16,
+    harvestersOwned: 292,
+    refineriesOwned: 236,
+    starportDeliveries: 85,
+    averageOPM: 118.12,
+    freezeSeconds: 0,
+    productionEfficiency: "70.33%",
+    efficiencyExcludingRefineries: "85.31%",
+    efficiencyIncludingRefineries: "104.95%",
+    cncnetEfficiency: 85.70
 }
 
     ]
@@ -1027,6 +1132,90 @@ ${game.broadcast ? `
     <div class="game-detail-label">BROADCAST</div>
     <div class="game-detail-value">${game.broadcast}</div>
 </div>
+` : ""}
+${game.stats ? `
+    <div class="game-stats-wrapper">
+
+        <button
+            class="game-stats-toggle"
+            onclick="toggleGameStats('gameStats-${game.gameNumber}')"
+            type="button">
+            <span>MATCH STATISTICS</span>
+            <span class="game-stats-toggle-icon">+</span>
+        </button>
+
+        <div
+            class="game-stats-panel"
+            id="gameStats-${game.gameNumber}">
+
+            <div class="game-stats-header">
+                <div class="game-stats-label">STATISTIC</div>
+                <div class="game-stats-player">${game.player1}</div>
+                <div class="game-stats-player">${game.player2}</div>
+            </div>
+
+            <div class="game-stats-row game-stats-result">
+                <div>RESULT</div>
+                <div>${game.stats.player1.result}</div>
+                <div>${game.stats.player2.result}</div>
+            </div>
+
+            <div class="game-stats-row">
+                <div>SIDE</div>
+                <div>${game.stats.player1.side}</div>
+                <div>${game.stats.player2.side}</div>
+            </div>
+
+            <div class="game-stats-row">
+                <div>SPICE HARVESTED</div>
+                <div>${game.stats.player1.spiceHarvested.toLocaleString()}</div>
+                <div>${game.stats.player2.spiceHarvested.toLocaleString()}</div>
+            </div>
+
+            <div class="game-stats-row">
+                <div>UNITS KILLED</div>
+                <div>${game.stats.player1.unitsKilled.toLocaleString()}</div>
+                <div>${game.stats.player2.unitsKilled.toLocaleString()}</div>
+            </div>
+
+            <div class="game-stats-row">
+                <div>UNITS LOST</div>
+                <div>${game.stats.player1.unitsLost.toLocaleString()}</div>
+                <div>${game.stats.player2.unitsLost.toLocaleString()}</div>
+            </div>
+
+            <div class="game-stats-row">
+                <div>BUILDINGS DESTROYED</div>
+                <div>${game.stats.player1.buildingsDestroyed.toLocaleString()}</div>
+                <div>${game.stats.player2.buildingsDestroyed.toLocaleString()}</div>
+            </div>
+
+            <div class="game-stats-row">
+                <div>BUILDINGS LOST</div>
+                <div>${game.stats.player1.buildingsLost.toLocaleString()}</div>
+                <div>${game.stats.player2.buildingsLost.toLocaleString()}</div>
+            </div>
+
+            <div class="game-stats-row">
+                <div>AVERAGE OPM</div>
+                <div>${game.stats.player1.averageOPM}</div>
+                <div>${game.stats.player2.averageOPM}</div>
+            </div>
+
+            <div class="game-stats-row">
+                <div>PRODUCTION EFF.</div>
+                <div>${game.stats.player1.productionEfficiency}</div>
+                <div>${game.stats.player2.productionEfficiency}</div>
+            </div>
+
+            <div class="game-stats-row">
+                <div>CNCNET EFF.</div>
+                <div>${game.stats.player1.cncnetEfficiency}</div>
+                <div>${game.stats.player2.cncnetEfficiency}</div>
+            </div>
+
+        </div>
+    </div>
 ` : ""}
 `;
 
