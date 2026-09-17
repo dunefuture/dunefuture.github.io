@@ -634,25 +634,28 @@
 
     games: [
 
-      {
-        gameNumber: 1,
-        date: "10 September 2026",
-        started: "16:40:44",
-        map: "Habbanya Erg 5.4.7",
-        player1: "DZ14",
-        player2: "X-Noname",
-        winner: "DZ14"
-      },
+{
+  gameNumber: 1,
+  date: "10 September 2026",
+  started: "16:40:44",
+  map: "Habbanya Erg 5.4.7",
+  player1: "DZ14",
+  player2: "X-Noname",
+  winner: "DZ14",
+  observer: "I___"
+},
 
-      {
-        gameNumber: 2,
-        date: "14 September 2026",
-        started: "20:24:22",
-        map: "Habbanya Erg 5.4.7",
-        player1: "DZ14",
-        player2: "X-Noname",
-        winner: "DZ14"
-      }
+   {
+  gameNumber: 2,
+  date: "14 September 2026",
+  started: "20:24:22",
+  map: "Habbanya Erg 5.4.7",
+  player1: "DZ14",
+  player2: "X-Noname",
+  winner: "DZ14",
+  observer: "None",
+  broadcast: "Discord Live"
+}
 
     ]
 
@@ -997,6 +1000,17 @@ gameContent.innerHTML = `
         <div class="game-detail-label">WINNER</div>
         <div class="game-detail-value game-detail-winner">${game.winner}</div>
     </div>
+    <div class="game-detail-row">
+    <div class="game-detail-label">OBSERVER</div>
+    <div class="game-detail-value">${game.observer || "None"}</div>
+</div>
+
+${game.broadcast ? `
+<div class="game-detail-row">
+    <div class="game-detail-label">BROADCAST</div>
+    <div class="game-detail-value">${game.broadcast}</div>
+</div>
+` : ""}
 `;
 
 gameOverlay.classList.add("active");
