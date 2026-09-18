@@ -880,7 +880,42 @@ body.mmr-profile-open {
   font-size: 7px;
   font-weight: 700;
 }
+/* Latest Match - Opponent & Rank Movement */
+.mmr-profile-match-details {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
 
+.mmr-profile-match-details > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 4px 0;
+}
+
+.mmr-profile-match-details span {
+  color: #77717f;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.mmr-profile-match-details strong {
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 800;
+  text-align: right;
+}
+
+#mmrProfileMovement.mmr-profile-gain {
+  color: #45ff91;
+}
+
+#mmrProfileMovement.mmr-profile-loss {
+  color: #ff5570;
+}
 </style>
 
 <link rel="stylesheet" href="style.css">
