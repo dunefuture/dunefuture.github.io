@@ -916,6 +916,92 @@ body.mmr-profile-open {
 #mmrProfileMovement.mmr-profile-loss {
   color: #ff5570;
 }
+    /* ========================================
+   MMR MATCH HISTORY - DETAILED LAYOUT
+======================================== */
+
+.mmr-history-item {
+  padding: 0;
+}
+
+.mmr-history-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.mmr-history-match {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+}
+
+.mmr-history-result,
+.mmr-history-opponent {
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.mmr-history-result.win {
+  color: #45ff91;
+}
+
+.mmr-history-result.loss {
+  color: #ff5570;
+}
+
+.mmr-history-opponent {
+  color: #ffffff;
+}
+
+.mmr-history-change {
+  font-size: 10px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.mmr-history-change.win {
+  color: #45ff91;
+}
+
+.mmr-history-change.loss {
+  color: #ff5570;
+}
+
+.mmr-history-date {
+  margin-top: 4px;
+  color: #77717f;
+  font-size: 8px;
+  font-weight: 700;
+}
+
+.mmr-history-divider {
+  height: 1px;
+  margin: 10px 0 6px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.mmr-history-rating-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 0;
+}
+
+.mmr-history-rating-row span {
+  color: #77717f;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.mmr-history-rating-row strong {
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 800;
+}
 </style>
 
 <link rel="stylesheet" href="style.css">
@@ -1486,48 +1572,54 @@ if (historyElement) {
 
   if (player.history && player.history.length > 0) {
 
-    historyElement.innerHTML = player.history.map(item => {
+   historyElement.innerHTML = player.history.map(item => {
 
-      const isWin = item.result === "WIN";
+  const isWin = item.result === "WIN";
 
-      const previousRating =
-        item.rating - parseInt(item.score, 10);
+  const previousRating =
+    item.rating - parseInt(item.score, 10);
 
-      return `
-        <div class="mmr-history-item">
+  return `
+    <div class="mmr-history-item">
 
-          <div class="mmr-history-main">
+      <div class="mmr-history-top">
 
-            <span class="mmr-history-result ${isWin ? "win" : "loss"}">
-              ${item.result}
-            </span>
+        <div class="mmr-history-match">
+          <span class="mmr-history-result ${isWin ? "win" : "loss"}">
+            ${item.result}
+          </span>
 
-            <span class="mmr-history-opponent">
-              vs ${item.opponent}
-            </span>
-
-            <span class="mmr-history-change ${isWin ? "win" : "loss"}">
-              ${item.score}
-            </span>
-
-          </div>
-
-          <div class="mmr-history-meta">
-
-            <span>
-              ${previousRating} → ${item.rating}
-            </span>
-
-            <span>
-              ${item.date}
-            </span>
-
-          </div>
-
+          <span class="mmr-history-opponent">
+            vs ${item.opponent}
+          </span>
         </div>
-      `;
 
-    }).join("");
+        <span class="mmr-history-change ${isWin ? "win" : "loss"}">
+          ${item.score}
+        </span>
+
+      </div>
+
+      <div class="mmr-history-date">
+        ${item.date}
+      </div>
+
+      <div class="mmr-history-divider"></div>
+
+      <div class="mmr-history-rating-row">
+        <span>PREVIOUS MMR</span>
+        <strong>${previousRating}</strong>
+      </div>
+
+      <div class="mmr-history-rating-row">
+        <span>NEW MMR</span>
+        <strong>${item.rating}</strong>
+      </div>
+
+    </div>
+  `;
+
+}).join("");
 
   } else {
 
