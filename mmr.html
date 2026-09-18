@@ -390,6 +390,57 @@
   font-size: 7px;
   letter-spacing: .3px;
 }
+ 
+/* =========================
+   MMR POINT TOOLTIP
+   ========================= */
+
+.mmr-tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: help;
+}
+
+.mmr-tooltip-text {
+  visibility: hidden;
+  opacity: 0;
+
+  position: absolute;
+  z-index: 100;
+
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: max-content;
+  min-width: 125px;
+  padding: 8px 10px;
+
+  background: #120f16;
+  border: 1px solid #d92ee8;
+  border-radius: 6px;
+
+  color: #ffffff;
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: left;
+  letter-spacing: .3px;
+
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .55);
+
+  pointer-events: none;
+
+  transition:
+    opacity .18s ease,
+    transform .18s ease;
+}
+
+.mmr-tooltip:hover .mmr-tooltip-text {
+  visibility: visible;
+  opacity: 1;
+  transform: translate(-50%, -3px);
+}
   </style>
 
 <link rel="stylesheet" href="style.css">
@@ -576,14 +627,34 @@
      <div class="mmr-row mmr-rank-up">
   <div class="mmr-rank">#14</div>
   <div class="mmr-name">Harun <span class="mmr-movement-up">▲ +1</span></div>
-  <div class="mmr-value">325 <span class="mmr-point-up">+25</span></div>
+  <div class="mmr-value">
+  325
+  <span class="mmr-point-up mmr-tooltip">
+    +25
+    <span class="mmr-tooltip-text">
+      Previous MMR: 300<br>
+      New MMR: 325
+    </span>
+  </span>
+</div>
   <div class="mmr-tier">TOP 20</div>
 </div>
 
 <div class="mmr-row mmr-rank-down">
   <div class="mmr-rank">#15</div>
   <div class="mmr-name">ALGERINO <span class="mmr-movement-down">▼ -1</span></div>
-  <div class="mmr-value">325 <span class="mmr-point-down">-25</span></div>
+
+  <div class="mmr-value">
+    325
+    <span class="mmr-point-down mmr-tooltip">
+      -25
+      <span class="mmr-tooltip-text">
+        Previous MMR: 350<br>
+        New MMR: 325
+      </span>
+    </span>
+  </div>
+
   <div class="mmr-tier">TOP 20</div>
 </div>
 
