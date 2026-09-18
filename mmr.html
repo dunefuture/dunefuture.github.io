@@ -1358,7 +1358,9 @@ const mmrProfiles = {
     change: 25,
     match: "Harun defeated ALGERINO",
     date: "18 September 2026",
-
+opponent: "ALGERINO",
+movement: "+1",
+    
     history: [
       {
         result: "WIN",
@@ -1378,7 +1380,8 @@ const mmrProfiles = {
     change: -25,
     match: "Lost to Harun",
     date: "18 September 2026",
-
+opponent: "Harun",
+movement: "-1",
     history: [
       {
         result: "LOSS",
@@ -1434,6 +1437,11 @@ function openMMRProfile(playerName) {
 
   document.getElementById("mmrProfileDate").textContent =
     player.date;
+  document.getElementById("mmrProfileOpponent").textContent =
+  player.opponent || "—";
+
+document.getElementById("mmrProfileMovement").textContent =
+  player.movement || "—";
 const historyElement =
   document.getElementById("mmrProfileHistory");
 
