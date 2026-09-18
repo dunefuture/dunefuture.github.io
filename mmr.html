@@ -441,6 +441,66 @@
   opacity: 1;
   transform: translate(-50%, -3px);
 }
+    /* =========================
+   MMR TOOLTIP DETAILS
+   ========================= */
+
+.mmr-tooltip-title {
+  display: block;
+  margin-bottom: 6px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+
+  color: #ff39f8;
+  font-size: 7px;
+  font-weight: 900;
+  letter-spacing: .8px;
+}
+
+.mmr-tooltip-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+
+  margin: 3px 0;
+
+  color: #9c96a4;
+  font-size: 7px;
+  font-weight: 700;
+}
+
+.mmr-tooltip-row strong {
+  color: #ffffff;
+  font-size: 8px;
+  font-weight: 900;
+}
+
+.mmr-tooltip-match {
+  display: block;
+
+  margin-top: 6px;
+  padding-top: 6px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mmr-tooltip-match small {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: #706a78;
+  font-size: 6px;
+  font-weight: 800;
+  letter-spacing: .7px;
+}
+
+.mmr-tooltip-match strong {
+  color: #ffffff;
+  font-size: 7px;
+  font-weight: 800;
+}
   </style>
 
 <link rel="stylesheet" href="style.css">
@@ -627,13 +687,24 @@
      <div class="mmr-row mmr-rank-up">
   <div class="mmr-rank">#14</div>
   <div class="mmr-name">Harun <span class="mmr-movement-up">▲ +1</span></div>
-  <div class="mmr-value">
+ <div class="mmr-value">
   325
   <span class="mmr-point-up mmr-tooltip">
     +25
     <span class="mmr-tooltip-text">
-      Previous MMR: 300<br>
-      New MMR: 325
+      <span class="mmr-tooltip-title">MMR UPDATE</span>
+      <span class="mmr-tooltip-row">
+        <span>Previous MMR</span>
+        <strong>300</strong>
+      </span>
+      <span class="mmr-tooltip-row">
+        <span>New MMR</span>
+        <strong>325</strong>
+      </span>
+      <span class="mmr-tooltip-match">
+        <small>LATEST MATCH</small>
+        <strong>Harun defeated ALGERINO</strong>
+      </span>
     </span>
   </span>
 </div>
@@ -644,16 +715,30 @@
   <div class="mmr-rank">#15</div>
   <div class="mmr-name">ALGERINO <span class="mmr-movement-down">▼ -1</span></div>
 
-  <div class="mmr-value">
-    325
-    <span class="mmr-point-down mmr-tooltip">
-      -25
-      <span class="mmr-tooltip-text">
-        Previous MMR: 350<br>
-        New MMR: 325
+ <div class="mmr-value">
+  325
+  <span class="mmr-point-down mmr-tooltip">
+    -25
+    <span class="mmr-tooltip-text">
+      <span class="mmr-tooltip-title">MMR UPDATE</span>
+
+      <span class="mmr-tooltip-row">
+        <span>Previous MMR</span>
+        <strong>350</strong>
+      </span>
+
+      <span class="mmr-tooltip-row">
+        <span>New MMR</span>
+        <strong>325</strong>
+      </span>
+
+      <span class="mmr-tooltip-match">
+        <small>LATEST MATCH</small>
+        <strong>Lost to Harun</strong>
       </span>
     </span>
-  </div>
+  </span>
+</div>
 
   <div class="mmr-tier">TOP 20</div>
 </div>
