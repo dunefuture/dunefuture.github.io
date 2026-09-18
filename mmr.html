@@ -873,7 +873,15 @@ body.mmr-profile-open {
     font-size: 19px;
   }
 }
-  </style>
+    .mmr-history-empty {
+  padding: 12px;
+  text-align: center;
+  color: #77717f;
+  font-size: 7px;
+  font-weight: 700;
+}
+
+</style>
 
 <link rel="stylesheet" href="style.css">
 
@@ -1281,12 +1289,15 @@ body.mmr-profile-open {
 
     </div>
 
-    <div class="mmr-profile-section">
+  <div class="mmr-profile-section">
 
-      <div class="mmr-profile-section-title">
-        LATEST MATCH
-      </div>
+  <div class="mmr-profile-section-title">
+    LATEST MATCH
+  </div>
 
+  <div class="mmr-profile-match-header">
+
+    <div>
       <div class="mmr-profile-match" id="mmrProfileMatch">
         —
       </div>
@@ -1294,8 +1305,41 @@ body.mmr-profile-open {
       <div class="mmr-profile-date" id="mmrProfileDate">
         —
       </div>
-
     </div>
+
+    <span class="mmr-profile-result" id="mmrProfileResult">
+      —
+    </span>
+
+  </div>
+
+  <div class="mmr-profile-match-details">
+
+    <div>
+      <span>OPPONENT</span>
+      <strong id="mmrProfileOpponent">—</strong>
+    </div>
+
+    <div>
+      <span>RANK MOVEMENT</span>
+      <strong id="mmrProfileMovement">—</strong>
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="mmr-profile-section">
+
+  <div class="mmr-profile-section-title">
+    MATCH HISTORY
+  </div>
+
+  <div class="mmr-profile-history" id="mmrProfileHistory">
+  </div>
+
+</div>
 
   </div>
 
@@ -1313,7 +1357,17 @@ const mmrProfiles = {
     newRating: 325,
     change: 25,
     match: "Harun defeated ALGERINO",
-    date: "18 September 2026"
+    date: "18 September 2026",
+
+    history: [
+      {
+        result: "WIN",
+        opponent: "ALGERINO",
+        score: "+25",
+        rating: 325,
+        date: "18 September 2026"
+      }
+    ]
   },
 
   ALGERINO: {
@@ -1323,7 +1377,17 @@ const mmrProfiles = {
     newRating: 325,
     change: -25,
     match: "Lost to Harun",
-    date: "18 September 2026"
+    date: "18 September 2026",
+
+    history: [
+      {
+        result: "LOSS",
+        opponent: "Harun",
+        score: "-25",
+        rating: 325,
+        date: "18 September 2026"
+      }
+    ]
   }
 
 };
@@ -1370,7 +1434,69 @@ function openMMRProfile(playerName) {
 
   document.getElementById("mmrProfileDate").textContent =
     player.date;
+const historyElement =
+  document.getElementById("mmrProfileHistory");
 
+if (historyElement) {
+
+  historyElement.innerHTML = "";
+
+  if (player.history && player.history.length > 0) {
+
+    historyElement.innerHTML = player.history.map(item => {
+
+      const isWin = item.result === "WIN";
+
+      const previousRating =
+        item.rating - parseInt(item.score, 10);
+
+      return `
+        <div class="mmr-history-item">
+
+          <div class="mmr-history-main">
+
+            <span class="mmr-history-result ${isWin ? "win" : "loss"}">
+              ${item.result}
+            </span>
+
+            <span class="mmr-history-opponent">
+              vs ${item.opponent}
+            </span>
+
+            <span class="mmr-history-change ${isWin ? "win" : "loss"}">
+              ${item.score}
+            </span>
+
+          </div>
+
+          <div class="mmr-history-meta">
+
+            <span>
+              ${previousRating} → ${item.rating}
+            </span>
+
+            <span>
+              ${item.date}
+            </span>
+
+          </div>
+
+        </div>
+      `;
+
+    }).join("");
+
+  } else {
+
+    historyElement.innerHTML = `
+      <div class="mmr-history-empty">
+        No recorded matches.
+      </div>
+    `;
+
+  }
+
+}
   document
     .getElementById("mmrProfileOverlay")
     .classList.add("active");
