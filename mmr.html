@@ -1227,55 +1227,114 @@ body.mmr-profile-open {
   <div class="mmr-tier">TOP 20</div>
 </div>
 
-<div class="mmr-row mmr-rank-down">
-  <div class="mmr-rank">#15</div>
-<div class="mmr-name mmr-player-link" onclick="openMMRProfile('ALGERINO')">
-  ALGERINO <span class="mmr-movement-down">▼ -1</span>
-</div>
+<div class="mmr-row">
+  <div class="mmr-rank">#14</div>
 
- <div class="mmr-value">
-  325
-  <span class="mmr-point-down mmr-tooltip">
-    -25
-    <span class="mmr-tooltip-text">
-      <span class="mmr-tooltip-title">MMR UPDATE</span>
+  <div class="mmr-name mmr-player-link" onclick="openMMRProfile('ALGERINO')">
+    ALGERINO
+  </div>
 
-      <span class="mmr-tooltip-row">
-        <span>Previous MMR</span>
-        <strong>350</strong>
-      </span>
-
-   <span class="mmr-tooltip-row">
-  <span>New MMR</span>
-  <strong>325</strong>
-</span>
-
-<span class="mmr-tooltip-row">
-  <span>Change</span>
-  <strong class="mmr-tooltip-loss">-25</strong>
-</span>
-
-<span class="mmr-tooltip-match">
-  <small>LATEST MATCH</small>
-  <strong>Lost to Harun</strong>
-
-  <span class="mmr-tooltip-date">
-    18 September 2026
-  </span>
-</span>
-    </span>
-  </span>
-</div>
+  <div class="mmr-value">
+    325
+  </div>
 
   <div class="mmr-tier">TOP 20</div>
 </div>
 
-        <div class="mmr-row">
-          <div class="mmr-rank">#16</div>
-          <div class="mmr-name">worm</div>
-          <div class="mmr-value">250</div>
-          <div class="mmr-tier">TOP 20</div>
-        </div>
+<div class="mmr-row mmr-rank-down">
+  <div class="mmr-rank">#15</div>
+
+  <div class="mmr-name mmr-player-link" onclick="openMMRProfile('Harun')">
+    Harun <span class="mmr-movement-down">▼ -1</span>
+  </div>
+
+  <div class="mmr-value">
+    300
+
+    <span class="mmr-point-down mmr-tooltip">
+      -25
+
+      <span class="mmr-tooltip-text">
+        <span class="mmr-tooltip-title">MMR UPDATE</span>
+
+        <span class="mmr-tooltip-row">
+          <span>Previous MMR</span>
+          <strong>325</strong>
+        </span>
+
+        <span class="mmr-tooltip-row">
+          <span>New MMR</span>
+          <strong>300</strong>
+        </span>
+
+        <span class="mmr-tooltip-row">
+          <span>Change</span>
+          <strong class="mmr-tooltip-loss">-25</strong>
+        </span>
+
+        <span class="mmr-tooltip-match">
+          <small>LATEST MATCH</small>
+          <strong>Lost to worm</strong>
+
+          <span class="mmr-tooltip-date">
+            18 September 2026
+          </span>
+        </span>
+
+      </span>
+    </span>
+  </div>
+
+  <div class="mmr-tier">TOP 20</div>
+</div>
+
+    <div class="mmr-row">
+  <div class="mmr-rank">#16</div>
+
+  <div class="mmr-name mmr-player-link" onclick="openMMRProfile('worm')">
+    worm
+  </div>
+
+  <div class="mmr-value">
+    275
+
+    <span class="mmr-point-up mmr-tooltip">
+      +25
+
+      <span class="mmr-tooltip-text">
+        <span class="mmr-tooltip-title">MMR UPDATE</span>
+
+        <span class="mmr-tooltip-row">
+          <span>Previous MMR</span>
+          <strong>250</strong>
+        </span>
+
+        <span class="mmr-tooltip-row">
+          <span>New MMR</span>
+          <strong>275</strong>
+        </span>
+
+        <span class="mmr-tooltip-row">
+          <span>Change</span>
+          <strong class="mmr-tooltip-gain">+25</strong>
+        </span>
+
+        <span class="mmr-tooltip-match">
+          <small>LATEST MATCH</small>
+          <strong>worm defeated Harun</strong>
+
+          <span class="mmr-tooltip-date">
+            18 September 2026
+          </span>
+        </span>
+
+      </span>
+    </span>
+  </div>
+
+ 
+  <div class="mmr-tier">TOP 20</div>
+</div>
 
         <div class="mmr-row">
           <div class="mmr-rank">#17</div>
@@ -1471,27 +1530,34 @@ body.mmr-profile-open {
 
 const mmrProfiles = {
 
-  Harun: {
-    rank: "#14",
-    rating: 325,
-    previous: 300,
-    newRating: 325,
-    change: 25,
-    match: "Harun defeated ALGERINO",
-    date: "18 September 2026",
-opponent: "ALGERINO",
-movement: "+1",
-    
-    history: [
-      {
-        result: "WIN",
-        opponent: "ALGERINO",
-        score: "+25",
-        rating: 325,
-        date: "18 September 2026"
-      }
-    ]
-  },
+ Harun: {
+  rank: "#15",
+  rating: 300,
+  previous: 325,
+  newRating: 300,
+  change: -25,
+  match: "Lost to worm",
+  date: "18 September 2026",
+  opponent: "worm",
+  movement: "-1",
+
+  history: [
+    {
+      result: "LOSS",
+      opponent: "worm",
+      score: "-25",
+      rating: 300,
+      date: "18 September 2026"
+    },
+    {
+      result: "WIN",
+      opponent: "ALGERINO",
+      score: "+25",
+      rating: 325,
+      date: "18 September 2026"
+    }
+  ]
+},
 
   ALGERINO: {
     rank: "#15",
@@ -1509,6 +1575,28 @@ movement: "-1",
         opponent: "Harun",
         score: "-25",
         rating: 325,
+        date: "18 September 2026"
+      }
+      ]
+  },
+
+  worm: {
+    rank: "#16",
+    rating: 275,
+    previous: 250,
+    newRating: 275,
+    change: 25,
+    match: "worm defeated Harun",
+    date: "18 September 2026",
+    opponent: "Harun",
+    movement: "—",
+
+    history: [
+      {
+        result: "WIN",
+        opponent: "Harun",
+        score: "+25",
+        rating: 275,
         date: "18 September 2026"
       }
     ]
