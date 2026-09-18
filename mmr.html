@@ -543,6 +543,336 @@
 .mmr-tooltip-row .mmr-tooltip-loss {
   color: #ff4d67;
 }
+    /* =========================================
+   MMR PLAYER PROFILE MODAL
+========================================= */
+
+.mmr-profile-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(3, 2, 8, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity 0.22s ease,
+    visibility 0.22s ease;
+}
+
+.mmr-profile-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.mmr-profile-modal {
+  position: relative;
+
+  width: 100%;
+  max-width: 430px;
+
+  padding: 28px;
+
+  border: 1px solid rgba(255, 45, 242, 0.45);
+  border-radius: 14px;
+
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(255, 0, 255, 0.12),
+      transparent 38%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(21, 17, 29, 0.98),
+      rgba(9, 7, 14, 0.99)
+    );
+
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.72),
+    0 0 35px rgba(255, 0, 255, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+  transform: translateY(18px) scale(0.97);
+  opacity: 0;
+
+  transition:
+    transform 0.24s ease,
+    opacity 0.24s ease;
+}
+
+.mmr-profile-overlay.active .mmr-profile-modal {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+
+/* CLOSE BUTTON */
+
+.mmr-profile-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 7px;
+
+  background: rgba(255, 255, 255, 0.025);
+
+  color: #8d8795;
+  font-size: 19px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition: 0.18s ease;
+}
+
+.mmr-profile-close:hover {
+  color: #ffffff;
+  border-color: rgba(255, 45, 242, 0.55);
+  background: rgba(255, 45, 242, 0.08);
+}
+
+
+/* PROFILE HEADER */
+
+.mmr-profile-eyebrow {
+  margin-bottom: 7px;
+
+  color: #ff35f2;
+
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 1.8px;
+
+  text-transform: uppercase;
+}
+
+.mmr-profile-name {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: 25px;
+  font-weight: 900;
+  letter-spacing: 0.3px;
+}
+
+.mmr-profile-subtitle {
+  margin-top: 5px;
+  margin-bottom: 22px;
+
+  color: #777180;
+
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+
+/* MAIN RATING CARD */
+
+.mmr-profile-rating-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+
+  margin-bottom: 16px;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 45, 242, 0.22);
+  border-radius: 10px;
+
+  background: rgba(255, 45, 242, 0.10);
+}
+
+.mmr-profile-rating-card > div {
+  padding: 17px 18px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 0, 255, 0.065),
+      rgba(255, 255, 255, 0.015)
+    );
+}
+
+.mmr-profile-rating-card > div + div {
+  border-left: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.mmr-profile-label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #777180;
+
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: 1.1px;
+}
+
+.mmr-profile-rating-card strong {
+  color: #ff35f2;
+
+  font-size: 22px;
+  font-weight: 900;
+}
+
+
+/* INFORMATION SECTIONS */
+
+.mmr-profile-section {
+  margin-top: 12px;
+  padding: 15px 17px;
+
+  border: 1px solid rgba(255, 255, 255, 0.065);
+  border-radius: 9px;
+
+  background: rgba(255, 255, 255, 0.018);
+}
+
+.mmr-profile-section-title {
+  margin-bottom: 11px;
+
+  color: #ff35f2;
+
+  font-size: 7px;
+  font-weight: 900;
+  letter-spacing: 1.3px;
+}
+
+.mmr-profile-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 6px 0;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.045);
+
+  color: #85808b;
+
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.mmr-profile-row:last-child {
+  border-bottom: none;
+}
+
+.mmr-profile-row strong {
+  color: #ffffff;
+
+  font-size: 10px;
+  font-weight: 900;
+}
+
+
+/* MMR CHANGE */
+
+.mmr-profile-gain {
+  color: #39ff88 !important;
+}
+
+.mmr-profile-loss {
+  color: #ff4d67 !important;
+}
+
+
+/* LATEST MATCH */
+
+.mmr-profile-match {
+  color: #ffffff;
+
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1.5;
+}
+
+.mmr-profile-date {
+  margin-top: 6px;
+
+  color: #686271;
+
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+
+/* PLAYER NAME CLICK EFFECT */
+
+.mmr-player-link {
+  cursor: pointer;
+
+  transition:
+    color 0.18s ease,
+    text-shadow 0.18s ease;
+}
+
+.mmr-player-link:hover {
+  color: #ff35f2;
+
+  text-shadow:
+    0 0 8px rgba(255, 53, 242, 0.30);
+}
+
+
+/* PREVENT PAGE SCROLL */
+
+body.mmr-profile-open {
+  overflow: hidden;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+  .mmr-profile-overlay {
+    padding: 14px;
+  }
+
+  .mmr-profile-modal {
+    max-width: 100%;
+    padding: 23px 18px;
+  }
+
+  .mmr-profile-name {
+    font-size: 21px;
+  }
+
+  .mmr-profile-rating-card > div {
+    padding: 14px;
+  }
+
+  .mmr-profile-rating-card strong {
+    font-size: 19px;
+  }
+}
   </style>
 
 <link rel="stylesheet" href="style.css">
@@ -728,7 +1058,9 @@
 
      <div class="mmr-row mmr-rank-up">
   <div class="mmr-rank">#14</div>
-  <div class="mmr-name">Harun <span class="mmr-movement-up">▲ +1</span></div>
+ <div class="mmr-name mmr-player-link" onclick="openMMRProfile('Harun')">
+  Harun <span class="mmr-movement-up">▲ +1</span>
+</div>
  <div class="mmr-value">
   325
   <span class="mmr-point-up mmr-tooltip">
@@ -768,7 +1100,9 @@
 
 <div class="mmr-row mmr-rank-down">
   <div class="mmr-rank">#15</div>
-  <div class="mmr-name">ALGERINO <span class="mmr-movement-down">▼ -1</span></div>
+<div class="mmr-name mmr-player-link" onclick="openMMRProfile('ALGERINO')">
+  ALGERINO <span class="mmr-movement-down">▼ -1</span>
+</div>
 
  <div class="mmr-value">
   325
@@ -878,9 +1212,200 @@
   </main>
 
 
-  <footer>
-    © 2026 Dune Future · Dune 2000 Community
-  </footer>
+<footer>
+  © 2026 Dune Future · Dune 2000 Community
+</footer>
+
+<!-- =========================
+     MMR PLAYER PROFILE MODAL
+========================= -->
+
+<div class="mmr-profile-overlay" id="mmrProfileOverlay" onclick="closeMMRProfile(event)">
+
+  <div class="mmr-profile-modal">
+
+    <button
+      class="mmr-profile-close"
+      onclick="closeMMRProfile()"
+      type="button"
+      aria-label="Close player profile">
+      ×
+    </button>
+
+    <div class="mmr-profile-eyebrow">
+      PLAYER MMR PROFILE
+    </div>
+
+    <h2 class="mmr-profile-name" id="mmrProfileName">
+      PLAYER
+    </h2>
+
+    <div class="mmr-profile-subtitle">
+      Dune Future Competitive Rating
+    </div>
+
+    <div class="mmr-profile-rating-card">
+
+      <div>
+        <span class="mmr-profile-label">CURRENT MMR</span>
+        <strong id="mmrProfileRating">—</strong>
+      </div>
+
+      <div>
+        <span class="mmr-profile-label">CURRENT RANK</span>
+        <strong id="mmrProfileRank">—</strong>
+      </div>
+
+    </div>
+
+    <div class="mmr-profile-section">
+
+      <div class="mmr-profile-section-title">
+        LATEST MMR UPDATE
+      </div>
+
+      <div class="mmr-profile-row">
+        <span>Previous MMR</span>
+        <strong id="mmrProfilePrevious">—</strong>
+      </div>
+
+      <div class="mmr-profile-row">
+        <span>New MMR</span>
+        <strong id="mmrProfileNew">—</strong>
+      </div>
+
+      <div class="mmr-profile-row">
+        <span>Change</span>
+        <strong id="mmrProfileChange">—</strong>
+      </div>
+
+    </div>
+
+    <div class="mmr-profile-section">
+
+      <div class="mmr-profile-section-title">
+        LATEST MATCH
+      </div>
+
+      <div class="mmr-profile-match" id="mmrProfileMatch">
+        —
+      </div>
+
+      <div class="mmr-profile-date" id="mmrProfileDate">
+        —
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+const mmrProfiles = {
+
+  Harun: {
+    rank: "#14",
+    rating: 325,
+    previous: 300,
+    newRating: 325,
+    change: 25,
+    match: "Harun defeated ALGERINO",
+    date: "18 September 2026"
+  },
+
+  ALGERINO: {
+    rank: "#15",
+    rating: 325,
+    previous: 350,
+    newRating: 325,
+    change: -25,
+    match: "Lost to Harun",
+    date: "18 September 2026"
+  }
+
+};
+
+
+function openMMRProfile(playerName) {
+
+  const player = mmrProfiles[playerName];
+
+  if (!player) return;
+
+  document.getElementById("mmrProfileName").textContent =
+    playerName;
+
+  document.getElementById("mmrProfileRating").textContent =
+    player.rating;
+
+  document.getElementById("mmrProfileRank").textContent =
+    player.rank;
+
+  document.getElementById("mmrProfilePrevious").textContent =
+    player.previous;
+
+  document.getElementById("mmrProfileNew").textContent =
+    player.newRating;
+
+  const changeElement =
+    document.getElementById("mmrProfileChange");
+
+  changeElement.textContent =
+    player.change > 0
+      ? "+" + player.change
+      : player.change;
+
+  changeElement.className =
+    player.change > 0
+      ? "mmr-profile-gain"
+      : player.change < 0
+      ? "mmr-profile-loss"
+      : "";
+
+  document.getElementById("mmrProfileMatch").textContent =
+    player.match;
+
+  document.getElementById("mmrProfileDate").textContent =
+    player.date;
+
+  document
+    .getElementById("mmrProfileOverlay")
+    .classList.add("active");
+
+  document.body.classList.add("mmr-profile-open");
+}
+
+
+function closeMMRProfile(event) {
+
+  if (
+    event &&
+    event.target !==
+      document.getElementById("mmrProfileOverlay")
+  ) {
+    return;
+  }
+
+  document
+    .getElementById("mmrProfileOverlay")
+    .classList.remove("active");
+
+  document.body.classList.remove("mmr-profile-open");
+}
+
+
+document.addEventListener("keydown", function(event) {
+
+  if (event.key === "Escape") {
+    closeMMRProfile();
+  }
+
+});
+
+</script>
 
 </body>
 </html>
