@@ -501,6 +501,48 @@
   font-size: 7px;
   font-weight: 800;
 }
+    /* =========================
+   MMR TOOLTIP FINAL DETAILS
+   ========================= */
+
+.mmr-tooltip-gain {
+  color: #39ff88;
+  font-weight: 900;
+}
+
+.mmr-tooltip-loss {
+  color: #ff4d67;
+  font-weight: 900;
+}
+
+.mmr-tooltip-date {
+  display: block;
+  margin-top: 4px;
+  color: #686271;
+  font-size: 6px;
+  font-weight: 700;
+  letter-spacing: .4px;
+}
+
+.mmr-tooltip-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.mmr-tooltip-row strong {
+  color: #ffffff;
+  font-weight: 900;
+}
+
+.mmr-tooltip-row .mmr-tooltip-gain {
+  color: #39ff88;
+}
+
+.mmr-tooltip-row .mmr-tooltip-loss {
+  color: #ff4d67;
+}
   </style>
 
 <link rel="stylesheet" href="style.css">
@@ -691,20 +733,33 @@
   325
   <span class="mmr-point-up mmr-tooltip">
     +25
-    <span class="mmr-tooltip-text">
-      <span class="mmr-tooltip-title">MMR UPDATE</span>
-      <span class="mmr-tooltip-row">
-        <span>Previous MMR</span>
-        <strong>300</strong>
-      </span>
-      <span class="mmr-tooltip-row">
-        <span>New MMR</span>
-        <strong>325</strong>
-      </span>
-      <span class="mmr-tooltip-match">
-        <small>LATEST MATCH</small>
-        <strong>Harun defeated ALGERINO</strong>
-      </span>
+  <span class="mmr-tooltip-text">
+  <span class="mmr-tooltip-title">MMR UPDATE</span>
+
+  <span class="mmr-tooltip-row">
+    <span>Previous MMR</span>
+    <strong>300</strong>
+  </span>
+
+  <span class="mmr-tooltip-row">
+    <span>New MMR</span>
+    <strong>325</strong>
+  </span>
+
+  <span class="mmr-tooltip-row">
+    <span>Change</span>
+    <strong class="mmr-tooltip-gain">+25</strong>
+  </span>
+
+  <span class="mmr-tooltip-match">
+    <small>LATEST MATCH</small>
+    <strong>Harun defeated ALGERINO</strong>
+
+    <span class="mmr-tooltip-date">
+      18 September 2026
+    </span>
+  </span>
+</span>
     </span>
   </span>
 </div>
@@ -727,15 +782,24 @@
         <strong>350</strong>
       </span>
 
-      <span class="mmr-tooltip-row">
-        <span>New MMR</span>
-        <strong>325</strong>
-      </span>
+   <span class="mmr-tooltip-row">
+  <span>New MMR</span>
+  <strong>325</strong>
+</span>
 
-      <span class="mmr-tooltip-match">
-        <small>LATEST MATCH</small>
-        <strong>Lost to Harun</strong>
-      </span>
+<span class="mmr-tooltip-row">
+  <span>Change</span>
+  <strong class="mmr-tooltip-loss">-25</strong>
+</span>
+
+<span class="mmr-tooltip-match">
+  <small>LATEST MATCH</small>
+  <strong>Lost to Harun</strong>
+
+  <span class="mmr-tooltip-date">
+    18 September 2026
+  </span>
+</span>
     </span>
   </span>
 </div>
