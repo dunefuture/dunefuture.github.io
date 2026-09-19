@@ -2706,9 +2706,20 @@ Neko: {
 
 function openMMRProfile(playerName) {
 
-  const player = mmrProfiles[playerName];
+  const player =
+    mmrProfiles[playerName];
 
   if (!player) return;
+
+
+  const leaderboardPlayer =
+    getMMRLeaderboard().find(
+      player =>
+        player.name === playerName
+    );
+
+
+  
 
   document.getElementById("mmrProfileName").textContent =
     playerName;
@@ -2717,7 +2728,9 @@ function openMMRProfile(playerName) {
     player.rating;
 
   document.getElementById("mmrProfileRank").textContent =
-    player.rank;
+  leaderboardPlayer
+    ? `#${leaderboardPlayer.rank}`
+    : player.rank;
 
   document.getElementById("mmrProfilePrevious").textContent =
     player.previous;
