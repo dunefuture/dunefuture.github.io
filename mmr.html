@@ -106,7 +106,143 @@
       font-size: 25px;
       margin-bottom: 8px;
     }
+/* =========================================
+   TOP 3 MEDAL SHINE EFFECT
+   ========================================= */
 
+.mmr-podium-card .mmr-medal {
+    position: relative;
+    display: inline-block;
+    z-index: 2;
+    animation: medalFloat 3s ease-in-out infinite;
+}
+
+/* Cahaya di belakang medal */
+.mmr-podium-card .mmr-medal::before {
+    content: "";
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0.65;
+    filter: blur(15px);
+    animation: medalGlow 2.5s ease-in-out infinite;
+}
+
+/* Kilatan cahaya yang melintas */
+.mmr-podium-card .mmr-medal::after {
+    content: "";
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    top: -4px;
+    right: -7px;
+    border-radius: 50%;
+    background: white;
+    box-shadow:
+        0 0 5px white,
+        0 0 12px white,
+        0 0 22px white,
+        0 0 35px currentColor;
+    animation: medalSpark 2.2s ease-in-out infinite;
+}
+
+/* SILVER - RANK #2 */
+.mmr-podium-card:nth-child(1) .mmr-medal {
+    color: #dcecff;
+    text-shadow:
+        0 0 6px #ffffff,
+        0 0 14px #9fd3ff,
+        0 0 25px #55aaff;
+}
+
+.mmr-podium-card:nth-child(1) .mmr-medal::before {
+    background: rgba(110, 190, 255, 0.65);
+}
+
+/* GOLD - RANK #1 */
+.mmr-podium-card.first .mmr-medal {
+    color: #ffd84d;
+    text-shadow:
+        0 0 7px #ffffff,
+        0 0 15px #ffd84d,
+        0 0 28px #ffb300,
+        0 0 45px #ff8c00;
+    animation:
+        medalFloat 3s ease-in-out infinite,
+        goldPulse 2s ease-in-out infinite;
+}
+
+.mmr-podium-card.first .mmr-medal::before {
+    width: 90px;
+    height: 90px;
+    background: rgba(255, 193, 35, 0.75);
+}
+
+/* BRONZE - RANK #3 */
+.mmr-podium-card:nth-child(3) .mmr-medal {
+    color: #ff9d4d;
+    text-shadow:
+        0 0 6px #fff0dc,
+        0 0 14px #ff9d4d,
+        0 0 26px #d66a20;
+}
+
+.mmr-podium-card:nth-child(3) .mmr-medal::before {
+    background: rgba(255, 120, 45, 0.60);
+}
+
+/* Gerakan medal */
+@keyframes medalFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-4px);
+    }
+}
+
+/* Cahaya bernapas */
+@keyframes medalGlow {
+    0%, 100% {
+        opacity: 0.35;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    50% {
+        opacity: 0.9;
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+}
+
+/* Kilatan seperti pantulan cahaya */
+@keyframes medalSpark {
+    0%, 25%, 100% {
+        opacity: 0;
+        transform: scale(0.3) rotate(0deg);
+    }
+    45% {
+        opacity: 1;
+        transform: scale(2.2) rotate(90deg);
+    }
+    60% {
+        opacity: 0;
+        transform: scale(0.4) rotate(180deg);
+    }
+}
+
+/* Juara 1 mendapatkan efek paling kuat */
+@keyframes goldPulse {
+    0%, 100% {
+        filter: brightness(1);
+    }
+    50% {
+        filter: brightness(1.7);
+    }
+}
     .mmr-rank-label {
       color: #77717f;
       font-size: 8px;
