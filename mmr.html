@@ -2724,8 +2724,10 @@ function openMMRProfile(playerName) {
   document.getElementById("mmrProfileName").textContent =
     playerName;
 
-  document.getElementById("mmrProfileRating").textContent =
-    player.rating;
+ document.getElementById("mmrProfileRating").textContent =
+  leaderboardPlayer
+    ? leaderboardPlayer.rating
+    : player.rating;
 
   document.getElementById("mmrProfileRank").textContent =
   leaderboardPlayer
