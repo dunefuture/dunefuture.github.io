@@ -1820,6 +1820,111 @@ function getLatestMMRMatch(playerName) {
         : `Lost to ${match.winner}`
   };
 }
+  // =====================================================
+// AUTOMATIC RANK MOVEMENT
+// =====================================================
+
+function getMMRRankMovement(playerName) {
+
+  const latestMatch =
+    getLatestMMRMatch(playerName);
+
+  if (!latestMatch) {
+    return {
+      difference: 0,
+      previousRank: null,
+      currentRank: null
+    };
+  }
+
+
+  // Ranking saat ini
+  const currentLeaderboard =
+    getMMRLeaderboard();
+
+
+  const currentPlayer =
+    currentLeaderboard.find(
+      player => player.name === playerName
+    );
+
+
+  if (!currentPlayer) {
+    return {
+      difference: 0,
+      previousRank: null,
+      currentRank: null
+    };
+  }
+
+
+  // Buat salinan rating sekarang
+  const previousPlayers =
+    mmrPlayers.map(player => ({
+      ...player
+    }));
+
+
+  const playerBeforeMatch =
+    previousPlayers.find(
+      player => player.name === playerName
+    );
+
+
+  if (!playerBeforeMatch) {
+    return {
+      difference: 0,
+      previousRank: null,
+      currentRank: currentPlayer.rank
+    };
+  }
+
+
+  // Kembalikan rating pemain ke kondisi
+  // sebelum pertandingan terakhir
+  playerBeforeMatch.rating -=
+    latestMatch.change;
+
+
+  // Ranking sebelum pertandingan
+  const previousLeaderboard =
+    previousPlayers
+      .sort((a, b) => b.rating - a.rating)
+      .map((player, index) => ({
+        ...player,
+        rank: index + 1
+      }));
+
+
+  const previousPlayer =
+    previousLeaderboard.find(
+      player => player.name === playerName
+    );
+
+
+  if (!previousPlayer) {
+    return {
+      difference: 0,
+      previousRank: null,
+      currentRank: currentPlayer.rank
+    };
+  }
+
+
+  return {
+
+    previousRank:
+      previousPlayer.rank,
+
+    currentRank:
+      currentPlayer.rank,
+
+    difference:
+      previousPlayer.rank -
+      currentPlayer.rank
+
+  };
+}
 // =====================================================
 // AUTOMATIC MMR SORTING
 // =====================================================
@@ -1909,8 +2014,42 @@ function renderMMRLeaderboard() {
       // LATEST MATCH
       // ===============================================
 
-      const latestMatch =
-        getLatestMMRMatch(player.name);
+  
+const rankMovement =
+  getMMRRankMovement(player.name);
+
+
+let movementHTML = "";
+let movementRowClass = "";
+
+
+if (rankMovement.difference > 0) {
+
+  movementRowClass =
+    " mmr-rank-up";
+
+  movementHTML = `
+    <span class="mmr-movement-up">
+      ▲ +${rankMovement.difference}
+    </span>
+  `;
+
+}
+
+
+if (rankMovement.difference < 0) {
+
+  movementRowClass =
+    " mmr-rank-down";
+
+  movementHTML = `
+    <span class="mmr-movement-down">
+      ▼ ${rankMovement.difference}
+    </span>
+  `;
+
+}
+
 
 
       let mmrChangeHTML = "";
@@ -2003,16 +2142,17 @@ function renderMMRLeaderboard() {
 
       return `
 
-        <div class="mmr-row${eliteClass}">
+       <div class="mmr-row${eliteClass}${movementRowClass}">
 
           <div class="mmr-rank">
             #${rankNumber}
           </div>
 
 
-          <div class="${playerClass}" ${clickAction}>
-            ${player.name}
-          </div>
+         <div class="${playerClass}" ${clickAction}>
+  ${player.name}
+  ${movementHTML}
+</div>
 
 
           <div class="mmr-value">
