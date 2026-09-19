@@ -1784,6 +1784,180 @@ const mmrMatches = [
   }
 
 ];
+  // =====================================================
+// AUTOMATIC MMR RANK MOVEMENT ENGINE
+// =====================================================
+// Menghitung perubahan ranking berdasarkan seluruh
+// match history dengan metode reverse replay.
+//
+// Hasil:
+// playerName -> movement terakhir yang dialami
+// =====================================================
+
+function calculateMMRMovements() {
+
+  // -----------------------------------------------
+  // STEP 1
+  // Mulai dari CURRENT rating
+  // -----------------------------------------------
+
+  let workingPlayers =
+    mmrPlayers.map(player => ({
+      ...player
+    }));
+
+
+  // -----------------------------------------------
+  // STEP 2
+  // Ranking helper
+  // -----------------------------------------------
+
+  function createRanking(players) {
+
+    return [...players]
+      .sort((a, b) => b.rating - a.rating)
+      .map((player, index) => ({
+        ...player,
+        rank: index + 1
+      }));
+
+  }
+
+
+  // -----------------------------------------------
+  // STEP 3
+  // Tempat menyimpan movement terbaru
+  // -----------------------------------------------
+
+  const movements = {};
+
+
+  // -----------------------------------------------
+  // STEP 4
+  // mmrMatches tersimpan terbaru -> terlama.
+  // Kita berjalan mundur dari kondisi sekarang.
+  // -----------------------------------------------
+
+  for (const match of mmrMatches) {
+
+    // Ranking SESUDAH pertandingan
+    const afterRanking =
+      createRanking(workingPlayers);
+
+
+    // Simpan rating sebelum kita rollback
+    const beforePlayers =
+      workingPlayers.map(player => ({
+        ...player
+      }));
+
+
+    const winner =
+      beforePlayers.find(
+        player => player.name === match.winner
+      );
+
+
+    const loser =
+      beforePlayers.find(
+        player => player.name === match.loser
+      );
+
+
+    if (!winner || !loser) {
+      continue;
+    }
+
+
+    // ---------------------------------------------
+    // Reverse match
+    //
+    // Winner sekarang sudah menerima +change,
+    // jadi kita kurangi.
+    //
+    // Loser sekarang sudah kehilangan change,
+    // jadi kita tambahkan kembali.
+    // ---------------------------------------------
+
+    winner.rating -= match.change;
+
+    loser.rating += match.change;
+
+
+    // Ranking SEBELUM pertandingan
+    const beforeRanking =
+      createRanking(beforePlayers);
+
+
+    // ---------------------------------------------
+    // Bandingkan SEMUA pemain
+    // ---------------------------------------------
+
+    for (const playerAfter of afterRanking) {
+
+      const playerBefore =
+        beforeRanking.find(
+          player =>
+            player.name === playerAfter.name
+        );
+
+
+      if (!playerBefore) {
+        continue;
+      }
+
+
+      const difference =
+        playerBefore.rank -
+        playerAfter.rank;
+
+
+      // Ada perubahan posisi
+      if (difference !== 0) {
+
+        // Karena kita membaca match dari terbaru
+        // ke terlama, movement pertama yang ditemukan
+        // adalah movement TERBARU player tersebut.
+        if (!movements[playerAfter.name]) {
+
+          movements[playerAfter.name] = {
+
+            previousRank:
+              playerBefore.rank,
+
+            currentRank:
+              playerAfter.rank,
+
+            difference:
+              difference,
+
+            causedBy:
+              `${match.winner} vs ${match.loser}`,
+
+            date:
+              match.date
+
+          };
+
+        }
+
+      }
+
+    }
+
+
+    // ---------------------------------------------
+    // Lanjut rollback ke pertandingan sebelumnya
+    // ---------------------------------------------
+
+    workingPlayers =
+      beforePlayers;
+
+  }
+
+
+  return movements;
+}
 // =====================================================
 // GET LATEST MATCH FOR PLAYER
 // =====================================================
@@ -1797,10 +1971,13 @@ function getLatestMMRMatch(playerName) {
 
   if (!match) return null;
 
-  const isWinner = match.winner === playerName;
+  const isWinner =
+    match.winner === playerName;
 
   return {
-    result: isWinner ? "WIN" : "LOSS",
+
+    result:
+      isWinner ? "WIN" : "LOSS",
 
     opponent:
       isWinner
@@ -1812,78 +1989,210 @@ function getLatestMMRMatch(playerName) {
         ? match.change
         : -match.change,
 
-    date: match.date,
+    date:
+      match.date,
 
     description:
       isWinner
         ? `${playerName} defeated ${match.loser}`
         : `Lost to ${match.winner}`
+
   };
 }
-  // =====================================================
-// AUTOMATIC RANK MOVEMENT
-// =====================================================
+
 
 // =====================================================
-// PREVIOUS LEADERBOARD SNAPSHOT
+// AUTOMATIC MMR RANK MOVEMENT ENGINE
+// =====================================================
+// Reverse replay seluruh match history.
+//
+// Sistem mulai dari current rating pada mmrPlayers,
+// kemudian membatalkan pertandingan satu per satu
+// dari terbaru ke terlama.
+//
+// Dengan cara ini perubahan posisi pemain yang
+// TIDAK bermain juga dapat terdeteksi.
+// Contoh:
+// Neko turun -> DZ14 naik
+// Harun turun -> ALGERINO naik
 // =====================================================
 
-function getPreviousMMRLeaderboard() {
+function calculateMMRMovements() {
 
-  const currentPlayers =
+  // -----------------------------------------------
+  // Current rating snapshot
+  // -----------------------------------------------
+
+  let workingPlayers =
     mmrPlayers.map(player => ({
       ...player
     }));
 
 
-  // Ambil pertandingan PALING BARU
-  if (
-    typeof mmrMatches === "undefined" ||
-    mmrMatches.length === 0
-  ) {
-    return currentPlayers
+  // -----------------------------------------------
+  // Helper untuk membuat ranking
+  // -----------------------------------------------
+
+  function createRanking(players) {
+
+    return [...players]
       .sort((a, b) => b.rating - a.rating)
       .map((player, index) => ({
         ...player,
         rank: index + 1
       }));
+
   }
 
 
-  const latestMatch =
-    mmrMatches[0];
+  // -----------------------------------------------
+  // Menyimpan movement TERBARU setiap player
+  // -----------------------------------------------
+
+  const movements = {};
 
 
-  const winner =
-    currentPlayers.find(
-      player => player.name === latestMatch.winner
-    );
+  // -----------------------------------------------
+  // mmrMatches harus:
+  // TERBARU -> TERLAMA
+  // -----------------------------------------------
+
+  for (const match of mmrMatches) {
+
+    // =============================================
+    // Ranking SESUDAH pertandingan
+    // =============================================
+
+    const afterRanking =
+      createRanking(workingPlayers);
 
 
-  const loser =
-    currentPlayers.find(
-      player => player.name === latestMatch.loser
-    );
+    // Copy kondisi saat ini sebelum rollback
+    const beforePlayers =
+      workingPlayers.map(player => ({
+        ...player
+      }));
 
 
-  // Kembalikan rating winner ke sebelum match
-  if (winner) {
-    winner.rating -= latestMatch.change;
+    const winner =
+      beforePlayers.find(
+        player =>
+          player.name === match.winner
+      );
+
+
+    const loser =
+      beforePlayers.find(
+        player =>
+          player.name === match.loser
+      );
+
+
+    // Kalau nama player tidak ditemukan,
+    // abaikan match tersebut
+    if (!winner || !loser) {
+      continue;
+    }
+
+
+    // =============================================
+    // REVERSE MATCH
+    // =============================================
+    //
+    // Winner sebelumnya belum menerima +MMR,
+    // jadi rating dikurangi.
+    //
+    // Loser sebelumnya belum kehilangan MMR,
+    // jadi rating ditambahkan kembali.
+    // =============================================
+
+    winner.rating -= match.change;
+
+    loser.rating += match.change;
+
+
+    // =============================================
+    // Ranking SEBELUM pertandingan
+    // =============================================
+
+    const beforeRanking =
+      createRanking(beforePlayers);
+
+
+    // =============================================
+    // Bandingkan SEMUA PLAYER
+    // =============================================
+
+    for (const playerAfter of afterRanking) {
+
+      const playerBefore =
+        beforeRanking.find(
+          player =>
+            player.name === playerAfter.name
+        );
+
+
+      if (!playerBefore) {
+        continue;
+      }
+
+
+      const difference =
+        playerBefore.rank -
+        playerAfter.rank;
+
+
+      // ===========================================
+      // Ada perubahan ranking
+      // ===========================================
+
+      if (difference !== 0) {
+
+        // Karena match dibaca dari terbaru
+        // ke terlama, movement pertama yang
+        // ditemukan adalah movement terbaru
+        // untuk player tersebut.
+
+        if (!movements[playerAfter.name]) {
+
+          movements[playerAfter.name] = {
+
+            previousRank:
+              playerBefore.rank,
+
+            currentRank:
+              playerAfter.rank,
+
+            difference:
+              difference,
+
+            causedBy:
+              `${match.winner} vs ${match.loser}`,
+
+            date:
+              match.date
+
+          };
+
+        }
+
+      }
+
+    }
+
+
+    // =============================================
+    // Kondisi "sebelum match" menjadi kondisi
+    // kerja untuk rollback match berikutnya.
+    // =============================================
+
+    workingPlayers =
+      beforePlayers;
+
   }
 
 
-  // Kembalikan rating loser ke sebelum match
-  if (loser) {
-    loser.rating += latestMatch.change;
-  }
-
-
-  return currentPlayers
-    .sort((a, b) => b.rating - a.rating)
-    .map((player, index) => ({
-      ...player,
-      rank: index + 1
-    }));
+  return movements;
 }
 
 
@@ -1893,53 +2202,53 @@ function getPreviousMMRLeaderboard() {
 
 function getMMRRankMovement(playerName) {
 
-  const currentLeaderboard =
-    getMMRLeaderboard();
+  const movements =
+    calculateMMRMovements();
 
 
-  const previousLeaderboard =
-    getPreviousMMRLeaderboard();
+  const movement =
+    movements[playerName];
 
 
-  const currentPlayer =
-    currentLeaderboard.find(
-      player => player.name === playerName
-    );
+  // ===============================================
+  // Kalau player tidak mengalami perubahan rank
+  // ===============================================
 
+  if (!movement) {
 
-  const previousPlayer =
-    previousLeaderboard.find(
-      player => player.name === playerName
-    );
+    const currentPlayer =
+      getMMRLeaderboard().find(
+        player =>
+          player.name === playerName
+      );
 
-
-  if (!currentPlayer || !previousPlayer) {
 
     return {
+
       difference: 0,
-      previousRank: null,
-      currentRank: null
+
+      previousRank:
+        currentPlayer
+          ? currentPlayer.rank
+          : null,
+
+      currentRank:
+        currentPlayer
+          ? currentPlayer.rank
+          : null,
+
+      causedBy: null,
+
+      date: null
+
     };
 
   }
 
 
-  return {
-
-    previousRank:
-      previousPlayer.rank,
-
-    currentRank:
-      currentPlayer.rank,
-
-    difference:
-      previousPlayer.rank -
-      currentPlayer.rank
-
-  };
-
+  return movement;
 }
-// =====================================================
+ // =====================================================
 // AUTOMATIC MMR SORTING
 // =====================================================
 
