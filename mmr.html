@@ -1089,15 +1089,11 @@ TOP 20 · LAST UPDATED 19 SEPTEMBER 2026
         </div>
 
 
-        <div class="mmr-podium-card">
-          <div class="mmr-medal">🥉</div>
-          <div class="mmr-rank-label">RANK #3</div>
-        <div class="mmr-podium-name mmr-player-link" onclick="openMMRProfile('Balrog')">Balrog</div>
-
-        <div class="mmr-points">
-    875
+      <div class="mmr-points">
+    900
     <span class="mmr-unit">MMR</span>
-    <span class="mmr-point-down">-25</span>
+    <span class="mmr-point-up">+25</span>
+</div>
 </div>
         </div>
 
@@ -1172,12 +1168,51 @@ TOP 20 · LAST UPDATED 19 SEPTEMBER 2026
           <div class="mmr-tier">ELITE</div>
         </div>
 
-        <div class="mmr-row elite">
-          <div class="mmr-rank">#07</div>
-          <div class="mmr-name">Neko</div>
-          <div class="mmr-value">700</div>
-          <div class="mmr-tier">ELITE</div>
-        </div>
+     <div class="mmr-row elite">
+    <div class="mmr-rank">#07</div>
+
+    <div class="mmr-name mmr-player-link" onclick="openMMRProfile('Neko')">Neko</div>
+
+    <div class="mmr-value">
+        675
+
+        <span class="mmr-point-down mmr-tooltip">
+            -25
+
+            <span class="mmr-tooltip-text">
+                <span class="mmr-tooltip-title">MMR UPDATE</span>
+
+                <span class="mmr-tooltip-row">
+                    <span>Previous MMR</span>
+                    <strong>700</strong>
+                </span>
+
+                <span class="mmr-tooltip-row">
+                    <span>New MMR</span>
+                    <strong>675</strong>
+                </span>
+
+                <span class="mmr-tooltip-row">
+                    <span>Change</span>
+                    <strong class="mmr-tooltip-loss">-25</strong>
+                </span>
+
+                <span class="mmr-tooltip-match">
+                    <small>LATEST MATCH</small>
+                    <strong>Lost to Balrog</strong>
+
+                    <span class="mmr-tooltip-date">
+                        19 September 2026
+                    </span>
+                </span>
+
+            </span>
+        </span>
+
+    </div>
+
+    <div class="mmr-tier">ELITE</div>
+</div>
 
         <div class="mmr-row elite">
           <div class="mmr-rank">#08</div>
@@ -1526,28 +1561,55 @@ TOP 20 · LAST UPDATED 19 SEPTEMBER 2026
 
 const mmrProfiles = {
 
-  Balrog: {
+Balrog: {
     rank: "#3",
-    rating: 875,
-    previous: 900,
-    newRating: 875,
-    change: -25,
-    match: "Lost to Dan",
+    rating: 900,
+    previous: 875,
+    newRating: 900,
+    change: 25,
+    match: "Balrog defeated Neko",
     date: "19 September 2026",
-    opponent: "Dan",
+    opponent: "Neko",
     movement: "—",
 
     history: [
-      {
-        result: "LOSS",
-        opponent: "Dan",
-        score: "-25",
-        rating: 875,
-        date: "19 September 2026"
-      }
+        {
+            result: "WIN",
+            opponent: "Neko",
+            score: "+25",
+            rating: 900,
+            date: "19 September 2026"
+        },
+        {
+            result: "LOSS",
+            opponent: "Dan",
+            score: "-25",
+            rating: 875,
+            date: "19 September 2026"
+        }
     ]
-  },
+},
+Neko: {
+    rank: "#7",
+    rating: 675,
+    previous: 700,
+    newRating: 675,
+    change: -25,
+    match: "Lost to Balrog",
+    date: "19 September 2026",
+    opponent: "Balrog",
+    movement: "—",
 
+    history: [
+        {
+            result: "LOSS",
+            opponent: "Balrog",
+            score: "-25",
+            rating: 675,
+            date: "19 September 2026"
+        }
+    ]
+},
   Dan: {
     rank: "#5",
     rating: 825,
