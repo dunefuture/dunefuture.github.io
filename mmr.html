@@ -1784,7 +1784,42 @@ const mmrMatches = [
   }
 
 ];
+// =====================================================
+// GET LATEST MATCH FOR PLAYER
+// =====================================================
 
+function getLatestMMRMatch(playerName) {
+
+  const match = mmrMatches.find(match =>
+    match.winner === playerName ||
+    match.loser === playerName
+  );
+
+  if (!match) return null;
+
+  const isWinner = match.winner === playerName;
+
+  return {
+    result: isWinner ? "WIN" : "LOSS",
+
+    opponent:
+      isWinner
+        ? match.loser
+        : match.winner,
+
+    change:
+      isWinner
+        ? match.change
+        : -match.change,
+
+    date: match.date,
+
+    description:
+      isWinner
+        ? `${playerName} defeated ${match.loser}`
+        : `Lost to ${match.winner}`
+  };
+}
 // =====================================================
 // AUTOMATIC MMR SORTING
 // =====================================================
@@ -1829,57 +1864,176 @@ function renderMMRLeaderboard() {
     </div>
   `;
 
+
   const playerRows = leaderboard
-    .filter(player => player.rank >= 4 && player.rank <= 20)
+    .filter(player =>
+      player.rank >= 4 &&
+      player.rank <= 20
+    )
     .map(player => {
 
       const rankNumber =
         String(player.rank).padStart(2, "0");
+
 
       const tier =
         player.rank <= 10
           ? "ELITE"
           : "TOP 20";
 
+
       const eliteClass =
         player.rank <= 10
           ? " elite"
           : "";
 
+
       const hasProfile =
         typeof mmrProfiles !== "undefined" &&
         mmrProfiles[player.name];
+
 
       const playerClass =
         hasProfile
           ? "mmr-name mmr-player-link"
           : "mmr-name";
 
+
       const clickAction =
         hasProfile
           ? `onclick="openMMRProfile('${player.name}')"`
           : "";
 
+
+      // ===============================================
+      // LATEST MATCH
+      // ===============================================
+
+      const latestMatch =
+        getLatestMMRMatch(player.name);
+
+
+      let mmrChangeHTML = "";
+
+
+      if (latestMatch) {
+
+        const change =
+          latestMatch.change;
+
+
+        const previousRating =
+          player.rating - change;
+
+
+        const pointClass =
+          change > 0
+            ? "mmr-point-up"
+            : "mmr-point-down";
+
+
+        const tooltipChangeClass =
+          change > 0
+            ? "mmr-tooltip-gain"
+            : "mmr-tooltip-loss";
+
+
+        const changeText =
+          change > 0
+            ? `+${change}`
+            : `${change}`;
+
+
+        mmrChangeHTML = `
+
+          <span class="${pointClass} mmr-tooltip">
+
+            ${changeText}
+
+            <span class="mmr-tooltip-text">
+
+              <span class="mmr-tooltip-title">
+                MMR UPDATE
+              </span>
+
+
+              <span class="mmr-tooltip-row">
+                <span>Previous MMR</span>
+                <strong>${previousRating}</strong>
+              </span>
+
+
+              <span class="mmr-tooltip-row">
+                <span>New MMR</span>
+                <strong>${player.rating}</strong>
+              </span>
+
+
+              <span class="mmr-tooltip-row">
+                <span>Change</span>
+
+                <strong class="${tooltipChangeClass}">
+                  ${changeText}
+                </strong>
+              </span>
+
+
+              <span class="mmr-tooltip-match">
+
+                <small>
+                  LATEST MATCH
+                </small>
+
+                <strong>
+                  ${latestMatch.description}
+                </strong>
+
+                <span class="mmr-tooltip-date">
+                  ${latestMatch.date}
+                </span>
+
+              </span>
+
+            </span>
+
+          </span>
+        `;
+      }
+
+
       return `
+
         <div class="mmr-row${eliteClass}">
-          <div class="mmr-rank">#${rankNumber}</div>
+
+          <div class="mmr-rank">
+            #${rankNumber}
+          </div>
+
 
           <div class="${playerClass}" ${clickAction}>
             ${player.name}
           </div>
 
+
           <div class="mmr-value">
+
             ${player.rating}
+
+            ${mmrChangeHTML}
+
           </div>
+
 
           <div class="mmr-tier">
             ${tier}
           </div>
+
         </div>
       `;
 
     })
     .join("");
+
 
   board.innerHTML =
     boardTitle +
