@@ -1697,21 +1697,91 @@ TOP 20 · LAST UPDATED 19 SEPTEMBER 2026
 
 
 <script>
+// =====================================================
+// DUNE FUTURE MMR - SINGLE SOURCE DATA
+// =====================================================
+// Tahap 1 otomatisasi leaderboard.
+//
+// Untuk sementara data ini BELUM mengubah leaderboard.
+// Pada tahap berikutnya leaderboard akan dibuat otomatis
+// berdasarkan data di bawah ini.
+// =====================================================
 
+const mmrPlayers = [
+  { name: "Kipp",      rating: 1000 },
+  { name: "Carlos",    rating: 950 },
+  { name: "Balrog",    rating: 950 },
+  { name: "Arthur",    rating: 850 },
+  { name: "Dan",       rating: 800 },
+  { name: "Joseph",    rating: 750 },
+  { name: "Neko",      rating: 625 },
+  { name: "DZ14",      rating: 650 },
+  { name: "NewNamE",   rating: 600 },
+  { name: "BSGRCD",    rating: 575 },
+  { name: "X-Noname",  rating: 500 },
+  { name: "Jadg",      rating: 450 },
+  { name: "Sardat",    rating: 400 },
+  { name: "ALGERINO",  rating: 325 },
+  { name: "Harun",     rating: 300 },
+  { name: "worm",      rating: 250 },
+  { name: "Standby",   rating: 200 },
+  { name: "pyrou",     rating: 150 },
+  { name: "Djoko78",   rating: 100 },
+  { name: "sebus",     rating: 50 }
+];
+
+
+// =====================================================
+// AUTOMATIC MMR SORTING
+// =====================================================
+
+function getMMRLeaderboard() {
+  return [...mmrPlayers]
+    .sort((a, b) => b.rating - a.rating)
+    .map((player, index) => ({
+      ...player,
+      rank: index + 1
+    }));
+}
+
+
+// =====================================================
+// FIND PLAYER
+// =====================================================
+
+function getMMRPlayer(playerName) {
+  return mmrPlayers.find(
+    player => player.name.toLowerCase() === playerName.toLowerCase()
+  );
+}
 const mmrProfiles = {
 
 Balrog: {
     rank: "#3",
-    rating: 900,
-    previous: 875,
-    newRating: 900,
-    change: 25,
-    match: "Balrog defeated Neko",
-    date: "19 September 2026",
+    rating: 950,
+    previous: 900,
+    newRating: 950,
+    change: 50,
+    match: "Balrog defeated Neko twice",
+    date: "20 September 2026",
     opponent: "Neko",
     movement: "—",
 
     history: [
+        {
+            result: "WIN",
+            opponent: "Neko",
+            score: "+25",
+            rating: 950,
+            date: "20 September 2026"
+        },
+        {
+            result: "WIN",
+            opponent: "Neko",
+            score: "+25",
+            rating: 925,
+            date: "20 September 2026"
+        },
         {
             result: "WIN",
             opponent: "Neko",
@@ -1730,16 +1800,30 @@ Balrog: {
 },
 Neko: {
     rank: "#7",
-    rating: 675,
-    previous: 700,
-    newRating: 675,
-    change: -25,
-    match: "Lost to Balrog",
-    date: "19 September 2026",
+    rating: 625,
+    previous: 675,
+    newRating: 625,
+    change: -50,
+    match: "Lost twice to Balrog",
+    date: "20 September 2026",
     opponent: "Balrog",
     movement: "—",
 
     history: [
+        {
+            result: "LOSS",
+            opponent: "Balrog",
+            score: "-25",
+            rating: 625,
+            date: "20 September 2026"
+        },
+        {
+            result: "LOSS",
+            opponent: "Balrog",
+            score: "-25",
+            rating: 650,
+            date: "20 September 2026"
+        },
         {
             result: "LOSS",
             opponent: "Balrog",
