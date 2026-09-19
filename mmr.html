@@ -1241,7 +1241,7 @@ TOP 20 · LAST UPDATED 19 SEPTEMBER 2026
 
       <!-- RANK 4 - 20 -->
 
-      <div class="mmr-board">
+   <div class="mmr-board" id="mmrLeaderboard">
 
         <div class="mmr-board-title">
           <div>RANK</div>
@@ -1754,6 +1754,83 @@ function getMMRPlayer(playerName) {
     player => player.name.toLowerCase() === playerName.toLowerCase()
   );
 }
+  // =====================================================
+// AUTOMATIC LEADERBOARD RENDER
+// =====================================================
+
+function renderMMRLeaderboard() {
+
+  const board = document.getElementById("mmrLeaderboard");
+
+  if (!board) return;
+
+  const leaderboard = getMMRLeaderboard();
+
+  const boardTitle = `
+    <div class="mmr-board-title">
+      <div>RANK</div>
+      <div>PLAYER</div>
+      <div>MMR</div>
+      <div>TIER</div>
+    </div>
+  `;
+
+  const playerRows = leaderboard
+    .filter(player => player.rank >= 4 && player.rank <= 20)
+    .map(player => {
+
+      const rankNumber =
+        String(player.rank).padStart(2, "0");
+
+      const tier =
+        player.rank <= 10
+          ? "ELITE"
+          : "TOP 20";
+
+      const eliteClass =
+        player.rank <= 10
+          ? " elite"
+          : "";
+
+      const hasProfile =
+        typeof mmrProfiles !== "undefined" &&
+        mmrProfiles[player.name];
+
+      const playerClass =
+        hasProfile
+          ? "mmr-name mmr-player-link"
+          : "mmr-name";
+
+      const clickAction =
+        hasProfile
+          ? `onclick="openMMRProfile('${player.name}')"`
+          : "";
+
+      return `
+        <div class="mmr-row${eliteClass}">
+          <div class="mmr-rank">#${rankNumber}</div>
+
+          <div class="${playerClass}" ${clickAction}>
+            ${player.name}
+          </div>
+
+          <div class="mmr-value">
+            ${player.rating}
+          </div>
+
+          <div class="mmr-tier">
+            ${tier}
+          </div>
+        </div>
+      `;
+
+    })
+    .join("");
+
+  board.innerHTML =
+    boardTitle +
+    playerRows;
+}
 const mmrProfiles = {
 
 Balrog: {
@@ -2108,7 +2185,7 @@ document.addEventListener("keydown", function(event) {
   }
 
 });
-
+renderMMRLeaderboard();
 </script>
 
 </body>
