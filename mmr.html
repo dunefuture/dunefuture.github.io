@@ -1824,23 +1824,81 @@ function getLatestMMRMatch(playerName) {
 // AUTOMATIC RANK MOVEMENT
 // =====================================================
 
-function getMMRRankMovement(playerName) {
+// =====================================================
+// PREVIOUS LEADERBOARD SNAPSHOT
+// =====================================================
 
-  const latestMatch =
-    getLatestMMRMatch(playerName);
+function getPreviousMMRLeaderboard() {
 
-  if (!latestMatch) {
-    return {
-      difference: 0,
-      previousRank: null,
-      currentRank: null
-    };
+  const currentPlayers =
+    mmrPlayers.map(player => ({
+      ...player
+    }));
+
+
+  // Ambil pertandingan PALING BARU
+  if (
+    typeof mmrMatches === "undefined" ||
+    mmrMatches.length === 0
+  ) {
+    return currentPlayers
+      .sort((a, b) => b.rating - a.rating)
+      .map((player, index) => ({
+        ...player,
+        rank: index + 1
+      }));
   }
 
 
-  // Ranking saat ini
+  const latestMatch =
+    mmrMatches[0];
+
+
+  const winner =
+    currentPlayers.find(
+      player => player.name === latestMatch.winner
+    );
+
+
+  const loser =
+    currentPlayers.find(
+      player => player.name === latestMatch.loser
+    );
+
+
+  // Kembalikan rating winner ke sebelum match
+  if (winner) {
+    winner.rating -= latestMatch.change;
+  }
+
+
+  // Kembalikan rating loser ke sebelum match
+  if (loser) {
+    loser.rating += latestMatch.change;
+  }
+
+
+  return currentPlayers
+    .sort((a, b) => b.rating - a.rating)
+    .map((player, index) => ({
+      ...player,
+      rank: index + 1
+    }));
+}
+
+
+// =====================================================
+// AUTOMATIC RANK MOVEMENT - ALL PLAYERS
+// =====================================================
+
+function getMMRRankMovement(playerName) {
+
   const currentLeaderboard =
     getMMRLeaderboard();
+
+
+  const previousLeaderboard =
+    getPreviousMMRLeaderboard();
 
 
   const currentPlayer =
@@ -1849,65 +1907,20 @@ function getMMRRankMovement(playerName) {
     );
 
 
-  if (!currentPlayer) {
-    return {
-      difference: 0,
-      previousRank: null,
-      currentRank: null
-    };
-  }
-
-
-  // Buat salinan rating sekarang
-  const previousPlayers =
-    mmrPlayers.map(player => ({
-      ...player
-    }));
-
-
-  const playerBeforeMatch =
-    previousPlayers.find(
-      player => player.name === playerName
-    );
-
-
-  if (!playerBeforeMatch) {
-    return {
-      difference: 0,
-      previousRank: null,
-      currentRank: currentPlayer.rank
-    };
-  }
-
-
-  // Kembalikan rating pemain ke kondisi
-  // sebelum pertandingan terakhir
-  playerBeforeMatch.rating -=
-    latestMatch.change;
-
-
-  // Ranking sebelum pertandingan
-  const previousLeaderboard =
-    previousPlayers
-      .sort((a, b) => b.rating - a.rating)
-      .map((player, index) => ({
-        ...player,
-        rank: index + 1
-      }));
-
-
   const previousPlayer =
     previousLeaderboard.find(
       player => player.name === playerName
     );
 
 
-  if (!previousPlayer) {
+  if (!currentPlayer || !previousPlayer) {
+
     return {
       difference: 0,
       previousRank: null,
-      currentRank: currentPlayer.rank
+      currentRank: null
     };
+
   }
 
 
@@ -1924,6 +1937,7 @@ function getMMRRankMovement(playerName) {
       currentPlayer.rank
 
   };
+
 }
 // =====================================================
 // AUTOMATIC MMR SORTING
