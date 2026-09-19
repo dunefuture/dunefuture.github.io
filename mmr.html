@@ -1794,28 +1794,45 @@ const mmrMatches = [
 // playerName -> movement terakhir yang dialami
 // =====================================================
 
+// =====================================================
+// AUTOMATIC MMR RANK MOVEMENT ENGINE
+// =====================================================
+// Reverse replay seluruh match history.
+//
+// Termasuk penanganan TIE:
+// Jika loser dikembalikan ke rating sebelum kalah dan
+// menjadi seri dengan pemain yang sekarang berada
+// di atasnya, loser dikembalikan ke posisi sebelum
+// pemain yang dilewatinya akibat kekalahan tersebut.
+// =====================================================
+
 function calculateMMRMovements() {
 
-  // -----------------------------------------------
-  // STEP 1
-  // Mulai dari CURRENT rating
-  // -----------------------------------------------
-
   let workingPlayers =
-    mmrPlayers.map(player => ({
-      ...player
+    mmrPlayers.map((player, index) => ({
+      ...player,
+      order: index
     }));
 
 
-  // -----------------------------------------------
-  // STEP 2
-  // Ranking helper
-  // -----------------------------------------------
+  // ===================================================
+  // CREATE RANKING
+  // ===================================================
 
   function createRanking(players) {
 
     return [...players]
-      .sort((a, b) => b.rating - a.rating)
+      .sort((a, b) => {
+
+        // Rating lebih tinggi selalu di atas
+        if (b.rating !== a.rating) {
+          return b.rating - a.rating;
+        }
+
+        // Kalau rating sama, gunakan historical order
+        return a.order - b.order;
+
+      })
       .map((player, index) => ({
         ...player,
         rank: index + 1
@@ -1824,28 +1841,22 @@ function calculateMMRMovements() {
   }
 
 
-  // -----------------------------------------------
-  // STEP 3
-  // Tempat menyimpan movement terbaru
-  // -----------------------------------------------
-
   const movements = {};
 
 
-  // -----------------------------------------------
-  // STEP 4
-  // mmrMatches tersimpan terbaru -> terlama.
-  // Kita berjalan mundur dari kondisi sekarang.
-  // -----------------------------------------------
+  // ===================================================
+  // REVERSE MATCHES
+  // terbaru -> terlama
+  // ===================================================
 
   for (const match of mmrMatches) {
 
-    // Ranking SESUDAH pertandingan
+    // Ranking sesudah match
     const afterRanking =
       createRanking(workingPlayers);
 
 
-    // Simpan rating sebelum kita rollback
+    // Copy kondisi sesudah match
     const beforePlayers =
       workingPlayers.map(player => ({
         ...player
@@ -1854,13 +1865,15 @@ function calculateMMRMovements() {
 
     const winner =
       beforePlayers.find(
-        player => player.name === match.winner
+        player =>
+          player.name === match.winner
       );
 
 
     const loser =
       beforePlayers.find(
-        player => player.name === match.loser
+        player =>
+          player.name === match.loser
       );
 
 
@@ -1869,29 +1882,93 @@ function calculateMMRMovements() {
     }
 
 
-    // ---------------------------------------------
-    // Reverse match
-    //
-    // Winner sekarang sudah menerima +change,
-    // jadi kita kurangi.
-    //
-    // Loser sekarang sudah kehilangan change,
-    // jadi kita tambahkan kembali.
-    // ---------------------------------------------
+    // =================================================
+    // REVERSE MMR
+    // =================================================
 
     winner.rating -= match.change;
 
     loser.rating += match.change;
 
 
-    // Ranking SEBELUM pertandingan
+    // =================================================
+    // RESTORE HISTORICAL ORDER
+    // =================================================
+    //
+    // Kalau setelah MMR loser dikembalikan dia menjadi
+    // TIE dengan player lain, dan player tersebut saat
+    // ini berada tepat di atas loser, kita kembalikan
+    // loser ke posisi sebelum player tersebut.
+    //
+    // Contoh:
+    //
+    // current:
+    // ALGERINO 325
+    // Harun    300
+    //
+    // rollback:
+    // Harun -> 325
+    //
+    // historical:
+    // Harun    325
+    // ALGERINO 325
+    // =================================================
+
+    const afterLoser =
+      afterRanking.find(
+        player =>
+          player.name === match.loser
+      );
+
+
+    if (afterLoser) {
+
+      const tiedPlayers =
+        beforePlayers.filter(player =>
+          player.name !== loser.name &&
+          player.rating === loser.rating
+        );
+
+
+      for (const tiedPlayer of tiedPlayers) {
+
+        const tiedAfter =
+          afterRanking.find(
+            player =>
+              player.name === tiedPlayer.name
+          );
+
+
+        if (
+          tiedAfter &&
+          tiedAfter.rank < afterLoser.rank
+        ) {
+
+          // Loser berada di bawah player ini sekarang.
+          // Saat rollback ke kondisi tie,
+          // kembalikan loser ke posisi sebelumnya.
+
+          loser.order =
+            tiedPlayer.order - 0.5;
+
+        }
+
+      }
+
+    }
+
+
+    // =================================================
+    // RANKING SEBELUM MATCH
+    // =================================================
+
     const beforeRanking =
       createRanking(beforePlayers);
 
 
-    // ---------------------------------------------
-    // Bandingkan SEMUA pemain
-    // ---------------------------------------------
+    // =================================================
+    // COMPARE ALL PLAYERS
+    // =================================================
 
     for (const playerAfter of afterRanking) {
 
@@ -1912,12 +1989,9 @@ function calculateMMRMovements() {
         playerAfter.rank;
 
 
-      // Ada perubahan posisi
       if (difference !== 0) {
 
-        // Karena kita membaca match dari terbaru
-        // ke terlama, movement pertama yang ditemukan
-        // adalah movement TERBARU player tersebut.
+        // Simpan hanya movement terbaru player
         if (!movements[playerAfter.name]) {
 
           movements[playerAfter.name] = {
@@ -1946,9 +2020,9 @@ function calculateMMRMovements() {
     }
 
 
-    // ---------------------------------------------
-    // Lanjut rollback ke pertandingan sebelumnya
-    // ---------------------------------------------
+    // =================================================
+    // Lanjut rollback
+    // =================================================
 
     workingPlayers =
       beforePlayers;
