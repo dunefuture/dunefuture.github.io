@@ -1199,7 +1199,7 @@ TOP 20 · LAST UPDATED 19 SEPTEMBER 2026
 
       <!-- TOP 3 -->
 
-      <div class="mmr-podium">
+     <div class="mmr-podium" id="mmrPodium">
 
         <div class="mmr-podium-card">
           <div class="mmr-medal">🥈</div>
@@ -1831,6 +1831,98 @@ function renderMMRLeaderboard() {
     boardTitle +
     playerRows;
 }
+  // =====================================================
+// AUTOMATIC TOP 3 PODIUM
+// =====================================================
+
+function renderMMRPodium() {
+
+  const podium = document.getElementById("mmrPodium");
+
+  if (!podium) return;
+
+  const leaderboard = getMMRLeaderboard();
+
+  const first = leaderboard[0];
+  const second = leaderboard[1];
+  const third = leaderboard[2];
+
+  function playerNameHTML(player) {
+
+    const hasProfile =
+      typeof mmrProfiles !== "undefined" &&
+      mmrProfiles[player.name];
+
+    if (hasProfile) {
+      return `
+        <div class="mmr-podium-name mmr-player-link"
+             onclick="openMMRProfile('${player.name}')">
+          ${player.name}
+        </div>
+      `;
+    }
+
+    return `
+      <div class="mmr-podium-name">
+        ${player.name}
+      </div>
+    `;
+  }
+
+  podium.innerHTML = `
+
+    <!-- RANK #2 -->
+    <div class="mmr-podium-card">
+      <div class="mmr-medal">🥈</div>
+
+      <div class="mmr-rank-label">
+        RANK #2
+      </div>
+
+      ${playerNameHTML(second)}
+
+      <div class="mmr-points">
+        ${second.rating}
+        <span class="mmr-unit">MMR</span>
+      </div>
+    </div>
+
+
+    <!-- RANK #1 -->
+    <div class="mmr-podium-card first">
+      <div class="mmr-medal">👑</div>
+
+      <div class="mmr-rank-label">
+        RANK #1
+      </div>
+
+      ${playerNameHTML(first)}
+
+      <div class="mmr-points">
+        ${first.rating}
+        <span class="mmr-unit">MMR</span>
+      </div>
+    </div>
+
+
+    <!-- RANK #3 -->
+    <div class="mmr-podium-card">
+      <div class="mmr-medal">🥉</div>
+
+      <div class="mmr-rank-label">
+        RANK #3
+      </div>
+
+      ${playerNameHTML(third)}
+
+      <div class="mmr-points">
+        ${third.rating}
+        <span class="mmr-unit">MMR</span>
+      </div>
+    </div>
+
+  `;
+}
 const mmrProfiles = {
 
 Balrog: {
@@ -2185,6 +2277,7 @@ document.addEventListener("keydown", function(event) {
   }
 
 });
+  renderMMRPodium();
 renderMMRLeaderboard();
 </script>
 
