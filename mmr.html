@@ -1707,28 +1707,7 @@ TOP 20 · LAST UPDATED 19 SEPTEMBER 2026
 // berdasarkan data di bawah ini.
 // =====================================================
 
-const mmrPlayers = [
-  { name: "Kipp",      rating: 1000 },
-  { name: "Carlos",    rating: 950 },
-  { name: "Balrog",    rating: 950 },
-  { name: "Arthur",    rating: 850 },
-  { name: "Dan",       rating: 825 },
-  { name: "Joseph",    rating: 750 },
-  { name: "Neko",      rating: 625 },
-  { name: "DZ14",      rating: 650 },
-  { name: "NewNamE",   rating: 600 },
-  { name: "BSGRCD",    rating: 575 },
-  { name: "X-Noname",  rating: 500 },
-  { name: "Jadg",      rating: 450 },
-  { name: "Sardat",    rating: 400 },
-  { name: "ALGERINO",  rating: 325 },
-  { name: "Harun",     rating: 300 },
-  { name: "worm",      rating: 250 },
-  { name: "Standby",   rating: 200 },
-  { name: "pyrou",     rating: 150 },
-  { name: "Djoko78",   rating: 100 },
-  { name: "sebus",     rating: 50 }
-];
+
   // =====================================================
 // DUNE FUTURE MMR - BASE RATINGS
 // =====================================================
@@ -1884,64 +1863,7 @@ function getCalculatedMMRPlayers() {
 
   return calculatedPlayers;
 }
-  // =====================================================
-// TEMPORARY MMR VERIFICATION
-// =====================================================
-
-function verifyCalculatedMMR() {
-
-  const calculated =
-    getCalculatedMMRPlayers();
-
-
-  console.log(
-    "===== MMR CALCULATION VERIFICATION ====="
-  );
-
-
- for (const currentPlayer of getCalculatedMMRPlayers()) {
-
-    const calculatedPlayer =
-      calculated.find(
-        player =>
-          player.name === currentPlayer.name
-      );
-
-
-    if (!calculatedPlayer) {
-
-      console.error(
-        `${currentPlayer.name}: PLAYER NOT FOUND`
-      );
-
-      continue;
-    }
-
-
-    const isCorrect =
-      currentPlayer.rating ===
-      calculatedPlayer.rating;
-
-
-    console.log(
-      `${isCorrect ? "✅" : "❌"} ` +
-      `${currentPlayer.name}: ` +
-      `Snapshot ${currentPlayer.rating} | ` +
-      `Calculated ${calculatedPlayer.rating}`
-    );
-
-  }
-
-}
-  // =====================================================
-// AUTOMATIC MMR RANK MOVEMENT ENGINE
-// =====================================================
-// Menghitung perubahan ranking berdasarkan seluruh
-// match history dengan metode reverse replay.
-//
-// Hasil:
-// playerName -> movement terakhir yang dialami
-// =====================================================
+ 
 
 // =====================================================
 // AUTOMATIC MMR RANK MOVEMENT ENGINE
@@ -1958,12 +1880,11 @@ function verifyCalculatedMMR() {
 function calculateMMRMovements() {
 
   let workingPlayers =
-  getCalculatedMMRPlayers().map((player, index) => ({
-    ...player,
-    order: index
-  }));
-
-
+    getCalculatedMMRPlayers().map((player, index) => ({
+      ...player,
+      order: index
+    }));
+  
   // ===================================================
   // CREATE RANKING
   // ===================================================
@@ -2331,7 +2252,8 @@ function getMMRMatchHistory(playerName) {
 // =====================================================
 // Reverse replay seluruh match history.
 //
-// Sistem mulai dari current rating pada mmrPlayers,
+// Sistem mulai dari current rating yang dihitung
+// otomatis oleh getCalculatedMMRPlayers(),
 // kemudian membatalkan pertandingan satu per satu
 // dari terbaru ke terlama.
 //
@@ -2341,7 +2263,6 @@ function getMMRMatchHistory(playerName) {
 // Neko turun -> DZ14 naik
 // Harun turun -> ALGERINO naik
 // =====================================================
-
 
 
 // =====================================================
@@ -2990,7 +2911,7 @@ document.addEventListener("keydown", function(event) {
 
 });
 
-verifyCalculatedMMR();
+
 
 renderMMRPodium();
 renderMMRLeaderboard();
