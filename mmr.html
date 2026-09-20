@@ -4996,7 +4996,185 @@ function detectTop3Changes() {
 }
   const top3Changes =
   detectTop3Changes();
+  // =====================================================
+// TOP 3 CHANGE FX CONTROLLER
+// =====================================================
+// Menghubungkan hasil Top 3 Change Detection
+// dengan kartu podium yang sudah dirender.
+//
+// Controller ini TIDAK mengubah:
+// - MMR
+// - Ranking
+// - Match history
+// - Head-to-head
+// =====================================================
+
+function applyTop3ChangeEffects(changes) {
+
+  if (
+    !Array.isArray(changes) ||
+    changes.length === 0
+  ) {
+    return;
+  }
+
+
+  // ===================================================
+  // APPLY EFFECT TO EACH CHANGED PLAYER
+  // ===================================================
+
+  changes.forEach((change, index) => {
+
+    if (!change.newRank) {
+      return;
+    }
+
+
+    const card =
+      document.querySelector(
+        `.mmr-podium-card.rank-${change.newRank}`
+      );
+
+
+    if (!card) {
+      return;
+    }
+
+
+    // =================================================
+    // VERIFY PLAYER
+    // =================================================
+    // Memastikan card tersebut memang milik player
+    // yang tercatat pada change detection.
+    // =================================================
+
+    const nameElement =
+      card.querySelector(
+        ".mmr-podium-name"
+      );
+
+
+    if (
+      !nameElement ||
+      nameElement.textContent.trim() !==
+        change.name
+    ) {
+      return;
+    }
+
+
+    // =================================================
+    // SAVE CHANGE INFORMATION
+    // =================================================
+
+    card.dataset.changeType =
+      change.type;
+
+    card.dataset.previousRank =
+      change.oldRank ?? "outside";
+
+    card.dataset.currentRank =
+      change.newRank;
+
+
+    // =================================================
+    // SMALL STAGGER
+    // =================================================
+    // Jika beberapa posisi berubah sekaligus,
+    // animasinya tidak dimulai pada frame yang sama.
+    // =================================================
+
+    const delay =
+      index * 180;
+
+
+    window.setTimeout(() => {
+
+      // -----------------------------------------------
+      // NEW CHAMPION
+      // -----------------------------------------------
+
+      if (
+        change.type === "new-champion"
+      ) {
+
+        card.classList.add(
+          "top3-new-champion"
+        );
+
+        return;
+      }
+
+
+      // -----------------------------------------------
+      // ENTERED TOP 3
+      // -----------------------------------------------
+
+      if (
+        change.type === "entered-top3"
+      ) {
+
+        card.classList.add(
+          "top3-entered"
+        );
+
+        return;
+      }
+
+
+      // -----------------------------------------------
+      // PROMOTED
+      // -----------------------------------------------
+
+      if (
+        change.type === "promoted"
+      ) {
+
+        // Promotion menuju #1 menggunakan
+        // Champion Ascension.
+        if (change.newRank === 1) {
+
+          card.classList.add(
+            "top3-new-champion"
+          );
+
+        } else {
+
+          card.classList.add(
+            "top3-promoted"
+          );
+
+        }
+
+        return;
+      }
+
+
+      // -----------------------------------------------
+      // DEMOTED
+      // -----------------------------------------------
+
+      if (
+        change.type === "demoted"
+      ) {
+
+        card.classList.add(
+          "top3-demoted"
+        );
+
+      }
+
+    }, delay);
+
+  });
+
+}
 renderMMRPodium();
+
+applyTop3ChangeEffects(
+  top3Changes
+);
+
 renderMMRLeaderboard();
 
 </script>
