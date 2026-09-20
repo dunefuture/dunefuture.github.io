@@ -5686,32 +5686,8 @@ function detectTop3Changes() {
 
   return changes;
 }
-  // =====================================================
-// TEMPORARY TEST — CHAMPION ASCENSION
-// DELETE AFTER TEST
-// =====================================================
-
-localStorage.setItem(
-  "duneFutureMMRTop3",
-  JSON.stringify([
-    {
-      name: "Carlos",
-      rank: 1,
-      rating: 950
-    },
-    {
-      name: "Kipp",
-      rank: 2,
-      rating: 1000
-    },
-    {
-      name: "Balrog",
-      rank: 3,
-      rating: 950
-    }
-  ])
-);
-  const top3Changes =
+ 
+const top3Changes =
   detectTop3Changes();
   // =====================================================
 // TOP 3 CHANGE FX CONTROLLER
