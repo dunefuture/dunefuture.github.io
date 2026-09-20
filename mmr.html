@@ -1138,6 +1138,395 @@ body.mmr-profile-open {
   font-size: 10px;
   font-weight: 800;
 }
+    /* =====================================================
+   DUNE FUTURE — PREMIUM PODIUM FX
+   RANK #1 — GOLD CHAMPION
+   ===================================================== */
+
+.mmr-podium-card {
+  position: relative;
+  isolation: isolate;
+}
+
+.mmr-podium-card .podium-content {
+  position: relative;
+  z-index: 5;
+}
+
+.mmr-podium-card .podium-fx {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+}
+/* Rank #1 may project its energy outside the card */
+.mmr-podium-card.rank-1 .podium-fx {
+  overflow: visible;
+}
+
+/* =====================================================
+   RANK #1 — CHAMPION FRAME
+   ===================================================== */
+
+.mmr-podium-card.rank-1 {
+  overflow: visible;
+
+  border:
+    1px solid rgba(255, 204, 73, 0.72);
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(255, 197, 61, 0.20),
+      transparent 43%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(35, 25, 8, 0.96),
+      rgba(13, 10, 7, 0.98)
+    );
+
+  box-shadow:
+    0 0 10px rgba(255, 194, 51, 0.25),
+    0 0 30px rgba(255, 176, 31, 0.16),
+    0 20px 45px rgba(0, 0, 0, 0.55),
+    inset 0 0 25px rgba(255, 190, 48, 0.08);
+
+  transform:
+    translateY(-8px)
+    scale(1.035);
+
+  z-index: 3;
+}
+
+
+/* =====================================================
+   GOLD AURA
+   ===================================================== */
+
+.mmr-podium-card.rank-1 .podium-aura {
+  position: absolute;
+
+  width: 170%;
+  height: 170%;
+
+  left: 50%;
+  top: 50%;
+
+  transform:
+    translate(-50%, -50%);
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 207, 76, 0.22) 0%,
+      rgba(255, 166, 0, 0.10) 32%,
+      transparent 68%
+    );
+
+  filter: blur(18px);
+
+  animation:
+    rank1AuraPulse 3.8s ease-in-out infinite;
+}
+
+
+/* =====================================================
+   CHAMPION ENERGY CORE
+   ===================================================== */
+
+.mmr-podium-card.rank-1 .podium-core {
+  position: absolute;
+
+  width: 150px;
+  height: 150px;
+
+  left: 50%;
+  top: 32%;
+
+  transform:
+    translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 246, 188, 0.38) 0%,
+      rgba(255, 199, 59, 0.18) 27%,
+      rgba(255, 153, 0, 0.05) 55%,
+      transparent 72%
+    );
+
+  filter: blur(4px);
+
+  animation:
+    rank1CorePulse 2.8s ease-in-out infinite;
+}
+
+
+/* =====================================================
+   ROTATING ENERGY RING
+   ===================================================== */
+
+.mmr-podium-card.rank-1 .podium-energy-ring {
+  position: absolute;
+
+  width: 205px;
+  height: 205px;
+
+  left: 50%;
+  top: 37%;
+
+  transform:
+    translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background:
+    conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      rgba(255, 211, 91, 0.08) 35deg,
+      rgba(255, 245, 185, 0.95) 65deg,
+      rgba(255, 168, 0, 0.12) 100deg,
+      transparent 135deg,
+      transparent 210deg,
+      rgba(255, 192, 44, 0.18) 250deg,
+      rgba(255, 240, 167, 0.85) 285deg,
+      transparent 330deg
+    );
+
+  -webkit-mask:
+    radial-gradient(
+      farthest-side,
+      transparent calc(100% - 3px),
+      #000 calc(100% - 2px)
+    );
+
+  mask:
+    radial-gradient(
+      farthest-side,
+      transparent calc(100% - 3px),
+      #000 calc(100% - 2px)
+    );
+
+  filter:
+    drop-shadow(
+      0 0 7px rgba(255, 202, 62, 0.85)
+    );
+
+  animation:
+    rank1EnergySpin 8s linear infinite;
+}
+
+
+/* =====================================================
+   CROWN RAYS
+   ===================================================== */
+
+.mmr-podium-card.rank-1 .podium-crown-rays {
+  position: absolute;
+
+  width: 260px;
+  height: 260px;
+
+  left: 50%;
+  top: 8%;
+
+  transform:
+    translate(-50%, -50%);
+
+  opacity: 0.55;
+
+  background:
+    repeating-conic-gradient(
+      from 0deg,
+      rgba(255, 219, 108, 0.45) 0deg,
+      rgba(255, 219, 108, 0.45) 1deg,
+      transparent 1deg,
+      transparent 13deg
+    );
+
+  -webkit-mask:
+    radial-gradient(
+      circle,
+      transparent 0 24%,
+      #000 50%,
+      transparent 72%
+    );
+
+  mask:
+    radial-gradient(
+      circle,
+      transparent 0 24%,
+      #000 50%,
+      transparent 72%
+    );
+
+  animation:
+    rank1RaysRotate 24s linear infinite;
+}
+
+
+/* =====================================================
+   LIGHT SWEEP
+   ===================================================== */
+
+.mmr-podium-card.rank-1 .podium-sweep {
+  position: absolute;
+
+  width: 35%;
+  height: 160%;
+
+  top: -30%;
+  left: -60%;
+
+  transform:
+    rotate(18deg);
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 244, 193, 0.03),
+      rgba(255, 244, 193, 0.32),
+      rgba(255, 244, 193, 0.03),
+      transparent
+    );
+
+  filter: blur(3px);
+
+  animation:
+    rank1Sweep 5.5s ease-in-out infinite;
+}
+
+
+/* =====================================================
+   CHAMPION TITLE
+   ===================================================== */
+
+.mmr-podium-card.rank-1 .podium-title {
+  margin-top: 10px;
+
+  font-size: 8px;
+  font-weight: 800;
+
+  letter-spacing: 3px;
+
+  color: #ffd86a;
+
+  text-shadow:
+    0 0 7px rgba(255, 204, 77, 0.8),
+    0 0 15px rgba(255, 171, 25, 0.4);
+}
+
+
+/* =====================================================
+   RANK #1 ANIMATIONS
+   ===================================================== */
+
+@keyframes rank1AuraPulse {
+
+  0%,
+  100% {
+    opacity: 0.45;
+    transform:
+      translate(-50%, -50%)
+      scale(0.94);
+  }
+
+  50% {
+    opacity: 1;
+    transform:
+      translate(-50%, -50%)
+      scale(1.08);
+  }
+
+}
+
+
+@keyframes rank1CorePulse {
+
+  0%,
+  100% {
+    opacity: 0.45;
+    transform:
+      translate(-50%, -50%)
+      scale(0.88);
+  }
+
+  50% {
+    opacity: 0.95;
+    transform:
+      translate(-50%, -50%)
+      scale(1.12);
+  }
+
+}
+
+
+@keyframes rank1EnergySpin {
+
+  from {
+    transform:
+      translate(-50%, -50%)
+      rotate(0deg);
+  }
+
+  to {
+    transform:
+      translate(-50%, -50%)
+      rotate(360deg);
+  }
+
+}
+
+
+@keyframes rank1RaysRotate {
+
+  from {
+    transform:
+      translate(-50%, -50%)
+      rotate(0deg);
+  }
+
+  to {
+    transform:
+      translate(-50%, -50%)
+      rotate(360deg);
+  }
+
+}
+
+
+@keyframes rank1Sweep {
+
+  0% {
+    left: -65%;
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0;
+  }
+
+  45% {
+    opacity: 0.8;
+  }
+
+  75% {
+    opacity: 0;
+  }
+
+  100% {
+    left: 135%;
+    opacity: 0;
+  }
+
+}
 </style>
 
 <link rel="stylesheet" href="style.css">
@@ -2721,56 +3110,116 @@ function renderMMRPodium() {
     `;
   }
 
-  podium.innerHTML = `
+    podium.innerHTML = `
 
-    <!-- RANK #2 -->
-    <div class="mmr-podium-card">
-      <div class="mmr-medal">🥈</div>
+    <!-- ========================================= -->
+    <!-- RANK #2 — SILVER FROST -->
+    <!-- ========================================= -->
+    <div class="mmr-podium-card rank-2">
 
-      <div class="mmr-rank-label">
-        RANK #2
+      <div class="podium-fx" aria-hidden="true">
+        <div class="podium-aura"></div>
+        <div class="podium-energy-ring"></div>
+        <div class="podium-sweep"></div>
+        <div class="podium-particles"></div>
       </div>
 
-      ${playerNameHTML(second)}
+      <div class="podium-content">
 
-      <div class="mmr-points">
-        ${second.rating}
-        <span class="mmr-unit">MMR</span>
+        <div class="mmr-medal">🥈</div>
+
+        <div class="mmr-rank-label">
+          RANK #2
+        </div>
+
+        ${playerNameHTML(second)}
+
+        <div class="mmr-points">
+          ${second.rating}
+          <span class="mmr-unit">MMR</span>
+        </div>
+
+        <div class="podium-title">
+          THE CHALLENGER
+        </div>
+
       </div>
+
     </div>
 
 
-    <!-- RANK #1 -->
-    <div class="mmr-podium-card first">
-      <div class="mmr-medal">👑</div>
+    <!-- ========================================= -->
+    <!-- RANK #1 — GOLD CHAMPION -->
+    <!-- ========================================= -->
+    <div class="mmr-podium-card first rank-1">
 
-      <div class="mmr-rank-label">
-        RANK #1
+      <div class="podium-fx" aria-hidden="true">
+        <div class="podium-aura"></div>
+        <div class="podium-crown-rays"></div>
+        <div class="podium-energy-ring"></div>
+        <div class="podium-core"></div>
+        <div class="podium-sweep"></div>
+        <div class="podium-particles"></div>
       </div>
 
-      ${playerNameHTML(first)}
+      <div class="podium-content">
 
-      <div class="mmr-points">
-        ${first.rating}
-        <span class="mmr-unit">MMR</span>
+        <div class="mmr-medal">👑</div>
+
+        <div class="mmr-rank-label">
+          RANK #1
+        </div>
+
+        ${playerNameHTML(first)}
+
+        <div class="mmr-points">
+          ${first.rating}
+          <span class="mmr-unit">MMR</span>
+        </div>
+
+        <div class="podium-title">
+          THE CHAMPION
+        </div>
+
       </div>
+
     </div>
 
 
-    <!-- RANK #3 -->
-    <div class="mmr-podium-card">
-      <div class="mmr-medal">🥉</div>
+    <!-- ========================================= -->
+    <!-- RANK #3 — BRONZE INFERNO -->
+    <!-- ========================================= -->
+    <div class="mmr-podium-card rank-3">
 
-      <div class="mmr-rank-label">
-        RANK #3
+      <div class="podium-fx" aria-hidden="true">
+        <div class="podium-aura"></div>
+        <div class="podium-energy-ring"></div>
+        <div class="podium-embers"></div>
+        <div class="podium-sweep"></div>
+        <div class="podium-particles"></div>
       </div>
 
-      ${playerNameHTML(third)}
+      <div class="podium-content">
 
-      <div class="mmr-points">
-        ${third.rating}
-        <span class="mmr-unit">MMR</span>
+        <div class="mmr-medal">🥉</div>
+
+        <div class="mmr-rank-label">
+          RANK #3
+        </div>
+
+        ${playerNameHTML(third)}
+
+        <div class="mmr-points">
+          ${third.rating}
+          <span class="mmr-unit">MMR</span>
+        </div>
+
+        <div class="podium-title">
+          THE CONTENDER
+        </div>
+
       </div>
+
     </div>
 
   `;
