@@ -2610,206 +2610,13 @@ function renderMMRPodium() {
 }
 const mmrProfiles = {
 
-Balrog: {
-    rank: "#3",
-    rating: 950,
-    previous: 900,
-    newRating: 950,
-    change: 50,
-    match: "Balrog defeated Neko twice",
-    date: "20 September 2026",
-    opponent: "Neko",
-    movement: "—",
-
-    history: [
-        {
-            result: "WIN",
-            opponent: "Neko",
-            score: "+25",
-            rating: 950,
-            date: "20 September 2026"
-        },
-        {
-            result: "WIN",
-            opponent: "Neko",
-            score: "+25",
-            rating: 925,
-            date: "20 September 2026"
-        },
-        {
-            result: "WIN",
-            opponent: "Neko",
-            score: "+25",
-            rating: 900,
-            date: "19 September 2026"
-        },
-        {
-            result: "LOSS",
-            opponent: "Dan",
-            score: "-25",
-            rating: 875,
-            date: "19 September 2026"
-        }
-    ]
-},
-Neko: {
-    rank: "#7",
-    rating: 625,
-    previous: 675,
-    newRating: 625,
-    change: -50,
-    match: "Lost twice to Balrog",
-    date: "20 September 2026",
-    opponent: "Balrog",
-    movement: "—",
-
-    history: [
-        {
-            result: "LOSS",
-            opponent: "Balrog",
-            score: "-25",
-            rating: 625,
-            date: "20 September 2026"
-        },
-        {
-            result: "LOSS",
-            opponent: "Balrog",
-            score: "-25",
-            rating: 650,
-            date: "20 September 2026"
-        },
-        {
-            result: "LOSS",
-            opponent: "Balrog",
-            score: "-25",
-            rating: 675,
-            date: "19 September 2026"
-        }
-    ]
-},
-  Dan: {
-    rank: "#5",
-    rating: 825,
-    previous: 800,
-    newRating: 825,
-    change: 25,
-    match: "Dan defeated Balrog",
-    date: "19 September 2026",
-    opponent: "Balrog",
-    movement: "—",
-
-    history: [
-      {
-        result: "WIN",
-        opponent: "Balrog",
-        score: "+25",
-        rating: 825,
-        date: "19 September 2026"
-      }
-    ]
-  },
-
-  BSGRCD: {
-    rank: "#10",
-    rating: 575,
-    previous: 550,
-    newRating: 575,
-    change: 25,
-    match: "BSGRCD defeated worm",
-    date: "19 September 2026",
-    opponent: "worm",
-    movement: "—",
-
-    history: [
-      {
-        result: "WIN",
-        opponent: "worm",
-        score: "+25",
-        rating: 575,
-        date: "19 September 2026"
-      }
-    ]
-  },
-
-  Harun: {
-    rank: "#15",
-    rating: 300,
-    previous: 325,
-    newRating: 300,
-    change: -25,
-    match: "Lost to worm",
-    date: "18 September 2026",
-    opponent: "worm",
-    movement: "-1",
-
-    history: [
-      {
-        result: "LOSS",
-        opponent: "worm",
-        score: "-25",
-        rating: 300,
-        date: "18 September 2026"
-      },
-      {
-        result: "WIN",
-        opponent: "ALGERINO",
-        score: "+25",
-        rating: 325,
-        date: "18 September 2026"
-      }
-    ]
-  },
-
-  ALGERINO: {
-    rank: "#14",
-    rating: 325,
-    previous: 350,
-    newRating: 325,
-    change: -25,
-    match: "Lost to Harun",
-    date: "18 September 2026",
-    opponent: "Harun",
-    movement: "-1",
-
-    history: [
-      {
-        result: "LOSS",
-        opponent: "Harun",
-        score: "-25",
-        rating: 325,
-        date: "18 September 2026"
-      }
-    ]
-  },
-
-  worm: {
-    rank: "#16",
-    rating: 250,
-    previous: 275,
-    newRating: 250,
-    change: -25,
-    match: "Lost to BSGRCD",
-    date: "19 September 2026",
-    opponent: "BSGRCD",
-    movement: "—",
-
-    history: [
-      {
-        result: "LOSS",
-        opponent: "BSGRCD",
-        score: "-25",
-        rating: 250,
-        date: "19 September 2026"
-      },
-      {
-        result: "WIN",
-        opponent: "Harun",
-        score: "+25",
-        rating: 275,
-        date: "18 September 2026"
-      }
-    ]
-  }
+  Balrog: {},
+  Neko: {},
+  Dan: {},
+  BSGRCD: {},
+  Harun: {},
+  ALGERINO: {},
+  worm: {}
 
 };
 
@@ -2842,19 +2649,19 @@ const matchHistory =
 const currentRating =
   leaderboardPlayer
     ? leaderboardPlayer.rating
-    : player.rating;
+    : 0;
 
 
-  const latestChange =
-    latestMatch
-      ? latestMatch.change
-      : player.change;
+ const latestChange =
+  latestMatch
+    ? latestMatch.change
+    : 0;
 
 
-  const previousRating =
-    latestMatch
-      ? currentRating - latestChange
-      : player.previous;
+const previousRating =
+  latestMatch
+    ? currentRating - latestChange
+    : currentRating;
 
 
   const newRating =
@@ -2863,15 +2670,13 @@ const currentRating =
   document.getElementById("mmrProfileName").textContent =
     playerName;
 
- document.getElementById("mmrProfileRating").textContent =
-  leaderboardPlayer
-    ? leaderboardPlayer.rating
-    : player.rating;
+document.getElementById("mmrProfileRating").textContent =
+  currentRating;
 
-  document.getElementById("mmrProfileRank").textContent =
+ document.getElementById("mmrProfileRank").textContent =
   leaderboardPlayer
     ? `#${leaderboardPlayer.rank}`
-    : player.rank;
+    : "—";
 
 document.getElementById("mmrProfilePrevious").textContent =
   previousRating;
@@ -2894,22 +2699,22 @@ changeElement.className =
     ? "mmr-profile-loss"
     : "";
 
- document.getElementById("mmrProfileMatch").textContent =
+document.getElementById("mmrProfileMatch").textContent =
   latestMatch
     ? latestMatch.description
-    : player.match;
+    : "No recorded match";
 
 
 document.getElementById("mmrProfileDate").textContent =
   latestMatch
     ? latestMatch.date
-    : player.date;
+    : "—";
 
 
 document.getElementById("mmrProfileOpponent").textContent =
   latestMatch
     ? latestMatch.opponent
-    : player.opponent || "—";
+    : "—";
 
 
 let movementText = "—";
