@@ -1729,6 +1729,40 @@ const mmrPlayers = [
   { name: "Djoko78",   rating: 100 },
   { name: "sebus",     rating: 50 }
 ];
+  // =====================================================
+// DUNE FUTURE MMR - BASE RATINGS
+// =====================================================
+// Rating pemain SEBELUM seluruh pertandingan
+// yang tercatat di mmrMatches.
+//
+// Nantinya current MMR akan dihitung otomatis:
+// BASE MMR + MATCH HISTORY = CURRENT MMR
+// =====================================================
+
+const mmrBasePlayers = [
+
+  { name: "Kipp",      rating: 1000 },
+  { name: "Carlos",    rating: 950 },
+  { name: "Balrog",    rating: 900 },
+  { name: "Arthur",    rating: 850 },
+  { name: "Dan",       rating: 800 },
+  { name: "Joseph",    rating: 750 },
+  { name: "Neko",      rating: 700 },
+  { name: "DZ14",      rating: 650 },
+  { name: "NewNamE",   rating: 600 },
+  { name: "BSGRCD",    rating: 550 },
+  { name: "X-Noname",  rating: 500 },
+  { name: "Jadg",      rating: 450 },
+  { name: "Sardat",    rating: 400 },
+  { name: "ALGERINO",  rating: 350 },
+  { name: "Harun",     rating: 300 },
+  { name: "worm",      rating: 250 },
+  { name: "Standby",   rating: 200 },
+  { name: "pyrou",     rating: 150 },
+  { name: "Djoko78",   rating: 100 },
+  { name: "sebus",     rating: 50 }
+
+];
 // =====================================================
 // DUNE FUTURE MMR - MATCH DATA
 // =====================================================
@@ -1791,6 +1825,114 @@ const mmrMatches = [
   }
 
 ];
+  // =====================================================
+// AUTOMATIC CURRENT MMR CALCULATION
+// =====================================================
+// Menghitung Current MMR dari:
+//
+// BASE MMR
+// +
+// seluruh pertandingan di mmrMatches
+//
+// mmrMatches tersimpan terbaru -> terlama,
+// tetapi untuk menghitung current rating kita replay
+// dari pertandingan paling lama -> terbaru.
+// =====================================================
+
+function getCalculatedMMRPlayers() {
+
+  // Copy base rating agar data asli tidak berubah
+  const calculatedPlayers =
+    mmrBasePlayers.map(player => ({
+      ...player
+    }));
+
+
+  // Replay match dari TERLAMA -> TERBARU
+  const chronologicalMatches =
+    [...mmrMatches].reverse();
+
+
+  for (const match of chronologicalMatches) {
+
+    const winner =
+      calculatedPlayers.find(
+        player =>
+          player.name === match.winner
+      );
+
+
+    const loser =
+      calculatedPlayers.find(
+        player =>
+          player.name === match.loser
+      );
+
+
+    // Safety check
+    if (!winner || !loser) {
+      continue;
+    }
+
+
+    // Apply MMR
+    winner.rating += match.change;
+    loser.rating -= match.change;
+
+  }
+
+
+  return calculatedPlayers;
+}
+  // =====================================================
+// TEMPORARY MMR VERIFICATION
+// =====================================================
+
+function verifyCalculatedMMR() {
+
+  const calculated =
+    getCalculatedMMRPlayers();
+
+
+  console.log(
+    "===== MMR CALCULATION VERIFICATION ====="
+  );
+
+
+  for (const currentPlayer of mmrPlayers) {
+
+    const calculatedPlayer =
+      calculated.find(
+        player =>
+          player.name === currentPlayer.name
+      );
+
+
+    if (!calculatedPlayer) {
+
+      console.error(
+        `${currentPlayer.name}: PLAYER NOT FOUND`
+      );
+
+      continue;
+    }
+
+
+    const isCorrect =
+      currentPlayer.rating ===
+      calculatedPlayer.rating;
+
+
+    console.log(
+      `${isCorrect ? "✅" : "❌"} ` +
+      `${currentPlayer.name}: ` +
+      `Snapshot ${currentPlayer.rating} | ` +
+      `Calculated ${calculatedPlayer.rating}`
+    );
+
+  }
+
+}
   // =====================================================
 // AUTOMATIC MMR RANK MOVEMENT ENGINE
 // =====================================================
@@ -2835,8 +2977,12 @@ document.addEventListener("keydown", function(event) {
   }
 
 });
-  renderMMRPodium();
+
+verifyCalculatedMMR();
+
+renderMMRPodium();
 renderMMRLeaderboard();
+
 </script>
 
 </body>
