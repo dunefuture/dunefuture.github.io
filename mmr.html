@@ -4825,7 +4825,177 @@ document.addEventListener("keydown", function(event) {
 });
 
 
+// =====================================================
+// TOP 3 CHANGE DETECTION ENGINE
+// =====================================================
 
+function detectTop3Changes() {
+
+  const leaderboard =
+    getMMRLeaderboard();
+
+  const currentTop3 =
+    leaderboard
+      .slice(0, 3)
+      .map(player => ({
+        name: player.name,
+        rank: player.rank,
+        rating: player.rating
+      }));
+
+
+  // ===================================================
+  // LOAD PREVIOUS TOP 3
+  // ===================================================
+
+  const storageKey =
+    "duneFutureMMRTop3";
+
+  let previousTop3 = null;
+
+  try {
+
+    const saved =
+      localStorage.getItem(storageKey);
+
+    if (saved) {
+      previousTop3 =
+        JSON.parse(saved);
+    }
+
+  } catch (error) {
+
+    console.warn(
+      "Unable to read previous Top 3.",
+      error
+    );
+
+  }
+
+
+  // ===================================================
+  // FIRST VISIT
+  // ===================================================
+  // Tidak dianggap sebagai perubahan ranking.
+  // Kita hanya membuat baseline.
+  // ===================================================
+
+  if (
+    !Array.isArray(previousTop3) ||
+    previousTop3.length !== 3
+  ) {
+
+    try {
+
+      localStorage.setItem(
+        storageKey,
+        JSON.stringify(currentTop3)
+      );
+
+    } catch (error) {
+
+      console.warn(
+        "Unable to save Top 3 baseline.",
+        error
+      );
+
+    }
+
+    return [];
+  }
+
+
+  // ===================================================
+  // DETECT CHANGES
+  // ===================================================
+
+  const changes = [];
+
+  for (const currentPlayer of currentTop3) {
+
+    const previousPlayer =
+      previousTop3.find(
+        player =>
+          player.name === currentPlayer.name
+      );
+
+
+    // Player baru masuk Top 3
+    if (!previousPlayer) {
+
+      changes.push({
+        type:
+          currentPlayer.rank === 1
+            ? "new-champion"
+            : "entered-top3",
+
+        name:
+          currentPlayer.name,
+
+        newRank:
+          currentPlayer.rank,
+
+        oldRank:
+          null
+      });
+
+      continue;
+    }
+
+
+    // Player yang sama berubah posisi
+    if (
+      previousPlayer.rank !==
+      currentPlayer.rank
+    ) {
+
+      changes.push({
+        type:
+          currentPlayer.rank <
+          previousPlayer.rank
+            ? "promoted"
+            : "demoted",
+
+        name:
+          currentPlayer.name,
+
+        oldRank:
+          previousPlayer.rank,
+
+        newRank:
+          currentPlayer.rank
+      });
+
+    }
+
+  }
+
+
+  // ===================================================
+  // SAVE NEW SNAPSHOT
+  // ===================================================
+
+  try {
+
+    localStorage.setItem(
+      storageKey,
+      JSON.stringify(currentTop3)
+    );
+
+  } catch (error) {
+
+    console.warn(
+      "Unable to save current Top 3.",
+      error
+    );
+
+  }
+
+
+  return changes;
+}
+  const top3Changes =
+  detectTop3Changes();
 renderMMRPodium();
 renderMMRLeaderboard();
 
