@@ -1998,6 +1998,539 @@ body.mmr-profile-open {
   }
 
 }
+    /* =====================================================
+   DUNE FUTURE — PREMIUM PODIUM FX
+   RANK #3 — BRONZE INFERNO
+   ===================================================== */
+
+
+/* =====================================================
+   RANK #3 — INFERNO FRAME
+   ===================================================== */
+
+.mmr-podium-card.rank-3 {
+  overflow: visible;
+
+  border:
+    1px solid rgba(255, 116, 55, 0.55);
+
+  background:
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(255, 72, 20, 0.18),
+      transparent 48%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(30, 12, 10, 0.97),
+      rgba(14, 7, 8, 0.99)
+    );
+
+  box-shadow:
+    0 0 8px rgba(255, 94, 35, 0.18),
+    0 0 24px rgba(255, 54, 20, 0.10),
+    0 18px 38px rgba(0, 0, 0, 0.50),
+    inset 0 -20px 28px rgba(255, 65, 20, 0.055);
+
+  z-index: 2;
+}
+
+
+/* Allow inferno energy outside card */
+
+.mmr-podium-card.rank-3 .podium-fx {
+  overflow: visible;
+}
+
+
+/* =====================================================
+   INFERNO AURA
+   ===================================================== */
+
+.mmr-podium-card.rank-3 .podium-aura {
+  position: absolute;
+
+  width: 150%;
+  height: 150%;
+
+  left: 50%;
+  top: 56%;
+
+  transform:
+    translate(-50%, -50%);
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(255, 149, 48, 0.18) 0%,
+      rgba(255, 68, 24, 0.10) 30%,
+      rgba(181, 28, 14, 0.04) 52%,
+      transparent 70%
+    );
+
+  filter: blur(16px);
+
+  animation:
+    rank3InfernoBreath
+    3.7s ease-in-out infinite;
+}
+
+
+/* =====================================================
+   MOLTEN ENERGY RING
+   ===================================================== */
+
+.mmr-podium-card.rank-3 .podium-energy-ring {
+  position: absolute;
+
+  width: 155px;
+  height: 155px;
+
+  left: 50%;
+  top: 37%;
+
+  transform:
+    translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background:
+    conic-gradient(
+      from 0deg,
+
+      transparent 0deg,
+
+      rgba(255, 92, 30, 0.12) 30deg,
+
+      rgba(255, 192, 74, 0.90) 55deg,
+
+      rgba(255, 72, 22, 0.20) 78deg,
+
+      transparent 108deg,
+
+      transparent 165deg,
+
+      rgba(255, 77, 25, 0.22) 195deg,
+
+      rgba(255, 173, 58, 0.88) 225deg,
+
+      rgba(255, 58, 18, 0.15) 250deg,
+
+      transparent 285deg
+    );
+
+  -webkit-mask:
+    radial-gradient(
+      farthest-side,
+      transparent calc(100% - 3px),
+      #000 calc(100% - 2px)
+    );
+
+  mask:
+    radial-gradient(
+      farthest-side,
+      transparent calc(100% - 3px),
+      #000 calc(100% - 2px)
+    );
+
+  filter:
+    drop-shadow(
+      0 0 6px rgba(255, 92, 30, 0.78)
+    );
+
+  opacity: 0.78;
+
+  animation:
+    rank3MoltenOrbit
+    9s linear infinite;
+}
+
+
+/* =====================================================
+   RISING EMBERS
+   ===================================================== */
+
+.mmr-podium-card.rank-3 .podium-embers {
+  position: absolute;
+
+  width: 3px;
+  height: 3px;
+
+  left: 18%;
+  top: 86%;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 192, 77, 0.95);
+
+  box-shadow:
+
+    15px -35px 0 0
+      rgba(255, 112, 40, 0.90),
+
+    29px -78px 0 -0.5px
+      rgba(255, 190, 72, 0.82),
+
+    47px -51px 0 0
+      rgba(255, 71, 26, 0.76),
+
+    64px -108px 0 -0.5px
+      rgba(255, 148, 51, 0.88),
+
+    82px -69px 0 0
+      rgba(255, 77, 25, 0.72),
+
+    101px -121px 0 -0.5px
+      rgba(255, 193, 79, 0.75),
+
+    116px -45px 0 0
+      rgba(255, 96, 30, 0.82),
+
+    131px -94px 0 -0.5px
+      rgba(255, 160, 55, 0.82),
+
+    140px -61px 0 -0.5px
+      rgba(255, 74, 24, 0.72);
+
+  filter:
+    drop-shadow(
+      0 0 4px rgba(255, 84, 27, 0.95)
+    );
+
+  animation:
+    rank3EmberRise
+    4.4s ease-in-out infinite;
+}
+
+
+/* =====================================================
+   FIRE PARTICLE CORE
+   ===================================================== */
+
+.mmr-podium-card.rank-3 .podium-particles {
+  position: absolute;
+
+  width: 115px;
+  height: 55px;
+
+  left: 50%;
+  bottom: -6px;
+
+  transform:
+    translateX(-50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(255, 166, 54, 0.20),
+      rgba(255, 61, 19, 0.09) 42%,
+      transparent 72%
+    );
+
+  filter: blur(8px);
+
+  animation:
+    rank3MoltenCore
+    2.8s ease-in-out infinite;
+}
+
+
+/* =====================================================
+   HEAT SWEEP
+   ===================================================== */
+
+.mmr-podium-card.rank-3 .podium-sweep {
+  position: absolute;
+
+  width: 30%;
+  height: 160%;
+
+  top: -30%;
+  left: -60%;
+
+  transform:
+    rotate(17deg);
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 113, 43, 0.025),
+      rgba(255, 195, 91, 0.22),
+      rgba(255, 65, 20, 0.08),
+      transparent
+    );
+
+  filter: blur(3px);
+
+  animation:
+    rank3HeatSweep
+    6.3s ease-in-out infinite;
+}
+
+
+/* =====================================================
+   BURNING BORDER ACCENTS
+   ===================================================== */
+
+.mmr-podium-card.rank-3::before,
+.mmr-podium-card.rank-3::after {
+  content: "";
+
+  position: absolute;
+
+  width: 38px;
+  height: 2px;
+
+  top: -1px;
+
+  pointer-events: none;
+
+  z-index: 4;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 187, 73, 0.95),
+      rgba(255, 72, 23, 0.75),
+      transparent
+    );
+
+  filter:
+    drop-shadow(
+      0 0 5px rgba(255, 82, 25, 0.75)
+    );
+
+  animation:
+    rank3BorderIgnite
+    2.7s ease-in-out infinite;
+}
+
+
+.mmr-podium-card.rank-3::before {
+  left: 10px;
+}
+
+
+.mmr-podium-card.rank-3::after {
+  right: 10px;
+
+  animation-delay:
+    -1.35s;
+}
+
+
+/* =====================================================
+   BRONZE MEDAL ENHANCEMENT
+   ===================================================== */
+
+.mmr-podium-card.rank-3 .mmr-medal {
+  filter:
+    drop-shadow(
+      0 0 5px rgba(255, 185, 75, 0.95)
+    )
+    drop-shadow(
+      0 0 13px rgba(255, 72, 24, 0.50)
+    );
+}
+
+
+/* =====================================================
+   RANK LABEL
+   ===================================================== */
+
+.mmr-podium-card.rank-3 .mmr-rank-label {
+  color: #ffad63;
+
+  text-shadow:
+    0 0 6px rgba(255, 92, 30, 0.58);
+}
+
+
+/* =====================================================
+   PLAYER NAME
+   ===================================================== */
+
+.mmr-podium-card.rank-3 .mmr-podium-name {
+  text-shadow:
+    0 0 10px rgba(255, 81, 28, 0.18);
+}
+
+
+/* =====================================================
+   MMR POINTS
+   ===================================================== */
+
+.mmr-podium-card.rank-3 .mmr-points {
+  color: #ff8a43;
+
+  text-shadow:
+    0 0 7px rgba(255, 80, 25, 0.70),
+    0 0 14px rgba(255, 44, 16, 0.28);
+}
+
+
+/* =====================================================
+   CONTENDER TITLE
+   ===================================================== */
+
+.mmr-podium-card.rank-3 .podium-title {
+  margin-top: 10px;
+
+  font-size: 8px;
+  font-weight: 800;
+
+  letter-spacing: 2px;
+
+  color: #ffad6c;
+
+  text-shadow:
+    0 0 7px rgba(255, 91, 29, 0.60),
+    0 0 14px rgba(255, 43, 16, 0.25);
+}
+
+
+/* =====================================================
+   RANK #3 ANIMATIONS
+   ===================================================== */
+
+@keyframes rank3InfernoBreath {
+
+  0%,
+  100% {
+    opacity: 0.38;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0.93);
+  }
+
+  50% {
+    opacity: 0.86;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.07);
+  }
+
+}
+
+
+@keyframes rank3MoltenOrbit {
+
+  from {
+    transform:
+      translate(-50%, -50%)
+      rotate(0deg);
+  }
+
+  to {
+    transform:
+      translate(-50%, -50%)
+      rotate(360deg);
+  }
+
+}
+
+
+@keyframes rank3EmberRise {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translateY(13px)
+      translateX(0)
+      scale(0.75);
+  }
+
+  25% {
+    opacity: 0.9;
+  }
+
+  70% {
+    opacity: 0.65;
+  }
+
+  100% {
+    opacity: 0;
+
+    transform:
+      translateY(-20px)
+      translateX(4px)
+      scale(1.05);
+  }
+
+}
+
+
+@keyframes rank3MoltenCore {
+
+  0%,
+  100% {
+    opacity: 0.35;
+
+    transform:
+      translateX(-50%)
+      scaleX(0.88);
+  }
+
+  50% {
+    opacity: 0.90;
+
+    transform:
+      translateX(-50%)
+      scaleX(1.15);
+  }
+
+}
+
+
+@keyframes rank3HeatSweep {
+
+  0% {
+    left: -60%;
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0;
+  }
+
+  47% {
+    opacity: 0.72;
+  }
+
+  70% {
+    opacity: 0;
+  }
+
+  100% {
+    left: 135%;
+    opacity: 0;
+  }
+
+}
+
+
+@keyframes rank3BorderIgnite {
+
+  0%,
+  100% {
+    opacity: 0.28;
+    transform: scaleX(0.75);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scaleX(1.12);
+  }
+
+}
 </style>
 
 <link rel="stylesheet" href="style.css">
