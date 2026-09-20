@@ -2719,8 +2719,31 @@ function openMMRProfile(playerName) {
     );
 
 
-  
+  const latestMatch =
+    getLatestMMRMatch(playerName);
 
+
+  const currentRating =
+    leaderboardPlayer
+      ? leaderboardPlayer.rating
+      : player.rating;
+
+
+  const latestChange =
+    latestMatch
+      ? latestMatch.change
+      : player.change;
+
+
+  const previousRating =
+    latestMatch
+      ? currentRating - latestChange
+      : player.previous;
+
+
+  const newRating =
+    currentRating;
+  
   document.getElementById("mmrProfileName").textContent =
     playerName;
 
@@ -2734,26 +2757,26 @@ function openMMRProfile(playerName) {
     ? `#${leaderboardPlayer.rank}`
     : player.rank;
 
-  document.getElementById("mmrProfilePrevious").textContent =
-    player.previous;
+document.getElementById("mmrProfilePrevious").textContent =
+  previousRating;
 
-  document.getElementById("mmrProfileNew").textContent =
-    player.newRating;
+document.getElementById("mmrProfileNew").textContent =
+  newRating;
 
-  const changeElement =
-    document.getElementById("mmrProfileChange");
+ const changeElement =
+  document.getElementById("mmrProfileChange");
 
-  changeElement.textContent =
-    player.change > 0
-      ? "+" + player.change
-      : player.change;
+changeElement.textContent =
+  latestChange > 0
+    ? `+${latestChange}`
+    : `${latestChange}`;
 
-  changeElement.className =
-    player.change > 0
-      ? "mmr-profile-gain"
-      : player.change < 0
-      ? "mmr-profile-loss"
-      : "";
+changeElement.className =
+  latestChange > 0
+    ? "mmr-profile-gain"
+    : latestChange < 0
+    ? "mmr-profile-loss"
+    : "";
 
   document.getElementById("mmrProfileMatch").textContent =
     player.match;
