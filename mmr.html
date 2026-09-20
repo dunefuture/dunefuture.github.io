@@ -2073,7 +2073,109 @@ function getLatestMMRMatch(playerName) {
 
   };
 }
+// =====================================================
+// AUTOMATIC MMR MATCH HISTORY
+// =====================================================
+// Membuat match history otomatis dari mmrMatches.
+//
+// Perhitungan dimulai dari CURRENT MMR lalu berjalan
+// mundur dari pertandingan terbaru ke terlama.
+// =====================================================
 
+function getMMRMatchHistory(playerName) {
+
+  const currentPlayer =
+    getMMRLeaderboard().find(
+      player =>
+        player.name === playerName
+    );
+
+
+  if (!currentPlayer) {
+    return [];
+  }
+
+
+  let currentRating =
+    currentPlayer.rating;
+
+
+  const history = [];
+
+
+  // mmrMatches sudah disusun:
+  // terbaru -> terlama
+  for (const match of mmrMatches) {
+
+    const isWinner =
+      match.winner === playerName;
+
+    const isLoser =
+      match.loser === playerName;
+
+
+    // Lewati pertandingan yang tidak melibatkan player
+    if (!isWinner && !isLoser) {
+      continue;
+    }
+
+
+    const change =
+      isWinner
+        ? match.change
+        : -match.change;
+
+
+    // Karena kita berjalan mundur:
+    //
+    // WIN:
+    // current 950, change +25
+    // previous = 950 - 25 = 925
+    //
+    // LOSS:
+    // current 625, change -25
+    // previous = 625 - (-25) = 650
+
+    const previousRating =
+      currentRating - change;
+
+
+    history.push({
+
+      result:
+        isWinner
+          ? "WIN"
+          : "LOSS",
+
+      opponent:
+        isWinner
+          ? match.loser
+          : match.winner,
+
+      change:
+        change,
+
+      previousRating:
+        previousRating,
+
+      newRating:
+        currentRating,
+
+      date:
+        match.date
+
+    });
+
+
+    // Mundur ke kondisi sebelum pertandingan
+    currentRating =
+      previousRating;
+
+  }
+
+
+  return history;
+}
 
 // =====================================================
 // AUTOMATIC MMR RANK MOVEMENT ENGINE
@@ -2726,7 +2828,9 @@ function openMMRProfile(playerName) {
 
 const rankMovement =
   getMMRRankMovement(playerName);
-
+  
+const matchHistory =
+  getMMRMatchHistory(playerName);
 
 const currentRating =
   leaderboardPlayer
@@ -2816,6 +2920,8 @@ if (rankMovement.difference < 0) {
 
 document.getElementById("mmrProfileMovement").textContent =
   movementText;
+
+
 const historyElement =
   document.getElementById("mmrProfileHistory");
 
@@ -2823,57 +2929,56 @@ if (historyElement) {
 
   historyElement.innerHTML = "";
 
-  if (player.history && player.history.length > 0) {
+  if (matchHistory && matchHistory.length > 0) {
 
-   historyElement.innerHTML = player.history.map(item => {
+    historyElement.innerHTML = matchHistory.map(item => {
 
-  const isWin = item.result === "WIN";
+      const isWin =
+        item.result === "WIN";
 
-  const previousRating =
-    item.rating - parseInt(item.score, 10);
+      return `
+        <div class="mmr-history-item">
 
-  return `
-    <div class="mmr-history-item">
+          <div class="mmr-history-top">
 
-      <div class="mmr-history-top">
+           <div class="mmr-history-match">
+  <span class="mmr-history-result ${isWin ? "win" : "loss"}">
+    ${item.result}
+  </span>
 
-        <div class="mmr-history-match">
-          <span class="mmr-history-result ${isWin ? "win" : "loss"}">
-            ${item.result}
-          </span>
+  <span class="mmr-history-opponent">
+    vs ${item.opponent}
+  </span>
+</div>
 
-          <span class="mmr-history-opponent">
-            vs ${item.opponent}
-          </span>
-        </div>
+<span class="mmr-history-change ${isWin ? "win" : "loss"}">
+  ${item.change > 0
+    ? `+${item.change}`
+    : item.change}
+</span>
 
-        <span class="mmr-history-change ${isWin ? "win" : "loss"}">
-          ${item.score}
-        </span>
+</div>
 
-      </div>
+<div class="mmr-history-date">
+  ${item.date}
+</div>
 
-      <div class="mmr-history-date">
-        ${item.date}
-      </div>
+<div class="mmr-history-divider"></div>
 
-      <div class="mmr-history-divider"></div>
+<div class="mmr-history-rating-row">
+  <span>PREVIOUS MMR</span>
+  <strong>${item.previousRating}</strong>
+</div>
 
-      <div class="mmr-history-rating-row">
-        <span>PREVIOUS MMR</span>
-        <strong>${previousRating}</strong>
-      </div>
+<div class="mmr-history-rating-row">
+  <span>NEW MMR</span>
+  <strong>${item.newRating}</strong>
+</div>
 
-      <div class="mmr-history-rating-row">
-        <span>NEW MMR</span>
-        <strong>${item.rating}</strong>
-      </div>
-
-    </div>
-  `;
+</div>
+`;
 
 }).join("");
-
   } else {
 
     historyElement.innerHTML = `
