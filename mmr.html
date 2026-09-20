@@ -1958,10 +1958,10 @@ function verifyCalculatedMMR() {
 function calculateMMRMovements() {
 
   let workingPlayers =
-    mmrPlayers.map((player, index) => ({
-      ...player,
-      order: index
-    }));
+  getCalculatedMMRPlayers().map((player, index) => ({
+    ...player,
+    order: index
+  }));
 
 
   // ===================================================
