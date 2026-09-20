@@ -1898,41 +1898,59 @@ function calculateMMRMovements() {
   // CREATE RANKING
   // ===================================================
 
-  function createRanking(players) {
+ function createRanking(
+  players,
+  applicableMatches
+) {
 
-    return [...players]
-      .sort((a, b) => {
+  return [...players]
+    .sort((a, b) =>
+      compareMMRPlayers(
+        a,
+        b,
+        applicableMatches
+      )
+    )
+    .map((player, index) => ({
+      ...player,
+      rank: index + 1
+    }));
 
-        // Rating lebih tinggi selalu di atas
-        if (b.rating !== a.rating) {
-          return b.rating - a.rating;
-        }
-
-        // Kalau rating sama, gunakan historical order
-        return a.order - b.order;
-
-      })
-      .map((player, index) => ({
-        ...player,
-        rank: index + 1
-      }));
-
-  }
-
+}
 
   const movements = {};
 
 
-  // ===================================================
+    // ===================================================
   // REVERSE MATCHES
   // terbaru -> terlama
   // ===================================================
 
-  for (const match of mmrMatches) {
+  for (
+    let matchIndex = 0;
+    matchIndex < mmrMatches.length;
+    matchIndex++
+  ) {
+
+    const match =
+      mmrMatches[matchIndex];
+
+
+    // ===============================================
+    // MATCH YANG SUDAH TERJADI
+    // pada kondisi SESUDAH match ini
+    // ===============================================
+
+    const afterApplicableMatches =
+      mmrMatches.slice(matchIndex);
+
 
     // Ranking sesudah match
     const afterRanking =
-      createRanking(workingPlayers);
+      createRanking(
+        workingPlayers,
+        afterApplicableMatches
+      );
 
 
     // Copy kondisi sesudah match
@@ -1959,7 +1977,6 @@ function calculateMMRMovements() {
     if (!winner || !loser) {
       continue;
     }
-
 
     // =================================================
     // REVERSE MMR
@@ -2037,13 +2054,18 @@ function calculateMMRMovements() {
     }
 
 
-    // =================================================
+     // =================================================
     // RANKING SEBELUM MATCH
     // =================================================
 
-    const beforeRanking =
-      createRanking(beforePlayers);
+    const beforeApplicableMatches =
+      mmrMatches.slice(matchIndex + 1);
 
+    const beforeRanking =
+      createRanking(
+        beforePlayers,
+        beforeApplicableMatches
+      );
 
     // =================================================
     // COMPARE ALL PLAYERS
@@ -2326,6 +2348,64 @@ function getMMRRankMovement(playerName) {
 
   return movement;
 }
+  // =====================================================
+// MMR RANKING COMPARATOR
+// =====================================================
+// Aturan ranking:
+//
+// 1. MMR lebih tinggi berada di atas.
+// 2. Jika MMR sama, gunakan H2H terbaru.
+// 3. Jika tidak ada H2H, gunakan fallback order.
+// =====================================================
+
+function compareMMRPlayers(a, b, matches = mmrMatches) {
+
+  // MMR berbeda
+  if (b.rating !== a.rating) {
+    return b.rating - a.rating;
+  }
+
+
+  // MMR sama -> cari H2H terbaru
+  const latestHeadToHead =
+    matches.find(match =>
+      (
+        match.winner === a.name &&
+        match.loser === b.name
+      ) ||
+      (
+        match.winner === b.name &&
+        match.loser === a.name
+      )
+    );
+
+
+  if (latestHeadToHead) {
+
+    if (latestHeadToHead.winner === a.name) {
+      return -1;
+    }
+
+    if (latestHeadToHead.winner === b.name) {
+      return 1;
+    }
+
+  }
+
+
+  // Tidak ada H2H.
+  // Jika historical order tersedia, gunakan itu.
+  if (
+    typeof a.order === "number" &&
+    typeof b.order === "number"
+  ) {
+    return a.order - b.order;
+  }
+
+
+  // Pertahankan stable order
+  return 0;
+}
  // =====================================================
 // AUTOMATIC MMR SORTING
 // =====================================================
@@ -2335,8 +2415,11 @@ function getMMRLeaderboard() {
   const calculatedPlayers =
     getCalculatedMMRPlayers();
 
+
   return [...calculatedPlayers]
-    .sort((a, b) => b.rating - a.rating)
+    .sort((a, b) =>
+      compareMMRPlayers(a, b, mmrMatches)
+    )
     .map((player, index) => ({
       ...player,
       rank: index + 1
