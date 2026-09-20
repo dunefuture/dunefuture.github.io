@@ -2420,9 +2420,16 @@ function getMMRLeaderboard() {
 // =====================================================
 
 function getMMRPlayer(playerName) {
-  return mmrPlayers.find(
-    player => player.name.toLowerCase() === playerName.toLowerCase()
+
+  const calculatedPlayers =
+    getCalculatedMMRPlayers();
+
+  return calculatedPlayers.find(
+    player =>
+      player.name.toLowerCase() ===
+      playerName.toLowerCase()
   );
+
 }
   // =====================================================
 // AUTOMATIC LEADERBOARD RENDER
