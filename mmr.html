@@ -2236,6 +2236,7 @@ function renderMMRLeaderboard() {
 
 const latestMatch =
   getLatestMMRMatch(player.name);
+     
 
 
 // ===============================================
@@ -2719,14 +2720,18 @@ function openMMRProfile(playerName) {
     );
 
 
-  const latestMatch =
-    getLatestMMRMatch(playerName);
+ const latestMatch =
+  getLatestMMRMatch(playerName);
 
 
-  const currentRating =
-    leaderboardPlayer
-      ? leaderboardPlayer.rating
-      : player.rating;
+const rankMovement =
+  getMMRRankMovement(playerName);
+
+
+const currentRating =
+  leaderboardPlayer
+    ? leaderboardPlayer.rating
+    : player.rating;
 
 
   const latestChange =
@@ -2778,16 +2783,39 @@ changeElement.className =
     ? "mmr-profile-loss"
     : "";
 
-  document.getElementById("mmrProfileMatch").textContent =
-    player.match;
+ document.getElementById("mmrProfileMatch").textContent =
+  latestMatch
+    ? latestMatch.description
+    : player.match;
 
-  document.getElementById("mmrProfileDate").textContent =
-    player.date;
-  document.getElementById("mmrProfileOpponent").textContent =
-  player.opponent || "—";
+
+document.getElementById("mmrProfileDate").textContent =
+  latestMatch
+    ? latestMatch.date
+    : player.date;
+
+
+document.getElementById("mmrProfileOpponent").textContent =
+  latestMatch
+    ? latestMatch.opponent
+    : player.opponent || "—";
+
+
+let movementText = "—";
+
+if (rankMovement.difference > 0) {
+  movementText =
+    `▲ +${rankMovement.difference}`;
+}
+
+if (rankMovement.difference < 0) {
+  movementText =
+    `▼ ${rankMovement.difference}`;
+}
+
 
 document.getElementById("mmrProfileMovement").textContent =
-  player.movement || "—";
+  movementText;
 const historyElement =
   document.getElementById("mmrProfileHistory");
 
