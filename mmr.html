@@ -1899,7 +1899,7 @@ function verifyCalculatedMMR() {
   );
 
 
-  for (const currentPlayer of mmrPlayers) {
+ for (const currentPlayer of getCalculatedMMRPlayers()) {
 
     const calculatedPlayer =
       calculated.find(
