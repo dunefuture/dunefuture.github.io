@@ -2531,6 +2531,374 @@ body.mmr-profile-open {
   }
 
 }
+    /* =====================================================
+   DUNE FUTURE — TOP 3 INTERACTIVE HOVER ENGINE
+   ===================================================== */
+
+
+/* =====================================================
+   COMMON INTERACTION FOUNDATION
+   ===================================================== */
+
+.mmr-podium-card.rank-1,
+.mmr-podium-card.rank-2,
+.mmr-podium-card.rank-3 {
+  cursor: default;
+
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    filter 0.35s ease;
+}
+
+
+/* Player name remains clickable */
+
+.mmr-podium-card .mmr-player-link {
+  cursor: pointer;
+}
+
+
+/* =====================================================
+   #1 — GOLD CHAMPION
+   ASCENSION HOVER
+   ===================================================== */
+
+.mmr-podium-card.rank-1:hover {
+  transform:
+    translateY(-14px)
+    scale(1.065);
+
+  border-color:
+    rgba(255, 222, 112, 0.95);
+
+  box-shadow:
+    0 0 12px rgba(255, 220, 91, 0.50),
+    0 0 35px rgba(255, 177, 31, 0.28),
+    0 0 65px rgba(255, 139, 0, 0.12),
+    0 26px 55px rgba(0, 0, 0, 0.65),
+    inset 0 0 32px rgba(255, 203, 72, 0.13);
+
+  filter:
+    brightness(1.08);
+}
+
+
+/* Gold aura overload */
+
+.mmr-podium-card.rank-1:hover .podium-aura {
+  animation-duration:
+    1.9s;
+
+  filter:
+    blur(20px)
+    brightness(1.25);
+}
+
+
+/* Gold energy ring accelerates */
+
+.mmr-podium-card.rank-1:hover .podium-energy-ring {
+  animation-duration:
+    3.8s;
+
+  filter:
+    drop-shadow(
+      0 0 9px rgba(255, 219, 102, 1)
+    )
+    drop-shadow(
+      0 0 18px rgba(255, 164, 28, 0.55)
+    );
+}
+
+
+/* Crown rays awaken */
+
+.mmr-podium-card.rank-1:hover .podium-crown-rays {
+  opacity: 0.82;
+
+  animation-duration:
+    12s;
+}
+
+
+/* Crown itself */
+
+.mmr-podium-card.rank-1:hover .mmr-medal {
+  transform:
+    translateY(-2px)
+    scale(1.12);
+
+  filter:
+    drop-shadow(
+      0 0 7px rgba(255, 240, 155, 1)
+    )
+    drop-shadow(
+      0 0 18px rgba(255, 188, 38, 0.85)
+    );
+}
+
+
+/* Champion name */
+
+.mmr-podium-card.rank-1:hover .mmr-podium-name {
+  text-shadow:
+    0 0 7px rgba(255, 255, 255, 0.35),
+    0 0 15px rgba(255, 199, 59, 0.35);
+}
+
+
+/* =====================================================
+   #2 — SILVER FROST
+   CRYO CHARGE HOVER
+   ===================================================== */
+
+.mmr-podium-card.rank-2:hover {
+  transform:
+    translateY(-7px)
+    scale(1.035);
+
+  border-color:
+    rgba(196, 241, 255, 0.92);
+
+  box-shadow:
+    0 0 11px rgba(165, 231, 255, 0.42),
+    0 0 30px rgba(72, 184, 255, 0.22),
+    0 0 50px rgba(44, 111, 255, 0.08),
+    0 23px 48px rgba(0, 0, 0, 0.58),
+    inset 0 0 28px rgba(142, 225, 255, 0.10);
+
+  filter:
+    brightness(1.08);
+}
+
+
+/* Frost aura intensifies */
+
+.mmr-podium-card.rank-2:hover .podium-aura {
+  animation-duration:
+    2.2s;
+
+  filter:
+    blur(17px)
+    brightness(1.30);
+}
+
+
+/* Crystal orbit accelerates */
+
+.mmr-podium-card.rank-2:hover .podium-energy-ring {
+  animation-duration:
+    4.8s;
+
+  opacity: 1;
+
+  filter:
+    drop-shadow(
+      0 0 7px rgba(198, 242, 255, 1)
+    )
+    drop-shadow(
+      0 0 15px rgba(74, 190, 255, 0.55)
+    );
+}
+
+
+/* Snow particles energize */
+
+.mmr-podium-card.rank-2:hover .podium-particles {
+  animation-duration:
+    2.7s;
+
+  filter:
+    drop-shadow(
+      0 0 5px rgba(190, 241, 255, 1)
+    );
+}
+
+
+/* Silver medal */
+
+.mmr-podium-card.rank-2:hover .mmr-medal {
+  transform:
+    translateY(-2px)
+    scale(1.10);
+
+  filter:
+    drop-shadow(
+      0 0 7px rgba(224, 249, 255, 1)
+    )
+    drop-shadow(
+      0 0 17px rgba(80, 197, 255, 0.75)
+    );
+}
+
+
+/* =====================================================
+   #3 — BRONZE INFERNO
+   IGNITION HOVER
+   ===================================================== */
+
+.mmr-podium-card.rank-3:hover {
+  transform:
+    translateY(-7px)
+    scale(1.035);
+
+  border-color:
+    rgba(255, 151, 72, 0.95);
+
+  box-shadow:
+    0 0 11px rgba(255, 126, 48, 0.45),
+    0 0 30px rgba(255, 64, 20, 0.23),
+    0 0 52px rgba(188, 30, 8, 0.10),
+    0 23px 48px rgba(0, 0, 0, 0.58),
+    inset 0 -18px 30px rgba(255, 70, 20, 0.10);
+
+  filter:
+    brightness(1.09);
+}
+
+
+/* Inferno aura ignition */
+
+.mmr-podium-card.rank-3:hover .podium-aura {
+  animation-duration:
+    1.8s;
+
+  filter:
+    blur(18px)
+    brightness(1.35);
+}
+
+
+/* Molten ring accelerates */
+
+.mmr-podium-card.rank-3:hover .podium-energy-ring {
+  animation-duration:
+    4.2s;
+
+  opacity: 1;
+
+  filter:
+    drop-shadow(
+      0 0 8px rgba(255, 151, 54, 1)
+    )
+    drop-shadow(
+      0 0 17px rgba(255, 59, 17, 0.60)
+    );
+}
+
+
+/* Embers erupt faster */
+
+.mmr-podium-card.rank-3:hover .podium-embers {
+  animation-duration:
+    2.2s;
+
+  filter:
+    drop-shadow(
+      0 0 6px rgba(255, 103, 29, 1)
+    );
+}
+
+
+/* Molten core heats up */
+
+.mmr-podium-card.rank-3:hover .podium-particles {
+  animation-duration:
+    1.4s;
+
+  filter:
+    blur(7px)
+    brightness(1.45);
+}
+
+
+/* Bronze medal */
+
+.mmr-podium-card.rank-3:hover .mmr-medal {
+  transform:
+    translateY(-2px)
+    scale(1.10);
+
+  filter:
+    drop-shadow(
+      0 0 7px rgba(255, 201, 102, 1)
+    )
+    drop-shadow(
+      0 0 17px rgba(255, 69, 20, 0.78)
+    );
+}
+
+
+/* =====================================================
+   MEDAL TRANSITION
+   ===================================================== */
+
+.mmr-podium-card.rank-1 .mmr-medal,
+.mmr-podium-card.rank-2 .mmr-medal,
+.mmr-podium-card.rank-3 .mmr-medal {
+  transition:
+    transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.32s ease;
+}
+
+
+/* =====================================================
+   PLAYER LINK — ELEMENT SPECIFIC HOVER
+   ===================================================== */
+
+.mmr-podium-card.rank-1 .mmr-player-link:hover {
+  color: #ffe78c;
+
+  text-shadow:
+    0 0 7px rgba(255, 229, 123, 0.85),
+    0 0 16px rgba(255, 177, 35, 0.45);
+}
+
+
+.mmr-podium-card.rank-2 .mmr-player-link:hover {
+  color: #d8f6ff;
+
+  text-shadow:
+    0 0 7px rgba(193, 239, 255, 0.85),
+    0 0 16px rgba(70, 187, 255, 0.45);
+}
+
+
+.mmr-podium-card.rank-3 .mmr-player-link:hover {
+  color: #ffc184;
+
+  text-shadow:
+    0 0 7px rgba(255, 172, 90, 0.90),
+    0 0 16px rgba(255, 66, 20, 0.50);
+}
+
+
+/* =====================================================
+   ACCESSIBILITY — REDUCED MOTION
+   ===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .mmr-podium-card.rank-1,
+  .mmr-podium-card.rank-2,
+  .mmr-podium-card.rank-3,
+
+  .mmr-podium-card.rank-1 *,
+  .mmr-podium-card.rank-2 *,
+  .mmr-podium-card.rank-3 * {
+    animation-duration:
+      0.001ms !important;
+
+    animation-iteration-count:
+      1 !important;
+
+    transition-duration:
+      0.001ms !important;
+  }
+
+}
 </style>
 
 <link rel="stylesheet" href="style.css">
