@@ -2899,6 +2899,698 @@ body.mmr-profile-open {
   }
 
 }
+    /* =====================================================
+   DUNE FUTURE — TOP 3 RANK CHANGE CEREMONY
+   ===================================================== */
+
+
+/* =====================================================
+   #1 — NEW CHAMPION ASCENSION
+   ===================================================== */
+
+.mmr-podium-card.rank-1.top3-new-champion {
+  animation:
+    championAscension
+    1.25s
+    cubic-bezier(0.16, 1, 0.3, 1)
+    both;
+}
+
+
+/* GOLD SHOCKWAVE */
+
+.mmr-podium-card.rank-1.top3-new-champion::after {
+  content: "";
+
+  position: absolute;
+
+  width: 70px;
+  height: 70px;
+
+  left: 50%;
+  top: 50%;
+
+  transform:
+    translate(-50%, -50%)
+    scale(0.25);
+
+  border:
+    2px solid rgba(255, 226, 118, 0.95);
+
+  border-radius: 50%;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  z-index: 8;
+
+  box-shadow:
+    0 0 20px rgba(255, 208, 68, 0.75),
+    inset 0 0 15px rgba(255, 221, 105, 0.35);
+
+  animation:
+    championShockwave
+    1.25s ease-out
+    0.28s both;
+}
+
+
+/* CHAMPION AURA IGNITION */
+
+.mmr-podium-card.rank-1.top3-new-champion
+.podium-aura {
+  animation:
+    championAuraIgnition
+    1.8s ease-out both,
+    rank1AuraPulse
+    3.8s ease-in-out
+    1.8s infinite;
+}
+
+
+/* CROWN IGNITION */
+
+.mmr-podium-card.rank-1.top3-new-champion
+.mmr-medal {
+  animation:
+    championCrownIgnition
+    1.35s
+    cubic-bezier(0.16, 1, 0.3, 1)
+    both;
+}
+
+
+/* RAYS BURST */
+
+.mmr-podium-card.rank-1.top3-new-champion
+.podium-crown-rays {
+  animation:
+    championRaysBurst
+    1.7s ease-out both,
+    rank1RaysRotate
+    24s linear
+    1.7s infinite;
+}
+
+
+/* ENERGY RING */
+
+.mmr-podium-card.rank-1.top3-new-champion
+.podium-energy-ring {
+  animation:
+    championRingIgnition
+    1.45s ease-out both,
+    rank1EnergySpin
+    8s linear
+    1.45s infinite;
+}
+
+
+/* CONTENT REVEAL */
+
+.mmr-podium-card.rank-1.top3-new-champion
+.mmr-rank-label,
+
+.mmr-podium-card.rank-1.top3-new-champion
+.mmr-podium-name,
+
+.mmr-podium-card.rank-1.top3-new-champion
+.mmr-points,
+
+.mmr-podium-card.rank-1.top3-new-champion
+.podium-title {
+  animation:
+    championContentReveal
+    0.75s
+    cubic-bezier(0.16, 1, 0.3, 1)
+    both;
+}
+
+
+.mmr-podium-card.rank-1.top3-new-champion
+.mmr-rank-label {
+  animation-delay: 0.40s;
+}
+
+
+.mmr-podium-card.rank-1.top3-new-champion
+.mmr-podium-name {
+  animation-delay: 0.52s;
+}
+
+
+.mmr-podium-card.rank-1.top3-new-champion
+.mmr-points {
+  animation-delay: 0.64s;
+}
+
+
+.mmr-podium-card.rank-1.top3-new-champion
+.podium-title {
+  animation-delay: 0.78s;
+}
+
+
+/* =====================================================
+   #2 / #3 — PROMOTION BURST
+   ===================================================== */
+
+.mmr-podium-card.top3-promoted {
+  animation:
+    podiumPromotionBurst
+    1.05s
+    cubic-bezier(0.16, 1, 0.3, 1)
+    both;
+}
+
+
+.mmr-podium-card.rank-2.top3-promoted {
+  box-shadow:
+    0 0 14px rgba(188, 239, 255, 0.55),
+    0 0 38px rgba(69, 184, 255, 0.26),
+    0 22px 46px rgba(0, 0, 0, 0.55);
+}
+
+
+.mmr-podium-card.rank-3.top3-promoted {
+  box-shadow:
+    0 0 14px rgba(255, 153, 68, 0.55),
+    0 0 38px rgba(255, 64, 20, 0.25),
+    0 22px 46px rgba(0, 0, 0, 0.55);
+}
+
+
+/* PROMOTION RING BURST */
+
+.mmr-podium-card.top3-promoted
+.podium-energy-ring {
+  animation-duration:
+    2.6s;
+
+  opacity: 1;
+}
+
+
+/* =====================================================
+   NEW PLAYER ENTERS TOP 3
+   ===================================================== */
+
+.mmr-podium-card.top3-entered {
+  animation:
+    podiumArrival
+    1.15s
+    cubic-bezier(0.16, 1, 0.3, 1)
+    both;
+}
+
+
+.mmr-podium-card.top3-entered
+.podium-content {
+  animation:
+    podiumContentArrival
+    0.85s ease-out
+    0.28s both;
+}
+
+
+/* =====================================================
+   DEMOTION / RANK SHIFT
+   ===================================================== */
+
+.mmr-podium-card.top3-demoted {
+  animation:
+    podiumRankShift
+    0.95s
+    cubic-bezier(0.16, 1, 0.3, 1)
+    both;
+}
+
+
+/* =====================================================
+   CEREMONY KEYFRAMES
+   ===================================================== */
+
+
+/* -----------------------------
+   CHAMPION ASCENSION
+   ----------------------------- */
+
+@keyframes championAscension {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translateY(38px)
+      scale(0.82);
+
+    filter:
+      brightness(0.35)
+      saturate(0.4);
+  }
+
+
+  35% {
+    opacity: 1;
+
+    transform:
+      translateY(-18px)
+      scale(1.085);
+
+    filter:
+      brightness(1.45)
+      saturate(1.25);
+  }
+
+
+  65% {
+    transform:
+      translateY(-5px)
+      scale(1.025);
+
+    filter:
+      brightness(1.12)
+      saturate(1.08);
+  }
+
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translateY(-8px)
+      scale(1.035);
+
+    filter:
+      brightness(1)
+      saturate(1);
+  }
+
+}
+
+
+/* -----------------------------
+   GOLD SHOCKWAVE
+   ----------------------------- */
+
+@keyframes championShockwave {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0.2);
+  }
+
+
+  18% {
+    opacity: 1;
+  }
+
+
+  100% {
+    opacity: 0;
+
+    transform:
+      translate(-50%, -50%)
+      scale(4.8);
+
+    border-width: 1px;
+  }
+
+}
+
+
+/* -----------------------------
+   GOLD AURA IGNITION
+   ----------------------------- */
+
+@keyframes championAuraIgnition {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0.25);
+  }
+
+
+  40% {
+    opacity: 1;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.28);
+  }
+
+
+  100% {
+    opacity: 0.65;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1);
+  }
+
+}
+
+
+/* -----------------------------
+   CROWN IGNITION
+   ----------------------------- */
+
+@keyframes championCrownIgnition {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translateY(-28px)
+      scale(0.25)
+      rotate(-12deg);
+
+    filter:
+      brightness(3)
+      blur(5px);
+  }
+
+
+  42% {
+    opacity: 1;
+
+    transform:
+      translateY(3px)
+      scale(1.35)
+      rotate(4deg);
+
+    filter:
+      brightness(1.8)
+      blur(0);
+  }
+
+
+  68% {
+    transform:
+      translateY(-2px)
+      scale(0.94)
+      rotate(-2deg);
+  }
+
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1)
+      rotate(0deg);
+  }
+
+}
+
+
+/* -----------------------------
+   CHAMPION RAYS BURST
+   ----------------------------- */
+
+@keyframes championRaysBurst {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translate(-50%, -50%)
+      rotate(-25deg)
+      scale(0.25);
+  }
+
+
+  45% {
+    opacity: 1;
+
+    transform:
+      translate(-50%, -50%)
+      rotate(12deg)
+      scale(1.35);
+  }
+
+
+  100% {
+    opacity: 0.55;
+
+    transform:
+      translate(-50%, -50%)
+      rotate(25deg)
+      scale(1);
+  }
+
+}
+
+
+/* -----------------------------
+   CHAMPION RING IGNITION
+   ----------------------------- */
+
+@keyframes championRingIgnition {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translate(-50%, -50%)
+      rotate(-120deg)
+      scale(0.35);
+  }
+
+
+  50% {
+    opacity: 1;
+
+    transform:
+      translate(-50%, -50%)
+      rotate(35deg)
+      scale(1.16);
+  }
+
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translate(-50%, -50%)
+      rotate(90deg)
+      scale(1);
+  }
+
+}
+
+
+/* -----------------------------
+   CHAMPION TEXT REVEAL
+   ----------------------------- */
+
+@keyframes championContentReveal {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translateY(10px);
+
+    filter:
+      blur(5px);
+  }
+
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+
+    filter:
+      blur(0);
+  }
+
+}
+
+
+/* -----------------------------
+   PROMOTION BURST
+   ----------------------------- */
+
+@keyframes podiumPromotionBurst {
+
+  0% {
+    opacity: 0.45;
+
+    transform:
+      translateY(20px)
+      scale(0.91);
+
+    filter:
+      brightness(0.7);
+  }
+
+
+  45% {
+    opacity: 1;
+
+    transform:
+      translateY(-10px)
+      scale(1.07);
+
+    filter:
+      brightness(1.35);
+  }
+
+
+  72% {
+    transform:
+      translateY(3px)
+      scale(0.985);
+  }
+
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+
+    filter:
+      brightness(1);
+  }
+
+}
+
+
+/* -----------------------------
+   TOP 3 ARRIVAL
+   ----------------------------- */
+
+@keyframes podiumArrival {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translateY(45px)
+      scale(0.78);
+
+    filter:
+      blur(7px)
+      brightness(0.45);
+  }
+
+
+  48% {
+    opacity: 1;
+
+    transform:
+      translateY(-8px)
+      scale(1.055);
+
+    filter:
+      blur(0)
+      brightness(1.25);
+  }
+
+
+  75% {
+    transform:
+      translateY(3px)
+      scale(0.99);
+  }
+
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+
+    filter:
+      blur(0)
+      brightness(1);
+  }
+
+}
+
+
+@keyframes podiumContentArrival {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translateY(12px);
+
+    filter:
+      blur(4px);
+  }
+
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+
+    filter:
+      blur(0);
+  }
+
+}
+
+
+/* -----------------------------
+   DEMOTION SHIFT
+   ----------------------------- */
+
+@keyframes podiumRankShift {
+
+  0% {
+    opacity: 0.45;
+
+    transform:
+      translateY(-15px)
+      scale(1.05);
+
+    filter:
+      brightness(1.2);
+  }
+
+
+  45% {
+    opacity: 0.82;
+
+    transform:
+      translateY(8px)
+      scale(0.96);
+
+    filter:
+      brightness(0.75);
+  }
+
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+
+    filter:
+      brightness(1);
+  }
+
+}
 </style>
 
 <link rel="stylesheet" href="style.css">
