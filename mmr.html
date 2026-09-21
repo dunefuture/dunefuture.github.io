@@ -4173,6 +4173,239 @@ body.mmr-profile-open {
   }
 
 }
+    /* =====================================================
+   DUNE FUTURE — WINNING STREAK SYSTEM
+   ===================================================== */
+
+.mmr-win-streak {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 3px;
+
+  margin-left: 7px;
+
+  padding:
+    3px 6px;
+
+  vertical-align: middle;
+
+  border-radius: 5px;
+
+  font-size: 6px;
+  font-weight: 900;
+
+  line-height: 1;
+
+  letter-spacing: 0.08em;
+
+  white-space: nowrap;
+
+  text-transform: uppercase;
+}
+
+
+/* =====================================================
+   STANDARD — 2 TO 4 WINS
+   ===================================================== */
+
+.mmr-win-streak.streak-active {
+  border:
+    1px solid rgba(255, 133, 44, 0.25);
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 76, 20, 0.11),
+      rgba(255, 176, 55, 0.055)
+    );
+
+  color:
+    #ffb347;
+
+  box-shadow:
+    0 0 10px rgba(255, 91, 24, 0.08);
+}
+
+
+/* =====================================================
+   HOT — 5 TO 6 WINS
+   ===================================================== */
+
+.mmr-win-streak.streak-hot {
+  border:
+    1px solid rgba(255, 80, 28, 0.42);
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 47, 14, 0.18),
+      rgba(255, 146, 29, 0.09)
+    );
+
+  color:
+    #ff8a32;
+
+  box-shadow:
+    0 0 12px rgba(255, 61, 16, 0.18);
+}
+
+
+/* =====================================================
+   DOMINATING — 7+ WINS
+   ===================================================== */
+
+.mmr-win-streak.streak-dominating {
+  border:
+    1px solid rgba(255, 54, 29, 0.62);
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 24, 13, 0.24),
+      rgba(255, 126, 22, 0.13)
+    );
+
+  color:
+    #ff6a32;
+
+  box-shadow:
+    0 0 8px rgba(255, 42, 13, 0.28),
+    0 0 18px rgba(255, 96, 20, 0.12);
+}
+
+
+/* =====================================================
+   FIRE
+   ===================================================== */
+
+.mmr-streak-fire {
+  display: inline-block;
+
+  font-size: 8px;
+
+  transform-origin:
+    50% 80%;
+
+  animation:
+    mmrStreakFire
+    1.45s ease-in-out
+    infinite;
+}
+
+
+@keyframes mmrStreakFire {
+
+  0%,
+  100% {
+    transform:
+      translateY(0)
+      scale(1);
+
+    filter:
+      brightness(1);
+  }
+
+
+  50% {
+    transform:
+      translateY(-1px)
+      scale(1.13);
+
+    filter:
+      brightness(1.28);
+  }
+
+}
+
+
+/* =====================================================
+   STREAK NUMBER
+   ===================================================== */
+
+.mmr-streak-number {
+  font-size: 7px;
+  font-weight: 1000;
+
+  color: inherit;
+}
+
+
+.mmr-streak-label {
+  opacity: 0.72;
+
+  font-size: 5px;
+  font-weight: 900;
+}
+
+
+/* =====================================================
+   HOT STREAK FIRE
+   ===================================================== */
+
+.mmr-win-streak.streak-hot
+.mmr-streak-fire {
+  animation-duration:
+    0.95s;
+
+  filter:
+    drop-shadow(
+      0 0 4px
+      rgba(255, 72, 20, 0.55)
+    );
+}
+
+
+/* =====================================================
+   DOMINATING FIRE
+   ===================================================== */
+
+.mmr-win-streak.streak-dominating
+.mmr-streak-fire {
+  animation-duration:
+    0.65s;
+
+  filter:
+    drop-shadow(
+      0 0 5px
+      rgba(255, 52, 18, 0.75)
+    );
+}
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 700px) {
+
+  .mmr-streak-label {
+    display: none;
+  }
+
+
+  .mmr-win-streak {
+    margin-left: 4px;
+
+    padding:
+      2px 4px;
+  }
+
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+   ===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .mmr-streak-fire {
+    animation: none;
+  }
+
+}
 </style>
 
 <link rel="stylesheet" href="style.css">
@@ -4901,6 +5134,257 @@ const mmrMatches = [
   }
 
 ];
+  // =====================================================
+// WINNING STREAK ENGINE
+// =====================================================
+
+function getPlayerWinStreak(playerName) {
+
+  if (
+    !Array.isArray(mmrMatches) ||
+    mmrMatches.length === 0
+  ) {
+    return 0;
+  }
+
+
+  let streak = 0;
+
+
+  // mmrMatches:
+  // NEWEST → OLDEST
+  //
+  // Hanya membaca pertandingan
+  // yang melibatkan player tersebut.
+  //
+  // Kemenangan menambah streak.
+  // Kekalahan menghentikan streak.
+
+  for (const match of mmrMatches) {
+
+    const isWinner =
+      match.winner === playerName;
+
+    const isLoser =
+      match.loser === playerName;
+
+
+    // Pertandingan tidak melibatkan player
+    if (!isWinner && !isLoser) {
+      continue;
+    }
+
+
+    // Player menang
+    if (isWinner) {
+
+      streak++;
+      continue;
+
+    }
+
+
+    // Player kalah
+    if (isLoser) {
+      break;
+    }
+
+  }
+
+
+  return streak;
+}
+
+
+// =====================================================
+// WINNING STREAK BADGE
+// =====================================================
+
+function getWinStreakBadge(playerName) {
+
+  const streak =
+    getPlayerWinStreak(playerName);
+
+
+  // Badge hanya muncul mulai
+  // 2 kemenangan berturut-turut
+  if (streak < 2) {
+    return "";
+  }
+
+
+  let streakClass =
+    "streak-active";
+
+  let streakLabel =
+    "WIN STREAK";
+
+
+  // 5–6 consecutive wins
+  if (streak >= 5) {
+
+    streakClass =
+      "streak-hot";
+
+    streakLabel =
+      "HOT STREAK";
+
+  }
+
+
+  // 7+ consecutive wins
+  if (streak >= 7) {
+
+    streakClass =
+      "streak-dominating";
+
+    streakLabel =
+      "DOMINATING";
+
+  }
+
+
+  return `
+    <span class="mmr-win-streak ${streakClass}">
+
+      <span class="mmr-streak-fire">
+        🔥
+      </span>
+
+      <span class="mmr-streak-number">
+        ${streak}
+      </span>
+
+      <span class="mmr-streak-label">
+        ${streakLabel}
+      </span>
+
+    </span>
+  `;
+}
+  // =====================================================
+// WINNING STREAK ENGINE
+// =====================================================
+
+function getPlayerWinStreak(playerName) {
+
+  if (
+    !Array.isArray(mmrMatches) ||
+    mmrMatches.length === 0
+  ) {
+    return 0;
+  }
+
+
+  let streak = 0;
+
+
+  // mmrMatches tersusun:
+  // NEWEST → OLDEST
+  //
+  // Kita hanya membaca pertandingan
+  // yang melibatkan player tersebut.
+  // Begitu menemukan kekalahan terbaru,
+  // streak berhenti.
+
+  for (const match of mmrMatches) {
+
+    const isWinner =
+      match.winner === playerName;
+
+    const isLoser =
+      match.loser === playerName;
+
+
+    // Match tidak melibatkan player
+    if (!isWinner && !isLoser) {
+      continue;
+    }
+
+
+    // Player memenangkan match
+    if (isWinner) {
+
+      streak++;
+      continue;
+
+    }
+
+
+    // Player kalah.
+    // Winning streak selesai.
+    if (isLoser) {
+      break;
+    }
+
+  }
+
+
+  return streak;
+}
+  // =====================================================
+// WINNING STREAK BADGE
+// =====================================================
+
+function getWinStreakBadge(playerName) {
+
+  const streak =
+    getPlayerWinStreak(playerName);
+
+
+  // Badge baru muncul mulai 2 kemenangan beruntun
+  if (streak < 2) {
+    return "";
+  }
+
+
+  let streakClass =
+    "streak-active";
+
+  let streakLabel =
+    "WIN STREAK";
+
+
+  // 5+ wins
+  if (streak >= 5) {
+
+    streakClass =
+      "streak-hot";
+
+    streakLabel =
+      "HOT STREAK";
+
+  }
+
+
+  // 7+ wins
+  if (streak >= 7) {
+
+    streakClass =
+      "streak-dominating";
+
+    streakLabel =
+      "DOMINATING";
+
+  }
+
+
+  return `
+    <span class="mmr-win-streak ${streakClass}">
+      <span class="mmr-streak-fire">
+        🔥
+      </span>
+
+      <span class="mmr-streak-number">
+        ${streak}
+      </span>
+
+      <span class="mmr-streak-label">
+        ${streakLabel}
+      </span>
+    </span>
+  `;
+}
   // =====================================================
 // AUTOMATIC LAST UPDATED DATE
 // =====================================================
@@ -5916,8 +6400,9 @@ if (rankMovement.difference < 0) {
           </div>
 
 
-         <div class="${playerClass}" ${clickAction}>
+        <div class="${playerClass}" ${clickAction}>
   ${player.name}
+  ${getWinStreakBadge(player.name)}
   ${movementHTML}
 </div>
 
