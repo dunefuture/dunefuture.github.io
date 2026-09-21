@@ -5194,7 +5194,72 @@ function getPlayerWinStreak(playerName) {
 
   return streak;
 }
+// =====================================================
+// WINNING STREAK BADGE
+// =====================================================
 
+function getWinStreakBadge(playerName) {
+
+  const streak =
+    getPlayerWinStreak(playerName);
+
+
+  // Badge hanya muncul mulai
+  // 2 kemenangan berturut-turut
+  if (streak < 2) {
+    return "";
+  }
+
+
+  let streakClass =
+    "streak-active";
+
+  let streakLabel =
+    "WIN STREAK";
+
+
+  // 5–6 consecutive wins
+  if (streak >= 5) {
+
+    streakClass =
+      "streak-hot";
+
+    streakLabel =
+      "HOT STREAK";
+
+  }
+
+
+  // 7+ consecutive wins
+  if (streak >= 7) {
+
+    streakClass =
+      "streak-dominating";
+
+    streakLabel =
+      "DOMINATING";
+
+  }
+
+
+  return `
+    <span class="mmr-win-streak ${streakClass}">
+
+      <span class="mmr-streak-fire">
+        🔥
+      </span>
+
+      <span class="mmr-streak-number">
+        ${streak}
+      </span>
+
+      <span class="mmr-streak-label">
+        ${streakLabel}
+      </span>
+
+    </span>
+  `;
+}
 
 // =====================================================
 // WINNING STREAK BADGE
