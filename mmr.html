@@ -6172,6 +6172,315 @@ body.mmr-profile-open {
   }
 
 }
+    /* =====================================================
+   PREMIUM PROFILE COMPETITIVE TIER
+===================================================== */
+
+.mmr-profile-tier-slot {
+  position: relative;
+}
+
+.mmr-profile-tier {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 110px;
+  padding: 7px 15px;
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 7px;
+
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 2px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,0.08),
+      rgba(255,255,255,0.015)
+    );
+
+  overflow: hidden;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    filter 0.3s ease;
+}
+
+
+/* Moving energy reflection */
+
+.mmr-profile-tier::before {
+  content: "";
+
+  position: absolute;
+  top: -70%;
+  left: -60%;
+
+  width: 45%;
+  height: 240%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,0.45),
+      transparent
+    );
+
+  transform: rotate(25deg);
+
+  animation:
+    profileTierSweep 4.5s ease-in-out infinite;
+
+  pointer-events: none;
+}
+
+
+/* =====================================================
+   MASTER
+===================================================== */
+
+.mmr-profile-tier.master {
+  color: #fff4a8;
+
+  border-color:
+    rgba(255, 215, 70, 0.75);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 190, 0, 0.22),
+      rgba(255, 110, 0, 0.08)
+    );
+
+  text-shadow:
+    0 0 6px #ffd84a,
+    0 0 15px rgba(255, 190, 0, 0.85);
+
+  box-shadow:
+    inset 0 0 12px rgba(255, 220, 80, 0.12),
+    0 0 10px rgba(255, 190, 0, 0.35),
+    0 0 24px rgba(255, 150, 0, 0.14);
+
+  animation:
+    profileMasterPulse 2.8s ease-in-out infinite;
+}
+/* =====================================================
+   DIAMOND
+===================================================== */
+
+.mmr-profile-tier.diamond {
+  color: #c9fbff;
+
+  border-color:
+    rgba(90, 235, 255, 0.75);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(60, 215, 255, 0.18),
+      rgba(120, 110, 255, 0.08)
+    );
+
+  text-shadow:
+    0 0 6px #6eefff,
+    0 0 15px rgba(70, 220, 255, 0.8);
+
+  box-shadow:
+    inset 0 0 12px rgba(120, 240, 255, 0.12),
+    0 0 10px rgba(60, 220, 255, 0.32),
+    0 0 24px rgba(80, 170, 255, 0.14);
+}
+
+
+/* =====================================================
+   PLATINUM
+===================================================== */
+
+.mmr-profile-tier.platinum {
+  color: #dfc9ff;
+
+  border-color:
+    rgba(190, 120, 255, 0.75);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(170, 80, 255, 0.20),
+      rgba(80, 110, 255, 0.08)
+    );
+
+  text-shadow:
+    0 0 6px #bd7cff,
+    0 0 15px rgba(170, 70, 255, 0.8);
+
+  box-shadow:
+    inset 0 0 12px rgba(200, 130, 255, 0.12),
+    0 0 10px rgba(170, 70, 255, 0.32),
+    0 0 24px rgba(120, 60, 255, 0.14);
+}
+
+
+/* =====================================================
+   GOLD
+===================================================== */
+
+.mmr-profile-tier.gold {
+  color: #ffe28a;
+
+  border-color:
+    rgba(255, 190, 60, 0.7);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 165, 30, 0.18),
+      rgba(170, 90, 0, 0.08)
+    );
+
+  text-shadow:
+    0 0 6px rgba(255, 195, 70, 0.9);
+
+  box-shadow:
+    inset 0 0 10px rgba(255, 190, 70, 0.10),
+    0 0 12px rgba(255, 160, 40, 0.25);
+}
+
+
+/* =====================================================
+   SILVER
+===================================================== */
+
+.mmr-profile-tier.silver {
+  color: #e5edf6;
+
+  border-color:
+    rgba(190, 210, 230, 0.6);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(190, 210, 230, 0.15),
+      rgba(100, 120, 145, 0.06)
+    );
+
+  text-shadow:
+    0 0 6px rgba(210, 230, 255, 0.7);
+
+  box-shadow:
+    inset 0 0 10px rgba(220, 235, 255, 0.08),
+    0 0 10px rgba(170, 200, 230, 0.18);
+}
+
+
+/* =====================================================
+   BRONZE
+===================================================== */
+
+.mmr-profile-tier.bronze {
+  color: #e6a36b;
+
+  border-color:
+    rgba(205, 125, 70, 0.65);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(190, 95, 40, 0.17),
+      rgba(100, 45, 20, 0.07)
+    );
+
+  text-shadow:
+    0 0 6px rgba(220, 120, 65, 0.65);
+
+  box-shadow:
+    inset 0 0 10px rgba(220, 130, 70, 0.08),
+    0 0 10px rgba(190, 90, 45, 0.18);
+}
+
+
+/* =====================================================
+   HOVER ENERGY
+===================================================== */
+
+.mmr-profile-tier:hover {
+  transform:
+    translateY(-2px)
+    scale(1.045);
+
+  filter:
+    brightness(1.18);
+}
+
+
+/* =====================================================
+   ANIMATIONS
+===================================================== */
+
+@keyframes profileTierSweep {
+
+  0%,
+  55% {
+    left: -60%;
+    opacity: 0;
+  }
+
+  65% {
+    opacity: 0.8;
+  }
+
+  85% {
+    left: 130%;
+    opacity: 0.35;
+  }
+
+  100% {
+    left: 130%;
+    opacity: 0;
+  }
+
+}
+
+
+@keyframes profileMasterPulse {
+
+  0%,
+  100% {
+    box-shadow:
+      inset 0 0 12px rgba(255, 220, 80, 0.12),
+      0 0 10px rgba(255, 190, 0, 0.35),
+      0 0 24px rgba(255, 150, 0, 0.14);
+  }
+
+  50% {
+    box-shadow:
+      inset 0 0 18px rgba(255, 230, 100, 0.20),
+      0 0 17px rgba(255, 200, 40, 0.55),
+      0 0 34px rgba(255, 150, 0, 0.22);
+  }
+
+}
+
+
+
+/* =====================================================
+   ACCESSIBILITY
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .mmr-profile-tier,
+  .mmr-profile-tier::before {
+    animation: none !important;
+    transition: none !important;
+  }
+
+}
 </style>
 
 <link rel="stylesheet" href="style.css">
@@ -6680,7 +6989,20 @@ TOP 20 · LAST UPDATED <span id="mmrLastUpdated">—</span>
         <span class="mmr-profile-label">CURRENT RANK</span>
         <strong id="mmrProfileRank">—</strong>
       </div>
+<div class="mmr-profile-tier-slot">
 
+  <span class="mmr-profile-label">
+    COMPETITIVE TIER
+  </span>
+
+  <strong
+    id="mmrProfileTier"
+    class="mmr-profile-tier"
+  >
+    —
+  </strong>
+
+</div>
     </div>
 <!-- ========================================= -->
 <!-- COMPETITIVE PLAYER STATS -->
@@ -8736,7 +9058,51 @@ const currentRating =
     : 0;
 
 
- const latestChange =
+// ===============================================
+// PLAYER COMPETITIVE TIER
+// ===============================================
+
+let competitiveTier = "";
+let competitiveTierClass = "";
+
+if (currentRating >= 900) {
+
+  competitiveTier = "MASTER";
+  competitiveTierClass = "master";
+
+} else if (currentRating >= 750) {
+
+  competitiveTier = "DIAMOND";
+  competitiveTierClass = "diamond";
+
+} else if (currentRating >= 600) {
+
+  competitiveTier = "PLATINUM";
+  competitiveTierClass = "platinum";
+
+} else if (currentRating >= 450) {
+
+  competitiveTier = "GOLD";
+  competitiveTierClass = "gold";
+
+} else if (currentRating >= 250) {
+
+  competitiveTier = "SILVER";
+  competitiveTierClass = "silver";
+
+} else {
+
+  competitiveTier = "BRONZE";
+  competitiveTierClass = "bronze";
+
+}
+
+
+// ===============================================
+// LATEST MMR CHANGE
+// ===============================================
+
+const latestChange =
   latestMatch
     ? latestMatch.change
     : 0;
@@ -8761,7 +9127,22 @@ document.getElementById("mmrProfileRating").textContent =
   leaderboardPlayer
     ? `#${leaderboardPlayer.rank}`
     : "—";
+// ===============================================
+// COMPETITIVE TIER PROFILE UI
+// ===============================================
 
+const profileTierElement =
+  document.getElementById("mmrProfileTier");
+
+if (profileTierElement) {
+
+  profileTierElement.textContent =
+    competitiveTier;
+
+  profileTierElement.className =
+    `mmr-profile-tier ${competitiveTierClass}`;
+
+}
 document.getElementById("mmrProfilePrevious").textContent =
   previousRating;
 
