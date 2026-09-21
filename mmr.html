@@ -5102,6 +5102,546 @@ body.mmr-profile-open {
   }
 
 }
+    /* =====================================================
+   TOP 3 RANK CHANGE EVENT SYSTEM
+   One-time cinematic effects
+===================================================== */
+
+.podium-change-burst {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+  width: 80px;
+  height: 80px;
+
+  border-radius: 50%;
+
+  transform:
+    translate(-50%, -50%)
+    scale(0);
+
+  pointer-events: none;
+  z-index: 4;
+
+  opacity: 0;
+}
+
+
+/* =====================================================
+   #1 — CHAMPION ASCENSION
+===================================================== */
+
+.top3-new-champion {
+  animation:
+    championAscensionCard
+    1.8s
+    cubic-bezier(.16, 1, .3, 1)
+    both;
+}
+
+.top3-new-champion .podium-change-burst {
+  opacity: 1;
+
+  border:
+    2px solid
+    rgba(255, 220, 70, 0.95);
+
+  box-shadow:
+    0 0 18px rgba(255, 225, 80, 1),
+    0 0 45px rgba(255, 190, 20, 0.85),
+    0 0 90px rgba(255, 150, 0, 0.55);
+
+  animation:
+    championShockwave
+    1.55s
+    cubic-bezier(.1, .75, .2, 1)
+    forwards;
+}
+
+.top3-new-champion .mmr-medal {
+  animation:
+    championCrownIgnition
+    1.7s
+    cubic-bezier(.16, 1, .3, 1)
+    both;
+}
+
+.top3-new-champion .podium-title {
+  animation:
+    championTitleReveal
+    1.7s
+    ease-out
+    both;
+}
+
+.top3-new-champion .podium-energy-ring {
+  animation:
+    rank1EnergySpin 1.4s linear 2,
+    championRingIgnition 1.8s ease-out 1;
+}
+
+.top3-new-champion .podium-crown-rays {
+  animation:
+    rank1RaysRotate 6s linear infinite,
+    championRayIgnition 1.8s ease-out 1;
+}
+
+
+@keyframes championAscensionCard {
+
+  0% {
+    opacity: 0;
+    transform:
+      translateY(28px)
+      scale(.84);
+
+    filter:
+      brightness(.55)
+      saturate(.65);
+  }
+
+  35% {
+    opacity: 1;
+
+    transform:
+      translateY(-18px)
+      scale(1.09);
+
+    filter:
+      brightness(1.75)
+      saturate(1.45);
+  }
+
+  58% {
+    transform:
+      translateY(-5px)
+      scale(1.055);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translateY(-8px)
+      scale(1.035);
+
+    filter:
+      brightness(1)
+      saturate(1);
+  }
+
+}
+
+
+@keyframes championShockwave {
+
+  0% {
+    opacity: 0;
+    transform:
+      translate(-50%, -50%)
+      scale(.15);
+  }
+
+  18% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: .55;
+  }
+
+  100% {
+    opacity: 0;
+    transform:
+      translate(-50%, -50%)
+      scale(6.2);
+  }
+
+}
+
+
+@keyframes championCrownIgnition {
+
+  0% {
+    opacity: 0;
+    transform:
+      translateY(16px)
+      scale(.35)
+      rotate(-12deg);
+
+    filter:
+      brightness(.5);
+  }
+
+  38% {
+    opacity: 1;
+
+    transform:
+      translateY(-8px)
+      scale(1.35)
+      rotate(5deg);
+
+    filter:
+      brightness(2.2)
+      drop-shadow(
+        0 0 18px
+        rgba(255, 220, 60, 1)
+      );
+  }
+
+  62% {
+    transform:
+      translateY(2px)
+      scale(.96)
+      rotate(-2deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform:
+      translateY(0)
+      scale(1)
+      rotate(0);
+
+    filter:
+      brightness(1)
+      drop-shadow(
+        0 0 8px
+        rgba(255, 205, 50, .65)
+      );
+  }
+
+}
+
+
+@keyframes championTitleReveal {
+
+  0%,
+  32% {
+    opacity: 0;
+    letter-spacing: .35em;
+    filter: blur(5px);
+  }
+
+  65% {
+    opacity: 1;
+    letter-spacing: .22em;
+    filter: blur(0);
+  }
+
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+
+}
+
+
+@keyframes championRingIgnition {
+
+  0% {
+    opacity: 0;
+    filter:
+      brightness(.5)
+      blur(4px);
+  }
+
+  35% {
+    opacity: 1;
+    filter:
+      brightness(2.4)
+      blur(0);
+  }
+
+  100% {
+    opacity: 1;
+    filter:
+      brightness(1);
+  }
+
+}
+
+
+@keyframes championRayIgnition {
+
+  0% {
+    opacity: 0;
+    filter: brightness(.4);
+  }
+
+  42% {
+    opacity: 1;
+    filter: brightness(2);
+  }
+
+  100% {
+    filter: brightness(1);
+  }
+
+}
+
+
+/* =====================================================
+   PROMOTION BURST
+   #3 → #2 etc.
+===================================================== */
+
+.top3-promoted {
+  animation:
+    podiumPromotion
+    1.35s
+    cubic-bezier(.16, 1, .3, 1)
+    both;
+}
+
+.top3-promoted .podium-change-burst {
+  opacity: 1;
+
+  border:
+    2px solid
+    rgba(110, 225, 255, .9);
+
+  box-shadow:
+    0 0 22px rgba(90, 220, 255, .9),
+    0 0 60px rgba(70, 170, 255, .55);
+
+  animation:
+    promotionShockwave
+    1.25s
+    ease-out
+    forwards;
+}
+
+
+@keyframes podiumPromotion {
+
+  0% {
+    opacity: .25;
+    transform:
+      translateY(24px)
+      scale(.9);
+
+    filter:
+      brightness(.65);
+  }
+
+  45% {
+    opacity: 1;
+    transform:
+      translateY(-10px)
+      scale(1.055);
+
+    filter:
+      brightness(1.65);
+  }
+
+  100% {
+    opacity: 1;
+    transform:
+      translateY(0)
+      scale(1);
+
+    filter:
+      brightness(1);
+  }
+
+}
+
+
+@keyframes promotionShockwave {
+
+  0% {
+    opacity: 0;
+    transform:
+      translate(-50%, -50%)
+      scale(.2);
+  }
+
+  25% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform:
+      translate(-50%, -50%)
+      scale(4.4);
+  }
+
+}
+
+
+/* =====================================================
+   PODIUM ARRIVAL
+   Player enters Top 3
+===================================================== */
+
+.top3-entered {
+  animation:
+    podiumArrival
+    1.55s
+    cubic-bezier(.16, 1, .3, 1)
+    both;
+}
+
+.top3-entered .podium-change-burst {
+  opacity: 1;
+
+  border:
+    2px solid
+    rgba(255, 125, 45, .9);
+
+  box-shadow:
+    0 0 24px rgba(255, 110, 35, .9),
+    0 0 65px rgba(255, 65, 15, .55);
+
+  animation:
+    podiumArrivalBurst
+    1.4s
+    ease-out
+    forwards;
+}
+
+
+@keyframes podiumArrival {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translateY(42px)
+      scale(.72);
+
+    filter:
+      blur(8px)
+      brightness(.55);
+  }
+
+  45% {
+    opacity: 1;
+
+    transform:
+      translateY(-8px)
+      scale(1.06);
+
+    filter:
+      blur(0)
+      brightness(1.55);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+
+    filter:
+      blur(0)
+      brightness(1);
+  }
+
+}
+
+
+@keyframes podiumArrivalBurst {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translate(-50%, -50%)
+      scale(.1);
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+
+    transform:
+      translate(-50%, -50%)
+      scale(4.8);
+  }
+
+}
+
+
+/* =====================================================
+   DEMOTION / RANK SHIFT
+===================================================== */
+
+.top3-demoted {
+  animation:
+    podiumRankShift
+    1.15s
+    cubic-bezier(.2, .8, .3, 1)
+    both;
+}
+
+
+@keyframes podiumRankShift {
+
+  0% {
+    opacity: .4;
+
+    transform:
+      translateY(-18px)
+      scale(1.035);
+
+    filter:
+      brightness(1.35);
+  }
+
+  45% {
+    opacity: .8;
+
+    transform:
+      translateY(7px)
+      scale(.965);
+
+    filter:
+      brightness(.78);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+
+    filter:
+      brightness(1);
+  }
+
+}
+
+
+/* =====================================================
+   ACCESSIBILITY
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .top3-new-champion,
+  .top3-promoted,
+  .top3-entered,
+  .top3-demoted,
+  .podium-change-burst {
+
+    animation-duration:
+      0.01ms !important;
+
+    animation-iteration-count:
+      1 !important;
+
+  }
+
+}
 </style>
 
 <link rel="stylesheet" href="style.css">
@@ -8256,7 +8796,22 @@ function applyTop3ChangeEffects(changes) {
 
     card.dataset.currentRank =
       change.newRank;
+// =================================================
+// CREATE ONE-TIME ENERGY BURST
+// =================================================
 
+const burst =
+  document.createElement("div");
+
+burst.className =
+  "podium-change-burst";
+
+burst.setAttribute(
+  "aria-hidden",
+  "true"
+);
+
+card.appendChild(burst);
 
     // =================================================
     // SMALL STAGGER
