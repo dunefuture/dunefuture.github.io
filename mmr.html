@@ -3644,7 +3644,7 @@ body.mmr-profile-open {
         </div>
 
         <div class="mmr-updated">
-TOP 20 · LAST UPDATED 19 SEPTEMBER 2026
+TOP 20 · LAST UPDATED <span id="mmrLastUpdated">—</span>
         </div>
 
       </div>
@@ -4286,6 +4286,38 @@ const mmrMatches = [
   }
 
 ];
+  // =====================================================
+// AUTOMATIC LAST UPDATED DATE
+// =====================================================
+
+function renderMMRLastUpdated() {
+
+  const element =
+    document.getElementById(
+      "mmrLastUpdated"
+    );
+
+  if (!element) {
+    return;
+  }
+
+  if (
+    !Array.isArray(mmrMatches) ||
+    mmrMatches.length === 0
+  ) {
+
+    element.textContent = "—";
+    return;
+
+  }
+
+  const latestMatch =
+    mmrMatches[0];
+
+  element.textContent =
+    latestMatch.date.toUpperCase();
+
+}
   // =====================================================
 // AUTOMATIC CURRENT MMR CALCULATION
 // =====================================================
@@ -5889,6 +5921,8 @@ applyTop3ChangeEffects(
 );
 
 renderMMRLeaderboard();
+
+renderMMRLastUpdated();
 
 </script>
 
