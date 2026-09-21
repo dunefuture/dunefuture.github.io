@@ -5642,6 +5642,536 @@ body.mmr-profile-open {
   }
 
 }
+    /* =====================================================
+   MMR TIER VISUAL ENGINE
+   MASTER / DIAMOND / PLATINUM / GOLD / SILVER / BRONZE
+   ===================================================== */
+
+/* ---------- COMMON TIER ROW ---------- */
+
+.mmr-row.tier-master,
+.mmr-row.tier-diamond,
+.mmr-row.tier-platinum,
+.mmr-row.tier-gold,
+.mmr-row.tier-silver,
+.mmr-row.tier-bronze {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+
+  transition:
+    transform 0.28s ease,
+    border-color 0.28s ease,
+    box-shadow 0.28s ease,
+    background 0.28s ease;
+}
+
+
+/* =====================================================
+   MASTER
+   Supreme Purple Energy
+   ===================================================== */
+
+.mmr-row.tier-master {
+  border-color: rgba(230, 55, 255, 0.58);
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(105, 12, 135, 0.22),
+      rgba(35, 8, 48, 0.32) 48%,
+      rgba(180, 25, 210, 0.10)
+    );
+
+  box-shadow:
+    inset 3px 0 0 rgba(244, 62, 255, 0.95),
+    inset 0 0 22px rgba(184, 38, 255, 0.06),
+    0 0 12px rgba(190, 35, 255, 0.08);
+}
+
+.mmr-row.tier-master .mmr-rank,
+.mmr-row.tier-master .mmr-tier {
+  color: #f14cff;
+  text-shadow:
+    0 0 8px rgba(241, 76, 255, 0.72);
+}
+
+.mmr-row.tier-master:hover {
+  transform: translateX(5px);
+
+  border-color: rgba(240, 78, 255, 0.9);
+
+  box-shadow:
+    inset 4px 0 0 #f14cff,
+    inset 0 0 28px rgba(206, 50, 255, 0.12),
+    0 0 18px rgba(214, 52, 255, 0.16);
+}
+
+
+/* =====================================================
+   DIAMOND
+   Cyan Crystal Energy
+   ===================================================== */
+
+.mmr-row.tier-diamond {
+  border-color: rgba(71, 224, 255, 0.48);
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(23, 119, 155, 0.18),
+      rgba(10, 29, 42, 0.30) 48%,
+      rgba(58, 208, 255, 0.08)
+    );
+
+  box-shadow:
+    inset 3px 0 0 rgba(88, 225, 255, 0.92),
+    inset 0 0 20px rgba(74, 219, 255, 0.05);
+}
+
+.mmr-row.tier-diamond .mmr-rank,
+.mmr-row.tier-diamond .mmr-tier {
+  color: #6ee7ff;
+  text-shadow:
+    0 0 8px rgba(75, 220, 255, 0.65);
+}
+
+.mmr-row.tier-diamond:hover {
+  transform: translateX(5px);
+
+  border-color: rgba(105, 235, 255, 0.88);
+
+  box-shadow:
+    inset 4px 0 0 #6ee7ff,
+    inset 0 0 27px rgba(68, 218, 255, 0.11),
+    0 0 16px rgba(68, 218, 255, 0.14);
+}
+
+
+/* =====================================================
+   PLATINUM
+   Cold Metallic Frost
+   ===================================================== */
+
+.mmr-row.tier-platinum {
+  border-color: rgba(192, 216, 231, 0.42);
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(112, 142, 160, 0.16),
+      rgba(23, 30, 38, 0.30) 48%,
+      rgba(185, 215, 230, 0.07)
+    );
+
+  box-shadow:
+    inset 3px 0 0 rgba(201, 225, 238, 0.85),
+    inset 0 0 18px rgba(190, 220, 235, 0.04);
+}
+
+.mmr-row.tier-platinum .mmr-rank,
+.mmr-row.tier-platinum .mmr-tier {
+  color: #d3e5ee;
+  text-shadow:
+    0 0 7px rgba(194, 224, 238, 0.5);
+}
+
+.mmr-row.tier-platinum:hover {
+  transform: translateX(5px);
+
+  border-color: rgba(213, 235, 245, 0.8);
+
+  box-shadow:
+    inset 4px 0 0 #d5edf7,
+    inset 0 0 24px rgba(193, 224, 239, 0.09),
+    0 0 14px rgba(190, 221, 235, 0.11);
+}
+
+
+/* =====================================================
+   GOLD
+   Warm Solar Energy
+   ===================================================== */
+
+.mmr-row.tier-gold {
+  border-color: rgba(255, 190, 45, 0.44);
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(142, 91, 10, 0.18),
+      rgba(43, 30, 10, 0.28) 48%,
+      rgba(255, 183, 31, 0.07)
+    );
+
+  box-shadow:
+    inset 3px 0 0 rgba(255, 190, 45, 0.9),
+    inset 0 0 18px rgba(255, 183, 30, 0.04);
+}
+
+.mmr-row.tier-gold .mmr-rank,
+.mmr-row.tier-gold .mmr-tier {
+  color: #ffc64a;
+  text-shadow:
+    0 0 7px rgba(255, 188, 48, 0.52);
+}
+
+.mmr-row.tier-gold:hover {
+  transform: translateX(5px);
+
+  border-color: rgba(255, 204, 85, 0.84);
+
+  box-shadow:
+    inset 4px 0 0 #ffc64a,
+    inset 0 0 24px rgba(255, 184, 37, 0.09),
+    0 0 14px rgba(255, 184, 37, 0.12);
+}
+
+
+/* =====================================================
+   SILVER
+   Lunar Metallic
+   ===================================================== */
+
+.mmr-row.tier-silver {
+  border-color: rgba(177, 188, 202, 0.36);
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(100, 111, 126, 0.14),
+      rgba(27, 30, 36, 0.28) 48%,
+      rgba(183, 195, 209, 0.05)
+    );
+
+  box-shadow:
+    inset 3px 0 0 rgba(185, 197, 211, 0.76);
+}
+
+.mmr-row.tier-silver .mmr-rank,
+.mmr-row.tier-silver .mmr-tier {
+  color: #c4ccd6;
+  text-shadow:
+    0 0 6px rgba(194, 205, 218, 0.4);
+}
+
+.mmr-row.tier-silver:hover {
+  transform: translateX(5px);
+
+  border-color: rgba(207, 216, 227, 0.72);
+
+  box-shadow:
+    inset 4px 0 0 #ccd5df,
+    inset 0 0 21px rgba(195, 205, 219, 0.07),
+    0 0 12px rgba(195, 205, 219, 0.09);
+}
+
+
+/* =====================================================
+   BRONZE
+   Subtle Ember Metal
+   ===================================================== */
+
+.mmr-row.tier-bronze {
+  border-color: rgba(198, 116, 62, 0.36);
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(108, 54, 22, 0.15),
+      rgba(39, 24, 17, 0.27) 48%,
+      rgba(197, 102, 43, 0.05)
+    );
+
+  box-shadow:
+    inset 3px 0 0 rgba(202, 117, 62, 0.76);
+}
+
+.mmr-row.tier-bronze .mmr-rank,
+.mmr-row.tier-bronze .mmr-tier {
+  color: #d78a57;
+  text-shadow:
+    0 0 6px rgba(206, 119, 65, 0.38);
+}
+
+.mmr-row.tier-bronze:hover {
+  transform: translateX(5px);
+
+  border-color: rgba(221, 139, 83, 0.7);
+
+  box-shadow:
+    inset 4px 0 0 #d98b58,
+    inset 0 0 20px rgba(211, 113, 54, 0.07),
+    0 0 11px rgba(211, 113, 54, 0.08);
+}
+
+
+/* =====================================================
+   TIER LABEL
+   ===================================================== */
+
+.mmr-row .mmr-tier {
+  font-weight: 800;
+  letter-spacing: 1.2px;
+
+  transition:
+    color 0.28s ease,
+    text-shadow 0.28s ease;
+}
+
+
+/* =====================================================
+   PLAYER NAME
+   Keep readable while tier color remains secondary
+   ===================================================== */
+
+.mmr-row.tier-master .mmr-name,
+.mmr-row.tier-diamond .mmr-name,
+.mmr-row.tier-platinum .mmr-name,
+.mmr-row.tier-gold .mmr-name,
+.mmr-row.tier-silver .mmr-name,
+.mmr-row.tier-bronze .mmr-name {
+  position: relative;
+  z-index: 2;
+}
+
+/* =====================================================
+   COMPETITIVE TIER VISUAL SYSTEM
+   MASTER / DIAMOND / PLATINUM / GOLD / SILVER / BRONZE
+   ===================================================== */
+
+.mmr-row.master,
+.mmr-row.diamond,
+.mmr-row.platinum,
+.mmr-row.gold,
+.mmr-row.silver,
+.mmr-row.bronze {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    transform 0.28s ease,
+    border-color 0.28s ease,
+    box-shadow 0.28s ease,
+    background 0.28s ease;
+}
+
+
+/* =====================================================
+   MASTER — MAGENTA ENERGY
+   ===================================================== */
+
+.mmr-row.master {
+  border-color: rgba(255, 45, 220, 0.48);
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 0, 190, 0.11),
+      rgba(255, 0, 190, 0.025) 42%,
+      rgba(10, 7, 18, 0.92)
+    );
+  box-shadow:
+    inset 3px 0 0 rgba(255, 45, 220, 0.95),
+    0 0 18px rgba(255, 0, 190, 0.08);
+}
+
+.mmr-row.master .mmr-tier {
+  color: #ff45df;
+  text-shadow:
+    0 0 8px rgba(255, 69, 223, 0.75);
+}
+
+
+/* =====================================================
+   DIAMOND — CYAN CRYSTAL
+   ===================================================== */
+
+.mmr-row.diamond {
+  border-color: rgba(88, 224, 255, 0.42);
+  background:
+    linear-gradient(
+      90deg,
+      rgba(64, 210, 255, 0.10),
+      rgba(64, 210, 255, 0.02) 42%,
+      rgba(8, 10, 18, 0.92)
+    );
+  box-shadow:
+    inset 3px 0 0 rgba(88, 224, 255, 0.9),
+    0 0 18px rgba(88, 224, 255, 0.07);
+}
+
+.mmr-row.diamond .mmr-tier {
+  color: #75e8ff;
+  text-shadow:
+    0 0 8px rgba(117, 232, 255, 0.7);
+}
+
+
+/* =====================================================
+   PLATINUM — VIOLET FUTURE
+   ===================================================== */
+
+.mmr-row.platinum {
+  border-color: rgba(181, 105, 255, 0.40);
+  background:
+    linear-gradient(
+      90deg,
+      rgba(153, 73, 255, 0.10),
+      rgba(153, 73, 255, 0.02) 42%,
+      rgba(10, 8, 18, 0.92)
+    );
+  box-shadow:
+    inset 3px 0 0 rgba(181, 105, 255, 0.88),
+    0 0 18px rgba(153, 73, 255, 0.07);
+}
+
+.mmr-row.platinum .mmr-tier {
+  color: #c38aff;
+  text-shadow:
+    0 0 8px rgba(195, 138, 255, 0.65);
+}
+
+
+/* =====================================================
+   GOLD — GOLDEN ENERGY
+   ===================================================== */
+
+.mmr-row.gold {
+  border-color: rgba(255, 196, 61, 0.40);
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 181, 38, 0.10),
+      rgba(255, 181, 38, 0.02) 42%,
+      rgba(13, 10, 7, 0.92)
+    );
+  box-shadow:
+    inset 3px 0 0 rgba(255, 196, 61, 0.9),
+    0 0 18px rgba(255, 181, 38, 0.07);
+}
+
+.mmr-row.gold .mmr-tier {
+  color: #ffc83d;
+  text-shadow:
+    0 0 8px rgba(255, 200, 61, 0.65);
+}
+
+
+/* =====================================================
+   SILVER — METALLIC ICE
+   ===================================================== */
+
+.mmr-row.silver {
+  border-color: rgba(190, 211, 230, 0.32);
+  background:
+    linear-gradient(
+      90deg,
+      rgba(170, 200, 225, 0.075),
+      rgba(170, 200, 225, 0.015) 42%,
+      rgba(9, 10, 15, 0.92)
+    );
+  box-shadow:
+    inset 3px 0 0 rgba(190, 211, 230, 0.72),
+    0 0 15px rgba(170, 200, 225, 0.05);
+}
+
+.mmr-row.silver .mmr-tier {
+  color: #c8d8e6;
+  text-shadow:
+    0 0 7px rgba(200, 216, 230, 0.5);
+}
+
+
+/* =====================================================
+   BRONZE — DESERT METAL
+   ===================================================== */
+
+.mmr-row.bronze {
+  border-color: rgba(201, 126, 66, 0.30);
+  background:
+    linear-gradient(
+      90deg,
+      rgba(190, 101, 39, 0.075),
+      rgba(190, 101, 39, 0.015) 42%,
+      rgba(13, 9, 7, 0.92)
+    );
+  box-shadow:
+    inset 3px 0 0 rgba(201, 126, 66, 0.72),
+    0 0 14px rgba(190, 101, 39, 0.05);
+}
+
+.mmr-row.bronze .mmr-tier {
+  color: #d28a50;
+  text-shadow:
+    0 0 7px rgba(210, 138, 80, 0.48);
+}
+
+
+/* =====================================================
+   TIER ROW HOVER
+   ===================================================== */
+
+.mmr-row.master:hover,
+.mmr-row.diamond:hover,
+.mmr-row.platinum:hover,
+.mmr-row.gold:hover,
+.mmr-row.silver:hover,
+.mmr-row.bronze:hover {
+  transform: translateX(4px) scale(1.006);
+  filter: brightness(1.12);
+}
+
+.mmr-row.master:hover {
+  box-shadow:
+    inset 4px 0 0 #ff2bd6,
+    0 0 24px rgba(255, 43, 214, 0.18);
+}
+
+.mmr-row.diamond:hover {
+  box-shadow:
+    inset 4px 0 0 #62e7ff,
+    0 0 24px rgba(98, 231, 255, 0.16);
+}
+
+.mmr-row.platinum:hover {
+  box-shadow:
+    inset 4px 0 0 #bd7aff,
+    0 0 24px rgba(189, 122, 255, 0.16);
+}
+
+.mmr-row.gold:hover {
+  box-shadow:
+    inset 4px 0 0 #ffc83d,
+    0 0 24px rgba(255, 200, 61, 0.15);
+}
+
+.mmr-row.silver:hover {
+  box-shadow:
+    inset 4px 0 0 #c8d8e6,
+    0 0 20px rgba(200, 216, 230, 0.12);
+}
+
+.mmr-row.bronze:hover {
+  box-shadow:
+    inset 4px 0 0 #d28a50,
+    0 0 20px rgba(210, 138, 80, 0.12);
+}
+/* =====================================================
+   ACCESSIBILITY
+   ===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .mmr-row.master,
+  .mmr-row.diamond,
+  .mmr-row.platinum,
+  .mmr-row.gold,
+  .mmr-row.silver,
+  .mmr-row.bronze {
+    transition: none !important;
+  }
+
+}
 </style>
 
 <link rel="stylesheet" href="style.css">
@@ -7548,16 +8078,44 @@ function renderMMRLeaderboard() {
         String(player.rank).padStart(2, "0");
 
 
-      const tier =
-        player.rank <= 10
-          ? "ELITE"
-          : "TOP 20";
+    // ===============================================
+// COMPETITIVE RANK TIER
+// ===============================================
 
+let tier = "";
+let tierClass = "";
 
-      const eliteClass =
-        player.rank <= 10
-          ? " elite"
-          : "";
+if (player.rating >= 900) {
+
+  tier = "MASTER";
+  tierClass = " master";
+
+} else if (player.rating >= 750) {
+
+  tier = "DIAMOND";
+  tierClass = " diamond";
+
+} else if (player.rating >= 600) {
+
+  tier = "PLATINUM";
+  tierClass = " platinum";
+
+} else if (player.rating >= 450) {
+
+  tier = "GOLD";
+  tierClass = " gold";
+
+} else if (player.rating >= 250) {
+
+  tier = "SILVER";
+  tierClass = " silver";
+
+} else {
+
+  tier = "BRONZE";
+  tierClass = " bronze";
+
+}
 
 
       const playerClass =
@@ -7708,7 +8266,7 @@ if (rankMovement.difference < 0) {
 
       return `
 
-       <div class="mmr-row${eliteClass}${movementRowClass}">
+<div class="mmr-row${tierClass}${movementRowClass}">
 
           <div class="mmr-rank">
             #${rankNumber}
