@@ -6748,6 +6748,299 @@ body.mmr-profile-open {
   }
 
 }
+    /* =====================================================
+   ADAPTIVE COMPACT PROFILE HEADER
+===================================================== */
+
+.mmr-profile-sticky-header {
+  transition:
+    padding 0.32s cubic-bezier(.22,.8,.25,1),
+    margin 0.32s cubic-bezier(.22,.8,.25,1),
+    background 0.32s ease,
+    box-shadow 0.32s ease,
+    border-color 0.32s ease;
+}
+
+
+/* =====================================================
+   COMPACT MODE
+===================================================== */
+
+.mmr-profile-sticky-header.compact {
+  margin:
+    -28px
+    -28px
+    14px;
+
+  padding:
+    15px
+    28px
+    13px;
+
+  background:
+    radial-gradient(
+      circle at 18% 0%,
+      rgba(215, 75, 255, 0.18),
+      transparent 42%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(15, 8, 26, 0.995),
+      rgba(8, 5, 16, 0.985)
+    );
+
+  border-bottom-color:
+    rgba(225, 85, 255, 0.48);
+
+  box-shadow:
+    0 14px 32px rgba(0, 0, 0, 0.52),
+    0 2px 16px rgba(190, 55, 255, 0.12);
+}
+
+
+/* =====================================================
+   EYEBROW COLLAPSE
+===================================================== */
+
+.mmr-profile-sticky-header
+.mmr-profile-eyebrow {
+  max-height: 30px;
+
+  opacity: 1;
+
+  overflow: hidden;
+
+  transition:
+    max-height 0.28s ease,
+    opacity 0.22s ease,
+    margin 0.28s ease,
+    transform 0.28s ease;
+}
+
+
+.mmr-profile-sticky-header.compact
+.mmr-profile-eyebrow {
+  max-height: 0;
+
+  opacity: 0;
+
+  margin-top: 0;
+  margin-bottom: 0;
+
+  transform:
+    translateY(-8px);
+}
+
+
+/* =====================================================
+   PLAYER NAME TRANSFORMATION
+===================================================== */
+
+.mmr-profile-sticky-header
+.mmr-profile-name {
+  transition:
+    font-size 0.32s cubic-bezier(.22,.8,.25,1),
+    letter-spacing 0.32s ease,
+    margin 0.32s ease,
+    text-shadow 0.32s ease,
+    transform 0.32s ease;
+}
+
+
+.mmr-profile-sticky-header.compact
+.mmr-profile-name {
+  font-size: 20px;
+
+  letter-spacing: 1.5px;
+
+  margin:
+    0
+    42px
+    2px
+    0;
+
+  transform:
+    translateY(0);
+
+  text-shadow:
+    0 0 8px rgba(255,255,255,0.18),
+    0 0 14px rgba(220,70,255,0.42),
+    0 0 28px rgba(165,60,255,0.18);
+}
+
+
+/* =====================================================
+   SUBTITLE TRANSFORMATION
+===================================================== */
+
+.mmr-profile-sticky-header
+.mmr-profile-subtitle {
+  max-height: 35px;
+
+  opacity: 1;
+
+  overflow: hidden;
+
+  transition:
+    max-height 0.28s ease,
+    opacity 0.25s ease,
+    margin 0.28s ease,
+    transform 0.28s ease;
+}
+
+
+.mmr-profile-sticky-header.compact
+.mmr-profile-subtitle {
+  max-height: 18px;
+
+  opacity: 0.62;
+
+  margin:
+    0
+    42px
+    0
+    0;
+
+  transform:
+    translateY(0);
+
+  font-size: 9px;
+
+  letter-spacing: 1.25px;
+}
+
+
+/* =====================================================
+   COMPACT ENERGY LINE
+===================================================== */
+
+.mmr-profile-sticky-header.compact::after {
+  left: 4%;
+  right: 4%;
+
+  opacity: 1;
+
+  box-shadow:
+    0 0 10px rgba(225, 70, 255, 0.90),
+    0 0 24px rgba(150, 70, 255, 0.42);
+}
+
+
+/* =====================================================
+   COMPACT TOP ENERGY CORE
+===================================================== */
+
+.mmr-profile-sticky-header.compact::before {
+  width: 240px;
+  height: 90px;
+
+  top: -66px;
+
+  opacity: 0.9;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(235, 80, 255, 0.32),
+      transparent 70%
+    );
+}
+
+
+/* =====================================================
+   COMPACT CLOSE BUTTON
+===================================================== */
+
+.mmr-profile-sticky-header.compact
+.mmr-profile-close {
+  transform:
+    scale(0.92);
+
+  background:
+    rgba(20, 10, 30, 0.72);
+
+  border-color:
+    rgba(225, 90, 255, 0.42);
+
+  box-shadow:
+    0 0 12px rgba(205, 70, 255, 0.16);
+}
+
+
+.mmr-profile-sticky-header.compact
+.mmr-profile-close:hover {
+  transform:
+    rotate(90deg)
+    scale(1.02);
+}
+
+
+/* =====================================================
+   COMPACT HEADER ARRIVAL
+===================================================== */
+
+.mmr-profile-sticky-header.compact
+.mmr-profile-name {
+  animation:
+    compactProfileNameGlow
+    1.8s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes compactProfileNameGlow {
+
+  0%,
+  100% {
+    filter:
+      brightness(1);
+  }
+
+  50% {
+    filter:
+      brightness(1.14);
+  }
+
+}
+
+
+/* =====================================================
+   MOBILE COMPACT MODE
+===================================================== */
+
+@media (max-width: 600px) {
+
+  .mmr-profile-sticky-header.compact {
+    padding:
+      13px
+      20px
+      12px;
+  }
+
+  .mmr-profile-sticky-header.compact
+  .mmr-profile-name {
+    font-size: 18px;
+  }
+
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .mmr-profile-sticky-header,
+  .mmr-profile-sticky-header *,
+  .mmr-profile-sticky-header::before,
+  .mmr-profile-sticky-header::after {
+    transition: none !important;
+    animation: none !important;
+  }
+
+}
 </style>
 
 <link rel="stylesheet" href="style.css">
@@ -9728,7 +10021,56 @@ if (historyElement) {
 
   document.body.classList.add("mmr-profile-open");
 }
+// =====================================================
+// ADAPTIVE STICKY PROFILE HEADER
+// =====================================================
 
+function initializeAdaptiveProfileHeader() {
+
+  const modal =
+    document.querySelector(".mmr-profile-modal");
+
+  const stickyHeader =
+    document.querySelector(
+      ".mmr-profile-sticky-header"
+    );
+
+  if (!modal || !stickyHeader) {
+    return;
+  }
+
+
+  // Hindari memasang listener berkali-kali
+  if (
+    modal.dataset.adaptiveHeaderReady === "true"
+  ) {
+    return;
+  }
+
+  modal.dataset.adaptiveHeaderReady =
+    "true";
+
+
+  modal.addEventListener(
+    "scroll",
+    () => {
+
+      const shouldCompact =
+        modal.scrollTop > 45;
+
+
+      stickyHeader.classList.toggle(
+        "compact",
+        shouldCompact
+      );
+
+    },
+    {
+      passive: true
+    }
+  );
+
+}
 
 function closeMMRProfile(event) {
 
@@ -10128,6 +10470,8 @@ renderMMRLeaderboard();
 renderMMRLastUpdated();
 
 renderLatestMMRBattles();
+
+initializeAdaptiveProfileHeader();
 
 </script>
 
