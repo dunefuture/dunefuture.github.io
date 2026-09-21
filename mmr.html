@@ -4815,6 +4815,293 @@ body.mmr-profile-open {
   }
 
 }
+    /* =====================================================
+   PLAYER ACHIEVEMENTS — PREMIUM SYSTEM
+   ===================================================== */
+
+.mmr-profile-achievements {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 8px;
+}
+
+
+/* Achievement Card */
+
+.mmr-achievement {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  min-height: 54px;
+  padding: 9px 10px;
+
+  border: 1px solid rgba(255, 46, 247, 0.18);
+  border-radius: 8px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 46, 247, 0.06),
+      rgba(255, 255, 255, 0.015)
+    );
+
+  overflow: hidden;
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+/* Premium light sweep */
+
+.mmr-achievement::before {
+  content: "";
+  position: absolute;
+
+  top: -80%;
+  left: -45%;
+
+  width: 35%;
+  height: 260%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.13),
+      transparent
+    );
+
+  transform: rotate(20deg);
+
+  opacity: 0;
+
+  pointer-events: none;
+}
+
+
+/* Hover */
+
+.mmr-achievement:hover {
+  transform: translateY(-2px);
+
+  border-color:
+    rgba(255, 46, 247, 0.42);
+
+  box-shadow:
+    0 8px 22px
+    rgba(0, 0, 0, 0.25);
+}
+
+.mmr-achievement:hover::before {
+  opacity: 1;
+
+  animation:
+    mmrAchievementSweep
+    0.8s ease-out;
+}
+
+
+/* Icon */
+
+.mmr-achievement-icon {
+  position: relative;
+  z-index: 2;
+
+  width: 32px;
+  height: 32px;
+
+  flex: 0 0 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+
+  font-size: 17px;
+
+  background:
+    rgba(255, 255, 255, 0.04);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.08);
+}
+
+
+/* Text */
+
+.mmr-achievement-info {
+  position: relative;
+  z-index: 2;
+
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.mmr-achievement-info strong {
+  font-size: 8px;
+  letter-spacing: 0.9px;
+
+  color: #ffffff;
+}
+
+.mmr-achievement-info span {
+  font-size: 6px;
+  line-height: 1.35;
+
+  color: rgba(255, 255, 255, 0.48);
+}
+
+
+/* =====================================================
+   CHAMPION
+   ===================================================== */
+
+.mmr-achievement.champion {
+  border-color:
+    rgba(255, 207, 54, 0.45);
+
+  background:
+    radial-gradient(
+      circle at 20% 50%,
+      rgba(255, 201, 36, 0.16),
+      transparent 45%
+    ),
+    rgba(255, 196, 0, 0.035);
+
+  box-shadow:
+    inset 0 0 18px
+      rgba(255, 191, 0, 0.04);
+}
+
+.mmr-achievement.champion
+.mmr-achievement-icon {
+  border-color:
+    rgba(255, 207, 54, 0.35);
+
+  box-shadow:
+    0 0 14px
+      rgba(255, 196, 0, 0.14);
+}
+
+.mmr-achievement.champion
+.mmr-achievement-info strong {
+  color: #ffd95a;
+}
+
+
+/* =====================================================
+   HOT STREAK
+   ===================================================== */
+
+.mmr-achievement.hot {
+  border-color:
+    rgba(255, 102, 30, 0.40);
+
+  background:
+    radial-gradient(
+      circle at 20% 50%,
+      rgba(255, 79, 20, 0.15),
+      transparent 48%
+    ),
+    rgba(255, 80, 20, 0.025);
+}
+
+.mmr-achievement.hot
+.mmr-achievement-icon {
+  box-shadow:
+    0 0 14px
+      rgba(255, 83, 20, 0.16);
+}
+
+.mmr-achievement.hot
+.mmr-achievement-info strong {
+  color: #ff9a4d;
+}
+
+
+/* =====================================================
+   VETERAN
+   ===================================================== */
+
+.mmr-achievement.veteran {
+  border-color:
+    rgba(80, 210, 255, 0.32);
+
+  background:
+    radial-gradient(
+      circle at 20% 50%,
+      rgba(63, 185, 255, 0.12),
+      transparent 48%
+    ),
+    rgba(40, 170, 255, 0.025);
+}
+
+.mmr-achievement.veteran
+.mmr-achievement-info strong {
+  color: #76dfff;
+}
+
+
+/* Empty state */
+
+.mmr-achievement-empty {
+  grid-column: 1 / -1;
+
+  padding: 14px;
+
+  text-align: center;
+
+  font-size: 7px;
+
+  color:
+    rgba(255, 255, 255, 0.35);
+
+  border:
+    1px dashed
+    rgba(255, 255, 255, 0.08);
+
+  border-radius: 8px;
+}
+
+
+/* Light sweep animation */
+
+@keyframes mmrAchievementSweep {
+
+  from {
+    transform:
+      translateX(-150%)
+      rotate(20deg);
+  }
+
+  to {
+    transform:
+      translateX(550%)
+      rotate(20deg);
+  }
+
+}
+
+
+/* Mobile */
+
+@media (max-width: 520px) {
+
+  .mmr-profile-achievements {
+    grid-template-columns: 1fr;
+  }
+
+}
 </style>
 
 <link rel="stylesheet" href="style.css">
@@ -5332,6 +5619,22 @@ TOP 20 · LAST UPDATED <span id="mmrLastUpdated">—</span>
 <div
   id="mmrProfileCompetitiveStats"
   class="mmr-profile-competitive-stats">
+</div>
+    <!-- ========================================= -->
+<!-- PLAYER ACHIEVEMENTS -->
+<!-- ========================================= -->
+
+<div class="mmr-profile-section mmr-achievement-section">
+
+  <div class="mmr-profile-section-title">
+    PLAYER ACHIEVEMENTS
+  </div>
+
+  <div
+    id="mmrProfileAchievements"
+    class="mmr-achievement-list">
+  </div>
+
 </div>
     <div class="mmr-profile-section">
 
@@ -7148,6 +7451,150 @@ function getMMRPlayerStats(playerName) {
 
   };
 }
+  // =====================================================
+// PLAYER ACHIEVEMENT ENGINE
+// =====================================================
+
+function getPlayerAchievements(playerName) {
+
+  const leaderboard =
+    getMMRLeaderboard();
+
+  const player =
+    leaderboard.find(
+      player => player.name === playerName
+    );
+
+  if (!player) {
+    return [];
+  }
+
+
+const stats =
+  getMMRPlayerStats(playerName);
+
+
+  const achievements = [];
+
+
+  // ===================================================
+  // CURRENT CHAMPION
+  // ===================================================
+
+  if (player.rank === 1) {
+
+    achievements.push({
+      icon: "👑",
+      title: "CHAMPION",
+      description: "Current #1 ranked player",
+      className: "champion"
+    });
+
+  }
+
+
+  // ===================================================
+  // PODIUM PLAYER
+  // ===================================================
+
+  if (
+    player.rank >= 1 &&
+    player.rank <= 3
+  ) {
+
+    achievements.push({
+      icon: "🏆",
+      title: "PODIUM ELITE",
+      description: `Currently ranked #${player.rank}`,
+      className: "podium"
+    });
+
+  }
+
+
+  // ===================================================
+  // TOP 10
+  // ===================================================
+
+  if (
+    player.rank >= 4 &&
+    player.rank <= 10
+  ) {
+
+    achievements.push({
+      icon: "⚔️",
+      title: "ELITE",
+      description: "Top 10 competitive player",
+      className: "elite"
+    });
+
+  }
+
+
+  // ===================================================
+  // 3+ WIN STREAK
+  // ===================================================
+
+  if (
+    stats &&
+    stats.winStreak >= 3
+  ) {
+
+    achievements.push({
+      icon: "🔥",
+      title: "HOT STREAK",
+      description:
+        `${stats.winStreak} consecutive wins`,
+      className: "streak"
+    });
+
+  }
+
+
+  // ===================================================
+  // HIGH WIN RATE
+  // Minimum 3 matches to avoid misleading percentage
+  // ===================================================
+
+  if (
+    stats &&
+    stats.totalMatches >= 3 &&
+    stats.winRate >= 70
+  ) {
+
+    achievements.push({
+      icon: "🎯",
+      title: "DOMINATOR",
+      description:
+        `${stats.winRate}% win rate`,
+      className: "dominator"
+    });
+
+  }
+
+
+  // ===================================================
+  // ACTIVE COMPETITOR
+  // ===================================================
+
+  if (
+    stats &&
+    stats.totalMatches >= 5
+  ) {
+
+    achievements.push({
+      icon: "⚡",
+      title: "BATTLE TESTED",
+      description:
+        `${stats.totalMatches} recorded matches`,
+      className: "veteran"
+    });
+
+  }
+
+
+  return achievements;
+}
 function openMMRProfile(playerName) {
 
   const leaderboardPlayer =
@@ -7178,6 +7625,9 @@ const rankMovement =
   
 const matchHistory =
   getMMRMatchHistory(playerName);
+
+  const achievements =
+  getPlayerAchievements(playerName);
 
 const currentRating =
   leaderboardPlayer
@@ -7395,7 +7845,63 @@ if (statsElement) {
 
   `;
 }
+// ===============================================
+// PLAYER ACHIEVEMENTS UI
+// ===============================================
 
+const achievementElement =
+  document.getElementById(
+    "mmrProfileAchievements"
+  );
+
+
+if (achievementElement) {
+
+  if (
+    achievements &&
+    achievements.length > 0
+  ) {
+
+    achievementElement.innerHTML =
+      achievements
+        .map(achievement => `
+
+          <div class="mmr-achievement ${achievement.className}">
+
+            <div class="mmr-achievement-icon">
+              ${achievement.icon}
+            </div>
+
+            <div class="mmr-achievement-info">
+
+              <strong>
+                ${achievement.title}
+              </strong>
+
+              <span>
+                ${achievement.description}
+              </span>
+
+            </div>
+
+          </div>
+
+        `)
+        .join("");
+
+  } else {
+
+    achievementElement.innerHTML = `
+
+      <div class="mmr-achievement-empty">
+        No achievements unlocked yet.
+      </div>
+
+    `;
+
+  }
+
+}
 const historyElement =
   document.getElementById("mmrProfileHistory");
 
