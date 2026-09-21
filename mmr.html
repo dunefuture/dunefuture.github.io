@@ -4976,7 +4976,14 @@ TOP 20 · LAST UPDATED <span id="mmrLastUpdated">—</span>
       </div>
 
     </div>
+<!-- ========================================= -->
+<!-- COMPETITIVE PLAYER STATS -->
+<!-- ========================================= -->
 
+<div
+  id="mmrProfileCompetitiveStats"
+  class="mmr-profile-competitive-stats">
+</div>
     <div class="mmr-profile-section">
 
       <div class="mmr-profile-section-title">
@@ -6806,7 +6813,12 @@ function openMMRProfile(playerName) {
   if (!leaderboardPlayer) {
     return;
   }
+// ===============================================
+// COMPETITIVE PLAYER STATS
+// ===============================================
 
+const playerStats =
+  getMMRPlayerStats(playerName);
 
  const latestMatch =
   getLatestMMRMatch(playerName);
@@ -6904,7 +6916,136 @@ if (rankMovement.difference < 0) {
 
 document.getElementById("mmrProfileMovement").textContent =
   movementText;
+// ===============================================
+// COMPETITIVE STATS UI
+// ===============================================
 
+const statsElement =
+  document.getElementById("mmrProfileCompetitiveStats");
+
+
+if (statsElement) {
+
+  const winRateText =
+    playerStats.winRate !== null
+      ? `${playerStats.winRate}%`
+      : "—";
+
+
+  const streakText =
+    playerStats.winStreak > 0
+      ? `${playerStats.winStreak} WIN`
+      : "—";
+
+
+  const recentFormHTML =
+    playerStats.recentForm.length > 0
+
+      ? playerStats.recentForm
+          .map(result => `
+            <span class="mmr-form-badge ${
+              result === "W"
+                ? "win"
+                : "loss"
+            }">
+              ${result}
+            </span>
+          `)
+          .join("")
+
+      : `
+          <span class="mmr-form-empty">
+            —
+          </span>
+        `;
+
+
+  statsElement.innerHTML = `
+
+    <div class="mmr-competitive-grid">
+
+      <div class="mmr-competitive-stat">
+        <span>MATCHES</span>
+        <strong>
+          ${playerStats.totalMatches}
+        </strong>
+      </div>
+
+
+      <div class="mmr-competitive-stat">
+        <span>WINS</span>
+        <strong class="win">
+          ${playerStats.wins}
+        </strong>
+      </div>
+
+
+      <div class="mmr-competitive-stat">
+        <span>LOSSES</span>
+        <strong class="loss">
+          ${playerStats.losses}
+        </strong>
+      </div>
+
+    </div>
+
+
+    <div class="mmr-competitive-details">
+
+      <div class="mmr-competitive-detail">
+
+        <span>
+          WIN RATE
+        </span>
+
+        <strong>
+          ${winRateText}
+        </strong>
+
+      </div>
+
+
+      <div class="mmr-competitive-detail">
+
+        <span>
+          WIN STREAK
+        </span>
+
+        <strong class="${
+          playerStats.winStreak >= 3
+            ? "hot-streak"
+            : ""
+        }">
+
+          ${
+            playerStats.winStreak >= 3
+              ? "🔥 "
+              : ""
+          }
+
+          ${streakText}
+
+        </strong>
+
+      </div>
+
+
+      <div class="mmr-competitive-detail recent-form">
+
+        <span>
+          RECENT FORM
+        </span>
+
+        <div class="mmr-form-list">
+          ${recentFormHTML}
+        </div>
+
+      </div>
+
+    </div>
+
+  `;
+}
 
 const historyElement =
   document.getElementById("mmrProfileHistory");
