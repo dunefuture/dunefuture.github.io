@@ -4466,23 +4466,20 @@ body.mmr-profile-open {
     0 0 14px
     rgba(255, 74, 20, 0.18);
 }
-    /* =====================================================
-   COMPETITIVE PLAYER STATS — PREMIUM
+/* =====================================================
+   COMPETITIVE PLAYER STATS — PREMIUM DASHBOARD
 ===================================================== */
 
 .mmr-profile-competitive-stats {
   position: relative;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
   margin: 14px 0;
   padding: 12px;
 
   background:
     radial-gradient(
       circle at 50% 0%,
-      rgba(255, 0, 255, 0.10),
-      transparent 55%
+      rgba(255, 0, 255, 0.09),
+      transparent 58%
     ),
     rgba(12, 9, 18, 0.82);
 
@@ -4490,14 +4487,14 @@ body.mmr-profile-open {
   border-radius: 10px;
 
   box-shadow:
-    inset 0 0 20px rgba(255, 0, 255, 0.025),
+    inset 0 0 24px rgba(255, 0, 255, 0.025),
     0 8px 30px rgba(0, 0, 0, 0.20);
 
   overflow: hidden;
 }
 
 
-/* subtle top energy line */
+/* top energy line */
 
 .mmr-profile-competitive-stats::before {
   content: "";
@@ -4507,27 +4504,135 @@ body.mmr-profile-open {
   width: 70%;
   height: 1px;
 
-  background: linear-gradient(
-    90deg,
-    transparent,
-    #ff00ff,
-    transparent
-  );
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #ff27ff,
+      transparent
+    );
 
   box-shadow:
-    0 0 8px rgba(255, 0, 255, 0.8);
+    0 0 10px rgba(255, 0, 255, 0.75);
 
-  opacity: 0.65;
+  opacity: 0.75;
 }
 
 
 /* =====================================================
-   STAT ITEMS
+   TOP ROW — MATCHES / WINS / LOSSES
 ===================================================== */
 
-.mmr-profile-competitive-stats > div {
-  position: relative;
-  padding: 10px 8px;
+.mmr-competitive-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+
+.mmr-competitive-stat {
+  min-width: 0;
+  padding: 11px 6px;
+
+  text-align: center;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.035),
+      rgba(255,255,255,0.01)
+    );
+
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 7px;
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+.mmr-competitive-stat:hover {
+  transform: translateY(-2px);
+
+  border-color:
+    rgba(255, 0, 255, 0.30);
+
+  box-shadow:
+    0 6px 18px rgba(255, 0, 255, 0.08);
+}
+
+
+.mmr-competitive-stat span {
+  display: block;
+
+  margin-bottom: 5px;
+
+  font-size: 7px;
+  font-weight: 800;
+
+  letter-spacing: 1.1px;
+
+  color: #777184;
+}
+
+
+.mmr-competitive-stat strong {
+  display: block;
+
+  font-size: 17px;
+  line-height: 1;
+
+  font-weight: 900;
+
+  color: #ffffff;
+}
+
+
+/* wins */
+
+.mmr-competitive-stat strong.win {
+  color: #45ff9a;
+
+  text-shadow:
+    0 0 10px rgba(69,255,154,0.25);
+}
+
+
+/* losses */
+
+.mmr-competitive-stat strong.loss {
+  color: #ff5477;
+
+  text-shadow:
+    0 0 10px rgba(255,84,119,0.25);
+}
+
+
+/* =====================================================
+   BOTTOM ROW
+===================================================== */
+
+.mmr-competitive-details {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 8px;
+  margin-top: 8px;
+}
+
+
+.mmr-competitive-detail {
+  min-width: 0;
+  min-height: 58px;
+
+  padding: 9px 5px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   text-align: center;
 
@@ -4548,68 +4653,141 @@ body.mmr-profile-open {
 }
 
 
-.mmr-profile-competitive-stats > div:hover {
+.mmr-competitive-detail:hover {
   transform: translateY(-2px);
 
   border-color:
-    rgba(255, 0, 255, 0.35);
+    rgba(255, 0, 255, 0.28);
 
   box-shadow:
-    0 6px 18px rgba(255, 0, 255, 0.08);
+    0 6px 18px rgba(255, 0, 255, 0.07);
 }
 
 
-/* =====================================================
-   LABELS
-===================================================== */
-
-.mmr-profile-competitive-stats span,
-.mmr-profile-competitive-stats small {
+.mmr-competitive-detail > span {
   display: block;
 
-  margin-bottom: 5px;
+  margin-bottom: 6px;
 
-  font-size: 8px;
+  font-size: 7px;
   font-weight: 800;
 
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
+  letter-spacing: 1px;
 
   color: #777184;
 }
 
 
-/* =====================================================
-   VALUES
-===================================================== */
-
-.mmr-profile-competitive-stats strong {
-  display: block;
-
-  font-size: 16px;
+.mmr-competitive-detail > strong {
+  font-size: 13px;
   font-weight: 900;
 
   color: #ffffff;
-
-  text-shadow:
-    0 0 8px rgba(255,255,255,0.08);
 }
 
 
-/* Highlight important values */
+/* =====================================================
+   HOT STREAK
+===================================================== */
 
-.mmr-profile-competitive-stats strong:nth-last-child(1) {
-  transition:
-    color 0.25s ease,
-    text-shadow 0.25s ease;
+.mmr-competitive-detail strong.hot-streak {
+  color: #ffb34d;
+
+  text-shadow:
+    0 0 8px rgba(255, 120, 30, 0.45),
+    0 0 16px rgba(255, 70, 20, 0.20);
+
+  animation:
+    mmrHotStreakPulse 2s ease-in-out infinite;
 }
 
 
-.mmr-profile-competitive-stats > div:hover strong {
-  color: #ff45ff;
+@keyframes mmrHotStreakPulse {
 
-  text-shadow:
-    0 0 10px rgba(255, 0, 255, 0.35);
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+
+  50% {
+    filter: brightness(1.3);
+  }
+
+}
+
+
+/* =====================================================
+   RECENT FORM
+===================================================== */
+
+.mmr-form-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-wrap: nowrap;
+
+  gap: 3px;
+
+  width: 100%;
+}
+
+
+.mmr-form-badge {
+  display: inline-flex !important;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 17px;
+  height: 17px;
+
+  margin: 0 !important;
+
+  border-radius: 4px;
+
+  font-size: 8px !important;
+  line-height: 1 !important;
+
+  font-weight: 900 !important;
+  letter-spacing: 0 !important;
+}
+
+
+/* WIN */
+
+.mmr-form-badge.win {
+  color: #5dffad;
+
+  background:
+    rgba(0, 255, 128, 0.08);
+
+  border:
+    1px solid rgba(0, 255, 128, 0.28);
+
+  box-shadow:
+    0 0 7px rgba(0, 255, 128, 0.10);
+}
+
+
+/* LOSS */
+
+.mmr-form-badge.loss {
+  color: #ff5d7d;
+
+  background:
+    rgba(255, 45, 85, 0.08);
+
+  border:
+    1px solid rgba(255, 45, 85, 0.28);
+
+  box-shadow:
+    0 0 7px rgba(255, 45, 85, 0.10);
+}
+
+
+.mmr-form-empty {
+  color: #777184;
 }
 
 
@@ -4619,9 +4797,21 @@ body.mmr-profile-open {
 
 @media (max-width: 600px) {
 
-  .mmr-profile-competitive-stats {
+  .mmr-competitive-grid,
+  .mmr-competitive-details {
     grid-template-columns:
-      repeat(2, 1fr);
+      repeat(3, minmax(0, 1fr));
+  }
+
+  .mmr-profile-competitive-stats {
+    padding: 9px;
+  }
+
+  .mmr-form-badge {
+    width: 15px;
+    height: 15px;
+
+    font-size: 7px !important;
   }
 
 }
