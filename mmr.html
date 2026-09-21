@@ -6361,21 +6361,12 @@ function renderMMRLeaderboard() {
           : "";
 
 
-      const hasProfile =
-        typeof mmrProfiles !== "undefined" &&
-        mmrProfiles[player.name];
-
-
       const playerClass =
-        hasProfile
-          ? "mmr-name mmr-player-link"
-          : "mmr-name";
+  "mmr-name mmr-player-link";
 
 
-      const clickAction =
-        hasProfile
-          ? `onclick="openMMRProfile('${player.name}')"`
-          : "";
+const clickAction =
+  `onclick="openMMRProfile('${player.name}')"`;
 
 
 // ===============================================
@@ -6574,9 +6565,27 @@ function renderMMRPodium() {
 
  function playerNameHTML(player) {
 
-  const hasProfile =
-    typeof mmrProfiles !== "undefined" &&
-    mmrProfiles[player.name];
+  const streakBadge =
+    getWinStreakBadge(player.name);
+
+
+  return `
+
+    <div class="mmr-podium-player">
+
+      <div class="mmr-podium-name mmr-player-link"
+           onclick="openMMRProfile('${player.name}')">
+
+        ${player.name}
+
+      </div>
+
+      ${streakBadge}
+
+    </div>
+
+  `;
+}
 
 
   const streakBadge =
@@ -6745,17 +6754,18 @@ const mmrProfiles = {
 
 function openMMRProfile(playerName) {
 
-  const player =
-    mmrProfiles[playerName];
-
-  if (!player) return;
-
-
   const leaderboardPlayer =
     getMMRLeaderboard().find(
       player =>
         player.name === playerName
     );
+
+
+  // Player harus berasal dari
+  // leaderboard MMR yang valid.
+  if (!leaderboardPlayer) {
+    return;
+  }
 
 
  const latestMatch =
