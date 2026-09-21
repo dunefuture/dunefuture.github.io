@@ -4406,6 +4406,66 @@ body.mmr-profile-open {
   }
 
 }
+    /* =====================================================
+   WIN STREAK — TOP 3 PODIUM
+   ===================================================== */
+
+.mmr-podium-player {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+}
+
+
+.mmr-podium-player
+.mmr-win-streak {
+  margin:
+    5px 0 0;
+
+  transform:
+    scale(0.90);
+
+  transform-origin:
+    center;
+}
+
+
+/* Rank #1 */
+
+.rank-1
+.mmr-win-streak {
+  border-color:
+    rgba(255, 214, 72, 0.35);
+
+  box-shadow:
+    0 0 12px
+    rgba(255, 190, 40, 0.12);
+}
+
+
+/* Rank #2 */
+
+.rank-2
+.mmr-win-streak {
+  box-shadow:
+    0 0 12px
+    rgba(95, 210, 255, 0.10);
+}
+
+
+/* Rank #3 */
+
+.rank-3
+.mmr-win-streak {
+  border-color:
+    rgba(255, 104, 37, 0.40);
+
+  box-shadow:
+    0 0 14px
+    rgba(255, 74, 20, 0.18);
+}
 </style>
 
 <link rel="stylesheet" href="style.css">
@@ -6512,27 +6572,49 @@ function renderMMRPodium() {
   const second = leaderboard[1];
   const third = leaderboard[2];
 
-  function playerNameHTML(player) {
+ function playerNameHTML(player) {
 
-    const hasProfile =
-      typeof mmrProfiles !== "undefined" &&
-      mmrProfiles[player.name];
+  const hasProfile =
+    typeof mmrProfiles !== "undefined" &&
+    mmrProfiles[player.name];
 
-    if (hasProfile) {
-      return `
+
+  const streakBadge =
+    getWinStreakBadge(player.name);
+
+
+  if (hasProfile) {
+    return `
+
+      <div class="mmr-podium-player">
+
         <div class="mmr-podium-name mmr-player-link"
              onclick="openMMRProfile('${player.name}')">
           ${player.name}
         </div>
-      `;
-    }
 
-    return `
+        ${streakBadge}
+
+      </div>
+
+    `;
+  }
+
+
+  return `
+
+    <div class="mmr-podium-player">
+
       <div class="mmr-podium-name">
         ${player.name}
       </div>
-    `;
-  }
+
+      ${streakBadge}
+
+    </div>
+
+  `;
+}
 
     podium.innerHTML = `
 
