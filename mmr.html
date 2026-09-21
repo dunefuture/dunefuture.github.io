@@ -4022,7 +4022,40 @@ TOP 20 · LAST UPDATED <span id="mmrLastUpdated">—</span>
 
   </main>
 
+<!-- =====================================================
+     LATEST BATTLES
+     ===================================================== -->
 
+<section class="mmr-battles-section">
+
+  <div class="mmr-battles-header">
+
+    <div>
+      <div class="mmr-battles-kicker">
+        RECENT COMBAT
+      </div>
+
+      <h2 class="mmr-battles-title">
+        LATEST BATTLES
+      </h2>
+    </div>
+
+    <div class="mmr-battles-count"
+         id="mmrBattlesCount">
+      —
+    </div>
+
+  </div>
+
+
+  <div class="mmr-battles-list"
+       id="mmrBattlesList">
+
+    <!-- Generated automatically from mmrMatches -->
+
+  </div>
+
+</section>
 <footer>
   © 2026 Dune Future · Dune 2000 Community
 </footer>
@@ -4316,6 +4349,149 @@ function renderMMRLastUpdated() {
 
   element.textContent =
     latestMatch.date.toUpperCase();
+
+}
+  // =====================================================
+// LATEST BATTLES ENGINE
+// =====================================================
+
+function renderLatestMMRBattles() {
+
+  const list =
+    document.getElementById(
+      "mmrBattlesList"
+    );
+
+  const count =
+    document.getElementById(
+      "mmrBattlesCount"
+    );
+
+
+  if (!list) {
+    return;
+  }
+
+
+  // ===================================================
+  // NO MATCHES
+  // ===================================================
+
+  if (
+    !Array.isArray(mmrMatches) ||
+    mmrMatches.length === 0
+  ) {
+
+    list.innerHTML = `
+      <div class="mmr-battle-empty">
+        NO BATTLES RECORDED
+      </div>
+    `;
+
+    if (count) {
+      count.textContent =
+        "0 MATCHES";
+    }
+
+    return;
+  }
+
+
+  // ===================================================
+  // SHOW 5 MOST RECENT MATCHES
+  // ===================================================
+
+  const latestBattles =
+    mmrMatches.slice(0, 5);
+
+
+  if (count) {
+
+    count.textContent =
+      `${latestBattles.length} RECENT MATCHES`;
+
+  }
+
+
+  // ===================================================
+  // BUILD BATTLE FEED
+  // ===================================================
+
+  list.innerHTML =
+    latestBattles
+      .map((match, index) => {
+
+        const battleNumber =
+          String(index + 1)
+            .padStart(2, "0");
+
+
+        return `
+
+          <div class="mmr-battle-card">
+
+            <div class="mmr-battle-index">
+              ${battleNumber}
+            </div>
+
+
+            <div class="mmr-battle-player winner">
+
+              <div class="mmr-battle-status">
+                WINNER
+              </div>
+
+              <div class="mmr-battle-name">
+                ${match.winner}
+              </div>
+
+              <div class="mmr-battle-change positive">
+                +${match.change} MMR
+              </div>
+
+            </div>
+
+
+            <div class="mmr-battle-versus">
+
+              <div class="mmr-battle-vs">
+                VS
+              </div>
+
+              <div class="mmr-battle-result">
+                DEFEATED
+              </div>
+
+            </div>
+
+
+            <div class="mmr-battle-player loser">
+
+              <div class="mmr-battle-status">
+                DEFEATED
+              </div>
+
+              <div class="mmr-battle-name">
+                ${match.loser}
+              </div>
+
+              <div class="mmr-battle-change negative">
+                -${match.change} MMR
+              </div>
+
+            </div>
+
+
+            <div class="mmr-battle-date">
+              ${match.date.toUpperCase()}
+            </div>
+
+          </div>
+
+        `;
+
+      })
+      .join("");
 
 }
   // =====================================================
@@ -5923,6 +6099,8 @@ applyTop3ChangeEffects(
 renderMMRLeaderboard();
 
 renderMMRLastUpdated();
+
+renderLatestMMRBattles();
 
 </script>
 
