@@ -7901,17 +7901,20 @@ function renderMMRPodium() {
 
   `;
 }
-const mmrProfiles = {
+// =====================================================
+// UNIVERSAL PLAYER PROFILE REGISTRY
+// =====================================================
+// Semua pemain yang terdaftar di mmrBasePlayers
+// otomatis memiliki MMR Profile.
+// =====================================================
 
-  Balrog: {},
-  Neko: {},
-  Dan: {},
-  BSGRCD: {},
-  Harun: {},
-  ALGERINO: {},
-  worm: {}
-
-};
+const mmrProfiles =
+  Object.fromEntries(
+    mmrBasePlayers.map(player => [
+      player.name,
+      {}
+    ])
+  );
 
 // =====================================================
 // PLAYER COMPETITIVE STATISTICS ENGINE
