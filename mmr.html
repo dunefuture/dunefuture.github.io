@@ -6588,43 +6588,6 @@ function renderMMRPodium() {
 }
 
 
-  const streakBadge =
-    getWinStreakBadge(player.name);
-
-
-  if (hasProfile) {
-    return `
-
-      <div class="mmr-podium-player">
-
-        <div class="mmr-podium-name mmr-player-link"
-             onclick="openMMRProfile('${player.name}')">
-          ${player.name}
-        </div>
-
-        ${streakBadge}
-
-      </div>
-
-    `;
-  }
-
-
-  return `
-
-    <div class="mmr-podium-player">
-
-      <div class="mmr-podium-name">
-        ${player.name}
-      </div>
-
-      ${streakBadge}
-
-    </div>
-
-  `;
-}
-
     podium.innerHTML = `
 
     <!-- ========================================= -->
