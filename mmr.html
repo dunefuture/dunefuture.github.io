@@ -718,6 +718,10 @@
 
   width: 100%;
   max-width: 430px;
+  max-height: 88vh;
+overflow-y: auto;
+overflow-x: hidden;
+overscroll-behavior: contain;
 
   padding: 28px;
 
@@ -6480,6 +6484,61 @@ body.mmr-profile-open {
     transition: none !important;
   }
 
+}
+    /* =====================================================
+   PREMIUM PROFILE INTERNAL SCROLLBAR
+===================================================== */
+
+.mmr-profile-modal {
+  scrollbar-width: thin;
+  scrollbar-color:
+    rgba(255, 45, 242, 0.75)
+    rgba(255, 255, 255, 0.04);
+}
+
+
+/* Chrome / Edge / Safari */
+
+.mmr-profile-modal::-webkit-scrollbar {
+  width: 7px;
+}
+
+
+.mmr-profile-modal::-webkit-scrollbar-track {
+  background:
+    rgba(255, 255, 255, 0.025);
+
+  border-radius: 20px;
+}
+
+
+.mmr-profile-modal::-webkit-scrollbar-thumb {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(180, 70, 255, 0.85),
+      rgba(255, 45, 242, 0.95)
+    );
+
+  border-radius: 20px;
+
+  box-shadow:
+    0 0 6px rgba(200, 60, 255, 0.55),
+    0 0 12px rgba(255, 45, 242, 0.28);
+}
+
+
+.mmr-profile-modal::-webkit-scrollbar-thumb:hover {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(205, 105, 255, 1),
+      rgba(255, 70, 245, 1)
+    );
+
+  box-shadow:
+    0 0 8px rgba(210, 80, 255, 0.75),
+    0 0 16px rgba(255, 45, 242, 0.45);
 }
 </style>
 
