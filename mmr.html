@@ -6714,7 +6714,84 @@ const mmrProfiles = {
 
 };
 
+// =====================================================
+// PLAYER COMPETITIVE STATISTICS ENGINE
+// =====================================================
 
+function getMMRPlayerStats(playerName) {
+
+  const playerMatches =
+    mmrMatches.filter(match =>
+      match.winner === playerName ||
+      match.loser === playerName
+    );
+
+
+  const totalMatches =
+    playerMatches.length;
+
+
+  const wins =
+    playerMatches.filter(
+      match => match.winner === playerName
+    ).length;
+
+
+  const losses =
+    playerMatches.filter(
+      match => match.loser === playerName
+    ).length;
+
+
+  const winRate =
+    totalMatches > 0
+      ? Math.round((wins / totalMatches) * 100)
+      : null;
+
+
+  // ===============================================
+  // CURRENT WIN STREAK
+  // ===============================================
+
+  let winStreak = 0;
+
+  for (const match of playerMatches) {
+
+    if (match.winner === playerName) {
+      winStreak++;
+    } else {
+      break;
+    }
+
+  }
+
+
+  // ===============================================
+  // RECENT FORM
+  // Latest 5 matches
+  // ===============================================
+
+  const recentForm =
+    playerMatches
+      .slice(0, 5)
+      .map(match =>
+        match.winner === playerName
+          ? "W"
+          : "L"
+      );
+
+
+  return {
+
+    totalMatches,
+    wins,
+    losses,
+    winRate,
+    winStreak,
+    recentForm
+
+  };
+}
 function openMMRProfile(playerName) {
 
   const leaderboardPlayer =
