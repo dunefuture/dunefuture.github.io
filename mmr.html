@@ -13443,6 +13443,454 @@ body.mmr-profile-open {
     animation: none !important;
   }
 
+}
+/* =====================================================
+   HELLFIRE PROFILE IDENTITY
+===================================================== */
+
+
+/* -----------------------------------------------------
+   PROFILE INFERNAL ATMOSPHERE
+----------------------------------------------------- */
+
+.mmr-profile-modal.hellfire-profile-active {
+  --hellfire-profile-strength:
+    min(var(--hellfire-power), 10);
+
+  --hellfire-profile-glow:
+    calc(
+      8px +
+      (var(--hellfire-profile-strength) * 2px)
+    );
+}
+
+
+/* -----------------------------------------------------
+   HELLFIRE BADGE
+----------------------------------------------------- */
+
+.mmr-profile-hellfire-badge {
+  display: none;
+
+  position: absolute;
+
+  right: 34px;
+  top: 50%;
+
+  transform:
+    translateY(-50%);
+
+  align-items: center;
+
+  gap: 7px;
+
+  padding:
+    5px 9px;
+
+  border:
+    1px solid
+    rgba(255, 91, 18, 0.58);
+
+  border-radius:
+    7px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(67, 15, 4, 0.78),
+      rgba(24, 8, 5, 0.90)
+    );
+
+  box-shadow:
+    0 0 10px
+    rgba(255, 54, 0, 0.18),
+
+    inset 0 0 9px
+    rgba(255, 104, 19, 0.07);
+
+  pointer-events: none;
+
+  z-index: 20;
+}
+
+
+.mmr-profile-hellfire-badge
+.hellfire-badge-flame {
+  font-size: 17px;
+
+  filter:
+    drop-shadow(
+      0 0 5px
+      rgba(255, 73, 0, 0.82)
+    );
+
+  animation:
+    hellfireProfileBadgeFlame
+    1.65s
+    ease-in-out
+    infinite;
+}
+
+
+.mmr-profile-hellfire-badge
+.hellfire-badge-content {
+  display: flex;
+  flex-direction: column;
+
+  line-height: 1.05;
+}
+
+
+.mmr-profile-hellfire-badge
+strong {
+  color:
+    rgba(255, 178, 71, 1);
+
+  font-size:
+    8px;
+
+  letter-spacing:
+    1.2px;
+
+  text-shadow:
+    0 0 6px
+    rgba(255, 61, 0, 0.45);
+}
+
+
+.mmr-profile-hellfire-badge
+small {
+  margin-top:
+    3px;
+
+  color:
+    rgba(255, 101, 43, 0.95);
+
+  font-size:
+    6px;
+
+  letter-spacing:
+    0.7px;
+}
+
+
+/* =====================================================
+   WIN RATE + WIN STREAK
+   INFERNAL CHAMBERS
+===================================================== */
+
+.mmr-profile-modal.hellfire-profile-active
+.hellfire-winrate-card,
+
+.mmr-profile-modal.hellfire-profile-active
+.hellfire-winstreak-card {
+
+  position: relative;
+
+  isolation: isolate;
+
+  overflow: hidden;
+
+  border-color:
+    rgba(255, 82, 15, 0.72) !important;
+
+  background:
+    radial-gradient(
+      circle at 50% 115%,
+      rgba(255, 73, 0, 0.17),
+      transparent 52%
+    ),
+
+    linear-gradient(
+      180deg,
+      rgba(41, 13, 7, 0.40),
+      rgba(14, 10, 14, 0.78)
+    ) !important;
+
+  box-shadow:
+    0 0
+    var(--hellfire-profile-glow)
+    rgba(255, 54, 0, 0.16),
+
+    inset 0 -8px 16px
+    rgba(255, 68, 0, 0.08);
+}
+
+
+/* -----------------------------------------------------
+   FIRE BED
+----------------------------------------------------- */
+
+.mmr-profile-modal.hellfire-profile-active
+.hellfire-winrate-card::after,
+
+.mmr-profile-modal.hellfire-profile-active
+.hellfire-winstreak-card::after {
+
+  content: "";
+
+  position: absolute;
+
+  left: -4%;
+  right: -4%;
+
+  bottom: -5px;
+
+  height:
+    calc(
+      13px +
+      (
+        var(--hellfire-profile-strength)
+        * 2px
+      )
+    );
+
+  z-index: -1;
+
+  pointer-events: none;
+
+  background:
+
+    radial-gradient(
+      ellipse at 12% 100%,
+      rgba(255, 225, 80, 0.92) 0%,
+      rgba(255, 91, 10, 0.72) 24%,
+      rgba(190, 15, 0, 0.32) 49%,
+      transparent 70%
+    ),
+
+    radial-gradient(
+      ellipse at 36% 100%,
+      rgba(255, 196, 51, 0.96) 0%,
+      rgba(255, 64, 5, 0.78) 27%,
+      rgba(171, 0, 0, 0.30) 52%,
+      transparent 72%
+    ),
+
+    radial-gradient(
+      ellipse at 62% 100%,
+      rgba(255, 222, 70, 0.92) 0%,
+      rgba(255, 79, 7, 0.74) 25%,
+      rgba(181, 8, 0, 0.30) 51%,
+      transparent 72%
+    ),
+
+    radial-gradient(
+      ellipse at 87% 100%,
+      rgba(255, 183, 43, 0.88) 0%,
+      rgba(255, 55, 3, 0.70) 27%,
+      rgba(160, 0, 0, 0.28) 52%,
+      transparent 71%
+    );
+
+  filter:
+    blur(0.6px)
+    drop-shadow(
+      0 -2px 5px
+      rgba(255, 61, 0, 0.62)
+    );
+
+  transform-origin:
+    50% 100%;
+
+  animation:
+    hellfireProfileStatFlame
+    1.85s
+    ease-in-out
+    infinite;
+}
+
+
+/* -----------------------------------------------------
+   HEAT LAYER
+----------------------------------------------------- */
+
+.mmr-profile-modal.hellfire-profile-active
+.hellfire-winrate-card::before,
+
+.mmr-profile-modal.hellfire-profile-active
+.hellfire-winstreak-card::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  z-index: -2;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 115%,
+      rgba(255, 89, 7, 0.24),
+      rgba(172, 16, 0, 0.08) 45%,
+      transparent 72%
+    );
+
+  animation:
+    hellfireProfileHeatPulse
+    2.5s
+    ease-in-out
+    infinite;
+}
+
+
+/* -----------------------------------------------------
+   HELLFIRE VALUE EMPHASIS
+----------------------------------------------------- */
+
+.mmr-profile-modal.hellfire-profile-active
+.hellfire-winrate-card strong,
+
+.mmr-profile-modal.hellfire-profile-active
+.hellfire-winstreak-card strong {
+
+  color:
+    #fff5dc !important;
+
+  text-shadow:
+    0 0 5px
+    rgba(255, 191, 72, 0.60),
+
+    0 0 10px
+    rgba(255, 55, 0, 0.28);
+}
+
+
+/* =====================================================
+   ANIMATIONS
+===================================================== */
+
+@keyframes hellfireProfileStatFlame {
+
+  0%,
+  100% {
+    transform:
+      translateY(2px)
+      scaleX(0.96)
+      scaleY(0.82);
+
+    opacity:
+      0.72;
+  }
+
+  24% {
+    transform:
+      translateY(-2px)
+      scaleX(1.02)
+      scaleY(1.13);
+
+    opacity:
+      0.96;
+  }
+
+  48% {
+    transform:
+      translateY(0)
+      scaleX(0.98)
+      scaleY(0.94);
+
+    opacity:
+      0.82;
+  }
+
+  73% {
+    transform:
+      translateY(-3px)
+      scaleX(1.04)
+      scaleY(1.18);
+
+    opacity:
+      1;
+  }
+
+}
+
+
+@keyframes hellfireProfileHeatPulse {
+
+  0%,
+  100% {
+    opacity:
+      0.55;
+
+    filter:
+      brightness(0.92);
+  }
+
+  50% {
+    opacity:
+      0.90;
+
+    filter:
+      brightness(1.18);
+  }
+
+}
+
+
+@keyframes hellfireProfileBadgeFlame {
+
+  0%,
+  100% {
+    transform:
+      translateY(0)
+      scale(0.94);
+  }
+
+  50% {
+    transform:
+      translateY(-2px)
+      scale(1.08);
+  }
+
+}
+
+
+/* =====================================================
+   COMPACT STICKY HEADER
+===================================================== */
+
+.mmr-profile-sticky-header.compact
+.mmr-profile-hellfire-badge {
+
+  transform:
+    translateY(-50%)
+    scale(0.88);
+
+  transform-origin:
+    right center;
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .mmr-profile-modal.hellfire-profile-active
+  .hellfire-winrate-card::before,
+
+  .mmr-profile-modal.hellfire-profile-active
+  .hellfire-winrate-card::after,
+
+  .mmr-profile-modal.hellfire-profile-active
+  .hellfire-winstreak-card::before,
+
+  .mmr-profile-modal.hellfire-profile-active
+  .hellfire-winstreak-card::after,
+
+  .mmr-profile-hellfire-badge
+  .hellfire-badge-flame {
+
+    animation:
+      none !important;
+
+  }
+
 }    
 </style>
 
@@ -16250,7 +16698,13 @@ function openMMRProfile(playerName) {
 
 const playerStats =
   getMMRPlayerStats(playerName);
+// ===============================================
+// PLAYER HELLFIRE STATUS
+// ===============================================
 
+const hellfire =
+  getHellfireStatus(playerName);
+  
  const latestMatch =
   getLatestMMRMatch(playerName);
 
@@ -16334,6 +16788,214 @@ if (profileModal) {
     competitiveTier;
 
 }
+// =====================================================
+// HELLFIRE PROFILE STATE
+// =====================================================
+
+if (profileModal) {
+
+  profileModal.classList.remove(
+    "hellfire-profile-active",
+    "hellfire-level-1",
+    "hellfire-level-2",
+    "hellfire-level-3",
+    "hellfire-level-4",
+    "hellfire-level-5",
+    "hellfire-level-6"
+  );
+
+
+  delete profileModal.dataset.hellfire;
+  delete profileModal.dataset.hellfirePower;
+  delete profileModal.dataset.hellfireLevel;
+
+
+  profileModal.style.removeProperty(
+    "--hellfire-power"
+  );
+
+  profileModal.style.removeProperty(
+    "--hellfire-level"
+  );
+
+
+  if (hellfire.active) {
+
+    profileModal.classList.add(
+      "hellfire-profile-active",
+      `hellfire-level-${hellfire.level}`
+    );
+
+
+    profileModal.dataset.hellfire =
+      "active";
+
+    profileModal.dataset.hellfirePower =
+      hellfire.power;
+
+    profileModal.dataset.hellfireLevel =
+      hellfire.level;
+
+
+    profileModal.style.setProperty(
+      "--hellfire-power",
+      hellfire.power
+    );
+
+    profileModal.style.setProperty(
+      "--hellfire-level",
+      hellfire.level
+    );
+
+  }
+
+}
+// =====================================================
+// HELLFIRE STAT TARGETS
+// WIN RATE + WIN STREAK
+// =====================================================
+
+if (profileModal) {
+
+  const profileElements =
+    profileModal.querySelectorAll("div");
+
+
+  profileElements.forEach(element => {
+
+    element.classList.remove(
+      "hellfire-winrate-card",
+      "hellfire-winstreak-card"
+    );
+
+  });
+
+
+  if (hellfire.active) {
+
+    profileElements.forEach(element => {
+
+      const text =
+        element.textContent
+          .trim()
+          .replace(/\s+/g, " ")
+          .toUpperCase();
+
+
+      const childDivs =
+        element.querySelectorAll(":scope > div");
+
+
+      /*
+       * We only target compact stat cards,
+       * not large parent containers.
+       */
+
+      if (childDivs.length <= 3) {
+
+        if (
+          text.includes("WIN RATE") &&
+          text.includes(
+            `${playerStats.winRate}%`
+          )
+        ) {
+
+          element.classList.add(
+            "hellfire-winrate-card"
+          );
+
+        }
+
+
+        if (
+          text.includes("WIN STREAK") &&
+          text.includes(
+            String(playerStats.winStreak)
+          )
+        ) {
+
+          element.classList.add(
+            "hellfire-winstreak-card"
+          );
+
+        }
+
+      }
+
+    });
+
+  }
+
+} 
+// =====================================================
+// HELLFIRE PROFILE BADGE
+// =====================================================
+
+if (profileModal) {
+
+  let hellfireBadge =
+    profileModal.querySelector(
+      ".mmr-profile-hellfire-badge"
+    );
+
+
+  if (!hellfireBadge) {
+
+    hellfireBadge =
+      document.createElement("div");
+
+    hellfireBadge.className =
+      "mmr-profile-hellfire-badge";
+
+
+    const stickyHeader =
+      profileModal.querySelector(
+        ".mmr-profile-sticky-header"
+      );
+
+
+    if (stickyHeader) {
+
+      stickyHeader.appendChild(
+        hellfireBadge
+      );
+
+    }
+
+  }
+
+
+  if (hellfire.active) {
+
+    hellfireBadge.innerHTML = `
+      <span class="hellfire-badge-flame">
+        🔥
+      </span>
+
+      <span class="hellfire-badge-content">
+
+        <strong>
+          HELLFIRE
+        </strong>
+
+        <small>
+          ACTIVE · POWER ${hellfire.power}
+        </small>
+
+      </span>
+    `;
+
+    hellfireBadge.style.display =
+      "flex";
+
+  } else {
+
+    hellfireBadge.style.display =
+      "none";
+
+  }
+
+}  
 // ===============================================
 // DIAMOND OPENING SIGNATURE TRIGGER
 // ===============================================
