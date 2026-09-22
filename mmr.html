@@ -11065,6 +11065,261 @@ body.mmr-profile-open {
       none !important;
   }
 
+} 
+/* =====================================================
+   DIAMOND STAGE 2A
+   PRISMATIC REFRACTION SWEEP
+===================================================== */
+
+.mmr-profile-modal.tier-diamond {
+  position: relative;
+  isolation: isolate;
+}
+
+
+/* =====================================================
+   CRYSTAL REFRACTION LAYER
+===================================================== */
+
+.mmr-profile-modal.tier-diamond::before {
+  content: "";
+
+  position: absolute;
+
+  top: -20%;
+  left: -65%;
+
+  width: 34%;
+  height: 145%;
+
+  pointer-events: none;
+
+  z-index: 6;
+
+  opacity: 0;
+
+  transform:
+    skewX(-18deg)
+    translateX(0);
+
+  background:
+    linear-gradient(
+      105deg,
+
+      transparent 0%,
+
+      rgba(120, 210, 255, 0.02) 18%,
+
+      rgba(185, 235, 255, 0.10) 32%,
+
+      rgba(255, 255, 255, 0.28) 46%,
+
+      rgba(190, 235, 255, 0.16) 54%,
+
+      rgba(120, 185, 255, 0.08) 65%,
+
+      transparent 82%
+    );
+
+  filter:
+    blur(1px)
+    drop-shadow(
+      0 0 12px
+      rgba(150, 220, 255, 0.22)
+    );
+
+  mix-blend-mode: screen;
+
+  animation:
+    diamondPrismaticSweep
+    8.5s
+    cubic-bezier(.22, .61, .36, 1)
+    infinite;
+}
+
+
+/* =====================================================
+   PRISM EDGE
+===================================================== */
+
+.mmr-profile-modal.tier-diamond::after {
+  content: "";
+
+  position: absolute;
+
+  top: -15%;
+  left: -60%;
+
+  width: 7%;
+  height: 135%;
+
+  pointer-events: none;
+
+  z-index: 7;
+
+  opacity: 0;
+
+  transform:
+    skewX(-18deg)
+    translateX(0);
+
+  background:
+    linear-gradient(
+      90deg,
+
+      transparent,
+
+      rgba(130, 205, 255, 0.08),
+
+      rgba(225, 250, 255, 0.55),
+
+      rgba(165, 220, 255, 0.18),
+
+      transparent
+    );
+
+  filter:
+    blur(2px);
+
+  mix-blend-mode: screen;
+
+  animation:
+    diamondPrismEdge
+    8.5s
+    cubic-bezier(.22, .61, .36, 1)
+    infinite;
+}
+
+
+/* =====================================================
+   MAIN PRISM SWEEP
+===================================================== */
+
+@keyframes diamondPrismaticSweep {
+
+  0%,
+  15% {
+
+    left: -65%;
+
+    opacity: 0;
+
+  }
+
+
+  20% {
+
+    opacity: 0.18;
+
+  }
+
+
+  28% {
+
+    opacity: 0.58;
+
+  }
+
+
+  43% {
+
+    opacity: 0.34;
+
+  }
+
+
+  55% {
+
+    left: 125%;
+
+    opacity: 0;
+
+  }
+
+
+  100% {
+
+    left: 125%;
+
+    opacity: 0;
+
+  }
+
+}
+
+
+/* =====================================================
+   PRISMATIC EDGE
+===================================================== */
+
+@keyframes diamondPrismEdge {
+
+  0%,
+  17% {
+
+    left: -60%;
+
+    opacity: 0;
+
+  }
+
+
+  24% {
+
+    opacity: 0.22;
+
+  }
+
+
+  31% {
+
+    opacity: 0.75;
+
+  }
+
+
+  45% {
+
+    opacity: 0.25;
+
+  }
+
+
+  57% {
+
+    left: 128%;
+
+    opacity: 0;
+
+  }
+
+
+  100% {
+
+    left: 128%;
+
+    opacity: 0;
+
+  }
+
+}
+
+
+/* =====================================================
+   DIAMOND STAGE 2A — REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .mmr-profile-modal.tier-diamond::before,
+  .mmr-profile-modal.tier-diamond::after {
+
+    animation: none !important;
+
+    opacity: 0 !important;
+
+  }
+
 }    
 </style>
 
