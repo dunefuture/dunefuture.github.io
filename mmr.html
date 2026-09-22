@@ -11320,6 +11320,327 @@ body.mmr-profile-open {
 
   }
 
+}
+/* =====================================================
+   DIAMOND STAGE 2B
+   CRYSTAL MICRO-SPARKLES
+===================================================== */
+
+
+/* Default: hidden for every other tier */
+.diamond-crystal-sparkles {
+  display: none;
+}
+
+
+/* Only Diamond activates the crystal field */
+.mmr-profile-modal.tier-diamond
+.diamond-crystal-sparkles {
+
+  display: block;
+
+  position: absolute;
+  inset: 0;
+
+  overflow: hidden;
+
+  pointer-events: none;
+
+  z-index: 8;
+
+  border-radius: inherit;
+}
+
+
+/* =====================================================
+   BASE CRYSTAL
+===================================================== */
+
+.mmr-profile-modal.tier-diamond
+.diamond-sparkle {
+
+  position: absolute;
+
+  width: 3px;
+  height: 3px;
+
+  opacity: 0;
+
+  border-radius: 50%;
+
+  background:
+    rgba(235, 252, 255, 1);
+
+  box-shadow:
+    0 0 4px rgba(220, 250, 255, 0.95),
+    0 0 9px rgba(125, 220, 255, 0.75),
+    0 0 16px rgba(90, 180, 255, 0.32);
+
+  animation:
+    diamondCrystalTwinkle
+    6.8s
+    ease-in-out
+    infinite;
+}
+
+
+/* Crystal cross flare */
+.mmr-profile-modal.tier-diamond
+.diamond-sparkle::before,
+
+.mmr-profile-modal.tier-diamond
+.diamond-sparkle::after {
+
+  content: "";
+
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  transform:
+    translate(-50%, -50%);
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(230, 252, 255, 0.95),
+      transparent
+    );
+}
+
+
+.mmr-profile-modal.tier-diamond
+.diamond-sparkle::before {
+
+  width: 13px;
+  height: 1px;
+
+}
+
+
+.mmr-profile-modal.tier-diamond
+.diamond-sparkle::after {
+
+  width: 1px;
+  height: 13px;
+
+  background:
+    linear-gradient(
+      180deg,
+      transparent,
+      rgba(230, 252, 255, 0.95),
+      transparent
+    );
+
+}
+
+
+/* =====================================================
+   INDIVIDUAL CRYSTAL POSITIONS
+===================================================== */
+
+.mmr-profile-modal.tier-diamond
+.diamond-sparkle.s1 {
+
+  top: 9%;
+  left: 17%;
+
+  animation-delay: 0.4s;
+
+}
+
+
+.mmr-profile-modal.tier-diamond
+.diamond-sparkle.s2 {
+
+  top: 18%;
+  right: 14%;
+
+  animation-delay: 2.1s;
+
+}
+
+
+.mmr-profile-modal.tier-diamond
+.diamond-sparkle.s3 {
+
+  top: 34%;
+  left: 8%;
+
+  animation-delay: 4.6s;
+
+}
+
+
+.mmr-profile-modal.tier-diamond
+.diamond-sparkle.s4 {
+
+  top: 43%;
+  right: 10%;
+
+  animation-delay: 1.2s;
+
+}
+
+
+.mmr-profile-modal.tier-diamond
+.diamond-sparkle.s5 {
+
+  top: 58%;
+  left: 19%;
+
+  animation-delay: 5.3s;
+
+}
+
+
+.mmr-profile-modal.tier-diamond
+.diamond-sparkle.s6 {
+
+  top: 67%;
+  right: 18%;
+
+  animation-delay: 3.2s;
+
+}
+
+
+.mmr-profile-modal.tier-diamond
+.diamond-sparkle.s7 {
+
+  top: 81%;
+  left: 11%;
+
+  animation-delay: 6.1s;
+
+}
+
+
+.mmr-profile-modal.tier-diamond
+.diamond-sparkle.s8 {
+
+  top: 90%;
+  right: 12%;
+
+  animation-delay: 2.8s;
+
+}
+
+
+/* =====================================================
+   CRYSTAL TWINKLE
+===================================================== */
+
+@keyframes diamondCrystalTwinkle {
+
+  0%,
+  12%,
+  100% {
+
+    opacity: 0;
+
+    transform:
+      scale(0.25)
+      rotate(0deg);
+
+    filter:
+      brightness(1);
+
+  }
+
+
+  15% {
+
+    opacity: 0.18;
+
+  }
+
+
+  18% {
+
+    opacity: 1;
+
+    transform:
+      scale(1.25)
+      rotate(45deg);
+
+    filter:
+      brightness(1.65);
+
+  }
+
+
+  21% {
+
+    opacity: 0.42;
+
+    transform:
+      scale(0.75)
+      rotate(70deg);
+
+  }
+
+
+  24% {
+
+    opacity: 0;
+
+    transform:
+      scale(0.3)
+      rotate(90deg);
+
+    filter:
+      brightness(1);
+
+  }
+
+}
+
+
+/* =====================================================
+   DIFFERENT CRYSTAL SIZES
+===================================================== */
+
+.mmr-profile-modal.tier-diamond
+.diamond-sparkle.s2,
+
+.mmr-profile-modal.tier-diamond
+.diamond-sparkle.s5 {
+
+  width: 2px;
+  height: 2px;
+
+}
+
+
+.mmr-profile-modal.tier-diamond
+.diamond-sparkle.s4 {
+
+  width: 4px;
+  height: 4px;
+
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .mmr-profile-modal.tier-diamond
+  .diamond-sparkle {
+
+    animation: none !important;
+
+    opacity: 0 !important;
+
+  }
+
 }    
 </style>
 
@@ -11797,6 +12118,19 @@ TOP 20 · LAST UPDATED <span id="mmrLastUpdated">—</span>
 <div class="mmr-profile-overlay" id="mmrProfileOverlay" onclick="closeMMRProfile(event)">
 
   <div class="mmr-profile-modal">
+    <!-- DIAMOND CRYSTAL MICRO SPARKLES -->
+<div class="diamond-crystal-sparkles" aria-hidden="true">
+
+  <span class="diamond-sparkle s1"></span>
+  <span class="diamond-sparkle s2"></span>
+  <span class="diamond-sparkle s3"></span>
+  <span class="diamond-sparkle s4"></span>
+  <span class="diamond-sparkle s5"></span>
+  <span class="diamond-sparkle s6"></span>
+  <span class="diamond-sparkle s7"></span>
+  <span class="diamond-sparkle s8"></span>
+
+</div>
     <div class="mmr-profile-sticky-header">
 
  <!-- =================================================
