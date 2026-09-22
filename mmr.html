@@ -17161,81 +17161,120 @@ if (profileModal) {
 }
 // =====================================================
 // HELLFIRE STAT TARGETS
-// WIN RATE + WIN STREAK
+// FIRST-OPEN SAFE INITIALIZATION
 // =====================================================
 
 if (profileModal) {
 
-  const profileElements =
-    profileModal.querySelectorAll("div");
+  /*
+   * Remove Hellfire stat classes left by
+   * the previously opened player.
+   */
 
+  profileModal
+    .querySelectorAll(
+      ".hellfire-winrate-card, .hellfire-winstreak-card"
+    )
+    .forEach(element => {
 
-  profileElements.forEach(element => {
+      element.classList.remove(
+        "hellfire-winrate-card",
+        "hellfire-winstreak-card"
+      );
 
-    element.classList.remove(
-      "hellfire-winrate-card",
-      "hellfire-winstreak-card"
-    );
-
-  });
+    });
 
 
   if (hellfire.active) {
 
-    profileElements.forEach(element => {
+    /*
+     * Wait until the complete profile data
+     * has been rendered before targeting
+     * WIN RATE and WIN STREAK.
+     */
 
-      const text =
-        element.textContent
-          .trim()
-          .replace(/\s+/g, " ")
-          .toUpperCase();
+    requestAnimationFrame(() => {
 
+      requestAnimationFrame(() => {
 
-      const childDivs =
-        element.querySelectorAll(":scope > div");
-
-
-      /*
-       * We only target compact stat cards,
-       * not large parent containers.
-       */
-
-      if (childDivs.length <= 3) {
+        /*
+         * Safety check:
+         * Hellfire may only be applied if
+         * this profile is still eligible.
+         */
 
         if (
-          text.includes("WIN RATE") &&
-          text.includes(
-            `${playerStats.winRate}%`
+          !profileModal.classList.contains(
+            "hellfire-profile-active"
           )
         ) {
-
-          element.classList.add(
-            "hellfire-winrate-card"
-          );
-
+          return;
         }
 
 
-        if (
-          text.includes("WIN STREAK") &&
-          text.includes(
-            String(playerStats.winStreak)
-          )
-        ) {
+        const profileElements =
+          profileModal.querySelectorAll("div");
 
-          element.classList.add(
-            "hellfire-winstreak-card"
-          );
 
-        }
+        profileElements.forEach(element => {
 
-      }
+          const text =
+            element.textContent
+              .trim()
+              .replace(/\s+/g, " ")
+              .toUpperCase();
+
+
+          const childDivs =
+            element.querySelectorAll(
+              ":scope > div"
+            );
+
+
+          /*
+           * Only inspect compact stat cards.
+           */
+
+          if (childDivs.length <= 3) {
+
+            if (
+              text.includes("WIN RATE") &&
+              text.includes(
+                `${playerStats.winRate}%`
+              )
+            ) {
+
+              element.classList.add(
+                "hellfire-winrate-card"
+              );
+
+            }
+
+
+            if (
+              text.includes("WIN STREAK") &&
+              text.includes(
+                String(playerStats.winStreak)
+              )
+            ) {
+
+              element.classList.add(
+                "hellfire-winstreak-card"
+              );
+
+            }
+
+          }
+
+        });
+
+      });
 
     });
 
   }
 
-} 
+}
 // =====================================================
 // HELLFIRE PROFILE BADGE
 // =====================================================
