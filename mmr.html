@@ -13198,6 +13198,251 @@ body.mmr-profile-open {
 
   }
 
+}
+/* =====================================================
+   HELLFIRE STAGE 2B
+   LIVING HELLFIRE LEADERBOARD
+===================================================== */
+
+
+/* -----------------------------------------------------
+   HELLFIRE BASE ROW
+----------------------------------------------------- */
+
+.mmr-row.hellfire-active {
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+
+  --hellfire-strength:
+    min(var(--hellfire-power), 10);
+
+  --hellfire-glow:
+    calc(7px + (var(--hellfire-strength) * 2px));
+
+  --hellfire-flame-height:
+    calc(8px + (var(--hellfire-strength) * 3px));
+
+  --hellfire-speed:
+    2.8s;
+}
+
+
+/* -----------------------------------------------------
+   INFERNAL CORE
+   Does not replace the player's tier identity.
+----------------------------------------------------- */
+
+.mmr-row.hellfire-active::before {
+  content: "";
+
+  position: absolute;
+
+  left: 5%;
+  right: 5%;
+
+  bottom: -2px;
+
+  height:
+    var(--hellfire-flame-height);
+
+  pointer-events: none;
+
+  z-index: -1;
+
+  border-radius:
+    50% 50% 30% 30%;
+
+  background:
+    radial-gradient(
+      ellipse at 20% 100%,
+      rgba(255, 224, 82, 0.72) 0%,
+      rgba(255, 104, 18, 0.52) 24%,
+      rgba(218, 22, 0, 0.25) 48%,
+      transparent 72%
+    ),
+
+    radial-gradient(
+      ellipse at 48% 100%,
+      rgba(255, 181, 35, 0.78) 0%,
+      rgba(255, 63, 8, 0.48) 27%,
+      rgba(166, 0, 0, 0.22) 52%,
+      transparent 74%
+    ),
+
+    radial-gradient(
+      ellipse at 76% 100%,
+      rgba(255, 207, 58, 0.68) 0%,
+      rgba(255, 75, 10, 0.46) 28%,
+      rgba(173, 0, 0, 0.20) 50%,
+      transparent 73%
+    );
+
+  filter:
+    blur(1.5px)
+    drop-shadow(
+      0 0 var(--hellfire-glow)
+      rgba(255, 61, 0, 0.55)
+    );
+
+  opacity: 0.78;
+
+  transform-origin:
+    50% 100%;
+
+  animation:
+    hellfireLivingFlame
+    var(--hellfire-speed)
+    ease-in-out
+    infinite;
+}
+
+
+/* -----------------------------------------------------
+   UPPER HEAT / FIRE AURA
+----------------------------------------------------- */
+
+.mmr-row.hellfire-active::after {
+  content: "";
+
+  position: absolute;
+
+  left: 1%;
+  right: 1%;
+
+  top: -5px;
+  bottom: -5px;
+
+  pointer-events: none;
+
+  z-index: -2;
+
+  border-radius: inherit;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 115%,
+      rgba(255, 73, 0, 0.18),
+      rgba(164, 0, 0, 0.07) 42%,
+      transparent 69%
+    );
+
+  box-shadow:
+    0 0
+    var(--hellfire-glow)
+    rgba(255, 55, 0, 0.20),
+
+    inset 0 -3px 10px
+    rgba(255, 95, 12, 0.08);
+
+  opacity: 0.75;
+
+  animation:
+    hellfireAuraPulse
+    3.2s
+    ease-in-out
+    infinite;
+}
+
+
+/* -----------------------------------------------------
+   PLAYER NAME — SUBTLE INFERNAL SIGNATURE
+----------------------------------------------------- */
+
+.mmr-row.hellfire-active
+.mmr-name {
+  text-shadow:
+    0 0 5px rgba(255, 132, 31, 0.28),
+    0 0 10px rgba(255, 47, 0, 0.12);
+}
+
+
+/* -----------------------------------------------------
+   HELLFIRE POWER 1
+----------------------------------------------------- */
+
+.mmr-row.hellfire-level-1 {
+  --hellfire-speed: 2.8s;
+}
+
+
+/* -----------------------------------------------------
+   LIVING FLAME
+----------------------------------------------------- */
+
+@keyframes hellfireLivingFlame {
+
+  0%,
+  100% {
+    transform:
+      translateY(0)
+      scaleX(0.96)
+      scaleY(0.88);
+
+    opacity: 0.66;
+  }
+
+  28% {
+    transform:
+      translateY(-2px)
+      scaleX(1.01)
+      scaleY(1.08);
+
+    opacity: 0.82;
+  }
+
+  52% {
+    transform:
+      translateY(-1px)
+      scaleX(0.98)
+      scaleY(0.95);
+
+    opacity: 0.73;
+  }
+
+  76% {
+    transform:
+      translateY(-3px)
+      scaleX(1.03)
+      scaleY(1.12);
+
+    opacity: 0.86;
+  }
+
+}
+
+
+/* -----------------------------------------------------
+   INFERNAL AURA PULSE
+----------------------------------------------------- */
+
+@keyframes hellfireAuraPulse {
+
+  0%,
+  100% {
+    opacity: 0.55;
+    filter: brightness(0.92);
+  }
+
+  50% {
+    opacity: 0.82;
+    filter: brightness(1.15);
+  }
+
+}
+
+
+/* -----------------------------------------------------
+   ACCESSIBILITY
+----------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .mmr-row.hellfire-active::before,
+  .mmr-row.hellfire-active::after {
+    animation: none !important;
+  }
+
 }    
 </style>
 
