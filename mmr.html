@@ -7491,6 +7491,243 @@ body.mmr-profile-open {
   }
 
 }
+    /* =====================================================
+   ADAPTIVE COMPACT PROFILE HEADER
+===================================================== */
+
+.mmr-profile-sticky-header {
+  transition:
+    padding 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+    min-height 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.32s ease,
+    border-color 0.32s ease,
+    box-shadow 0.32s ease,
+    backdrop-filter 0.32s ease;
+}
+
+
+/* =====================================================
+   COMPACT MODE
+===================================================== */
+
+.mmr-profile-sticky-header.compact {
+  padding-top: 11px;
+  padding-bottom: 11px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(16, 8, 28, 0.97),
+      rgba(7, 5, 16, 0.985)
+    );
+
+  border-bottom-color:
+    rgba(220, 70, 255, 0.48);
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.48),
+    0 0 22px rgba(190, 40, 255, 0.12);
+
+  backdrop-filter:
+    blur(18px)
+    saturate(1.2);
+}
+
+
+/* PLAYER MMR PROFILE label disappears */
+
+.mmr-profile-sticky-header
+.mmr-profile-eyebrow {
+
+  max-height: 30px;
+
+  opacity: 1;
+
+  overflow: hidden;
+
+  transition:
+    max-height 0.28s ease,
+    opacity 0.22s ease,
+    margin 0.28s ease,
+    transform 0.28s ease;
+}
+
+
+.mmr-profile-sticky-header.compact
+.mmr-profile-eyebrow {
+
+  max-height: 0;
+
+  margin-top: 0;
+  margin-bottom: 0;
+
+  opacity: 0;
+
+  transform:
+    translateY(-8px);
+}
+
+
+/* PLAYER NAME */
+
+.mmr-profile-sticky-header
+.mmr-profile-name {
+
+  transition:
+    font-size 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+    margin 0.32s ease,
+    transform 0.32s ease,
+    text-shadow 0.32s ease;
+}
+
+
+.mmr-profile-sticky-header.compact
+.mmr-profile-name {
+
+  font-size: 18px;
+
+  margin-top: 0;
+  margin-bottom: 5px;
+
+  transform:
+    translateY(0);
+
+  text-shadow:
+    0 0 10px rgba(255, 80, 245, 0.45);
+}
+
+
+/* SUBTITLE disappears */
+
+.mmr-profile-sticky-header
+.mmr-profile-subtitle {
+
+  max-height: 30px;
+
+  opacity: 1;
+
+  overflow: hidden;
+
+  transition:
+    max-height 0.28s ease,
+    opacity 0.22s ease,
+    margin 0.28s ease,
+    transform 0.28s ease;
+}
+
+
+.mmr-profile-sticky-header.compact
+.mmr-profile-subtitle {
+
+  max-height: 0;
+
+  margin-top: 0;
+  margin-bottom: 0;
+
+  opacity: 0;
+
+  transform:
+    translateY(-6px);
+}
+
+
+/* =====================================================
+   COMPACT META ROW
+===================================================== */
+
+.mmr-profile-sticky-header.compact
+.mmr-profile-header-meta {
+
+  margin-top: 3px;
+
+  transform:
+    scale(0.94);
+
+  transform-origin:
+    left center;
+}
+
+
+.mmr-profile-header-meta {
+
+  transition:
+    margin 0.32s ease,
+    transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/* =====================================================
+   WIN STREAK COMPACT
+===================================================== */
+
+.mmr-profile-sticky-header.compact
+.mmr-profile-header-streak.active {
+
+  margin-top: 5px;
+
+  padding:
+    3px 8px;
+
+  font-size: 9px;
+
+  transform:
+    scale(0.92);
+
+  transform-origin:
+    left center;
+}
+
+
+/* =====================================================
+   CLOSE BUTTON
+===================================================== */
+
+.mmr-profile-sticky-header
+.mmr-profile-close {
+
+  transition:
+    transform 0.28s ease,
+    background 0.28s ease,
+    border-color 0.28s ease,
+    box-shadow 0.28s ease;
+}
+
+
+.mmr-profile-sticky-header.compact
+.mmr-profile-close {
+
+  transform:
+    scale(0.88);
+}
+
+
+/* =====================================================
+   COMPACT ENERGY LINE
+===================================================== */
+
+.mmr-profile-sticky-header.compact::after {
+
+  opacity: 0.9;
+
+  filter:
+    brightness(1.25);
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .mmr-profile-sticky-header,
+  .mmr-profile-sticky-header *,
+  .mmr-profile-sticky-header::after {
+
+    transition: none !important;
+  }
+
+}
 </style>
 
 <link rel="stylesheet" href="style.css">
