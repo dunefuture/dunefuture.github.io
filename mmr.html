@@ -8485,7 +8485,400 @@ body.mmr-profile-open {
 
   }
 
-}    
+}
+    /* =====================================================
+   DIAMOND TIER — CRYSTAL SHARDS
+   Stage 3
+===================================================== */
+
+
+/* -----------------------------------------------------
+   CRYSTAL SHARD FIELD
+----------------------------------------------------- */
+
+.mmr-profile-modal.tier-diamond
+.mmr-profile-sticky-header {
+
+  isolation: isolate;
+
+}
+
+
+/*
+   Menggunakan box-shadow untuk menciptakan beberapa
+   crystal particles tanpa menambah HTML baru.
+*/
+
+.mmr-profile-modal.tier-diamond
+.mmr-profile-sticky-header .mmr-profile-eyebrow {
+
+  position: relative;
+  z-index: 4;
+
+}
+
+
+/* -----------------------------------------------------
+   FLOATING CRYSTAL PARTICLES
+----------------------------------------------------- */
+
+.mmr-profile-modal.tier-diamond
+.mmr-profile-sticky-header
+.mmr-profile-eyebrow::before {
+
+  content: "";
+
+  position: absolute;
+
+  width: 3px;
+  height: 8px;
+
+  left: -14px;
+  top: 50%;
+
+  pointer-events: none;
+
+  border-radius:
+    70% 20% 70% 20%;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(220, 255, 255, 0.95),
+      rgba(95, 225, 255, 0.55),
+      rgba(60, 160, 255, 0.05)
+    );
+
+  box-shadow:
+
+    34px -13px 0 -1px
+      rgba(180, 245, 255, 0.50),
+
+    79px 15px 0 -1px
+      rgba(90, 215, 255, 0.40),
+
+    128px -10px 0 -1px
+      rgba(200, 250, 255, 0.46),
+
+    174px 12px 0 -1px
+      rgba(80, 195, 255, 0.35),
+
+    221px -15px 0 -1px
+      rgba(180, 245, 255, 0.42),
+
+    270px 8px 0 -1px
+      rgba(100, 220, 255, 0.32);
+
+  opacity: 0;
+
+  filter:
+    drop-shadow(
+      0 0 4px
+      rgba(100, 225, 255, 0.70)
+    );
+
+  transform:
+    translate3d(0, 10px, 0)
+    rotate(28deg);
+
+  animation:
+    diamondShardDriftA
+    7.6s
+    ease-in-out
+    infinite;
+
+}
+
+
+@keyframes diamondShardDriftA {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translate3d(0, 10px, 0)
+      rotate(28deg);
+  }
+
+  15% {
+    opacity: 0;
+  }
+
+  28% {
+    opacity: 0.75;
+  }
+
+  58% {
+    opacity: 0.42;
+
+    transform:
+      translate3d(9px, -9px, 0)
+      rotate(58deg);
+  }
+
+  78% {
+    opacity: 0.12;
+
+    transform:
+      translate3d(15px, -17px, 0)
+      rotate(82deg);
+  }
+
+  100% {
+    opacity: 0;
+
+    transform:
+      translate3d(19px, -22px, 0)
+      rotate(96deg);
+  }
+
+}
+
+
+/* -----------------------------------------------------
+   SECOND CRYSTAL LAYER
+----------------------------------------------------- */
+
+.mmr-profile-modal.tier-diamond
+.mmr-profile-sticky-header
+.mmr-profile-eyebrow::after {
+
+  content: "";
+
+  position: absolute;
+
+  width: 2px;
+  height: 5px;
+
+  right: -18px;
+  top: 4px;
+
+  pointer-events: none;
+
+  background:
+    rgba(190, 250, 255, 0.85);
+
+  border-radius:
+    50% 10% 50% 10%;
+
+  box-shadow:
+
+    -26px 18px 0
+      rgba(100, 225, 255, 0.35),
+
+    -65px -7px 0
+      rgba(190, 250, 255, 0.40),
+
+    -108px 15px 0
+      rgba(80, 200, 255, 0.30),
+
+    -151px -9px 0
+      rgba(210, 255, 255, 0.38),
+
+    -196px 12px 0
+      rgba(90, 215, 255, 0.30);
+
+  opacity: 0;
+
+  filter:
+    drop-shadow(
+      0 0 3px
+      rgba(120, 235, 255, 0.65)
+    );
+
+  transform:
+    translate3d(0, -8px, 0)
+    rotate(-35deg);
+
+  animation:
+    diamondShardDriftB
+    9.2s
+    ease-in-out
+    1.4s
+    infinite;
+
+}
+
+
+@keyframes diamondShardDriftB {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translate3d(0, -8px, 0)
+      rotate(-35deg);
+  }
+
+  22% {
+    opacity: 0;
+  }
+
+  35% {
+    opacity: 0.58;
+  }
+
+  62% {
+    opacity: 0.32;
+
+    transform:
+      translate3d(-8px, 7px, 0)
+      rotate(-8deg);
+  }
+
+  84% {
+    opacity: 0.08;
+
+    transform:
+      translate3d(-13px, 15px, 0)
+      rotate(18deg);
+  }
+
+  100% {
+    opacity: 0;
+
+    transform:
+      translate3d(-17px, 20px, 0)
+      rotate(34deg);
+  }
+
+}
+
+
+/* -----------------------------------------------------
+   CRYSTAL GLINT
+----------------------------------------------------- */
+
+.mmr-profile-modal.tier-diamond
+.mmr-profile-name {
+
+  position: relative;
+
+}
+
+.mmr-profile-modal.tier-diamond
+.mmr-profile-name::after {
+
+  content: "✦";
+
+  position: absolute;
+
+  top: -7px;
+  right: -15px;
+
+  font-size: 8px;
+
+  color:
+    rgba(205, 252, 255, 0.95);
+
+  pointer-events: none;
+
+  opacity: 0;
+
+  text-shadow:
+    0 0 5px rgba(150, 245, 255, 0.85),
+    0 0 12px rgba(80, 200, 255, 0.50);
+
+  animation:
+    diamondCrystalGlint
+    5.4s
+    ease-in-out
+    infinite;
+
+}
+
+
+@keyframes diamondCrystalGlint {
+
+  0%,
+  18%,
+  100% {
+
+    opacity: 0;
+
+    transform:
+      scale(0.45)
+      rotate(0deg);
+
+  }
+
+  24% {
+
+    opacity: 1;
+
+    transform:
+      scale(1.25)
+      rotate(35deg);
+
+  }
+
+  31% {
+
+    opacity: 0.35;
+
+    transform:
+      scale(0.85)
+      rotate(65deg);
+
+  }
+
+  38% {
+
+    opacity: 0;
+
+    transform:
+      scale(0.55)
+      rotate(90deg);
+
+  }
+
+}
+
+
+/* -----------------------------------------------------
+   COMPACT HEADER TUNING
+----------------------------------------------------- */
+
+.mmr-profile-modal.tier-diamond
+.mmr-profile-sticky-header.compact
+.mmr-profile-eyebrow::before,
+
+.mmr-profile-modal.tier-diamond
+.mmr-profile-sticky-header.compact
+.mmr-profile-eyebrow::after {
+
+  filter:
+    drop-shadow(
+      0 0 3px
+      rgba(115, 230, 255, 0.55)
+    );
+
+}
+
+
+/* -----------------------------------------------------
+   ACCESSIBILITY
+----------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .mmr-profile-modal.tier-diamond
+  .mmr-profile-sticky-header
+  .mmr-profile-eyebrow::before,
+
+  .mmr-profile-modal.tier-diamond
+  .mmr-profile-sticky-header
+  .mmr-profile-eyebrow::after,
+
+  .mmr-profile-modal.tier-diamond
+  .mmr-profile-name::after {
+
+    animation: none !important;
+    opacity: 0 !important;
+
+  }
+
+}
 </style>
 
 <link rel="stylesheet" href="style.css">
