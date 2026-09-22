@@ -11575,7 +11575,44 @@ if (profileModal) {
     competitiveTier;
 
 }
+// ===============================================
+// DIAMOND OPENING SIGNATURE TRIGGER
+// ===============================================
 
+if (
+  profileModal &&
+  competitiveTierClass === "diamond"
+) {
+
+  // Reset animation agar dapat dimainkan ulang
+  // setiap kali profile Diamond dibuka.
+  profileModal.classList.remove(
+    "diamond-opening"
+  );
+
+  // Memaksa browser membaca state tanpa class.
+  // Ini memungkinkan CSS animation restart.
+  void profileModal.offsetWidth;
+
+  profileModal.classList.add(
+    "diamond-opening"
+  );
+
+
+  // Bersihkan trigger setelah opening selesai.
+  // Stage 1–3 tetap berjalan sebagai idle effects.
+  window.setTimeout(
+    () => {
+
+      profileModal.classList.remove(
+        "diamond-opening"
+      );
+
+    },
+    1900
+  );
+
+}
 // ===============================================
 // LATEST MMR CHANGE
 // ===============================================
