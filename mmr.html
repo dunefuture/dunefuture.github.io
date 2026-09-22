@@ -10664,6 +10664,407 @@ body.mmr-profile-open {
       none !important;
   }
 
+} 
+/* =====================================================
+   DIAMOND — STAGE 1
+   CRYSTAL IDENTITY SYSTEM
+===================================================== */
+
+
+/* -----------------------------------------------------
+   DIAMOND CRYSTAL SHELL
+----------------------------------------------------- */
+
+.mmr-profile-modal.tier-diamond {
+
+  --diamond-white:
+    rgba(238, 252, 255, 1);
+
+  --diamond-ice:
+    rgba(143, 226, 255, 0.95);
+
+  --diamond-blue:
+    rgba(83, 165, 255, 0.88);
+
+  --diamond-violet:
+    rgba(155, 130, 255, 0.58);
+
+
+  border:
+    1px solid
+    rgba(135, 220, 255, 0.72);
+
+
+  background:
+    radial-gradient(
+      circle at 50% -10%,
+      rgba(123, 211, 255, 0.12),
+      transparent 34%
+    ),
+
+    linear-gradient(
+      145deg,
+      rgba(8, 17, 30, 0.98) 0%,
+      rgba(10, 22, 39, 0.99) 48%,
+      rgba(8, 13, 27, 0.99) 100%
+    );
+
+
+  box-shadow:
+    0 0 14px
+      rgba(105, 203, 255, 0.22),
+
+    0 0 34px
+      rgba(74, 143, 255, 0.12),
+
+    inset 0 0 22px
+      rgba(151, 225, 255, 0.035);
+}
+
+
+/* -----------------------------------------------------
+   DIAMOND CRYSTAL EDGE
+----------------------------------------------------- */
+
+.mmr-profile-modal.tier-diamond::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: -1px;
+
+  border-radius: inherit;
+
+  padding: 1px;
+
+  background:
+    linear-gradient(
+      135deg,
+
+      rgba(240, 253, 255, 0.92) 0%,
+
+      rgba(124, 218, 255, 0.72) 18%,
+
+      rgba(93, 154, 255, 0.32) 37%,
+
+      rgba(178, 147, 255, 0.48) 52%,
+
+      rgba(102, 202, 255, 0.52) 72%,
+
+      rgba(230, 250, 255, 0.82) 100%
+    );
+
+
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+
+  -webkit-mask-composite:
+    xor;
+
+  mask-composite:
+    exclude;
+
+
+  pointer-events:
+    none;
+
+  z-index:
+    20;
+
+
+  filter:
+    drop-shadow(
+      0 0 4px
+      rgba(145, 225, 255, 0.42)
+    );
+}
+
+
+/* -----------------------------------------------------
+   DIAMOND HEADER
+----------------------------------------------------- */
+
+.mmr-profile-modal.tier-diamond
+.mmr-profile-sticky-header {
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(8, 20, 35, 0.97),
+      rgba(13, 27, 47, 0.96),
+      rgba(8, 17, 32, 0.98)
+    );
+
+
+  border-bottom-color:
+    rgba(119, 211, 255, 0.38);
+
+
+  box-shadow:
+    inset 0 -1px 0
+      rgba(194, 240, 255, 0.08);
+}
+
+
+/* -----------------------------------------------------
+   PLAYER NAME — FROZEN LIGHT
+----------------------------------------------------- */
+
+.mmr-profile-modal.tier-diamond
+.mmr-profile-name {
+
+  color:
+    #eafaff;
+
+
+  text-shadow:
+    0 0 4px
+      rgba(235, 252, 255, 0.82),
+
+    0 0 10px
+      rgba(119, 215, 255, 0.52),
+
+    0 0 21px
+      rgba(76, 142, 255, 0.24);
+}
+
+
+/* -----------------------------------------------------
+   HEADER RANK + MMR
+----------------------------------------------------- */
+
+.mmr-profile-modal.tier-diamond
+.mmr-profile-header-rating {
+
+  color:
+    #9fe5ff;
+
+
+  text-shadow:
+    0 0 8px
+      rgba(108, 210, 255, 0.42);
+}
+
+
+/* -----------------------------------------------------
+   DIAMOND RATING CARD
+----------------------------------------------------- */
+
+.mmr-profile-modal.tier-diamond
+.mmr-profile-rating-card {
+
+  border:
+    1px solid
+    rgba(112, 203, 255, 0.32);
+
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(121, 207, 255, 0.10),
+      transparent 50%
+    ),
+
+    linear-gradient(
+      135deg,
+      rgba(14, 31, 52, 0.90),
+      rgba(12, 22, 42, 0.94)
+    );
+
+
+  box-shadow:
+    inset 0 0 20px
+      rgba(119, 210, 255, 0.045),
+
+    0 0 16px
+      rgba(68, 144, 255, 0.07);
+}
+
+
+/* -----------------------------------------------------
+   CURRENT MMR + RANK
+----------------------------------------------------- */
+
+.mmr-profile-modal.tier-diamond
+#mmrProfileRating,
+
+.mmr-profile-modal.tier-diamond
+#mmrProfileRank {
+
+  color:
+    #a9eaff;
+
+
+  text-shadow:
+    0 0 7px
+      rgba(176, 237, 255, 0.64),
+
+    0 0 17px
+      rgba(80, 166, 255, 0.30);
+}
+
+
+/* -----------------------------------------------------
+   DIAMOND REACTOR BADGE
+----------------------------------------------------- */
+
+.mmr-profile-modal.tier-diamond
+.mmr-profile-tier.diamond {
+
+  position:
+    relative;
+
+  overflow:
+    hidden;
+
+  isolation:
+    isolate;
+
+
+  color:
+    #eafcff;
+
+
+  border:
+    1px solid
+    rgba(151, 226, 255, 0.86);
+
+
+  background:
+    linear-gradient(
+      135deg,
+
+      rgba(218, 249, 255, 0.18) 0%,
+
+      rgba(93, 188, 255, 0.17) 32%,
+
+      rgba(92, 112, 255, 0.15) 65%,
+
+      rgba(191, 234, 255, 0.18) 100%
+    );
+
+
+  text-shadow:
+    0 0 4px
+      rgba(255, 255, 255, 0.96),
+
+    0 0 10px
+      rgba(154, 228, 255, 0.72),
+
+    0 0 19px
+      rgba(79, 159, 255, 0.38);
+
+
+  box-shadow:
+    inset 0 0 12px
+      rgba(209, 247, 255, 0.12),
+
+    0 0 9px
+      rgba(125, 211, 255, 0.34),
+
+    0 0 19px
+      rgba(72, 143, 255, 0.16);
+}
+
+
+/* -----------------------------------------------------
+   STATIC PRISM INSIDE BADGE
+----------------------------------------------------- */
+
+.mmr-profile-modal.tier-diamond
+.mmr-profile-tier.diamond::before {
+
+  content: "";
+
+  position:
+    absolute;
+
+  inset:
+    0;
+
+
+  background:
+    linear-gradient(
+      115deg,
+
+      transparent 0%,
+      transparent 27%,
+
+      rgba(255, 255, 255, 0.10) 35%,
+
+      rgba(167, 236, 255, 0.22) 43%,
+
+      rgba(191, 166, 255, 0.16) 50%,
+
+      transparent 59%,
+      transparent 100%
+    );
+
+
+  pointer-events:
+    none;
+
+  z-index:
+    -1;
+}
+
+
+/* -----------------------------------------------------
+   COMPETITIVE STATS CRYSTAL FRAME
+----------------------------------------------------- */
+
+.mmr-profile-modal.tier-diamond
+.mmr-profile-competitive-stats {
+
+  border-color:
+    rgba(105, 198, 255, 0.20);
+
+
+  box-shadow:
+    inset 0 0 18px
+      rgba(93, 186, 255, 0.025);
+}
+
+
+/* -----------------------------------------------------
+   DIAMOND SCROLLBAR
+----------------------------------------------------- */
+
+.mmr-profile-modal.tier-diamond::-webkit-scrollbar-thumb {
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(218, 249, 255, 0.92),
+      rgba(105, 205, 255, 0.92),
+      rgba(93, 125, 255, 0.86)
+    );
+
+
+  box-shadow:
+    0 0 7px
+      rgba(125, 218, 255, 0.55),
+
+    0 0 14px
+      rgba(72, 145, 255, 0.25);
+}
+
+
+/* =====================================================
+   DIAMOND STAGE 1 — REDUCED MOTION READY
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .mmr-profile-modal.tier-diamond,
+  .mmr-profile-modal.tier-diamond * {
+
+    animation:
+      none !important;
+  }
+
 }    
 </style>
 
