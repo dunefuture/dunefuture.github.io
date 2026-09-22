@@ -11641,6 +11641,311 @@ body.mmr-profile-open {
 
   }
 
+}
+/* =====================================================
+   DIAMOND STAGE 3
+   CRYSTAL EDGE RESONANCE
+===================================================== */
+
+
+/* -----------------------------------------------------
+   Diamond perimeter resonance
+----------------------------------------------------- */
+
+.mmr-profile-modal.tier-diamond {
+  animation:
+    diamondEdgeResonance
+    7.5s
+    ease-in-out
+    infinite;
+}
+
+
+/* =====================================================
+   EDGE RESONANCE PULSE
+===================================================== */
+
+@keyframes diamondEdgeResonance {
+
+  0%,
+  12%,
+  100% {
+
+    border-color:
+      rgba(105, 205, 255, 0.62);
+
+    box-shadow:
+      0 0 0 1px rgba(80, 185, 255, 0.10),
+      0 0 14px rgba(55, 175, 255, 0.16),
+      0 0 32px rgba(45, 125, 255, 0.08);
+
+  }
+
+
+  18% {
+
+    border-color:
+      rgba(155, 230, 255, 0.82);
+
+    box-shadow:
+      0 0 0 1px rgba(155, 230, 255, 0.20),
+      0 0 18px rgba(90, 205, 255, 0.28),
+      0 0 38px rgba(60, 155, 255, 0.14);
+
+  }
+
+
+  23% {
+
+    border-color:
+      rgba(225, 250, 255, 0.96);
+
+    box-shadow:
+      0 0 0 1px rgba(220, 250, 255, 0.38),
+      0 0 22px rgba(120, 225, 255, 0.42),
+      0 0 48px rgba(70, 170, 255, 0.20),
+      inset 0 0 18px rgba(110, 215, 255, 0.08);
+
+  }
+
+
+  29% {
+
+    border-color:
+      rgba(115, 210, 255, 0.70);
+
+    box-shadow:
+      0 0 0 1px rgba(100, 210, 255, 0.16),
+      0 0 16px rgba(70, 190, 255, 0.23),
+      0 0 34px rgba(50, 145, 255, 0.11);
+
+  }
+
+
+  52% {
+
+    border-color:
+      rgba(105, 205, 255, 0.62);
+
+    box-shadow:
+      0 0 0 1px rgba(80, 185, 255, 0.10),
+      0 0 14px rgba(55, 175, 255, 0.16),
+      0 0 32px rgba(45, 125, 255, 0.08);
+
+  }
+
+
+  68% {
+
+    border-color:
+      rgba(170, 235, 255, 0.78);
+
+    box-shadow:
+      0 0 0 1px rgba(155, 230, 255, 0.20),
+      0 0 19px rgba(90, 210, 255, 0.30),
+      0 0 40px rgba(65, 165, 255, 0.14);
+
+  }
+
+
+  72% {
+
+    border-color:
+      rgba(235, 252, 255, 0.94);
+
+    box-shadow:
+      0 0 0 1px rgba(225, 250, 255, 0.34),
+      0 0 23px rgba(125, 225, 255, 0.40),
+      0 0 50px rgba(75, 175, 255, 0.19),
+      inset 0 0 20px rgba(120, 220, 255, 0.07);
+
+  }
+
+
+  79% {
+
+    border-color:
+      rgba(110, 210, 255, 0.68);
+
+    box-shadow:
+      0 0 0 1px rgba(95, 205, 255, 0.14),
+      0 0 16px rgba(70, 190, 255, 0.22),
+      0 0 34px rgba(50, 145, 255, 0.10);
+
+  }
+
+}
+
+
+/* =====================================================
+   CRYSTAL CORNER RESPONSE
+   Uses existing sparkle layer — no new HTML
+===================================================== */
+
+.mmr-profile-modal.tier-diamond
+.diamond-crystal-sparkles {
+
+  filter:
+    drop-shadow(
+      0 0 3px
+      rgba(120, 220, 255, 0.16)
+    );
+
+  animation:
+    diamondCrystalFieldResonance
+    7.5s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes diamondCrystalFieldResonance {
+
+  0%,
+  15%,
+  100% {
+
+    filter:
+      drop-shadow(
+        0 0 2px
+        rgba(100, 210, 255, 0.10)
+      );
+
+  }
+
+
+  23% {
+
+    filter:
+      drop-shadow(
+        0 0 7px
+        rgba(170, 235, 255, 0.38)
+      );
+
+  }
+
+
+  32% {
+
+    filter:
+      drop-shadow(
+        0 0 3px
+        rgba(100, 210, 255, 0.15)
+      );
+
+  }
+
+
+  72% {
+
+    filter:
+      drop-shadow(
+        0 0 8px
+        rgba(185, 240, 255, 0.40)
+      );
+
+  }
+
+
+  82% {
+
+    filter:
+      drop-shadow(
+        0 0 3px
+        rgba(100, 210, 255, 0.14)
+      );
+
+  }
+
+}
+
+
+/* =====================================================
+   DIAMOND TIER BADGE RESONANCE
+===================================================== */
+
+.mmr-profile-modal.tier-diamond
+.mmr-profile-tier.diamond {
+
+  animation:
+    diamondBadgeResonance
+    7.5s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes diamondBadgeResonance {
+
+  0%,
+  17%,
+  100% {
+
+    filter:
+      brightness(1);
+
+  }
+
+
+  23% {
+
+    filter:
+      brightness(1.28)
+      drop-shadow(
+        0 0 7px
+        rgba(180, 240, 255, 0.52)
+      );
+
+  }
+
+
+  31% {
+
+    filter:
+      brightness(1.05);
+
+  }
+
+
+  72% {
+
+    filter:
+      brightness(1.24)
+      drop-shadow(
+        0 0 8px
+        rgba(185, 240, 255, 0.48)
+      );
+
+  }
+
+
+  80% {
+
+    filter:
+      brightness(1.04);
+
+  }
+
+}
+
+
+/* =====================================================
+   DIAMOND STAGE 3
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .mmr-profile-modal.tier-diamond,
+  .mmr-profile-modal.tier-diamond
+  .diamond-crystal-sparkles,
+  .mmr-profile-modal.tier-diamond
+  .mmr-profile-tier.diamond {
+
+    animation: none !important;
+
+  }
+
 }    
 </style>
 
