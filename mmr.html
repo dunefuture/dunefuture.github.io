@@ -8228,6 +8228,263 @@ body.mmr-profile-open {
 
   box-shadow:
     0 0 14px rgba(70, 210, 255, 0.34);
+}
+/* =====================================================
+   DIAMOND TIER — CRYSTAL ENERGY ANIMATION
+   Stage 2
+===================================================== */
+
+
+/* -----------------------------------------------------
+   1. CRYOGENIC ENERGY FRAME
+----------------------------------------------------- */
+
+.mmr-profile-modal.tier-diamond {
+  animation:
+    diamondFrameEnergy 4.8s ease-in-out infinite;
+}
+
+@keyframes diamondFrameEnergy {
+
+  0%,
+  100% {
+    box-shadow:
+      0 0 18px rgba(80, 220, 255, 0.18),
+      0 0 38px rgba(70, 180, 255, 0.10),
+      inset 0 0 20px rgba(120, 230, 255, 0.025);
+  }
+
+  50% {
+    box-shadow:
+      0 0 26px rgba(110, 235, 255, 0.34),
+      0 0 58px rgba(70, 190, 255, 0.18),
+      inset 0 0 28px rgba(130, 240, 255, 0.055);
+  }
+
+}
+
+
+/* -----------------------------------------------------
+   2. CRYSTAL LIGHT SWEEP
+----------------------------------------------------- */
+
+.mmr-profile-modal.tier-diamond
+.mmr-profile-sticky-header {
+  overflow: hidden;
+}
+
+.mmr-profile-modal.tier-diamond
+.mmr-profile-sticky-header::before {
+
+  content: "";
+
+  position: absolute;
+
+  top: -70%;
+  left: -55%;
+
+  width: 34%;
+  height: 240%;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      105deg,
+      transparent 0%,
+      rgba(170, 245, 255, 0.02) 28%,
+      rgba(210, 252, 255, 0.30) 48%,
+      rgba(120, 225, 255, 0.12) 58%,
+      transparent 78%
+    );
+
+  filter:
+    blur(2px);
+
+  transform:
+    rotate(12deg);
+
+  opacity: 0;
+
+  animation:
+    diamondCrystalSweep 6.8s
+    cubic-bezier(0.4, 0, 0.2, 1)
+    infinite;
+
+}
+
+@keyframes diamondCrystalSweep {
+
+  0% {
+    left: -55%;
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0;
+  }
+
+  18% {
+    opacity: 0.85;
+  }
+
+  42% {
+    left: 125%;
+    opacity: 0.35;
+  }
+
+  48% {
+    left: 125%;
+    opacity: 0;
+  }
+
+  100% {
+    left: 125%;
+    opacity: 0;
+  }
+
+}
+
+
+/* -----------------------------------------------------
+   3. FROST ENERGY PULSE
+----------------------------------------------------- */
+
+.mmr-profile-modal.tier-diamond
+.mmr-profile-sticky-header::after {
+
+  animation:
+    diamondFrostPulse 4.2s
+    ease-in-out
+    infinite;
+
+}
+
+@keyframes diamondFrostPulse {
+
+  0%,
+  100% {
+    opacity: 0.48;
+
+    filter:
+      brightness(1)
+      drop-shadow(
+        0 0 4px
+        rgba(100, 225, 255, 0.30)
+      );
+  }
+
+  50% {
+    opacity: 0.92;
+
+    filter:
+      brightness(1.35)
+      drop-shadow(
+        0 0 10px
+        rgba(125, 235, 255, 0.70)
+      );
+  }
+
+}
+
+
+/* -----------------------------------------------------
+   4. DIAMOND NAME — FROZEN LIGHT
+----------------------------------------------------- */
+
+.mmr-profile-modal.tier-diamond
+.mmr-profile-name {
+
+  animation:
+    diamondNameGlow 3.8s
+    ease-in-out
+    infinite;
+
+}
+
+@keyframes diamondNameGlow {
+
+  0%,
+  100% {
+
+    text-shadow:
+      0 0 5px rgba(120, 225, 255, 0.20);
+
+  }
+
+  50% {
+
+    text-shadow:
+      0 0 8px rgba(160, 240, 255, 0.50),
+      0 0 18px rgba(80, 195, 255, 0.22);
+
+  }
+
+}
+
+
+/* -----------------------------------------------------
+   5. DIAMOND TIER BADGE — CRYSTAL CORE
+----------------------------------------------------- */
+
+.mmr-profile-modal.tier-diamond
+.mmr-profile-tier {
+
+  animation:
+    diamondTierCore 3.2s
+    ease-in-out
+    infinite;
+
+}
+
+@keyframes diamondTierCore {
+
+  0%,
+  100% {
+
+    filter:
+      brightness(1);
+
+  }
+
+  50% {
+
+    filter:
+      brightness(1.22)
+      drop-shadow(
+        0 0 7px
+        rgba(130, 235, 255, 0.55)
+      );
+
+  }
+
+}
+
+
+/* -----------------------------------------------------
+   6. REDUCED MOTION
+----------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .mmr-profile-modal.tier-diamond,
+
+  .mmr-profile-modal.tier-diamond
+  .mmr-profile-sticky-header::before,
+
+  .mmr-profile-modal.tier-diamond
+  .mmr-profile-sticky-header::after,
+
+  .mmr-profile-modal.tier-diamond
+  .mmr-profile-name,
+
+  .mmr-profile-modal.tier-diamond
+  .mmr-profile-tier {
+
+    animation: none !important;
+
+  }
+
 }    
 </style>
 
