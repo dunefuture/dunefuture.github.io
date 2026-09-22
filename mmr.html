@@ -8879,6 +8879,569 @@ body.mmr-profile-open {
   }
 
 }
+    /* =====================================================
+   DIAMOND TIER — OPENING SIGNATURE
+   Stage 4: Crystal Ignition
+===================================================== */
+
+
+/* -----------------------------------------------------
+   OPENING — MAIN PROFILE IGNITION
+----------------------------------------------------- */
+
+.mmr-profile-modal.tier-diamond.diamond-opening {
+
+  animation:
+    diamondOpeningFrame
+    1.75s
+    cubic-bezier(0.16, 1, 0.3, 1)
+    both;
+
+}
+
+
+@keyframes diamondOpeningFrame {
+
+  0% {
+
+    opacity: 0;
+
+    transform:
+      scale(0.965)
+      translateY(8px);
+
+    filter:
+      brightness(0.65)
+      saturate(0.7);
+
+    box-shadow:
+      0 0 0 rgba(100, 230, 255, 0);
+
+  }
+
+
+  18% {
+
+    opacity: 1;
+
+    transform:
+      scale(0.985)
+      translateY(3px);
+
+    filter:
+      brightness(1.35)
+      saturate(1.25);
+
+    box-shadow:
+      0 0 20px rgba(150, 245, 255, 0.40),
+      0 0 55px rgba(70, 195, 255, 0.28);
+
+  }
+
+
+  42% {
+
+    transform:
+      scale(1.012)
+      translateY(0);
+
+    filter:
+      brightness(1.55)
+      saturate(1.35);
+
+    box-shadow:
+      0 0 30px rgba(175, 250, 255, 0.55),
+      0 0 85px rgba(75, 200, 255, 0.32),
+      inset 0 0 30px rgba(140, 240, 255, 0.08);
+
+  }
+
+
+  68% {
+
+    transform:
+      scale(0.997);
+
+    filter:
+      brightness(1.12)
+      saturate(1.08);
+
+  }
+
+
+  100% {
+
+    opacity: 1;
+
+    transform:
+      scale(1)
+      translateY(0);
+
+    filter:
+      brightness(1)
+      saturate(1);
+
+  }
+
+}
+
+
+/* -----------------------------------------------------
+   HEADER — CRYSTAL IGNITION FLASH
+----------------------------------------------------- */
+
+.mmr-profile-modal.tier-diamond.diamond-opening
+.mmr-profile-sticky-header {
+
+  animation:
+    diamondOpeningHeader
+    1.55s
+    ease-out
+    both;
+
+}
+
+
+@keyframes diamondOpeningHeader {
+
+  0% {
+
+    filter:
+      brightness(0.75);
+
+  }
+
+
+  22% {
+
+    filter:
+      brightness(1.85)
+      drop-shadow(
+        0 0 12px
+        rgba(170, 250, 255, 0.75)
+      );
+
+  }
+
+
+  48% {
+
+    filter:
+      brightness(1.28)
+      drop-shadow(
+        0 0 7px
+        rgba(90, 220, 255, 0.45)
+      );
+
+  }
+
+
+  100% {
+
+    filter:
+      brightness(1);
+
+  }
+
+}
+
+
+/* -----------------------------------------------------
+   PLAYER NAME — FROZEN REVEAL
+----------------------------------------------------- */
+
+.mmr-profile-modal.tier-diamond.diamond-opening
+.mmr-profile-name {
+
+  animation:
+    diamondOpeningName
+    1.45s
+    cubic-bezier(0.16, 1, 0.3, 1)
+    both;
+
+}
+
+
+@keyframes diamondOpeningName {
+
+  0% {
+
+    opacity: 0;
+
+    transform:
+      translateX(-8px);
+
+    letter-spacing:
+      3px;
+
+    text-shadow:
+      0 0 0
+      rgba(180, 250, 255, 0);
+
+  }
+
+
+  28% {
+
+    opacity: 1;
+
+    transform:
+      translateX(0);
+
+    letter-spacing:
+      1px;
+
+    text-shadow:
+      0 0 10px rgba(190, 250, 255, 0.90),
+      0 0 24px rgba(80, 210, 255, 0.55);
+
+  }
+
+
+  100% {
+
+    opacity: 1;
+
+    transform:
+      translateX(0);
+
+    letter-spacing:
+      normal;
+
+  }
+
+}
+
+
+/* -----------------------------------------------------
+   DIAMOND BADGE — CRYSTAL CORE IGNITION
+----------------------------------------------------- */
+
+.mmr-profile-modal.tier-diamond.diamond-opening
+.mmr-profile-tier {
+
+  animation:
+    diamondOpeningBadge
+    1.65s
+    cubic-bezier(0.16, 1, 0.3, 1)
+    both;
+
+}
+
+
+@keyframes diamondOpeningBadge {
+
+  0% {
+
+    opacity: 0;
+
+    transform:
+      scale(0.72);
+
+    filter:
+      brightness(0.7);
+
+  }
+
+
+  30% {
+
+    opacity: 1;
+
+    transform:
+      scale(1.18);
+
+    filter:
+      brightness(2)
+      drop-shadow(
+        0 0 13px
+        rgba(190, 250, 255, 0.95)
+      );
+
+  }
+
+
+  52% {
+
+    transform:
+      scale(0.96);
+
+    filter:
+      brightness(1.35)
+      drop-shadow(
+        0 0 8px
+        rgba(100, 225, 255, 0.65)
+      );
+
+  }
+
+
+  72% {
+
+    transform:
+      scale(1.03);
+
+  }
+
+
+  100% {
+
+    opacity: 1;
+
+    transform:
+      scale(1);
+
+    filter:
+      brightness(1);
+
+  }
+
+}
+
+
+/* -----------------------------------------------------
+   CRYSTAL SHOCKWAVE
+----------------------------------------------------- */
+
+.mmr-profile-modal.tier-diamond.diamond-opening
+.mmr-profile-sticky-header::after {
+
+  animation:
+    diamondOpeningShockwave
+    1.55s
+    ease-out
+    1;
+
+}
+
+
+@keyframes diamondOpeningShockwave {
+
+  0% {
+
+    opacity: 0;
+
+    transform:
+      scaleX(0.05);
+
+    filter:
+      brightness(2);
+
+  }
+
+
+  24% {
+
+    opacity: 1;
+
+    transform:
+      scaleX(0.35);
+
+    filter:
+      brightness(2.2)
+      drop-shadow(
+        0 0 12px
+        rgba(180, 250, 255, 0.95)
+      );
+
+  }
+
+
+  55% {
+
+    opacity: 0.65;
+
+    transform:
+      scaleX(1);
+
+    filter:
+      brightness(1.5)
+      drop-shadow(
+        0 0 8px
+        rgba(90, 220, 255, 0.60)
+      );
+
+  }
+
+
+  100% {
+
+    opacity: 0;
+
+    transform:
+      scaleX(1);
+
+    filter:
+      brightness(1);
+
+  }
+
+}
+
+
+/* -----------------------------------------------------
+   SHARDS — OPENING ENERGY BURST
+----------------------------------------------------- */
+
+.mmr-profile-modal.tier-diamond.diamond-opening
+.mmr-profile-eyebrow::before {
+
+  animation:
+    diamondOpeningShards
+    1.65s
+    ease-out
+    both;
+
+}
+
+
+.mmr-profile-modal.tier-diamond.diamond-opening
+.mmr-profile-eyebrow::after {
+
+  animation:
+    diamondOpeningShardsReverse
+    1.65s
+    ease-out
+    both;
+
+}
+
+
+@keyframes diamondOpeningShards {
+
+  0% {
+
+    opacity: 0;
+
+    transform:
+      translate3d(0, 8px, 0)
+      rotate(20deg)
+      scale(0.4);
+
+  }
+
+
+  30% {
+
+    opacity: 1;
+
+    transform:
+      translate3d(4px, -3px, 0)
+      rotate(45deg)
+      scale(1.25);
+
+  }
+
+
+  70% {
+
+    opacity: 0.35;
+
+    transform:
+      translate3d(13px, -15px, 0)
+      rotate(78deg)
+      scale(0.9);
+
+  }
+
+
+  100% {
+
+    opacity: 0;
+
+    transform:
+      translate3d(20px, -24px, 0)
+      rotate(105deg)
+      scale(0.65);
+
+  }
+
+}
+
+
+@keyframes diamondOpeningShardsReverse {
+
+  0% {
+
+    opacity: 0;
+
+    transform:
+      translate3d(0, -6px, 0)
+      rotate(-30deg)
+      scale(0.4);
+
+  }
+
+
+  32% {
+
+    opacity: 0.85;
+
+    transform:
+      translate3d(-4px, 3px, 0)
+      rotate(-5deg)
+      scale(1.2);
+
+  }
+
+
+  72% {
+
+    opacity: 0.30;
+
+    transform:
+      translate3d(-13px, 14px, 0)
+      rotate(25deg)
+      scale(0.85);
+
+  }
+
+
+  100% {
+
+    opacity: 0;
+
+    transform:
+      translate3d(-20px, 22px, 0)
+      rotate(45deg)
+      scale(0.6);
+
+  }
+
+}
+
+
+/* -----------------------------------------------------
+   ACCESSIBILITY
+----------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .mmr-profile-modal.tier-diamond.diamond-opening,
+
+  .mmr-profile-modal.tier-diamond.diamond-opening
+  .mmr-profile-sticky-header,
+
+  .mmr-profile-modal.tier-diamond.diamond-opening
+  .mmr-profile-sticky-header::after,
+
+  .mmr-profile-modal.tier-diamond.diamond-opening
+  .mmr-profile-name,
+
+  .mmr-profile-modal.tier-diamond.diamond-opening
+  .mmr-profile-tier,
+
+  .mmr-profile-modal.tier-diamond.diamond-opening
+  .mmr-profile-eyebrow::before,
+
+  .mmr-profile-modal.tier-diamond.diamond-opening
+  .mmr-profile-eyebrow::after {
+
+    animation: none !important;
+
+  }
+
+}
 </style>
 
 <link rel="stylesheet" href="style.css">
