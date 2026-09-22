@@ -15249,7 +15249,32 @@ const clickAction =
 
 const latestMatch =
   getLatestMMRMatch(player.name);
-     
+// ===============================================
+// PROGRESSIVE HELLFIRE STATUS
+// ===============================================
+
+const hellfire =
+  getHellfireStatus(player.name);
+
+
+const hellfireRowClass =
+  hellfire.active
+    ? ` hellfire-active hellfire-level-${hellfire.level}`
+    : "";
+
+
+const hellfireAttributes =
+  hellfire.active
+    ? `
+      data-hellfire="active"
+      data-hellfire-power="${hellfire.power}"
+      data-hellfire-level="${hellfire.level}"
+      style="
+        --hellfire-power: ${hellfire.power};
+        --hellfire-level: ${hellfire.level};
+      "
+    `
+    : "";     
 
 
 // ===============================================
@@ -15383,7 +15408,10 @@ if (rankMovement.difference < 0) {
 
       return `
 
-<div class="mmr-row${tierClass}${movementRowClass}">
+<div
+  class="mmr-row${tierClass}${movementRowClass}${hellfireRowClass}"
+  ${hellfireAttributes}
+>
 
           <div class="mmr-rank">
             #${rankNumber}
