@@ -7041,6 +7041,456 @@ body.mmr-profile-open {
   }
 
 }
+    /* =====================================================
+   PREMIUM STICKY PROFILE IDENTITY
+===================================================== */
+
+.mmr-profile-sticky-header {
+  position: sticky;
+  top: -28px;
+  z-index: 30;
+
+  margin:
+    -28px
+    -28px
+    22px;
+
+  padding:
+    25px 28px
+    18px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(12, 8, 18, 0.99),
+      rgba(10, 7, 16, 0.96)
+    );
+
+  border-bottom:
+    1px solid rgba(220, 60, 255, 0.25);
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.38);
+
+  backdrop-filter:
+    blur(18px);
+
+  overflow: hidden;
+}
+
+
+/* =====================================================
+   ENERGY LINE
+===================================================== */
+
+.mmr-profile-sticky-header::after {
+  content: "";
+
+  position: absolute;
+
+  left: 8%;
+  right: 8%;
+  bottom: 0;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(210, 70, 255, 0.35),
+      rgba(255, 70, 240, 0.95),
+      rgba(120, 90, 255, 0.45),
+      transparent
+    );
+
+  box-shadow:
+    0 0 8px rgba(220, 70, 255, 0.7),
+    0 0 18px rgba(190, 50, 255, 0.35);
+
+  animation:
+    profileHeaderEnergy 3.8s ease-in-out infinite;
+
+  pointer-events: none;
+}
+
+
+/* =====================================================
+   IDENTITY
+===================================================== */
+
+.mmr-profile-identity {
+  position: relative;
+  z-index: 2;
+
+  padding-right: 42px;
+}
+
+
+.mmr-profile-sticky-header
+.mmr-profile-eyebrow {
+  margin-bottom: 5px;
+
+  color: #e94cff;
+
+  font-size: 9px;
+  font-weight: 900;
+
+  letter-spacing: 2.4px;
+
+  text-transform: uppercase;
+}
+
+
+.mmr-profile-sticky-header
+.mmr-profile-name {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: 27px;
+  font-weight: 900;
+
+  letter-spacing: 0.5px;
+
+  line-height: 1.08;
+
+  text-shadow:
+    0 0 12px rgba(255,255,255,0.12);
+}
+
+
+/* =====================================================
+   RANK • TIER • MMR
+===================================================== */
+
+.mmr-profile-identity-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-top: 9px;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  letter-spacing: 1px;
+}
+
+
+.mmr-profile-header-rank {
+  color: #ffffff;
+}
+
+
+.mmr-profile-meta-dot {
+  color:
+    rgba(255,255,255,0.25);
+}
+
+
+.mmr-profile-header-rating {
+  color: #f45cff;
+
+  text-shadow:
+    0 0 8px
+    rgba(240, 70, 255, 0.45);
+}
+
+
+/* =====================================================
+   TIER BADGE
+===================================================== */
+
+.mmr-profile-header-tier {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding:
+    3px 8px;
+
+  border:
+    1px solid rgba(255,255,255,0.18);
+
+  border-radius: 4px;
+
+  font-size: 8px;
+  font-weight: 900;
+
+  letter-spacing: 1.5px;
+
+  background:
+    rgba(255,255,255,0.04);
+}
+
+
+/* MASTER */
+
+.mmr-profile-header-tier.master {
+  color: #fff2a6;
+
+  border-color:
+    rgba(255,210,60,0.7);
+
+  background:
+    rgba(255,175,20,0.10);
+
+  text-shadow:
+    0 0 8px #ffc928,
+    0 0 15px rgba(255,170,0,0.65);
+
+  box-shadow:
+    0 0 10px rgba(255,180,0,0.22);
+}
+
+
+/* DIAMOND */
+
+.mmr-profile-header-tier.diamond {
+  color: #c8fbff;
+
+  border-color:
+    rgba(80,225,255,0.7);
+
+  background:
+    rgba(50,200,255,0.09);
+
+  text-shadow:
+    0 0 8px rgba(80,230,255,0.85);
+
+  box-shadow:
+    0 0 10px rgba(60,210,255,0.20);
+}
+
+
+/* PLATINUM */
+
+.mmr-profile-header-tier.platinum {
+  color: #e1caff;
+
+  border-color:
+    rgba(185,110,255,0.7);
+
+  background:
+    rgba(160,70,255,0.10);
+
+  text-shadow:
+    0 0 8px rgba(190,110,255,0.85);
+
+  box-shadow:
+    0 0 10px rgba(170,70,255,0.20);
+}
+
+
+/* GOLD */
+
+.mmr-profile-header-tier.gold {
+  color: #ffe394;
+
+  border-color:
+    rgba(255,185,55,0.7);
+
+  background:
+    rgba(255,150,30,0.10);
+
+  text-shadow:
+    0 0 8px rgba(255,190,60,0.85);
+
+  box-shadow:
+    0 0 10px rgba(255,160,30,0.20);
+}
+
+
+/* SILVER */
+
+.mmr-profile-header-tier.silver {
+  color: #e6f1ff;
+
+  border-color:
+    rgba(185,210,240,0.65);
+
+  background:
+    rgba(170,205,240,0.08);
+
+  text-shadow:
+    0 0 8px rgba(200,225,255,0.75);
+
+  box-shadow:
+    0 0 10px rgba(170,210,255,0.17);
+}
+
+
+/* BRONZE */
+
+.mmr-profile-header-tier.bronze {
+  color: #e6a06c;
+
+  border-color:
+    rgba(205,120,65,0.65);
+
+  background:
+    rgba(190,90,40,0.09);
+
+  text-shadow:
+    0 0 8px rgba(220,120,65,0.70);
+
+  box-shadow:
+    0 0 10px rgba(190,90,45,0.17);
+}
+
+
+/* =====================================================
+   WIN STREAK
+===================================================== */
+
+.mmr-profile-header-streak {
+  display: none;
+}
+
+
+.mmr-profile-header-streak.active {
+  display: inline-flex;
+
+  align-items: center;
+
+  margin-top: 10px;
+
+  padding:
+    4px 9px;
+
+  border:
+    1px solid rgba(255,145,30,0.38);
+
+  border-radius: 4px;
+
+  color: #ffb348;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255,90,15,0.10),
+      rgba(255,175,30,0.05)
+    );
+
+  font-size: 8px;
+  font-weight: 900;
+
+  letter-spacing: 1.2px;
+
+  text-shadow:
+    0 0 8px rgba(255,120,20,0.65);
+
+  box-shadow:
+    inset 0 0 8px rgba(255,120,20,0.06),
+    0 0 10px rgba(255,100,20,0.10);
+
+  animation:
+    profileStreakPulse
+    2.5s ease-in-out infinite;
+}
+
+
+/* =====================================================
+   CLOSE BUTTON ABOVE HEADER
+===================================================== */
+
+.mmr-profile-sticky-header
+.mmr-profile-close {
+  z-index: 10;
+}
+
+
+/* =====================================================
+   ANIMATIONS
+===================================================== */
+
+@keyframes profileHeaderEnergy {
+
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scaleX(0.78);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+
+}
+
+
+@keyframes profileStreakPulse {
+
+  0%,
+  100% {
+    filter:
+      brightness(1);
+
+    box-shadow:
+      inset 0 0 8px
+      rgba(255,120,20,0.06),
+      0 0 10px
+      rgba(255,100,20,0.10);
+  }
+
+  50% {
+    filter:
+      brightness(1.2);
+
+    box-shadow:
+      inset 0 0 12px
+      rgba(255,150,30,0.10),
+      0 0 17px
+      rgba(255,110,20,0.22);
+  }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+  .mmr-profile-sticky-header {
+    top: -20px;
+
+    margin:
+      -20px
+      -20px
+      18px;
+
+    padding:
+      22px 20px
+      16px;
+  }
+
+  .mmr-profile-sticky-header
+  .mmr-profile-name {
+    font-size: 23px;
+  }
+
+}
+
+
+/* =====================================================
+   ACCESSIBILITY
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .mmr-profile-sticky-header::after,
+  .mmr-profile-header-streak.active {
+    animation: none !important;
+  }
+
+}
 </style>
 
 <link rel="stylesheet" href="style.css">
@@ -7519,24 +7969,69 @@ TOP 20 · LAST UPDATED <span id="mmrLastUpdated">—</span>
   <div class="mmr-profile-modal">
     <div class="mmr-profile-sticky-header">
 
-    <button
-      class="mmr-profile-close"
-      onclick="closeMMRProfile()"
-      type="button"
-      aria-label="Close player profile">
-      ×
-    </button>
+ <!-- =================================================
+     PREMIUM STICKY PROFILE IDENTITY
+================================================== -->
 
-    <div class="mmr-profile-eyebrow">
-      PLAYER MMR PROFILE
-    </div>
+<button
+  class="mmr-profile-close"
+  onclick="closeMMRProfile()"
+  type="button"
+  aria-label="Close player profile">
+  ×
+</button>
 
-    <h2 class="mmr-profile-name" id="mmrProfileName">
-      PLAYER
-    </h2>
 
-    <div class="mmr-profile-subtitle">
-  Dune Future Competitive Rating
+<div class="mmr-profile-identity">
+
+  <div class="mmr-profile-eyebrow">
+    DUNE FUTURE COMPETITIVE
+  </div>
+
+
+  <h2
+    class="mmr-profile-name"
+    id="mmrProfileName">
+    PLAYER
+  </h2>
+
+
+  <div class="mmr-profile-identity-meta">
+
+    <span
+      class="mmr-profile-header-rank"
+      id="mmrProfileHeaderRank">
+      #—
+    </span>
+
+    <span class="mmr-profile-meta-dot">
+      •
+    </span>
+
+    <span
+      class="mmr-profile-header-tier"
+      id="mmrProfileHeaderTier">
+      —
+    </span>
+
+    <span class="mmr-profile-meta-dot">
+      •
+    </span>
+
+    <span
+      class="mmr-profile-header-rating"
+      id="mmrProfileHeaderRating">
+      — MMR
+    </span>
+
+  </div>
+
+
+  <div
+    class="mmr-profile-header-streak"
+    id="mmrProfileHeaderStreak">
+  </div>
+
 </div>
 
   </div>
@@ -9711,6 +10206,82 @@ if (profileTierElement) {
 
   profileTierElement.className =
     `mmr-profile-tier ${competitiveTierClass}`;
+
+}
+  // ===============================================
+// STICKY PROFILE IDENTITY
+// ===============================================
+
+const headerRank =
+  document.getElementById(
+    "mmrProfileHeaderRank"
+  );
+
+const headerTier =
+  document.getElementById(
+    "mmrProfileHeaderTier"
+  );
+
+const headerRating =
+  document.getElementById(
+    "mmrProfileHeaderRating"
+  );
+
+const headerStreak =
+  document.getElementById(
+    "mmrProfileHeaderStreak"
+  );
+
+
+// CURRENT RANK
+if (headerRank) {
+
+  headerRank.textContent =
+    `#${leaderboardPlayer.rank}`;
+
+}
+
+
+// COMPETITIVE TIER
+if (headerTier) {
+
+  headerTier.textContent =
+    competitiveTier;
+
+  headerTier.className =
+    `mmr-profile-header-tier ${competitiveTierClass}`;
+
+}
+
+
+// CURRENT MMR
+if (headerRating) {
+
+  headerRating.textContent =
+    `${currentRating} MMR`;
+
+}
+
+
+// CURRENT WIN STREAK
+if (headerStreak) {
+
+  if (playerStats.winStreak >= 2) {
+
+    headerStreak.innerHTML =
+      `<span>🔥 ${playerStats.winStreak} WIN STREAK</span>`;
+
+    headerStreak.className =
+      "mmr-profile-header-streak active";
+
+  } else {
+
+    headerStreak.innerHTML = "";
+
+    headerStreak.className =
+      "mmr-profile-header-streak";
+
+  }
 
 }
 document.getElementById("mmrProfilePrevious").textContent =
