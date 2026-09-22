@@ -12641,6 +12641,563 @@ body.mmr-profile-open {
 
   }
 
+}
+/* =====================================================
+   PLATINUM STAGE 3
+   HOLOGRAPHIC DATA FRAGMENTATION
+===================================================== */
+
+
+/* =====================================================
+   SIGNAL FRAGMENT LAYER
+===================================================== */
+
+.mmr-profile-modal.tier-platinum
+.platinum-scan-noise {
+
+  overflow: hidden;
+
+}
+
+
+/* =====================================================
+   PRIMARY DATA FRAGMENT
+===================================================== */
+
+.mmr-profile-modal.tier-platinum
+.platinum-scan-noise::before {
+
+  content: "";
+
+  position: absolute;
+
+  left: -8%;
+  top: 0;
+
+  width: 116%;
+  height: 100%;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  background:
+
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(235, 70, 255, 0.22) 18%,
+      rgba(105, 220, 255, 0.24) 38%,
+      transparent 58%
+    ),
+
+    repeating-linear-gradient(
+      180deg,
+
+      transparent 0px,
+      transparent 18px,
+
+      rgba(225, 75, 255, 0.18) 19px,
+
+      transparent 20px,
+      transparent 37px,
+
+      rgba(80, 210, 255, 0.14) 38px,
+
+      transparent 39px
+    );
+
+  mix-blend-mode: screen;
+
+  animation:
+    platinumDataFragment
+    9.6s
+    steps(1, end)
+    infinite;
+}
+
+
+/* =====================================================
+   CHROMATIC SIGNAL SPLIT
+===================================================== */
+
+.mmr-profile-modal.tier-platinum
+.platinum-scan-noise::after {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  background:
+
+    linear-gradient(
+      90deg,
+
+      rgba(255, 40, 230, 0.00) 0%,
+
+      rgba(255, 40, 230, 0.16) 34%,
+
+      transparent 46%,
+
+      rgba(65, 220, 255, 0.18) 56%,
+
+      rgba(65, 220, 255, 0.00) 76%
+    );
+
+  filter:
+    blur(0.35px);
+
+  mix-blend-mode: screen;
+
+  animation:
+    platinumChromaticSplit
+    9.6s
+    steps(1, end)
+    infinite;
+}
+
+
+/* =====================================================
+   PLATINUM SIGNAL DISTORTION
+===================================================== */
+
+@keyframes platinumDataFragment {
+
+  0%,
+  54%,
+  100% {
+
+    opacity: 0;
+
+    transform:
+      translateX(0)
+      skewX(0deg);
+
+    clip-path:
+      inset(
+        0 0 100% 0
+      );
+
+  }
+
+
+  /* Fragment 01 */
+
+  55% {
+
+    opacity: 0.48;
+
+    transform:
+      translateX(7px);
+
+    clip-path:
+      inset(
+        18% 0 69% 0
+      );
+
+  }
+
+
+  56% {
+
+    opacity: 0.70;
+
+    transform:
+      translateX(-5px);
+
+    clip-path:
+      inset(
+        36% 0 53% 0
+      );
+
+  }
+
+
+  57% {
+
+    opacity: 0;
+
+    transform:
+      translateX(0);
+
+  }
+
+
+  /* Fragment 02 */
+
+  60% {
+
+    opacity: 0.42;
+
+    transform:
+      translateX(-8px)
+      skewX(-1deg);
+
+    clip-path:
+      inset(
+        57% 0 31% 0
+      );
+
+  }
+
+
+  61% {
+
+    opacity: 0.62;
+
+    transform:
+      translateX(5px);
+
+    clip-path:
+      inset(
+        72% 0 20% 0
+      );
+
+  }
+
+
+  62% {
+
+    opacity: 0;
+
+    transform:
+      translateX(0);
+
+  }
+
+
+  /* Final micro fragment */
+
+  65% {
+
+    opacity: 0.30;
+
+    transform:
+      translateX(3px);
+
+    clip-path:
+      inset(
+        43% 0 52% 0
+      );
+
+  }
+
+
+  66% {
+
+    opacity: 0;
+
+    transform:
+      translateX(0);
+
+  }
+
+}
+
+
+/* =====================================================
+   MAGENTA / CYAN CHANNEL DESYNC
+===================================================== */
+
+@keyframes platinumChromaticSplit {
+
+  0%,
+  54%,
+  100% {
+
+    opacity: 0;
+
+    transform:
+      translateX(0);
+
+  }
+
+
+  55% {
+
+    opacity: 0.32;
+
+    transform:
+      translateX(-5px);
+
+  }
+
+
+  56% {
+
+    opacity: 0.52;
+
+    transform:
+      translateX(6px);
+
+  }
+
+
+  57% {
+
+    opacity: 0;
+
+    transform:
+      translateX(0);
+
+  }
+
+
+  60% {
+
+    opacity: 0.26;
+
+    transform:
+      translateX(4px);
+
+  }
+
+
+  61% {
+
+    opacity: 0.44;
+
+    transform:
+      translateX(-4px);
+
+  }
+
+
+  62%,
+  100% {
+
+    opacity: 0;
+
+    transform:
+      translateX(0);
+
+  }
+
+}
+
+
+/* =====================================================
+   MICRO SIGNAL DROP
+===================================================== */
+
+.mmr-profile-modal.tier-platinum
+.mmr-profile-sticky-header {
+
+  animation:
+    platinumHeaderSignal
+    9.6s
+    steps(1, end)
+    infinite;
+
+}
+
+
+@keyframes platinumHeaderSignal {
+
+  0%,
+  54%,
+  57%,
+  59%,
+  62%,
+  100% {
+
+    filter: none;
+
+    transform:
+      translateX(0);
+
+  }
+
+
+  55% {
+
+    filter:
+      brightness(1.10)
+      contrast(1.05);
+
+    transform:
+      translateX(1px);
+
+  }
+
+
+  56% {
+
+    filter:
+      brightness(1.16)
+      saturate(1.12);
+
+    transform:
+      translateX(-1px);
+
+  }
+
+
+  60% {
+
+    filter:
+      brightness(1.08);
+
+    transform:
+      translateX(-1px);
+
+  }
+
+
+  61% {
+
+    filter:
+      brightness(1.13)
+      saturate(1.08);
+
+    transform:
+      translateX(1px);
+
+  }
+
+}
+
+
+/* =====================================================
+   MMR DATA MICRO DESYNC
+===================================================== */
+
+.mmr-profile-modal.tier-platinum
+#mmrProfileRating,
+
+.mmr-profile-modal.tier-platinum
+#mmrProfileRank {
+
+  animation:
+    platinumDataDesync
+    9.6s
+    steps(1, end)
+    infinite;
+
+}
+
+
+@keyframes platinumDataDesync {
+
+  0%,
+  54%,
+  57%,
+  59%,
+  62%,
+  100% {
+
+    transform:
+      translateX(0);
+
+    text-shadow:
+      0 0 7px
+        rgba(225, 50, 255, 0.58),
+
+      0 0 18px
+        rgba(165, 30, 255, 0.24);
+
+  }
+
+
+  55% {
+
+    transform:
+      translateX(1px);
+
+    text-shadow:
+      -3px 0
+        rgba(255, 40, 220, 0.46),
+
+      3px 0
+        rgba(60, 220, 255, 0.38),
+
+      0 0 10px
+        rgba(220, 70, 255, 0.45);
+
+  }
+
+
+  56% {
+
+    transform:
+      translateX(-1px);
+
+    text-shadow:
+      3px 0
+        rgba(255, 45, 220, 0.42),
+
+      -3px 0
+        rgba(70, 220, 255, 0.40),
+
+      0 0 12px
+        rgba(210, 65, 255, 0.48);
+
+  }
+
+
+  60% {
+
+    transform:
+      translateX(-1px);
+
+    text-shadow:
+      -2px 0
+        rgba(255, 45, 220, 0.34),
+
+      2px 0
+        rgba(70, 220, 255, 0.32);
+
+  }
+
+
+  61% {
+
+    transform:
+      translateX(1px);
+
+    text-shadow:
+      2px 0
+        rgba(255, 45, 220, 0.36),
+
+      -2px 0
+        rgba(70, 220, 255, 0.34);
+
+  }
+
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .mmr-profile-modal.tier-platinum
+  .platinum-scan-noise::before,
+
+  .mmr-profile-modal.tier-platinum
+  .platinum-scan-noise::after,
+
+  .mmr-profile-modal.tier-platinum
+  .mmr-profile-sticky-header,
+
+  .mmr-profile-modal.tier-platinum
+  #mmrProfileRating,
+
+  .mmr-profile-modal.tier-platinum
+  #mmrProfileRank {
+
+    animation: none !important;
+
+  }
+
 }    
 </style>
 
