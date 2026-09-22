@@ -13214,8 +13214,8 @@ body.mmr-profile-open {
   isolation: isolate;
   overflow: visible;
 
-  --hellfire-strength:
-    min(var(--hellfire-power), 10);
+--hellfire-strength:
+  var(--hellfire-power);
 
   --hellfire-glow:
     calc(7px + (var(--hellfire-strength) * 2px));
@@ -13454,8 +13454,8 @@ body.mmr-profile-open {
 ----------------------------------------------------- */
 
 .mmr-profile-modal.hellfire-profile-active {
-  --hellfire-profile-strength:
-    min(var(--hellfire-power), 10);
+--hellfire-profile-strength:
+  var(--hellfire-power);
 
   --hellfire-profile-glow:
     calc(
@@ -13888,6 +13888,315 @@ small {
 
     animation:
       none !important;
+
+  }
+
+}
+/* =====================================================
+   HELLFIRE
+   EVERY WIN MAKES THE FIRE STRONGER
+===================================================== */
+
+.mmr-row.hellfire-active,
+.mmr-profile-modal.hellfire-profile-active {
+
+  /*
+   * Raw undefeated wins.
+   *
+   * 1 win = 1
+   * 2 wins = 2
+   * 3 wins = 3
+   * ...
+   *
+   * NO grouped visual levels.
+   */
+
+  --hf-power:
+    var(--hellfire-power);
+
+
+  /*
+   * Every single win increases flame height.
+   */
+
+  --hf-flame-growth:
+    calc(
+      1 +
+      (
+        var(--hf-power) * 0.075
+      )
+    );
+
+
+  /*
+   * Every win increases glow radius.
+   */
+
+  --hf-glow-radius:
+    calc(
+      7px +
+      (
+        var(--hf-power) * 2.2px
+      )
+    );
+
+
+  /*
+   * Every win increases aura radius.
+   */
+
+  --hf-aura-radius:
+    calc(
+      9px +
+      (
+        var(--hf-power) * 2.5px
+      )
+    );
+
+
+  /*
+   * Every win increases ember visibility.
+   *
+   * opacity itself is safety-capped below.
+   */
+
+  --hf-ember-strength:
+    calc(
+      0.18 +
+      (
+        var(--hf-power) * 0.065
+      )
+    );
+
+
+  /*
+   * Every win increases heat intensity.
+   */
+
+  --hf-heat-strength:
+    calc(
+      0.12 +
+      (
+        var(--hf-power) * 0.045
+      )
+    );
+
+} 
+/* =====================================================
+   LEADERBOARD
+   PER-WIN HELLFIRE ESCALATION
+===================================================== */
+
+.mmr-row.hellfire-active::before {
+
+  height:
+    calc(
+      10px +
+      (
+        var(--hf-power) * 3px
+      )
+    );
+
+  filter:
+    blur(1px)
+
+    drop-shadow(
+      0 0
+      var(--hf-glow-radius)
+      rgba(255, 55, 0, 0.68)
+    );
+
+}
+
+
+.mmr-row.hellfire-active::after {
+
+  box-shadow:
+
+    0 0
+    var(--hf-aura-radius)
+    rgba(255, 49, 0, 0.28),
+
+    inset 0
+    calc(
+      -3px -
+      (
+        var(--hf-power) * 0.35px
+      )
+    )
+
+    calc(
+      9px +
+      (
+        var(--hf-power) * 0.8px
+      )
+    )
+
+    rgba(255, 106, 10, 0.12);
+
+}
+/* =====================================================
+   PROFILE
+   PER-WIN FLAME ESCALATION
+===================================================== */
+
+.mmr-profile-modal.hellfire-profile-active
+.hellfire-winrate-card::after,
+
+.mmr-profile-modal.hellfire-profile-active
+.hellfire-winstreak-card::after {
+
+  /*
+   * EVERY undefeated win increases
+   * the physical height of the fire.
+   */
+
+  height:
+    calc(
+      13px +
+      (
+        var(--hf-power) * 2.6px
+      )
+    );
+
+
+  /*
+   * Every undefeated win also increases
+   * the visible heat/glow around the flame.
+   */
+
+  filter:
+    blur(0.45px)
+
+    drop-shadow(
+      0 -2px
+      var(--hf-glow-radius)
+      rgba(255, 58, 0, 0.72)
+    );
+
+}
+/* =====================================================
+   HELLFIRE
+   PER-WIN EMBER ESCALATION
+===================================================== */
+
+.mmr-profile-modal.hellfire-profile-active::after {
+
+  /*
+   * Every undefeated win strengthens
+   * the floating ember field.
+   *
+   * The progression happens on EVERY win.
+   */
+
+  opacity:
+    min(
+      var(--hf-ember-strength),
+      0.92
+    );
+
+
+  /*
+   * More wins also make the ember glow stronger.
+   */
+
+  filter:
+    drop-shadow(
+      0 0
+      calc(
+        2px +
+        (
+          var(--hf-power) * 0.45px
+        )
+      )
+      rgba(255, 91, 0, 0.78)
+    );
+
+} 
+/* =====================================================
+   HELLFIRE
+   SAFETY + REDUCED MOTION
+===================================================== */
+
+/*
+ * Keep Hellfire visual layers from blocking
+ * profile interaction.
+ */
+
+.mmr-profile-modal.hellfire-profile-active::after,
+.mmr-row.hellfire-active::before,
+.mmr-row.hellfire-active::after {
+
+  pointer-events: none;
+
+}
+
+
+/*
+ * Hellfire must never reduce readability
+ * of important leaderboard information.
+ */
+
+.mmr-row.hellfire-active
+.mmr-rank,
+
+.mmr-row.hellfire-active
+.mmr-name,
+
+.mmr-row.hellfire-active
+.mmr-value,
+
+.mmr-row.hellfire-active
+.mmr-tier {
+
+  position: relative;
+  z-index: 4;
+
+}
+
+
+/*
+ * Profile information stays above
+ * the floating ember field.
+ */
+
+.mmr-profile-modal.hellfire-profile-active
+.mmr-profile-sticky-header {
+
+  z-index: 30;
+
+}
+
+
+/* =====================================================
+   ACCESSIBILITY
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .mmr-profile-modal.hellfire-profile-active::after,
+
+  .mmr-profile-modal.hellfire-profile-active
+  .hellfire-winrate-card::before,
+
+  .mmr-profile-modal.hellfire-profile-active
+  .hellfire-winrate-card::after,
+
+  .mmr-profile-modal.hellfire-profile-active
+  .hellfire-winstreak-card::before,
+
+  .mmr-profile-modal.hellfire-profile-active
+  .hellfire-winstreak-card::after,
+
+  .mmr-profile-hellfire-badge
+  .hellfire-badge-flame,
+
+  .mmr-row.hellfire-active::before,
+
+  .mmr-row.hellfire-active::after {
+
+    animation: none !important;
 
   }
 
