@@ -12260,6 +12260,387 @@ body.mmr-profile-open {
   box-shadow:
     0 0 14px
       rgba(220, 60, 255, 0.24);
+}
+/* =====================================================
+   PLATINUM STAGE 2
+   HOLOGRAPHIC SCAN MATRIX
+===================================================== */
+
+
+/* Hidden for every tier by default */
+.platinum-holo-matrix {
+  display: none;
+}
+
+
+/* =====================================================
+   MATRIX FIELD
+===================================================== */
+
+.mmr-profile-modal.tier-platinum
+.platinum-holo-matrix {
+
+  display: block;
+
+  position: absolute;
+  inset: 0;
+
+  overflow: hidden;
+
+  pointer-events: none;
+
+  z-index: 7;
+
+  border-radius: inherit;
+}
+
+
+/* =====================================================
+   HOLOGRAPHIC SCAN BEAM
+===================================================== */
+
+.mmr-profile-modal.tier-platinum
+.platinum-scan-beam {
+
+  position: absolute;
+
+  top: -18%;
+  left: 0;
+
+  width: 100%;
+  height: 54px;
+
+  opacity: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+
+      transparent 0%,
+
+      rgba(185, 55, 255, 0.02) 18%,
+
+      rgba(220, 70, 255, 0.10) 38%,
+
+      rgba(245, 125, 255, 0.32) 48%,
+
+      rgba(100, 220, 255, 0.40) 50%,
+
+      rgba(235, 90, 255, 0.20) 54%,
+
+      rgba(170, 45, 255, 0.05) 70%,
+
+      transparent 100%
+    );
+
+  filter:
+    drop-shadow(
+      0 0 8px
+      rgba(210, 65, 255, 0.34)
+    )
+    drop-shadow(
+      0 0 14px
+      rgba(80, 205, 255, 0.14)
+    );
+
+  mix-blend-mode: screen;
+
+  animation:
+    platinumScanTravel
+    8.8s
+    cubic-bezier(.32, .02, .38, 1)
+    infinite;
+}
+
+
+/* Thin scanner core */
+.mmr-profile-modal.tier-platinum
+.platinum-scan-beam::after {
+
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: 10px;
+
+  width: 100%;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+
+      transparent 0%,
+
+      rgba(220, 70, 255, 0.20) 10%,
+
+      rgba(245, 120, 255, 0.95) 38%,
+
+      rgba(150, 230, 255, 1) 52%,
+
+      rgba(225, 75, 255, 0.85) 68%,
+
+      transparent 100%
+    );
+
+  box-shadow:
+    0 0 5px
+      rgba(215, 70, 255, 0.70),
+
+    0 0 12px
+      rgba(80, 205, 255, 0.30);
+}
+
+
+/* =====================================================
+   DIGITAL MATRIX GRID
+===================================================== */
+
+.mmr-profile-modal.tier-platinum
+.platinum-scan-grid {
+
+  position: absolute;
+  inset: 0;
+
+  opacity: 0.10;
+
+  background-image:
+
+    linear-gradient(
+      rgba(215, 75, 255, 0.10) 1px,
+      transparent 1px
+    ),
+
+    linear-gradient(
+      90deg,
+      rgba(85, 195, 255, 0.07) 1px,
+      transparent 1px
+    );
+
+  background-size:
+    100% 22px,
+    28px 100%;
+
+  mask-image:
+    linear-gradient(
+      180deg,
+      transparent,
+      black 12%,
+      black 88%,
+      transparent
+    );
+
+  -webkit-mask-image:
+    linear-gradient(
+      180deg,
+      transparent,
+      black 12%,
+      black 88%,
+      transparent
+    );
+
+  animation:
+    platinumMatrixDrift
+    12s
+    linear
+    infinite;
+}
+
+
+/* =====================================================
+   HOLOGRAPHIC INTERFERENCE TEXTURE
+===================================================== */
+
+.mmr-profile-modal.tier-platinum
+.platinum-scan-noise {
+
+  position: absolute;
+  inset: 0;
+
+  opacity: 0.055;
+
+  background:
+    repeating-linear-gradient(
+      180deg,
+
+      transparent 0px,
+      transparent 3px,
+
+      rgba(235, 90, 255, 0.24) 4px,
+
+      transparent 5px,
+
+      transparent 8px
+    );
+
+  mix-blend-mode: screen;
+
+  animation:
+    platinumHoloNoise
+    4.8s
+    steps(6, end)
+    infinite;
+}
+
+
+/* =====================================================
+   SCAN TRAVEL
+===================================================== */
+
+@keyframes platinumScanTravel {
+
+  0%,
+  12% {
+
+    top: -18%;
+    opacity: 0;
+
+  }
+
+
+  16% {
+
+    opacity: 0.25;
+
+  }
+
+
+  22% {
+
+    opacity: 0.82;
+
+  }
+
+
+  67% {
+
+    opacity: 0.72;
+
+  }
+
+
+  75% {
+
+    top: 105%;
+    opacity: 0;
+
+  }
+
+
+  100% {
+
+    top: 105%;
+    opacity: 0;
+
+  }
+
+}
+
+
+/* =====================================================
+   MATRIX MOVEMENT
+===================================================== */
+
+@keyframes platinumMatrixDrift {
+
+  from {
+
+    background-position:
+      0 0,
+      0 0;
+
+  }
+
+
+  to {
+
+    background-position:
+      0 44px,
+      56px 0;
+
+  }
+
+}
+
+
+/* =====================================================
+   HOLOGRAPHIC INTERFERENCE
+===================================================== */
+
+@keyframes platinumHoloNoise {
+
+  0%,
+  100% {
+
+    opacity: 0.035;
+
+    transform:
+      translateY(0);
+
+  }
+
+
+  25% {
+
+    opacity: 0.065;
+
+    transform:
+      translateY(1px);
+
+  }
+
+
+  50% {
+
+    opacity: 0.045;
+
+    transform:
+      translateY(-1px);
+
+  }
+
+
+  75% {
+
+    opacity: 0.075;
+
+    transform:
+      translateY(2px);
+
+  }
+
+}
+
+
+/* =====================================================
+   PLATINUM STAGE 2
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .mmr-profile-modal.tier-platinum
+  .platinum-scan-beam,
+
+  .mmr-profile-modal.tier-platinum
+  .platinum-scan-grid,
+
+  .mmr-profile-modal.tier-platinum
+  .platinum-scan-noise {
+
+    animation: none !important;
+
+  }
+
+
+  .mmr-profile-modal.tier-platinum
+  .platinum-scan-beam {
+
+    opacity: 0 !important;
+
+  }
+
 }    
 </style>
 
@@ -12750,6 +13131,15 @@ TOP 20 · LAST UPDATED <span id="mmrLastUpdated">—</span>
   <span class="diamond-sparkle s8"></span>
 
 </div>
+    <!-- PLATINUM HOLOGRAPHIC SCAN MATRIX -->
+<div class="platinum-holo-matrix" aria-hidden="true">
+
+  <div class="platinum-scan-beam"></div>
+  <div class="platinum-scan-grid"></div>
+  <div class="platinum-scan-noise"></div>
+
+</div>
+    
     <div class="mmr-profile-sticky-header">
 
  <!-- =================================================
