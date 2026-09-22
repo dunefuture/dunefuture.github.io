@@ -10398,7 +10398,32 @@ if (currentRating >= 900) {
   competitiveTierClass = "bronze";
 
 }
+// ===============================================
+// PROFILE RANK IDENTITY
+// ===============================================
 
+const profileModal =
+  document.querySelector(".mmr-profile-modal");
+
+if (profileModal) {
+
+  profileModal.classList.remove(
+    "tier-master",
+    "tier-diamond",
+    "tier-platinum",
+    "tier-gold",
+    "tier-silver",
+    "tier-bronze"
+  );
+
+  profileModal.classList.add(
+    `tier-${competitiveTierClass}`
+  );
+
+  profileModal.dataset.competitiveTier =
+    competitiveTier;
+
+}
 
 // ===============================================
 // LATEST MMR CHANGE
