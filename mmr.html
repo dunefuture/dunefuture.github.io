@@ -9730,6 +9730,137 @@ body.mmr-profile-open {
     0 0 8px rgba(195, 65, 255, 0.60);
 
 }
+    /* =====================================================
+   PLATINUM — STAGE 2A
+   PLASMA CURRENT PERIMETER
+===================================================== */
+
+.mmr-profile-modal.tier-platinum {
+  --plasma-violet: rgba(203, 82, 255, 0.95);
+  --plasma-purple: rgba(151, 54, 255, 0.82);
+  --plasma-blue: rgba(112, 92, 255, 0.72);
+
+  animation:
+    platinumPlasmaShell 3.8s ease-in-out infinite;
+}
+
+
+/* -----------------------------------------------------
+   PLASMA ENERGY TRAVEL
+----------------------------------------------------- */
+
+.mmr-profile-modal.tier-platinum::before {
+  content: "";
+
+  position: absolute;
+  inset: -2px;
+
+  border-radius: inherit;
+
+  padding: 2px;
+
+  background:
+    conic-gradient(
+      from 0deg,
+
+      transparent 0deg,
+      transparent 35deg,
+
+      rgba(170, 60, 255, 0.15) 55deg,
+
+      rgba(226, 118, 255, 1) 78deg,
+
+      rgba(150, 72, 255, 0.35) 100deg,
+
+      transparent 125deg,
+      transparent 215deg,
+
+      rgba(108, 88, 255, 0.18) 240deg,
+
+      rgba(205, 85, 255, 0.95) 265deg,
+
+      rgba(135, 74, 255, 0.30) 290deg,
+
+      transparent 320deg,
+      transparent 360deg
+    );
+
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+
+  -webkit-mask-composite: xor;
+
+  mask-composite: exclude;
+
+  pointer-events: none;
+
+  z-index: 20;
+
+  animation:
+    platinumPlasmaCurrent 6s linear infinite;
+
+  filter:
+    drop-shadow(
+      0 0 5px rgba(198, 78, 255, 0.75)
+    )
+    drop-shadow(
+      0 0 11px rgba(126, 70, 255, 0.32)
+    );
+}
+
+
+/* -----------------------------------------------------
+   PLASMA SHELL BREATHING
+----------------------------------------------------- */
+
+@keyframes platinumPlasmaShell {
+
+  0%,
+  100% {
+    box-shadow:
+      0 0 16px rgba(182, 55, 255, 0.20),
+      0 0 34px rgba(130, 50, 255, 0.10);
+  }
+
+  50% {
+    box-shadow:
+      0 0 22px rgba(207, 75, 255, 0.34),
+      0 0 48px rgba(138, 64, 255, 0.18);
+  }
+
+}
+
+
+/* -----------------------------------------------------
+   ENERGY ORBIT
+----------------------------------------------------- */
+
+@keyframes platinumPlasmaCurrent {
+
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+
+}
+
+
+/* -----------------------------------------------------
+   ACCESSIBILITY
+----------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .mmr-profile-modal.tier-platinum,
+  .mmr-profile-modal.tier-platinum::before {
+    animation: none !important;
+  }
+
+}
 </style>
 
 <link rel="stylesheet" href="style.css">
