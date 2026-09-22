@@ -13915,71 +13915,70 @@ small {
     var(--hellfire-power);
 
 
-  /*
-   * Every single win increases flame height.
-   */
-
-  --hf-flame-growth:
-    calc(
-      1 +
-      (
-        var(--hf-power) * 0.075
-      )
-    );
+  /* =====================================================
+   HELLFIRE CALIBRATION V2
+   EVERY SINGLE WIN HAS A UNIQUE POWER
+===================================================== */
 
 
-  /*
-   * Every win increases glow radius.
-   */
+/*
+ * FLAME HEIGHT MULTIPLIER
+ * Every undefeated win increases the flame.
+ */
 
-  --hf-glow-radius:
-    calc(
-      7px +
-      (
-        var(--hf-power) * 2.2px
-      )
-    );
-
-
-  /*
-   * Every win increases aura radius.
-   */
-
-  --hf-aura-radius:
-    calc(
-      9px +
-      (
-        var(--hf-power) * 2.5px
-      )
-    );
+--hf-flame-growth:
+  calc(
+    1 +
+    (var(--hf-power) * 0.12) +
+    (var(--hf-power) * var(--hf-power) * 0.006)
+  );
 
 
-  /*
-   * Every win increases ember visibility.
-   *
-   * opacity itself is safety-capped below.
-   */
+/*
+ * OUTER FIRE GLOW
+ * Higher undefeated wins accelerate the glow.
+ */
 
-  --hf-ember-strength:
-    calc(
-      0.18 +
-      (
-        var(--hf-power) * 0.065
-      )
-    );
+--hf-glow-radius:
+  calc(
+    7px +
+    (var(--hf-power) * 3px) +
+    (var(--hf-power) * var(--hf-power) * 0.10px)
+  );
 
 
-  /*
-   * Every win increases heat intensity.
-   */
+/*
+ * INFERNAL AURA
+ */
 
-  --hf-heat-strength:
-    calc(
-      0.12 +
-      (
-        var(--hf-power) * 0.045
-      )
-    );
+--hf-aura-radius:
+  calc(
+    9px +
+    (var(--hf-power) * 3.4px) +
+    (var(--hf-power) * var(--hf-power) * 0.12px)
+  );
+
+
+/*
+ * EMBER INTENSITY
+ */
+
+--hf-ember-strength:
+  calc(
+    0.16 +
+    (var(--hf-power) * 0.085)
+  );
+
+
+/*
+ * HEAT INTENSITY
+ */
+
+--hf-heat-strength:
+  calc(
+    0.10 +
+    (var(--hf-power) * 0.065)
+  );
 
 } 
 /* =====================================================
@@ -14051,13 +14050,16 @@ small {
    * the physical height of the fire.
    */
 
-  height:
-    calc(
-      13px +
-      (
-        var(--hf-power) * 2.6px
-      )
-    );
+height:
+  calc(
+    12px +
+    (var(--hf-power) * 4px) +
+    (
+      var(--hf-power) *
+      var(--hf-power) *
+      0.18px
+    )
+  );
 
 
   /*
@@ -14066,13 +14068,35 @@ small {
    */
 
   filter:
-    blur(0.45px)
+  blur(
+    calc(
+      0.32px +
+      (var(--hf-power) * 0.055px)
+    )
+  )
 
-    drop-shadow(
-      0 -2px
-      var(--hf-glow-radius)
-      rgba(255, 58, 0, 0.72)
-    );
+  drop-shadow(
+    0
+    calc(
+      -2px -
+      (var(--hf-power) * 0.28px)
+    )
+    calc(
+      var(--hf-glow-radius) +
+      (var(--hf-power) * 1.15px)
+    )
+    rgba(255, 58, 0, 0.78)
+  )
+
+  drop-shadow(
+    0
+    0
+    calc(
+      2px +
+      (var(--hf-power) * 0.75px)
+    )
+    rgba(255, 157, 25, 0.52)
+  );
 
 }
 /* =====================================================
@@ -14080,39 +14104,70 @@ small {
    PER-WIN EMBER ESCALATION
 ===================================================== */
 
+/* =====================================================
+   HELLFIRE
+   PER-WIN EMBER ESCALATION
+   EVERY WIN = UNIQUE EMBER POWER
+===================================================== */
+
 .mmr-profile-modal.hellfire-profile-active::after {
 
   /*
-   * Every undefeated win strengthens
-   * the floating ember field.
-   *
-   * The progression happens on EVERY win.
+   * Ember visibility increases on EVERY win.
+   * Quadratic component prevents high streaks
+   * from looking visually identical.
    */
 
   opacity:
     min(
-      var(--hf-ember-strength),
-      0.92
+      calc(
+        0.14 +
+        (var(--hf-power) * 0.075) +
+        (
+          var(--hf-power) *
+          var(--hf-power) *
+          0.006
+        )
+      ),
+      0.96
     );
 
 
   /*
-   * More wins also make the ember glow stronger.
+   * Ember glow also expands on EVERY win.
    */
 
   filter:
+
     drop-shadow(
-      0 0
+      0
+      0
       calc(
         2px +
+        (var(--hf-power) * 0.65px) +
         (
-          var(--hf-power) * 0.45px
+          var(--hf-power) *
+          var(--hf-power) *
+          0.035px
         )
       )
-      rgba(255, 91, 0, 0.78)
+      rgba(255, 91, 0, 0.82)
+    )
+
+    drop-shadow(
+      0
+      calc(
+        -1px -
+        (var(--hf-power) * 0.18px)
+      )
+      calc(
+        1px +
+        (var(--hf-power) * 0.42px)
+      )
+      rgba(255, 187, 46, 0.58)
     );
 
-} 
+}
 /* =====================================================
    HELLFIRE
    SAFETY + REDUCED MOTION
