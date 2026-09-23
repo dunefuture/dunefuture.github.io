@@ -21259,7 +21259,8 @@ const MMR_TIER_ORDER = [
 
 const MMR_TIER_STORAGE_KEY =
   "duneFuturePlayerTiers";
-
+const MMR_TIER_EVENT_STORAGE_KEY =
+  "duneFutureTierEvents";
 
 function getMMRTierFromRating(rating) {
 
@@ -21329,7 +21330,114 @@ function saveMMRPlayerTiers(tiers) {
   }
 }
 
+/* =====================================================
+   TIER TRANSFORMATION EVENT STORAGE
+===================================================== */
 
+function getStoredMMRTierEvents() {
+
+  try {
+
+    const stored =
+      localStorage.getItem(
+        MMR_TIER_EVENT_STORAGE_KEY
+      );
+
+    if (!stored) {
+      return {};
+    }
+
+    const parsed =
+      JSON.parse(stored);
+
+    if (
+      !parsed ||
+      typeof parsed !== "object" ||
+      Array.isArray(parsed)
+    ) {
+      return {};
+    }
+
+    return parsed;
+
+  } catch (error) {
+
+    console.warn(
+      "Unable to read MMR tier events:",
+      error
+    );
+
+    return {};
+  }
+}
+
+
+function saveMMRTierEvents(events) {
+
+  try {
+
+    localStorage.setItem(
+      MMR_TIER_EVENT_STORAGE_KEY,
+      JSON.stringify(events)
+    );
+
+  } catch (error) {
+
+    console.warn(
+      "Unable to save MMR tier events:",
+      error
+    );
+  }
+}
+
+
+function storeMMRTierChangeEvents(changes) {
+
+  if (
+    !Array.isArray(changes) ||
+    changes.length === 0
+  ) {
+    return;
+  }
+
+  const events =
+    getStoredMMRTierEvents();
+
+
+  changes.forEach(change => {
+
+    events[change.playerName] = {
+
+      playerName:
+        change.playerName,
+
+      previousTier:
+        change.previousTier,
+
+      currentTier:
+        change.currentTier,
+
+      direction:
+        change.direction,
+
+      tierDistance:
+        change.tierDistance,
+
+      pending:
+        true,
+
+      createdAt:
+        Date.now()
+
+    };
+
+  });
+
+
+  saveMMRTierEvents(
+    events
+  );
+}
 function detectMMRTierChanges() {
 
   const leaderboard =
@@ -21446,6 +21554,62 @@ function detectMMRTierChanges() {
 
 
   return changes;
+}
+/* =====================================================
+   PROFILE TIER TRANSFORMATION CONTROLLER
+===================================================== */
+
+function prepareMMRProfileTierTransformation(
+  playerName
+) {
+
+  const events =
+    getStoredMMRTierEvents();
+
+  const event =
+    events[playerName];
+
+
+  if (
+    !event ||
+    event.pending !== true
+  ) {
+    return null;
+  }
+
+
+  /*
+   * Only promotion is animated
+   * during Stage 2.
+   *
+   * Demotion support will be
+   * added separately later.
+   */
+
+  if (
+    event.direction !==
+    "promotion"
+  ) {
+    return null;
+  }
+
+
+  return {
+    playerName:
+      event.playerName,
+
+    previousTier:
+      event.previousTier,
+
+    currentTier:
+      event.currentTier,
+
+    direction:
+      event.direction,
+
+    tierDistance:
+      event.tierDistance
+  };
 }  
 function openMMRProfile(playerName) {
 
@@ -21461,6 +21625,10 @@ function openMMRProfile(playerName) {
   if (!leaderboardPlayer) {
     return;
   }
+  const tierTransformation =
+  prepareMMRProfileTierTransformation(
+    playerName
+  );
 // ===============================================
 // COMPETITIVE PLAYER STATS
 // ===============================================
@@ -21539,7 +21707,30 @@ const profileModal =
   document.querySelector(".mmr-profile-modal");
 
 if (profileModal) {
+  profileModal.classList.remove(
+    "tier-promotion-pending"
+  );
 
+  delete profileModal.dataset.previousTier;
+  delete profileModal.dataset.currentTier;
+  delete profileModal.dataset.tierDirection;
+
+
+  if (tierTransformation) {
+
+    profileModal.classList.add(
+      "tier-promotion-pending"
+    );
+
+    profileModal.dataset.previousTier =
+      tierTransformation.previousTier.toLowerCase();
+
+    profileModal.dataset.currentTier =
+      tierTransformation.currentTier.toLowerCase();
+
+    profileModal.dataset.tierDirection =
+      tierTransformation.direction;
+  }
   profileModal.classList.remove(
     "tier-master",
     "tier-diamond",
@@ -22718,6 +22909,9 @@ card.appendChild(burst);
 }
 const mmrTierChanges =
   detectMMRTierChanges();  
+storeMMRTierChangeEvents(
+  mmrTierChanges
+);  
 renderMMRPodium();
 
 applyTop3ChangeEffects(
