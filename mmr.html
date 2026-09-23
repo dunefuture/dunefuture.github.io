@@ -18089,6 +18089,343 @@ strong {
     animation: none !important;
   }
 
+}
+/* =====================================================
+   BRONZE STAGE 3
+   FORGE HEAT RESONANCE
+   Final Bronze Evolution
+===================================================== */
+
+/*
+ * The Bronze profile periodically heats up like
+ * forged metal fresh from a furnace.
+ */
+
+.mmr-profile-modal.tier-bronze {
+  animation:
+    bronzeForgeHeatResonance
+    7.8s
+    ease-in-out
+    infinite;
+}
+
+
+/* =====================================================
+   PROFILE FORGE HEAT CYCLE
+===================================================== */
+
+@keyframes bronzeForgeHeatResonance {
+
+  /* COOL FORGED METAL */
+
+  0%,
+  18%,
+  100% {
+    border-color:
+      rgba(184, 105, 48, 0.72);
+
+    box-shadow:
+      0 0 0 1px rgba(220, 132, 65, 0.08),
+      0 0 18px rgba(157, 75, 31, 0.17),
+      0 0 38px rgba(96, 43, 18, 0.10),
+      inset 0 0 34px rgba(213, 112, 45, 0.035);
+
+    filter:
+      brightness(1)
+      saturate(1);
+  }
+
+
+  /* HEAT BUILD-UP */
+
+  34% {
+    border-color:
+      rgba(219, 126, 48, 0.82);
+
+    box-shadow:
+      0 0 0 1px rgba(255, 158, 68, 0.13),
+      0 0 22px rgba(218, 99, 31, 0.22),
+      0 0 46px rgba(153, 59, 17, 0.13),
+      inset 0 0 38px rgba(240, 118, 35, 0.055);
+
+    filter:
+      brightness(1.025)
+      saturate(1.06);
+  }
+
+
+  /* FURNACE PEAK */
+
+  48% {
+    border-color:
+      rgba(255, 164, 66, 0.94);
+
+    box-shadow:
+      0 0 0 1px rgba(255, 196, 103, 0.20),
+      0 0 9px rgba(255, 177, 78, 0.34),
+      0 0 28px rgba(245, 105, 27, 0.28),
+      0 0 58px rgba(179, 58, 12, 0.17),
+      inset 0 0 46px rgba(255, 136, 39, 0.075);
+
+    filter:
+      brightness(1.055)
+      saturate(1.12);
+  }
+
+
+  /* HOT METAL AFTERGLOW */
+
+  61% {
+    border-color:
+      rgba(230, 133, 52, 0.86);
+
+    box-shadow:
+      0 0 0 1px rgba(255, 163, 70, 0.14),
+      0 0 22px rgba(223, 91, 25, 0.23),
+      0 0 48px rgba(140, 49, 14, 0.13),
+      inset 0 0 40px rgba(236, 105, 31, 0.055);
+
+    filter:
+      brightness(1.025)
+      saturate(1.07);
+  }
+
+
+  /* RETURN TO DARK BRONZE */
+
+  78% {
+    border-color:
+      rgba(194, 108, 47, 0.76);
+
+    box-shadow:
+      0 0 0 1px rgba(223, 129, 58, 0.09),
+      0 0 19px rgba(166, 74, 27, 0.18),
+      0 0 40px rgba(102, 41, 14, 0.10),
+      inset 0 0 35px rgba(211, 98, 32, 0.04);
+
+    filter:
+      brightness(1.008)
+      saturate(1.02);
+  }
+}
+
+
+/* =====================================================
+   BRONZE TEXT HEAT RESONANCE
+===================================================== */
+
+/*
+ * Important Bronze values heat together with
+ * the forged-metal shell.
+ */
+
+.mmr-profile-modal.tier-bronze
+#mmrProfileRating,
+
+.mmr-profile-modal.tier-bronze
+#mmrProfileRank,
+
+.mmr-profile-modal.tier-bronze
+#mmrProfileHeaderRating,
+
+.mmr-profile-modal.tier-bronze
+#mmrProfileHeaderRank {
+
+  animation:
+    bronzeForgeTextHeat
+    7.8s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes bronzeForgeTextHeat {
+
+  0%,
+  18%,
+  100% {
+    text-shadow:
+      0 0 5px rgba(202, 111, 50, 0.34),
+      0 0 11px rgba(137, 60, 24, 0.16);
+  }
+
+
+  34% {
+    text-shadow:
+      0 0 6px rgba(235, 135, 55, 0.46),
+      0 0 14px rgba(194, 72, 20, 0.23);
+  }
+
+
+  48% {
+    text-shadow:
+      0 0 4px rgba(255, 221, 154, 0.68),
+      0 0 9px rgba(255, 158, 60, 0.62),
+      0 0 18px rgba(235, 78, 17, 0.34);
+  }
+
+
+  61% {
+    text-shadow:
+      0 0 6px rgba(245, 151, 61, 0.49),
+      0 0 14px rgba(200, 69, 18, 0.24);
+  }
+
+
+  78% {
+    text-shadow:
+      0 0 5px rgba(211, 116, 49, 0.37),
+      0 0 11px rgba(145, 58, 21, 0.17);
+  }
+}
+
+
+/* =====================================================
+   BRONZE BADGE — FURNACE RESONANCE
+===================================================== */
+
+.mmr-profile-modal.tier-bronze
+.mmr-profile-tier.bronze {
+
+  animation:
+    bronzeBadgeForgeHeat
+    7.8s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes bronzeBadgeForgeHeat {
+
+  0%,
+  18%,
+  100% {
+    box-shadow:
+      0 0 7px rgba(196, 103, 42, 0.26),
+      inset 0 0 8px rgba(255, 183, 104, 0.07);
+  }
+
+
+  34% {
+    box-shadow:
+      0 0 10px rgba(226, 116, 39, 0.36),
+      inset 0 0 10px rgba(255, 174, 78, 0.10);
+  }
+
+
+  48% {
+    box-shadow:
+      0 0 6px rgba(255, 218, 146, 0.46),
+      0 0 15px rgba(255, 130, 37, 0.48),
+      0 0 26px rgba(207, 61, 13, 0.23),
+      inset 0 0 12px rgba(255, 196, 105, 0.15);
+  }
+
+
+  61% {
+    box-shadow:
+      0 0 11px rgba(239, 123, 39, 0.38),
+      0 0 20px rgba(186, 57, 14, 0.18),
+      inset 0 0 10px rgba(255, 167, 69, 0.10);
+  }
+
+
+  78% {
+    box-shadow:
+      0 0 8px rgba(205, 104, 39, 0.29),
+      inset 0 0 8px rgba(244, 152, 74, 0.07);
+  }
+}
+
+
+/* =====================================================
+   HOT EDGE SYNCHRONIZATION
+===================================================== */
+
+.mmr-profile-modal.tier-bronze
+.bronze-molten-hot-edge {
+
+  animation:
+    bronzeHotEdgeResonance
+    7.8s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes bronzeHotEdgeResonance {
+
+  0%,
+  18%,
+  100% {
+    opacity: 0.26;
+    filter:
+      brightness(1)
+      blur(0.15px);
+  }
+
+
+  34% {
+    opacity: 0.40;
+    filter:
+      brightness(1.18)
+      blur(0.2px);
+  }
+
+
+  48% {
+    opacity: 0.68;
+    filter:
+      brightness(1.42)
+      blur(0.25px);
+  }
+
+
+  61% {
+    opacity: 0.43;
+    filter:
+      brightness(1.20)
+      blur(0.2px);
+  }
+
+
+  78% {
+    opacity: 0.30;
+    filter:
+      brightness(1.06)
+      blur(0.15px);
+  }
+}
+
+
+/* =====================================================
+   ACCESSIBILITY
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .mmr-profile-modal.tier-bronze,
+
+  .mmr-profile-modal.tier-bronze
+  #mmrProfileRating,
+
+  .mmr-profile-modal.tier-bronze
+  #mmrProfileRank,
+
+  .mmr-profile-modal.tier-bronze
+  #mmrProfileHeaderRating,
+
+  .mmr-profile-modal.tier-bronze
+  #mmrProfileHeaderRank,
+
+  .mmr-profile-modal.tier-bronze
+  .mmr-profile-tier.bronze,
+
+  .mmr-profile-modal.tier-bronze
+  .bronze-molten-hot-edge {
+
+    animation: none !important;
+  }
 }    
 </style>
 
