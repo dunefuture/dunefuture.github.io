@@ -14743,6 +14743,404 @@ button:hover {
 
   box-shadow:
     inset 0 0 18px rgba(255, 195, 40, 0.035);
+}
+/* =====================================================
+   GOLD PROFILE
+   STAGE 2 — MOVING METALLIC REFLECTION
+
+   A controlled specular reflection travels across
+   the polished GOLD surface.
+===================================================== */
+
+
+/* =====================================================
+   GOLD — MAIN METALLIC SWEEP
+===================================================== */
+
+.mmr-profile-modal.tier-gold::before {
+
+  content: "";
+
+  position: absolute;
+
+  top: -12%;
+  left: -55%;
+
+  width: 38%;
+  height: 125%;
+
+  pointer-events: none;
+
+  z-index: 8;
+
+  opacity: 0;
+
+  background:
+    linear-gradient(
+      108deg,
+      transparent 0%,
+      rgba(255, 210, 75, 0.025) 25%,
+      rgba(255, 231, 139, 0.11) 40%,
+      rgba(255, 252, 225, 0.42) 49%,
+      rgba(255, 239, 168, 0.16) 57%,
+      rgba(255, 190, 32, 0.035) 72%,
+      transparent 100%
+    );
+
+  filter:
+    blur(0.7px);
+
+  transform:
+    skewX(-11deg);
+
+  mix-blend-mode:
+    screen;
+
+  animation:
+    goldMetallicSweep
+    8.6s
+    ease-in-out
+    infinite;
+}
+
+
+/* =====================================================
+   GOLD — MAIN SWEEP MOVEMENT
+===================================================== */
+
+@keyframes goldMetallicSweep {
+
+  0%,
+  12% {
+
+    left: -55%;
+    opacity: 0;
+
+  }
+
+  18% {
+
+    opacity: 0.32;
+
+  }
+
+  32% {
+
+    opacity: 0.72;
+
+  }
+
+  47% {
+
+    left: 118%;
+    opacity: 0.18;
+
+  }
+
+  52%,
+  100% {
+
+    left: 118%;
+    opacity: 0;
+
+  }
+
+}
+
+
+/* =====================================================
+   GOLD — RATING CARD REFLECTION
+===================================================== */
+
+.mmr-profile-modal.tier-gold
+.mmr-profile-rating-card {
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+
+.mmr-profile-modal.tier-gold
+.mmr-profile-rating-card::after {
+
+  content: "";
+
+  position: absolute;
+
+  top: -40%;
+  left: -45%;
+
+  width: 26%;
+  height: 180%;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      100deg,
+      transparent,
+      rgba(255, 228, 122, 0.07),
+      rgba(255, 253, 225, 0.34),
+      rgba(255, 215, 72, 0.09),
+      transparent
+    );
+
+  transform:
+    skewX(-14deg);
+
+  opacity: 0;
+
+  mix-blend-mode:
+    screen;
+
+  animation:
+    goldCardReflection
+    8.6s
+    ease-in-out
+    infinite;
+}
+
+
+/* =====================================================
+   GOLD — RATING REFLECTION MOVEMENT
+===================================================== */
+
+@keyframes goldCardReflection {
+
+  0%,
+  17% {
+
+    left: -45%;
+    opacity: 0;
+
+  }
+
+  24% {
+
+    opacity: 0.42;
+
+  }
+
+  39% {
+
+    opacity: 0.78;
+
+  }
+
+  51% {
+
+    left: 120%;
+    opacity: 0;
+
+  }
+
+  100% {
+
+    left: 120%;
+    opacity: 0;
+
+  }
+
+}
+
+
+/* =====================================================
+   GOLD — TIER BADGE SPECULAR FLASH
+===================================================== */
+
+.mmr-profile-modal.tier-gold
+.mmr-profile-tier.gold {
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+
+.mmr-profile-modal.tier-gold
+.mmr-profile-tier.gold::after {
+
+  content: "";
+
+  position: absolute;
+
+  top: -80%;
+  left: -60%;
+
+  width: 32%;
+  height: 260%;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 230, 0.70),
+      transparent
+    );
+
+  transform:
+    rotate(15deg);
+
+  opacity: 0;
+
+  animation:
+    goldBadgeReflection
+    8.6s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes goldBadgeReflection {
+
+  0%,
+  24% {
+
+    left: -60%;
+    opacity: 0;
+
+  }
+
+  30% {
+
+    opacity: 0.80;
+
+  }
+
+  42% {
+
+    left: 130%;
+    opacity: 0;
+
+  }
+
+  100% {
+
+    left: 130%;
+    opacity: 0;
+
+  }
+
+}
+
+
+/* =====================================================
+   GOLD — MMR NUMBER LIGHT RESPONSE
+===================================================== */
+
+.mmr-profile-modal.tier-gold
+#mmrProfileRating,
+.mmr-profile-modal.tier-gold
+#mmrProfileRank {
+
+  animation:
+    goldNumberReflection
+    8.6s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes goldNumberReflection {
+
+  0%,
+  25%,
+  55%,
+  100% {
+
+    filter:
+      brightness(1);
+
+  }
+
+  36% {
+
+    filter:
+      brightness(1.22);
+
+    text-shadow:
+      0 0 4px rgba(255, 248, 205, 0.82),
+      0 0 10px rgba(255, 207, 57, 0.64),
+      0 0 19px rgba(211, 125, 7, 0.32);
+
+  }
+
+}
+
+
+/* =====================================================
+   GOLD — EDGE LIGHT RESPONSE
+===================================================== */
+
+.mmr-profile-modal.tier-gold {
+
+  animation:
+    goldEdgeReflection
+    8.6s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes goldEdgeReflection {
+
+  0%,
+  20%,
+  58%,
+  100% {
+
+    border-color:
+      rgba(255, 213, 91, 0.88);
+
+    box-shadow:
+      0 0 0 1px rgba(255, 229, 137, 0.10),
+      0 0 16px rgba(255, 190, 39, 0.28),
+      0 0 42px rgba(211, 128, 10, 0.15),
+      inset 0 0 28px rgba(255, 199, 54, 0.055);
+
+  }
+
+  37% {
+
+    border-color:
+      rgba(255, 241, 183, 0.98);
+
+    box-shadow:
+      0 0 0 1px rgba(255, 247, 203, 0.19),
+      0 0 20px rgba(255, 213, 81, 0.40),
+      0 0 52px rgba(216, 133, 11, 0.19),
+      inset 0 0 34px rgba(255, 218, 94, 0.075);
+
+  }
+
+}
+
+
+/* =====================================================
+   GOLD — REDUCED MOTION SAFETY
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .mmr-profile-modal.tier-gold,
+  .mmr-profile-modal.tier-gold::before,
+  .mmr-profile-modal.tier-gold
+  .mmr-profile-rating-card::after,
+  .mmr-profile-modal.tier-gold
+  .mmr-profile-tier.gold::after,
+  .mmr-profile-modal.tier-gold
+  #mmrProfileRating,
+  .mmr-profile-modal.tier-gold
+  #mmrProfileRank {
+
+    animation:
+      none !important;
+
+  }
+
 }    
 </style>
 
