@@ -21242,6 +21242,211 @@ const stats =
 
   return achievements;
 }
+/* =====================================================
+   DUNE FUTURE
+   TIER TRANSFORMATION ENGINE
+   Stage 1 — Promotion / Demotion Detection
+===================================================== */
+
+const MMR_TIER_ORDER = [
+  "BRONZE",
+  "SILVER",
+  "GOLD",
+  "PLATINUM",
+  "DIAMOND",
+  "MASTER"
+];
+
+const MMR_TIER_STORAGE_KEY =
+  "duneFuturePlayerTiers";
+
+
+function getMMRTierFromRating(rating) {
+
+  if (rating >= 900) return "MASTER";
+  if (rating >= 750) return "DIAMOND";
+  if (rating >= 600) return "PLATINUM";
+  if (rating >= 450) return "GOLD";
+  if (rating >= 250) return "SILVER";
+
+  return "BRONZE";
+}
+
+
+function getStoredMMRPlayerTiers() {
+
+  try {
+
+    const stored =
+      localStorage.getItem(
+        MMR_TIER_STORAGE_KEY
+      );
+
+    if (!stored) {
+      return {};
+    }
+
+    const parsed =
+      JSON.parse(stored);
+
+    if (
+      !parsed ||
+      typeof parsed !== "object" ||
+      Array.isArray(parsed)
+    ) {
+      return {};
+    }
+
+    return parsed;
+
+  } catch (error) {
+
+    console.warn(
+      "Unable to read stored MMR tiers:",
+      error
+    );
+
+    return {};
+  }
+}
+
+
+function saveMMRPlayerTiers(tiers) {
+
+  try {
+
+    localStorage.setItem(
+      MMR_TIER_STORAGE_KEY,
+      JSON.stringify(tiers)
+    );
+
+  } catch (error) {
+
+    console.warn(
+      "Unable to save MMR tiers:",
+      error
+    );
+  }
+}
+
+
+function detectMMRTierChanges() {
+
+  const leaderboard =
+    getMMRLeaderboard();
+
+  const previousTiers =
+    getStoredMMRPlayerTiers();
+
+  const currentTiers = {};
+
+  const changes = [];
+
+
+  leaderboard.forEach(player => {
+
+    const currentTier =
+      getMMRTierFromRating(
+        player.rating
+      );
+
+    currentTiers[player.name] =
+      currentTier;
+
+
+    const previousTier =
+      previousTiers[player.name];
+
+
+    /*
+     * First snapshot:
+     * establish baseline only.
+     *
+     * We DO NOT trigger a promotion
+     * when a player is first discovered.
+     */
+
+    if (!previousTier) {
+      return;
+    }
+
+
+    if (previousTier === currentTier) {
+      return;
+    }
+
+
+    const previousIndex =
+      MMR_TIER_ORDER.indexOf(
+        previousTier
+      );
+
+    const currentIndex =
+      MMR_TIER_ORDER.indexOf(
+        currentTier
+      );
+
+
+    if (
+      previousIndex === -1 ||
+      currentIndex === -1
+    ) {
+      return;
+    }
+
+
+    const direction =
+      currentIndex > previousIndex
+        ? "promotion"
+        : "demotion";
+
+
+    changes.push({
+
+      playerName:
+        player.name,
+
+      previousTier:
+        previousTier,
+
+      currentTier:
+        currentTier,
+
+      direction:
+        direction,
+
+      previousTierIndex:
+        previousIndex,
+
+      currentTierIndex:
+        currentIndex,
+
+      tierDistance:
+        Math.abs(
+          currentIndex -
+          previousIndex
+        )
+
+    });
+
+  });
+
+
+  /*
+   * Save immediately.
+   *
+   * Therefore refreshing the page
+   * will NOT replay the same
+   * transformation.
+   */
+
+  saveMMRPlayerTiers(
+    currentTiers
+  );
+
+
+  return changes;
+}  
 function openMMRProfile(playerName) {
 
   const leaderboardPlayer =
@@ -22511,6 +22716,8 @@ card.appendChild(burst);
   });
 
 }
+const mmrTierChanges =
+  detectMMRTierChanges();  
 renderMMRPodium();
 
 applyTop3ChangeEffects(
