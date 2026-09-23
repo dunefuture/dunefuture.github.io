@@ -14253,6 +14253,496 @@ height:
 
   }
 
+}
+/* =====================================================
+   GOLD PROFILE
+   STAGE 1 — FULL METALLIC GOLD IDENTITY
+
+   Everything inside a GOLD profile receives
+   a polished metallic-gold visual language.
+===================================================== */
+
+
+/* =====================================================
+   GOLD — MAIN PROFILE SHELL
+===================================================== */
+
+.mmr-profile-modal.tier-gold {
+  --gold-dark: #3a2300;
+  --gold-deep: #704300;
+  --gold-mid: #c98b13;
+  --gold-main: #f6c84a;
+  --gold-bright: #ffe98a;
+  --gold-white: #fff7cf;
+
+  position: relative;
+  isolation: isolate;
+
+  border:
+    1px solid
+    rgba(255, 213, 91, 0.88);
+
+  background:
+    radial-gradient(
+      circle at 50% -8%,
+      rgba(255, 205, 65, 0.18),
+      transparent 31%
+    ),
+    radial-gradient(
+      circle at 8% 38%,
+      rgba(204, 130, 15, 0.10),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 92% 68%,
+      rgba(255, 183, 25, 0.08),
+      transparent 30%
+    ),
+    linear-gradient(
+      155deg,
+      rgba(38, 25, 5, 0.99) 0%,
+      rgba(20, 14, 5, 0.995) 48%,
+      rgba(10, 9, 6, 1) 100%
+    );
+
+  box-shadow:
+    0 0 0 1px rgba(255, 229, 137, 0.10),
+    0 0 16px rgba(255, 190, 39, 0.28),
+    0 0 42px rgba(211, 128, 10, 0.15),
+    inset 0 0 28px rgba(255, 199, 54, 0.055);
+}
+
+
+/* =====================================================
+   GOLD — STICKY HEADER
+===================================================== */
+
+.mmr-profile-modal.tier-gold
+.mmr-profile-sticky-header {
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(45, 29, 5, 0.99),
+      rgba(18, 13, 5, 0.985)
+    );
+
+  border-bottom:
+    1px solid
+    rgba(255, 207, 68, 0.55);
+
+  box-shadow:
+    0 8px 28px rgba(151, 88, 4, 0.20),
+    inset 0 -1px 0 rgba(255, 235, 159, 0.08);
+}
+
+
+/* Metallic line below sticky header */
+
+.mmr-profile-modal.tier-gold
+.mmr-profile-sticky-header::after {
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(180, 103, 4, 0.38),
+      rgba(255, 206, 62, 0.95),
+      rgba(255, 248, 194, 1),
+      rgba(255, 206, 62, 0.95),
+      rgba(180, 103, 4, 0.38),
+      transparent
+    );
+
+  box-shadow:
+    0 0 8px rgba(255, 197, 40, 0.55);
+}
+
+
+/* =====================================================
+   GOLD — PLAYER NAME
+===================================================== */
+
+.mmr-profile-modal.tier-gold
+.mmr-profile-player-name {
+
+  color:
+    var(--gold-white);
+
+  text-shadow:
+    0 0 4px rgba(255, 247, 207, 0.55),
+    0 0 10px rgba(255, 199, 45, 0.35);
+}
+
+
+/* =====================================================
+   GOLD — HEADER RANK / MMR
+===================================================== */
+
+.mmr-profile-modal.tier-gold
+#mmrProfileHeaderRank {
+
+  color:
+    var(--gold-bright);
+
+  text-shadow:
+    0 0 7px rgba(255, 197, 36, 0.45);
+}
+
+
+.mmr-profile-modal.tier-gold
+#mmrProfileHeaderRating {
+
+  color:
+    var(--gold-main);
+
+  text-shadow:
+    0 0 5px rgba(255, 204, 50, 0.55),
+    0 0 12px rgba(218, 132, 9, 0.25);
+}
+
+
+/* =====================================================
+   GOLD — TIER BADGE
+===================================================== */
+
+.mmr-profile-modal.tier-gold
+.mmr-profile-tier.gold {
+
+  color:
+    #fff6c8;
+
+  border:
+    1px solid
+    rgba(255, 226, 126, 0.92);
+
+  background:
+    linear-gradient(
+      135deg,
+      #513000 0%,
+      #a96808 24%,
+      #f1bd35 48%,
+      #fff0a1 55%,
+      #d89917 70%,
+      #704000 100%
+    );
+
+  box-shadow:
+    0 0 7px rgba(255, 215, 92, 0.52),
+    0 0 18px rgba(218, 137, 13, 0.30),
+    inset 0 1px 0 rgba(255, 250, 214, 0.60),
+    inset 0 -2px 5px rgba(79, 39, 0, 0.55);
+
+  text-shadow:
+    0 1px 2px rgba(47, 25, 0, 0.95);
+}
+
+
+/* =====================================================
+   GOLD — MAIN RATING CARD
+===================================================== */
+
+.mmr-profile-modal.tier-gold
+.mmr-profile-rating-card {
+
+  border:
+    1px solid
+    rgba(255, 207, 66, 0.55);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(82, 51, 7, 0.72),
+      rgba(31, 22, 7, 0.88) 48%,
+      rgba(60, 38, 5, 0.60)
+    );
+
+  box-shadow:
+    inset 0 0 18px rgba(255, 191, 34, 0.055),
+    0 0 13px rgba(181, 104, 5, 0.11);
+}
+
+
+/* =====================================================
+   GOLD — CURRENT MMR + RANK
+===================================================== */
+
+.mmr-profile-modal.tier-gold
+#mmrProfileRating,
+.mmr-profile-modal.tier-gold
+#mmrProfileRank {
+
+  color:
+    var(--gold-bright);
+
+  text-shadow:
+    0 0 4px rgba(255, 238, 166, 0.55),
+    0 0 11px rgba(255, 183, 24, 0.42);
+}
+
+
+/* =====================================================
+   GOLD — COMPETITIVE STATS PANEL
+===================================================== */
+
+.mmr-profile-modal.tier-gold
+.mmr-profile-stats {
+
+  border-color:
+    rgba(232, 171, 43, 0.42);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(55, 37, 9, 0.66),
+      rgba(19, 15, 8, 0.80)
+    );
+
+  box-shadow:
+    inset 0 0 17px rgba(255, 188, 34, 0.035);
+}
+
+
+/* =====================================================
+   GOLD — INTERNAL CARDS / PANELS
+===================================================== */
+
+.mmr-profile-modal.tier-gold
+.mmr-profile-section {
+
+  border-color:
+    rgba(225, 163, 37, 0.34);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(47, 32, 8, 0.58),
+      rgba(17, 14, 8, 0.78)
+    );
+
+  box-shadow:
+    inset 0 0 14px rgba(255, 187, 29, 0.025);
+}
+
+
+/* =====================================================
+   GOLD — LABELS
+===================================================== */
+
+.mmr-profile-modal.tier-gold
+.mmr-profile-label {
+
+  color:
+    rgba(255, 226, 147, 0.78);
+}
+
+
+/* =====================================================
+   GOLD — STAT VALUES
+===================================================== */
+
+.mmr-profile-modal.tier-gold
+.mmr-profile-stat-value {
+
+  color:
+    #ffe58b;
+
+  text-shadow:
+    0 0 6px rgba(255, 190, 35, 0.25);
+}
+
+
+/* =====================================================
+   GOLD — SECTION TITLES
+===================================================== */
+
+.mmr-profile-modal.tier-gold
+.mmr-profile-section-title {
+
+  color:
+    #ffdc70;
+
+  text-shadow:
+    0 0 7px rgba(255, 187, 30, 0.26);
+}
+
+
+/* =====================================================
+   GOLD — ACHIEVEMENTS
+===================================================== */
+
+.mmr-profile-modal.tier-gold
+.mmr-achievement {
+
+  border-color:
+    rgba(238, 179, 51, 0.42);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(67, 43, 8, 0.70),
+      rgba(24, 18, 8, 0.82)
+    );
+
+  box-shadow:
+    inset 0 0 12px rgba(255, 190, 38, 0.045),
+    0 0 8px rgba(166, 95, 5, 0.08);
+}
+
+
+/* =====================================================
+   GOLD — LATEST MMR / MATCH AREAS
+===================================================== */
+
+.mmr-profile-modal.tier-gold
+.mmr-profile-latest-match,
+.mmr-profile-modal.tier-gold
+.mmr-profile-latest-update {
+
+  border-color:
+    rgba(233, 171, 39, 0.38);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(58, 38, 8, 0.63),
+      rgba(20, 16, 8, 0.80)
+    );
+
+  box-shadow:
+    inset 0 0 14px rgba(255, 185, 26, 0.035);
+}
+
+
+/* =====================================================
+   GOLD — BUTTONS
+===================================================== */
+
+.mmr-profile-modal.tier-gold
+button {
+
+  border-color:
+    rgba(239, 181, 51, 0.50);
+
+  color:
+    #ffe79a;
+
+  box-shadow:
+    0 0 7px rgba(209, 128, 10, 0.12);
+}
+
+
+.mmr-profile-modal.tier-gold
+button:hover {
+
+  border-color:
+    rgba(255, 220, 111, 0.85);
+
+  color:
+    #fff7d0;
+
+  box-shadow:
+    0 0 8px rgba(255, 212, 83, 0.35),
+    0 0 17px rgba(204, 121, 8, 0.18);
+}
+
+
+/* =====================================================
+   GOLD — CLOSE BUTTON
+===================================================== */
+
+.mmr-profile-modal.tier-gold
+.mmr-profile-close {
+
+  color:
+    #ffe58c;
+
+  border-color:
+    rgba(233, 171, 40, 0.52);
+
+  background:
+    rgba(70, 43, 5, 0.40);
+
+  box-shadow:
+    0 0 8px rgba(206, 123, 7, 0.16);
+}
+
+
+.mmr-profile-modal.tier-gold
+.mmr-profile-close:hover {
+
+  color:
+    #fff8d4;
+
+  border-color:
+    rgba(255, 225, 126, 0.88);
+
+  box-shadow:
+    0 0 11px rgba(255, 207, 69, 0.40);
+}
+
+
+/* =====================================================
+   GOLD — METALLIC SPECULAR HIGHLIGHT
+
+   Gives the whole profile a polished-metal reflection.
+===================================================== */
+
+.mmr-profile-modal.tier-gold::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  border-radius: inherit;
+
+  pointer-events: none;
+
+  z-index: 6;
+
+  background:
+    linear-gradient(
+      118deg,
+      transparent 0%,
+      transparent 34%,
+      rgba(255, 245, 196, 0.018) 41%,
+      rgba(255, 248, 208, 0.075) 48%,
+      rgba(255, 218, 105, 0.025) 54%,
+      transparent 61%,
+      transparent 100%
+    );
+
+  mix-blend-mode:
+    screen;
+}
+
+
+/* =====================================================
+   GOLD — INNER EDGE REFLECTION
+===================================================== */
+
+.mmr-profile-modal.tier-gold::after {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 3px;
+
+  border-radius: inherit;
+
+  pointer-events: none;
+
+  z-index: 6;
+
+  border:
+    1px solid
+    rgba(255, 239, 177, 0.07);
+
+  box-shadow:
+    inset 0 0 18px rgba(255, 195, 40, 0.035);
 }    
 </style>
 
