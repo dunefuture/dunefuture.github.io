@@ -17705,6 +17705,390 @@ strong {
   text-shadow:
     0 0 5px
       rgba(188, 87, 37, 0.22);
+}
+/* =====================================================
+   BRONZE STAGE 2
+   MOLTEN COPPER REFLECTION
+===================================================== */
+
+/* Hidden by default */
+.bronze-molten-reflection {
+  display: none;
+}
+
+/* Active ONLY for BRONZE profiles */
+.mmr-profile-modal.tier-bronze
+.bronze-molten-reflection {
+  display: block;
+
+  position: absolute;
+  inset: 0;
+
+  overflow: hidden;
+  pointer-events: none;
+
+  border-radius: inherit;
+
+  z-index: 7;
+
+  mix-blend-mode: screen;
+}
+
+
+/* =====================================================
+   MOLTEN COPPER SWEEP
+===================================================== */
+
+.mmr-profile-modal.tier-bronze
+.bronze-molten-sweep {
+  position: absolute;
+
+  top: -20%;
+  left: -65%;
+
+  width: 42%;
+  height: 145%;
+
+  opacity: 0;
+
+  transform:
+    rotate(14deg)
+    skewX(-8deg);
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+
+      rgba(126, 55, 18, 0.05) 18%,
+
+      rgba(210, 103, 31, 0.18) 34%,
+
+      rgba(255, 157, 61, 0.46) 46%,
+
+      rgba(255, 221, 155, 0.76) 50%,
+
+      rgba(255, 142, 44, 0.48) 55%,
+
+      rgba(164, 69, 21, 0.16) 68%,
+
+      transparent 100%
+    );
+
+  filter:
+    blur(1.4px)
+    drop-shadow(
+      0 0 10px
+      rgba(238, 111, 31, 0.28)
+    );
+
+  animation:
+    bronzeMoltenSweep
+    7.8s
+    cubic-bezier(.42, 0, .22, 1)
+    infinite;
+}
+
+
+@keyframes bronzeMoltenSweep {
+
+  0%,
+  13% {
+    left: -65%;
+    opacity: 0;
+  }
+
+  18% {
+    opacity: 0.32;
+  }
+
+  31% {
+    opacity: 0.72;
+  }
+
+  48% {
+    left: 118%;
+    opacity: 0.44;
+  }
+
+  54% {
+    left: 125%;
+    opacity: 0;
+  }
+
+  100% {
+    left: 125%;
+    opacity: 0;
+  }
+
+}
+
+
+/* =====================================================
+   LIQUID COPPER SHEEN
+===================================================== */
+
+.mmr-profile-modal.tier-bronze
+.bronze-copper-sheen {
+  position: absolute;
+  inset: 0;
+
+  opacity: 0.30;
+
+  background:
+
+    radial-gradient(
+      ellipse at 18% 24%,
+      rgba(255, 194, 116, 0.17),
+      transparent 27%
+    ),
+
+    radial-gradient(
+      ellipse at 82% 67%,
+      rgba(217, 91, 24, 0.13),
+      transparent 31%
+    ),
+
+    linear-gradient(
+      115deg,
+      transparent 18%,
+      rgba(255, 135, 43, 0.055) 35%,
+      rgba(255, 224, 166, 0.11) 48%,
+      rgba(175, 69, 20, 0.06) 63%,
+      transparent 79%
+    );
+
+  background-size:
+    150% 150%,
+    165% 165%,
+    190% 190%;
+
+  animation:
+    bronzeCopperSheen
+    10.5s
+    ease-in-out
+    infinite alternate;
+}
+
+
+@keyframes bronzeCopperSheen {
+
+  0% {
+    background-position:
+      0% 15%,
+      100% 80%,
+      0% 50%;
+
+    opacity: 0.20;
+  }
+
+  50% {
+    background-position:
+      32% 30%,
+      67% 54%,
+      55% 50%;
+
+    opacity: 0.36;
+  }
+
+  100% {
+    background-position:
+      68% 45%,
+      35% 25%,
+      100% 50%;
+
+    opacity: 0.25;
+  }
+
+}
+
+
+/* =====================================================
+   HOT METAL EDGE
+===================================================== */
+
+.mmr-profile-modal.tier-bronze
+.bronze-hot-edge {
+  position: absolute;
+  inset: 1px;
+
+  border-radius: inherit;
+
+  border:
+    1px solid
+    rgba(232, 117, 39, 0.28);
+
+  box-shadow:
+
+    inset
+    0 0 7px
+    rgba(255, 178, 81, 0.11),
+
+    inset
+    0 0 18px
+    rgba(181, 72, 21, 0.08),
+
+    0 0 6px
+    rgba(225, 101, 27, 0.13);
+
+  opacity: 0.60;
+
+  animation:
+    bronzeHotEdgePulse
+    4.6s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes bronzeHotEdgePulse {
+
+  0%,
+  100% {
+    opacity: 0.46;
+
+    filter:
+      brightness(0.92);
+  }
+
+  50% {
+    opacity: 0.82;
+
+    filter:
+      brightness(1.22);
+  }
+
+}
+
+
+/* =====================================================
+   BRONZE TEXT REFLECTION
+===================================================== */
+
+.mmr-profile-modal.tier-bronze
+.mmr-profile-player-name,
+.mmr-profile-modal.tier-bronze
+#mmrProfileRating,
+.mmr-profile-modal.tier-bronze
+#mmrProfileRank {
+  animation:
+    bronzeTextReflection
+    7.8s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes bronzeTextReflection {
+
+  0%,
+  16%,
+  56%,
+  100% {
+    filter:
+      brightness(1);
+
+    text-shadow:
+      0 0 5px rgba(205, 101, 35, 0.30),
+      0 0 11px rgba(126, 54, 20, 0.16);
+  }
+
+  31% {
+    filter:
+      brightness(1.28);
+
+    text-shadow:
+      0 0 4px rgba(255, 225, 172, 0.70),
+      0 0 9px rgba(255, 151, 61, 0.58),
+      0 0 18px rgba(194, 77, 20, 0.30);
+  }
+
+}
+
+
+/* =====================================================
+   BRONZE PANEL REFLECTION
+===================================================== */
+
+.mmr-profile-modal.tier-bronze
+.mmr-profile-rating-card,
+.mmr-profile-modal.tier-bronze
+.mmr-profile-stat,
+.mmr-profile-modal.tier-bronze
+.mmr-profile-section {
+  background-image:
+    linear-gradient(
+      115deg,
+      transparent 0%,
+      rgba(255, 174, 79, 0.035) 36%,
+      rgba(255, 225, 174, 0.075) 49%,
+      rgba(195, 78, 22, 0.035) 61%,
+      transparent 100%
+    );
+
+  background-size: 230% 100%;
+
+  animation:
+    bronzePanelReflection
+    9.2s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes bronzePanelReflection {
+
+  0%,
+  18% {
+    background-position: 130% 0;
+  }
+
+  52% {
+    background-position: -40% 0;
+  }
+
+  100% {
+    background-position: -40% 0;
+  }
+
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .mmr-profile-modal.tier-bronze
+  .bronze-molten-sweep,
+
+  .mmr-profile-modal.tier-bronze
+  .bronze-copper-sheen,
+
+  .mmr-profile-modal.tier-bronze
+  .bronze-hot-edge,
+
+  .mmr-profile-modal.tier-bronze
+  .mmr-profile-player-name,
+
+  .mmr-profile-modal.tier-bronze
+  #mmrProfileRating,
+
+  .mmr-profile-modal.tier-bronze
+  #mmrProfileRank,
+
+  .mmr-profile-modal.tier-bronze
+  .mmr-profile-rating-card,
+
+  .mmr-profile-modal.tier-bronze
+  .mmr-profile-stat,
+
+  .mmr-profile-modal.tier-bronze
+  .mmr-profile-section {
+    animation: none !important;
+  }
+
 }    
 </style>
 
@@ -18201,6 +18585,14 @@ TOP 20 · LAST UPDATED <span id="mmrLastUpdated">—</span>
   <div class="silver-chrome-sweep"></div>
   <div class="silver-chrome-sheen"></div>
   <div class="silver-chrome-edge"></div>
+
+</div>
+<!-- BRONZE MOLTEN COPPER REFLECTION -->
+<div class="bronze-molten-reflection" aria-hidden="true">
+
+  <div class="bronze-molten-sweep"></div>
+  <div class="bronze-copper-sheen"></div>
+  <div class="bronze-hot-edge"></div>
 
 </div>    
     <!-- DIAMOND CRYSTAL MICRO SPARKLES -->
