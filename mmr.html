@@ -18426,6 +18426,225 @@ strong {
 
     animation: none !important;
   }
+}
+/* =====================================================
+   TIER TRANSFORMATION
+   STAGE 1 — PROMOTION / DEMOTION FLASH
+===================================================== */
+
+.mmr-profile-modal.tier-promotion-pending {
+  --tier-transform-color: 255, 255, 255;
+  --tier-transform-secondary: 190, 190, 190;
+
+  animation:
+    tierTransformationShell
+    1.35s
+    cubic-bezier(.2,.75,.25,1)
+    1;
+}
+
+
+/* =====================================================
+   CURRENT TIER TRANSFORMATION COLOR
+===================================================== */
+
+.mmr-profile-modal.tier-master {
+  --tier-transform-color: 255, 214, 76;
+  --tier-transform-secondary: 255, 166, 32;
+}
+
+.mmr-profile-modal.tier-diamond {
+  --tier-transform-color: 113, 229, 255;
+  --tier-transform-secondary: 190, 250, 255;
+}
+
+.mmr-profile-modal.tier-platinum {
+  --tier-transform-color: 218, 78, 255;
+  --tier-transform-secondary: 61, 221, 255;
+}
+
+.mmr-profile-modal.tier-gold {
+  --tier-transform-color: 255, 196, 63;
+  --tier-transform-secondary: 255, 132, 25;
+}
+
+.mmr-profile-modal.tier-silver {
+  --tier-transform-color: 226, 235, 245;
+  --tier-transform-secondary: 155, 178, 202;
+}
+
+.mmr-profile-modal.tier-bronze {
+  --tier-transform-color: 220, 126, 62;
+  --tier-transform-secondary: 255, 175, 92;
+}
+
+
+/* =====================================================
+   TRANSFORMATION FLASH
+===================================================== */
+
+.mmr-profile-modal.tier-promotion-pending::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  z-index: 80;
+
+  border-radius: inherit;
+
+  opacity: 0;
+
+  background:
+    radial-gradient(
+      circle at 50% 42%,
+      rgba(
+        var(--tier-transform-color),
+        0.48
+      ) 0%,
+      rgba(
+        var(--tier-transform-color),
+        0.16
+      ) 28%,
+      transparent 66%
+    );
+
+  box-shadow:
+    inset 0 0 45px
+      rgba(
+        var(--tier-transform-color),
+        0.28
+      ),
+    inset 0 0 90px
+      rgba(
+        var(--tier-transform-secondary),
+        0.12
+      );
+
+  animation:
+    tierTransformationFlash
+    1.35s
+    ease-out
+    1;
+}
+
+
+/* =====================================================
+   PROMOTION
+   ENERGY EXPANDS OUTWARD
+===================================================== */
+
+.mmr-profile-modal.tier-promotion-pending
+[data-tier-direction="promotion"] {
+  animation:
+    tierTransformationRise
+    1.35s
+    ease-out
+    1;
+}
+
+
+/* =====================================================
+   SHELL TRANSFORMATION
+===================================================== */
+
+@keyframes tierTransformationShell {
+
+  0% {
+    filter:
+      brightness(1)
+      saturate(1);
+  }
+
+  18% {
+    filter:
+      brightness(1.32)
+      saturate(1.25);
+
+    box-shadow:
+      0 0 18px
+        rgba(
+          var(--tier-transform-color),
+          0.34
+        ),
+      0 0 48px
+        rgba(
+          var(--tier-transform-color),
+          0.20
+        );
+  }
+
+  42% {
+    filter:
+      brightness(1.12)
+      saturate(1.15);
+  }
+
+  65% {
+    filter:
+      brightness(1.24)
+      saturate(1.20);
+
+    box-shadow:
+      0 0 25px
+        rgba(
+          var(--tier-transform-color),
+          0.30
+        );
+  }
+
+  100% {
+    filter:
+      brightness(1)
+      saturate(1);
+  }
+}
+
+
+/* =====================================================
+   INNER FLASH
+===================================================== */
+
+@keyframes tierTransformationFlash {
+
+  0% {
+    opacity: 0;
+    transform: scale(0.985);
+  }
+
+  12% {
+    opacity: 0.72;
+  }
+
+  32% {
+    opacity: 0.28;
+    transform: scale(1.008);
+  }
+
+  55% {
+    opacity: 0.50;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+
+/* =====================================================
+   ACCESSIBILITY
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .mmr-profile-modal.tier-promotion-pending,
+  .mmr-profile-modal.tier-promotion-pending::before {
+    animation: none !important;
+  }
+
 }    
 </style>
 
