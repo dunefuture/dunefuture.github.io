@@ -18478,7 +18478,39 @@ strong {
   --tier-transform-secondary: 255, 175, 92;
 }
 
+/* =====================================================
+   PREVIOUS TIER MATERIAL COLOR
+===================================================== */
 
+.mmr-profile-modal[data-previous-tier="bronze"] {
+  --tier-old-color: 205, 111, 53;
+  --tier-old-secondary: 126, 62, 31;
+}
+
+.mmr-profile-modal[data-previous-tier="silver"] {
+  --tier-old-color: 225, 233, 242;
+  --tier-old-secondary: 135, 153, 175;
+}
+
+.mmr-profile-modal[data-previous-tier="gold"] {
+  --tier-old-color: 255, 190, 54;
+  --tier-old-secondary: 180, 103, 18;
+}
+
+.mmr-profile-modal[data-previous-tier="platinum"] {
+  --tier-old-color: 205, 73, 255;
+  --tier-old-secondary: 56, 208, 255;
+}
+
+.mmr-profile-modal[data-previous-tier="diamond"] {
+  --tier-old-color: 121, 229, 255;
+  --tier-old-secondary: 76, 130, 255;
+}
+
+.mmr-profile-modal[data-previous-tier="master"] {
+  --tier-old-color: 255, 217, 88;
+  --tier-old-secondary: 255, 154, 28;
+}
 /* =====================================================
    TRANSFORMATION FLASH
 ===================================================== */
@@ -18637,6 +18669,7 @@ strong {
 }
 
 
+
 /* =====================================================
    ACCESSIBILITY
 ===================================================== */
@@ -18644,7 +18677,8 @@ strong {
 @media (prefers-reduced-motion: reduce) {
 
 .mmr-profile-modal.tier-promotion-active,
-.mmr-profile-modal.tier-promotion-active::before {
+.mmr-profile-modal.tier-promotion-active::before,
+.mmr-profile-modal.tier-promotion-active::after {
   animation: none !important;
 }
 
@@ -19125,6 +19159,36 @@ TOP 20 · LAST UPDATED <span id="mmrLastUpdated">—</span>
 <div class="mmr-profile-overlay" id="mmrProfileOverlay" onclick="closeMMRProfile(event)">
 
   <div class="mmr-profile-modal">
+<!-- ==================================================
+     TIER TRANSFORMATION LAYER
+     One-Time Promotion Material Transition
+=================================================== -->
+
+<div
+  class="tier-transformation-layer"
+  aria-hidden="true"
+>
+
+  <div class="tier-transform-material"></div>
+
+  <div class="tier-transform-core"></div>
+
+  <div class="tier-transform-ring tier-transform-ring-1"></div>
+
+  <div class="tier-transform-ring tier-transform-ring-2"></div>
+
+  <div class="tier-transform-particles">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+</div>    
 <!-- GOLD MICRO SPARKLES & EDGE GLINTS -->
 <div class="gold-metal-sparkles" aria-hidden="true">
 
