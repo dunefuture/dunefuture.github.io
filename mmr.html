@@ -18432,7 +18432,7 @@ strong {
    STAGE 1 — PROMOTION / DEMOTION FLASH
 ===================================================== */
 
-.mmr-profile-modal.tier-promotion-pending {
+.mmr-profile-modal.tier-promotion-active {
   --tier-transform-color: 255, 255, 255;
   --tier-transform-secondary: 190, 190, 190;
 
@@ -18483,7 +18483,7 @@ strong {
    TRANSFORMATION FLASH
 ===================================================== */
 
-.mmr-profile-modal.tier-promotion-pending::before {
+.mmr-profile-modal.tier-promotion-active::before {
   content: "";
 
   position: absolute;
@@ -18536,13 +18536,16 @@ strong {
    ENERGY EXPANDS OUTWARD
 ===================================================== */
 
-.mmr-profile-modal.tier-promotion-pending
-[data-tier-direction="promotion"] {
+.mmr-profile-modal.tier-promotion-active[data-tier-direction="promotion"] {
   animation:
+    tierTransformationShell
+      1.35s
+      cubic-bezier(.2,.75,.25,1)
+      1,
     tierTransformationRise
-    1.35s
-    ease-out
-    1;
+      1.35s
+      ease-out
+      1;
 }
 
 
@@ -18640,10 +18643,10 @@ strong {
 
 @media (prefers-reduced-motion: reduce) {
 
-  .mmr-profile-modal.tier-promotion-pending,
-  .mmr-profile-modal.tier-promotion-pending::before {
-    animation: none !important;
-  }
+.mmr-profile-modal.tier-promotion-active,
+.mmr-profile-modal.tier-promotion-active::before {
+  animation: none !important;
+}
 
 }    
 </style>
@@ -21864,6 +21867,38 @@ function prepareMMRProfileTierTransformation(
     tierDistance:
       event.tierDistance
   };
+}
+/* =====================================================
+   PROFILE TIER TRANSFORMATION
+   CONSUME ONE-TIME EVENT
+===================================================== */
+
+function consumeMMRProfileTierTransformation(
+  playerName
+) {
+
+  const events =
+    getStoredMMRTierEvents();
+
+  const event =
+    events[playerName];
+
+  if (
+    !event ||
+    event.pending !== true
+  ) {
+    return;
+  }
+
+  event.pending = false;
+  event.consumedAt = Date.now();
+
+  events[playerName] =
+    event;
+
+  saveMMRTierEvents(
+    events
+  );
 }  
 function openMMRProfile(playerName) {
 
@@ -22720,7 +22755,73 @@ if (historyElement) {
   document
     .getElementById("mmrProfileOverlay")
     .classList.add("active");
+// =====================================================
+// TIER TRANSFORMATION
+// ACTUAL ONE-TIME VISUAL TRIGGER
+// =====================================================
 
+if (
+  profileModal &&
+  tierTransformation
+) {
+
+  requestAnimationFrame(() => {
+
+    requestAnimationFrame(() => {
+
+      /*
+       * Restart the transformation animation
+       * from a clean visual state.
+       */
+
+      profileModal.classList.remove(
+        "tier-promotion-active"
+      );
+
+      void profileModal.offsetWidth;
+
+      profileModal.classList.add(
+        "tier-promotion-active"
+      );
+
+
+      /*
+       * The transformation has now
+       * successfully started.
+       *
+       * Consume the stored event immediately
+       * so refresh / reopening the profile
+       * cannot replay the same promotion.
+       */
+
+      consumeMMRProfileTierTransformation(
+        playerName
+      );
+
+
+      /*
+       * Clean temporary transformation state
+       * after the animation has finished.
+       */
+
+      window.setTimeout(() => {
+
+        profileModal.classList.remove(
+          "tier-promotion-active",
+          "tier-promotion-pending"
+        );
+
+        delete profileModal.dataset.previousTier;
+        delete profileModal.dataset.currentTier;
+        delete profileModal.dataset.tierDirection;
+
+      }, 1600);
+
+    });
+
+  });
+
+}
   document.body.classList.add("mmr-profile-open");
 }
 // =====================================================
@@ -22879,7 +22980,7 @@ function detectTop3Changes() {
 
     return [];
   }
-
+ 
 
   // ===================================================
   // DETECT CHANGES
