@@ -23348,6 +23348,187 @@ function initializeMMRAnnualHistory() {
     }
   );
 
+} 
+// =====================================================
+// MMR SEASON ARCHIVE STORAGE
+// =====================================================
+
+const MMR_SEASON_ARCHIVE_STORAGE_KEY =
+  "duneFutureMMRSeasonArchives";
+
+
+function getStoredMMRSeasonArchives() {
+
+  try {
+
+    const stored =
+      localStorage.getItem(
+        MMR_SEASON_ARCHIVE_STORAGE_KEY
+      );
+
+
+    if (!stored) {
+
+      return {};
+
+    }
+
+
+    const parsed =
+      JSON.parse(stored);
+
+
+    if (
+      !parsed ||
+      typeof parsed !== "object" ||
+      Array.isArray(parsed)
+    ) {
+
+      return {};
+
+    }
+
+
+    return parsed;
+
+  } catch (error) {
+
+    console.warn(
+      "Unable to read MMR season archives:",
+      error
+    );
+
+    return {};
+
+  }
+
+}
+
+
+function saveStoredMMRSeasonArchives(
+  archives
+) {
+
+  try {
+
+    localStorage.setItem(
+      MMR_SEASON_ARCHIVE_STORAGE_KEY,
+      JSON.stringify(archives)
+    );
+
+  } catch (error) {
+
+    console.warn(
+      "Unable to save MMR season archives:",
+      error
+    );
+
+  }
+
+}  
+// =====================================================
+// MMR SEASON ARCHIVE STATE
+// =====================================================
+
+function getMMRSeasonArchiveState(year) {
+
+  const numericYear =
+    Number(year);
+
+  const now =
+    new Date();
+
+  const currentYear =
+    now.getFullYear();
+
+  const currentMonth =
+    now.getMonth();
+
+  const currentDate =
+    now.getDate();
+
+
+  // ===============================================
+  // CHECK IF YEAR IS ALREADY ARCHIVED
+  // ===============================================
+
+  const archivedYears =
+    getStoredMMRSeasonArchives();
+
+  const archived =
+    Boolean(
+      archivedYears &&
+      archivedYears[numericYear]
+    );
+
+
+  // ===============================================
+  // DETERMINE WHETHER SEASON CAN BE ARCHIVED
+  // ===============================================
+
+  let canArchive =
+    false;
+
+
+  if (
+    numericYear < currentYear
+  ) {
+
+    canArchive =
+      true;
+
+  } else if (
+    numericYear === currentYear &&
+    currentMonth === 11 &&
+    currentDate === 31
+  ) {
+
+    canArchive =
+      true;
+
+  }
+
+
+  // ===============================================
+  // STATUS
+  // ===============================================
+
+  let status =
+    "LIVE";
+
+
+  if (archived) {
+
+    status =
+      "ARCHIVED";
+
+    canArchive =
+      false;
+
+  } else if (canArchive) {
+
+    status =
+      "READY";
+
+  }
+
+
+  return {
+
+    year:
+      numericYear,
+
+    status:
+      status,
+
+    archived:
+      archived,
+
+    canArchive:
+      canArchive
+
+  };
+
 }  
 // =====================================================
 // SEASON CLOSING CONTROL PANEL
