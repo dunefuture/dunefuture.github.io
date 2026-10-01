@@ -20416,7 +20416,118 @@ TOP 20 · LAST UPDATED <span id="mmrLastUpdated">—</span>
   </div>
 
 </section>
-  </main>
+<!-- =================================================
+     MMR SEASON ARCHIVE CONTROL
+================================================== -->
+
+<section
+  class="mmr-season-control"
+  id="mmrSeasonControl"
+>
+
+  <div class="mmr-season-control-header">
+
+    <div>
+
+      <div class="mmr-season-control-kicker">
+        SEASON CONTROL
+      </div>
+
+      <h2 class="mmr-season-control-title">
+        MMR SEASON ARCHIVE
+      </h2>
+
+      <p class="mmr-season-control-description">
+        Official year-end competitive record
+        and permanent season snapshot.
+      </p>
+
+    </div>
+
+    <div
+      class="mmr-season-control-status live"
+      id="mmrSeasonControlStatus"
+    >
+      LIVE
+    </div>
+
+  </div>
+
+
+  <div class="mmr-season-control-grid">
+
+    <div class="mmr-season-control-card">
+      <span>SEASON</span>
+      <strong id="mmrSeasonControlYear">
+        —
+      </strong>
+    </div>
+
+    <div class="mmr-season-control-card">
+      <span>PLAYERS</span>
+      <strong id="mmrSeasonControlPlayers">
+        —
+      </strong>
+    </div>
+
+    <div class="mmr-season-control-card">
+      <span>MATCHES</span>
+      <strong id="mmrSeasonControlMatches">
+        —
+      </strong>
+    </div>
+
+    <div class="mmr-season-control-card">
+      <span>ARCHIVE STATUS</span>
+      <strong id="mmrSeasonControlArchive">
+        LIVE
+      </strong>
+    </div>
+
+  </div>
+
+
+  <div class="mmr-season-control-message">
+
+    <span
+      class="mmr-season-control-indicator"
+    ></span>
+
+    <span id="mmrSeasonControlMessage">
+      Competitive season currently in progress.
+    </span>
+
+  </div>
+
+
+  <button
+    type="button"
+    class="mmr-season-archive-button"
+    id="mmrSeasonArchiveButton"
+    disabled
+  >
+
+    <span class="archive-button-icon">
+      ◆
+    </span>
+
+    <span id="mmrSeasonArchiveButtonText">
+      SEASON IN PROGRESS
+    </span>
+
+  </button>
+
+
+  <div class="mmr-season-control-note">
+    Archive generation becomes available
+    when the competitive season reaches
+    December 31.
+  </div>
+
+</section>
+
+
+</main>
 
 <!-- =====================================================
      LATEST BATTLES
@@ -22389,8 +22500,351 @@ const mmrAnnualArchive = {
    */
 
 };
+// =====================================================
+// MMR SEASON CLOSING ENGINE
+// =====================================================
+
+const MMR_SEASON_CLOSE_MONTH = 11; // December
+const MMR_SEASON_CLOSE_DAY = 31;
 
 
+// =====================================================
+// CHECK IF A SEASON HAS FINISHED
+// =====================================================
+
+function isMMRSeasonFinished(year) {
+
+  const targetYear =
+    Number(year);
+
+  const now =
+    new Date();
+
+  const currentYear =
+    now.getFullYear();
+
+
+  // Past years are always finished.
+  if (targetYear < currentYear) {
+    return true;
+  }
+
+
+  // Future years are not finished.
+  if (targetYear > currentYear) {
+    return false;
+  }
+
+
+  // Current year becomes eligible
+  // for closing on December 31.
+  const month =
+    now.getMonth();
+
+  const day =
+    now.getDate();
+
+
+  return (
+    month > MMR_SEASON_CLOSE_MONTH ||
+    (
+      month === MMR_SEASON_CLOSE_MONTH &&
+      day >= MMR_SEASON_CLOSE_DAY
+    )
+  );
+
+}
+
+
+// =====================================================
+// BUILD OFFICIAL SEASON ARCHIVE
+// =====================================================
+
+function buildMMRSeasonArchive(year) {
+
+  const targetYear =
+    Number(year);
+
+
+  if (
+    !Number.isInteger(targetYear)
+  ) {
+    return null;
+  }
+
+
+  const annualRecord =
+    getMMRAnnualHistory(
+      targetYear
+    );
+
+
+  return annualRecord.map(
+    player => ({
+      year:
+        targetYear,
+
+      playerName:
+        player.playerName,
+
+      finalRank:
+        player.finalRank,
+
+      finalMMR:
+        player.finalMMR,
+
+      finalTier:
+        player.finalTier,
+
+      matches:
+        player.matches,
+
+      wins:
+        player.wins,
+
+      losses:
+        player.losses,
+
+      mmrGained:
+        player.mmrGained,
+
+      mmrLost:
+        player.mmrLost,
+
+      netMMR:
+        player.netMMR
+    })
+  );
+
+}
+
+
+// =====================================================
+// GENERATE ARCHIVE CODE
+// =====================================================
+
+function generateMMRSeasonArchiveCode(year) {
+
+  const targetYear =
+    Number(year);
+
+  const archive =
+    buildMMRSeasonArchive(
+      targetYear
+    );
+
+
+  if (!archive) {
+    return "";
+  }
+
+
+  return (
+    `${targetYear}: ` +
+    JSON.stringify(
+      archive,
+      null,
+      2
+    )
+  );
+
+}
+
+
+// =====================================================
+// SEASON CLOSING INFORMATION
+// =====================================================
+
+function getMMRSeasonClosingInfo(year) {
+
+  const targetYear =
+    Number(year);
+
+  const archived =
+    isMMRYearArchived(
+      targetYear
+    );
+
+  const finished =
+    isMMRSeasonFinished(
+      targetYear
+    );
+
+
+  return {
+
+    year:
+      targetYear,
+
+    archived:
+      archived,
+
+    finished:
+      finished,
+
+    canArchive:
+      finished &&
+      !archived,
+
+    status:
+      archived
+        ? "ARCHIVED"
+        : (
+            finished
+              ? "READY TO ARCHIVE"
+              : "LIVE"
+          )
+
+  };
+
+}
+// =====================================================
+// OFFICIAL SEASON ARCHIVE GENERATOR
+// =====================================================
+
+function createMMROfficialSeasonArchive(year) {
+
+  const targetYear =
+    Number(year);
+
+  const closingInfo =
+    getMMRSeasonClosingInfo(
+      targetYear
+    );
+
+
+  // Already archived.
+  if (closingInfo.archived) {
+
+    return {
+      success: false,
+      status: "ARCHIVED",
+      message:
+        `${targetYear} season is already archived.`,
+      code: ""
+    };
+
+  }
+
+
+  // Season has not reached December 31 yet.
+  if (!closingInfo.canArchive) {
+
+    return {
+      success: false,
+      status: "LIVE",
+      message:
+        `${targetYear} season is still active.`,
+      code: ""
+    };
+
+  }
+
+
+  const archive =
+    buildMMRSeasonArchive(
+      targetYear
+    );
+
+
+  if (
+    !archive ||
+    archive.length === 0
+  ) {
+
+    return {
+      success: false,
+      status: "EMPTY",
+      message:
+        `No MMR data found for ${targetYear}.`,
+      code: ""
+    };
+
+  }
+
+
+  const code =
+    `${targetYear}: ${JSON.stringify(
+      archive,
+      null,
+      2
+    )}`;
+
+
+  return {
+
+    success: true,
+
+    status:
+      "READY TO ARCHIVE",
+
+    year:
+      targetYear,
+
+    players:
+      archive.length,
+
+    code:
+      code,
+
+    message:
+      `${targetYear} official season archive is ready.`
+
+  };
+
+}
+
+
+// =====================================================
+// PRINT SEASON ARCHIVE TO CONSOLE
+// =====================================================
+
+function printMMROfficialSeasonArchive(year) {
+
+  const result =
+    createMMROfficialSeasonArchive(
+      year
+    );
+
+
+  if (!result.success) {
+
+    console.log(
+      `[MMR SEASON] ${result.message}`
+    );
+
+    return result;
+  }
+
+
+  console.log(
+    "======================================"
+  );
+
+  console.log(
+    `DUNE FUTURE — ${result.year} MMR ARCHIVE`
+  );
+
+  console.log(
+    "======================================"
+  );
+
+  console.log(
+    result.code
+  );
+
+  console.log(
+    "======================================"
+  );
+
+  console.log(
+    `${result.players} players recorded.`
+  );
+
+
+  return result;
+
+}
 // =====================================================
 // CHECK IF YEAR IS ARCHIVED
 // =====================================================
@@ -22889,6 +23343,232 @@ function initializeMMRAnnualHistory() {
         Number(
           event.target.value
         )
+      );
+
+    }
+  );
+
+}  
+// =====================================================
+// SEASON CLOSING CONTROL PANEL
+// =====================================================
+
+function initializeMMRSeasonArchiveControl() {
+
+  const statusElement =
+    document.getElementById(
+      "mmrSeasonArchiveStatus"
+    );
+
+  const yearElement =
+    document.getElementById(
+      "mmrSeasonArchiveYear"
+    );
+
+  const matchesElement =
+    document.getElementById(
+      "mmrSeasonArchiveMatches"
+    );
+
+  const playersElement =
+    document.getElementById(
+      "mmrSeasonArchivePlayers"
+    );
+
+  const button =
+    document.getElementById(
+      "mmrSeasonArchiveButton"
+    );
+
+  const buttonText =
+    document.getElementById(
+      "mmrSeasonArchiveButtonText"
+    );
+
+
+  if (
+    !statusElement ||
+    !yearElement ||
+    !matchesElement ||
+    !playersElement ||
+    !button ||
+    !buttonText
+  ) {
+    return;
+  }
+
+
+  // =================================================
+  // GET CURRENT SEASON
+  // =================================================
+
+  const availableYears =
+    getMMRAvailableYears();
+
+
+  if (
+    availableYears.length === 0
+  ) {
+
+    statusElement.textContent =
+      "NO SEASON";
+
+    yearElement.textContent =
+      "—";
+
+    matchesElement.textContent =
+      "0";
+
+    playersElement.textContent =
+      "0";
+
+    button.disabled =
+      true;
+
+    buttonText.textContent =
+      "NO SEASON DATA";
+
+    return;
+  }
+
+
+  const currentYear =
+    availableYears[0];
+
+
+  // =================================================
+  // GET SEASON STATE
+  // =================================================
+
+  const seasonState =
+    getMMRSeasonArchiveState(
+      currentYear
+    );
+
+
+  const annualRecord =
+    getMMRAnnualRecord(
+      currentYear
+    );
+
+
+  const seasonMatches =
+    getMMRMatchesByYear(
+      currentYear
+    );
+
+
+  // =================================================
+  // UPDATE PANEL DATA
+  // =================================================
+
+  yearElement.textContent =
+    currentYear;
+
+
+  matchesElement.textContent =
+    seasonMatches.length;
+
+
+  playersElement.textContent =
+    annualRecord.length;
+
+
+  statusElement.textContent =
+    seasonState.status;
+
+
+  statusElement.classList.remove(
+    "live",
+    "ready",
+    "archived"
+  );
+
+
+  if (seasonState.archived) {
+
+    statusElement.classList.add(
+      "archived"
+    );
+
+  } else if (
+    seasonState.canArchive
+  ) {
+
+    statusElement.classList.add(
+      "ready"
+    );
+
+  } else {
+
+    statusElement.classList.add(
+      "live"
+    );
+
+  }
+
+
+  // =================================================
+  // BUTTON STATE
+  // =================================================
+
+  if (seasonState.archived) {
+
+    button.disabled =
+      true;
+
+    buttonText.textContent =
+      "SEASON ARCHIVED";
+
+  } else if (
+    seasonState.canArchive
+  ) {
+
+    button.disabled =
+      false;
+
+    buttonText.textContent =
+      "GENERATE OFFICIAL ARCHIVE";
+
+  } else {
+
+    button.disabled =
+      true;
+
+    buttonText.textContent =
+      "SEASON IN PROGRESS";
+
+  }
+
+
+  // =================================================
+  // GENERATE OFFICIAL ARCHIVE
+  // =================================================
+
+  button.addEventListener(
+    "click",
+    () => {
+
+      const latestState =
+        getMMRSeasonArchiveState(
+          currentYear
+        );
+
+
+      if (
+        !latestState.canArchive
+      ) {
+
+        console.warn(
+          `Season ${currentYear} is not ready to archive.`
+        );
+
+        return;
+      }
+
+
+      printMMROfficialSeasonArchive(
+        currentYear
       );
 
     }
@@ -25535,6 +26215,8 @@ renderMMRLastUpdated();
 renderLatestMMRBattles();
 
 initializeMMRAnnualHistory();
+
+initializeMMRSeasonArchiveControl();
 
 initializeAdaptiveProfileHeader();
 
