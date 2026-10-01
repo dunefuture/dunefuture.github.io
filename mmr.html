@@ -19993,8 +19993,9 @@ const mmrBasePlayers = [
   { name: "worm",      rating: 250 },
   { name: "Standby",   rating: 200 },
   { name: "pyrou",     rating: 150 },
-  { name: "Djoko78",   rating: 100 },
-  { name: "sebus",     rating: 50 }
+{ name: "Djoko78",    rating: 100 },
+{ name: "sebus",      rating: 50 },
+{ name: "Piolonfire", rating: 0, unranked: true }
 
 ];
 // =====================================================
@@ -20009,14 +20010,14 @@ const mmrBasePlayers = [
 
 
 const mmrMatches = [
-  {
-  winner: "DZ14",
+ {
+  winner: "Piolonfire",
   loser: "Joseph",
   change: 25,
   date: "29 September 2026"
 },
-  {
-  winner: "DZ14",
+{
+  winner: "Piolonfire",
   loser: "Joseph",
   change: 25,
   date: "29 September 2026"
@@ -21248,15 +21249,29 @@ function getMMRLeaderboard() {
   const calculatedPlayers =
     getCalculatedMMRPlayers();
 
+  const rankedPlayers =
+    calculatedPlayers
+      .filter(player => !player.unranked)
+      .sort((a, b) =>
+        compareMMRPlayers(a, b, mmrMatches)
+      )
+      .map((player, index) => ({
+        ...player,
+        rank: index + 1
+      }));
 
-  return [...calculatedPlayers]
-    .sort((a, b) =>
-      compareMMRPlayers(a, b, mmrMatches)
-    )
-    .map((player, index) => ({
-      ...player,
-      rank: index + 1
-    }));
+  const unrankedPlayers =
+    calculatedPlayers
+      .filter(player => player.unranked)
+      .map(player => ({
+        ...player,
+        rank: null
+      }));
+
+  return [
+    ...rankedPlayers,
+    ...unrankedPlayers
+  ];
 
 }
 
@@ -21299,15 +21314,23 @@ function renderMMRLeaderboard() {
   `;
 
 
-  const playerRows = leaderboard
-    .filter(player =>
+const playerRows = leaderboard
+  .filter(player =>
+    player.unranked ||
+    (
       player.rank >= 4 &&
       player.rank <= 20
     )
-    .map(player => {
+  )
+  .map(player => {
 
-      const rankNumber =
-        String(player.rank).padStart(2, "0");
+    const isUnranked =
+      player.unranked === true;
+
+    const rankNumber =
+      isUnranked
+        ? "NON RANK"
+        : String(player.rank).padStart(2, "0");
 
 
     // ===============================================
@@ -21317,7 +21340,12 @@ function renderMMRLeaderboard() {
 let tier = "";
 let tierClass = "";
 
-if (player.rating >= 900) {
+if (isUnranked) {
+
+  tier = "NON RANK";
+  tierClass = " unranked";
+
+} else if (player.rating >= 900) {
 
   tier = "MASTER";
   tierClass = " master";
@@ -21528,9 +21556,9 @@ if (rankMovement.difference < 0) {
   ${hellfireAttributes}
 >
 
-          <div class="mmr-rank">
-            #${rankNumber}
-          </div>
+<div class="mmr-rank">
+  ${isUnranked ? "NON RANK" : `#${rankNumber}`}
+</div>
 
 
         <div class="${playerClass}" ${clickAction}>
@@ -22559,7 +22587,12 @@ const currentRating =
 let competitiveTier = "";
 let competitiveTierClass = "";
 
-if (currentRating >= 900) {
+if (leaderboardPlayer.unranked) {
+
+  competitiveTier = "NON RANK";
+  competitiveTierClass = "unranked";
+
+} else if (currentRating >= 900) {
 
   competitiveTier = "MASTER";
   competitiveTierClass = "master";
@@ -22622,14 +22655,15 @@ if (profileModal) {
     profileModal.dataset.tierDirection =
       tierTransformation.direction;
   }
-  profileModal.classList.remove(
-    "tier-master",
-    "tier-diamond",
-    "tier-platinum",
-    "tier-gold",
-    "tier-silver",
-    "tier-bronze"
-  );
+ profileModal.classList.remove(
+  "tier-master",
+  "tier-diamond",
+  "tier-platinum",
+  "tier-gold",
+  "tier-silver",
+  "tier-bronze",
+  "tier-unranked"
+);
 
   profileModal.classList.add(
     `tier-${competitiveTierClass}`
