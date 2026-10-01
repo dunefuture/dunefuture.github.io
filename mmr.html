@@ -23355,26 +23355,34 @@ function initializeMMRAnnualHistory() {
 
 function initializeMMRSeasonArchiveControl() {
 
-  const statusElement =
-    document.getElementById(
-      "mmrSeasonArchiveStatus"
-    );
+const statusElement =
+  document.getElementById(
+    "mmrSeasonControlStatus"
+  );
 
-  const yearElement =
-    document.getElementById(
-      "mmrSeasonArchiveYear"
-    );
+const yearElement =
+  document.getElementById(
+    "mmrSeasonControlYear"
+  );
 
-  const matchesElement =
-    document.getElementById(
-      "mmrSeasonArchiveMatches"
-    );
+const matchesElement =
+  document.getElementById(
+    "mmrSeasonControlMatches"
+  );
 
-  const playersElement =
-    document.getElementById(
-      "mmrSeasonArchivePlayers"
-    );
+const playersElement =
+  document.getElementById(
+    "mmrSeasonControlPlayers"
+  );
+const archiveElement =
+  document.getElementById(
+    "mmrSeasonControlArchive"
+  );
 
+const messageElement =
+  document.getElementById(
+    "mmrSeasonControlMessage"
+  );
   const button =
     document.getElementById(
       "mmrSeasonArchiveButton"
@@ -23386,16 +23394,18 @@ function initializeMMRSeasonArchiveControl() {
     );
 
 
-  if (
-    !statusElement ||
-    !yearElement ||
-    !matchesElement ||
-    !playersElement ||
-    !button ||
-    !buttonText
-  ) {
-    return;
-  }
+if (
+  !statusElement ||
+  !yearElement ||
+  !matchesElement ||
+  !playersElement ||
+  !archiveElement ||
+  !messageElement ||
+  !button ||
+  !buttonText
+) {
+  return;
+}
 
 
   // =================================================
@@ -23506,7 +23516,37 @@ function initializeMMRSeasonArchiveControl() {
     );
 
   }
+// =================================================
+// ARCHIVE STATUS + MESSAGE
+// =================================================
 
+if (seasonState.archived) {
+
+  archiveElement.textContent =
+    "ARCHIVED";
+
+  messageElement.textContent =
+    `Season ${currentYear} has been permanently archived.`;
+
+} else if (
+  seasonState.canArchive
+) {
+
+  archiveElement.textContent =
+    "READY";
+
+  messageElement.textContent =
+    `Season ${currentYear} is complete and ready for official archive generation.`;
+
+} else {
+
+  archiveElement.textContent =
+    "LIVE";
+
+  messageElement.textContent =
+    `Season ${currentYear} is currently in progress.`;
+
+}
 
   // =================================================
   // BUTTON STATE
