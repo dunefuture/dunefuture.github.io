@@ -24151,18 +24151,25 @@ function generateMMRSeasonArchiveCode(year) {
     );
 
 
-  if (!archive) {
+  if (
+    !archive ||
+    archive.length === 0
+  ) {
     return "";
   }
 
 
   return (
+    `// =============================================\n` +
+    `// OFFICIAL ${targetYear} MMR SEASON ARCHIVE\n` +
+    `// =============================================\n\n` +
     `${targetYear}: ` +
     JSON.stringify(
       archive,
       null,
       2
-    )
+    ) +
+    `,`
   );
 
 }
@@ -24280,12 +24287,10 @@ function createMMROfficialSeasonArchive(year) {
   }
 
 
-  const code =
-    `${targetYear}: ${JSON.stringify(
-      archive,
-      null,
-      2
-    )}`;
+ const code =
+  generateMMRSeasonArchiveCode(
+    targetYear
+  );
 
 
   return {
