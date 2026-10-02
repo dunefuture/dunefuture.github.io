@@ -21391,6 +21391,291 @@ strong {
     transform: none;
   }
 
+} 
+/* =====================================================
+   OFFICIAL SEASON ARCHIVE OUTPUT
+===================================================== */
+
+.mmr-season-archive-output {
+  margin-top: 22px;
+  padding: 22px;
+
+  border:
+    1px solid
+    rgba(0, 229, 255, 0.28);
+
+  border-radius: 16px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(7, 10, 20, 0.96),
+      rgba(13, 8, 28, 0.96)
+    );
+
+  box-shadow:
+    0 0 28px
+    rgba(0, 229, 255, 0.08),
+    inset 0 0 24px
+    rgba(168, 85, 247, 0.04);
+}
+
+
+/* Preserve native hidden behaviour */
+
+.mmr-season-archive-output[hidden] {
+  display: none !important;
+}
+
+
+/* =====================================================
+   OUTPUT HEADER
+===================================================== */
+
+.mmr-season-archive-output-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+
+  margin-bottom: 16px;
+}
+
+
+.mmr-season-archive-output-kicker {
+  margin-bottom: 5px;
+
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+
+  color: #22d3ee;
+}
+
+
+.mmr-season-archive-output-title {
+  font-size: 1.08rem;
+  font-weight: 800;
+
+  color: #f8fafc;
+}
+
+
+.mmr-season-archive-output-status {
+  flex: 0 0 auto;
+
+  padding: 6px 11px;
+
+  border:
+    1px solid
+    rgba(34, 211, 238, 0.38);
+
+  border-radius: 999px;
+
+  background:
+    rgba(34, 211, 238, 0.08);
+
+  color: #67e8f9;
+
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+
+  box-shadow:
+    0 0 18px
+    rgba(34, 211, 238, 0.08);
+}
+
+
+/* =====================================================
+   OUTPUT MESSAGE
+===================================================== */
+
+.mmr-season-archive-output-message {
+  margin-bottom: 15px;
+
+  color:
+    rgba(226, 232, 240, 0.72);
+
+  font-size: 0.82rem;
+  line-height: 1.65;
+}
+
+
+.mmr-season-archive-output-message strong {
+  color: #e879f9;
+}
+
+
+/* =====================================================
+   ARCHIVE CODE
+===================================================== */
+
+.mmr-season-archive-code {
+  display: block;
+
+  width: 100%;
+  min-height: 260px;
+
+  box-sizing: border-box;
+
+  padding: 16px;
+
+  resize: vertical;
+
+  border:
+    1px solid
+    rgba(168, 85, 247, 0.26);
+
+  border-radius: 12px;
+
+  outline: none;
+
+  background:
+    rgba(2, 4, 12, 0.92);
+
+  color: #d8b4fe;
+
+  font-family:
+    "Consolas",
+    "Courier New",
+    monospace;
+
+  font-size: 0.76rem;
+  line-height: 1.55;
+
+  box-shadow:
+    inset 0 0 22px
+    rgba(0, 0, 0, 0.38);
+}
+
+
+.mmr-season-archive-code:focus {
+  border-color:
+    rgba(34, 211, 238, 0.55);
+
+  box-shadow:
+    0 0 0 3px
+    rgba(34, 211, 238, 0.06),
+    inset 0 0 22px
+    rgba(0, 0, 0, 0.38);
+}
+
+
+/* =====================================================
+   COPY BUTTON
+===================================================== */
+
+.mmr-season-archive-copy-button {
+  width: 100%;
+
+  margin-top: 14px;
+  padding: 13px 18px;
+
+  border:
+    1px solid
+    rgba(168, 85, 247, 0.42);
+
+  border-radius: 11px;
+
+  background:
+    linear-gradient(
+      100deg,
+      rgba(126, 34, 206, 0.22),
+      rgba(8, 145, 178, 0.18)
+    );
+
+  color: #f5f3ff;
+
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.09em;
+
+  cursor: pointer;
+
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+
+.mmr-season-archive-copy-button:hover {
+  transform:
+    translateY(-2px);
+
+  border-color:
+    rgba(34, 211, 238, 0.68);
+
+  box-shadow:
+    0 8px 26px
+    rgba(34, 211, 238, 0.10);
+}
+
+
+.mmr-season-archive-copy-button:active {
+  transform:
+    translateY(0);
+}
+
+
+/* =====================================================
+   COPY STATUS
+===================================================== */
+
+.mmr-season-archive-copy-status {
+  min-height: 18px;
+
+  margin-top: 9px;
+
+  text-align: center;
+
+  color: #67e8f9;
+
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 640px) {
+
+  .mmr-season-archive-output {
+    padding: 17px;
+  }
+
+  .mmr-season-archive-output-header {
+    align-items: flex-start;
+  }
+
+  .mmr-season-archive-code {
+    min-height: 220px;
+    font-size: 0.7rem;
+  }
+
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (
+  prefers-reduced-motion: reduce
+) {
+
+  .mmr-season-archive-copy-button {
+    transition: none;
+  }
+
+  .mmr-season-archive-copy-button:hover {
+    transform: none;
+  }
+
 }    
 </style>
 
@@ -22041,6 +22326,73 @@ TOP 20 · LAST UPDATED <span id="mmrLastUpdated">—</span>
     December 31.
   </div>
 
+  <!-- =============================================
+       OFFICIAL SEASON ARCHIVE OUTPUT
+  ============================================== -->
+
+  <div
+    class="mmr-season-archive-output"
+    id="mmrSeasonArchiveOutput"
+    hidden
+  >
+
+    <div class="mmr-season-archive-output-header">
+
+      <div>
+
+        <div class="mmr-season-archive-output-kicker">
+          OFFICIAL ARCHIVE OUTPUT
+        </div>
+
+        <div class="mmr-season-archive-output-title">
+          Permanent Season Snapshot
+        </div>
+
+      </div>
+
+      <div
+        class="mmr-season-archive-output-status"
+        id="mmrSeasonArchiveOutputStatus"
+      >
+        READY
+      </div>
+
+    </div>
+
+
+    <div class="mmr-season-archive-output-message">
+      Copy this snapshot into
+      <strong>mmrAnnualArchive</strong>
+      and commit it to GitHub to permanently
+      archive the season for all visitors.
+    </div>
+
+
+    <textarea
+      class="mmr-season-archive-code"
+      id="mmrSeasonArchiveCode"
+      readonly
+      spellcheck="false"
+      aria-label="Official MMR season archive code"
+    ></textarea>
+
+
+    <button
+      type="button"
+      class="mmr-season-archive-copy-button"
+      id="mmrSeasonArchiveCopyButton"
+    >
+      COPY OFFICIAL ARCHIVE
+    </button>
+
+
+    <div
+      class="mmr-season-archive-copy-status"
+      id="mmrSeasonArchiveCopyStatus"
+      aria-live="polite"
+    ></div>
+
+  </div>
 </section>
 
 
@@ -25092,6 +25444,30 @@ const messageElement =
       "mmrSeasonArchiveButtonText"
     );
 
+  const outputPanel =
+    document.getElementById(
+      "mmrSeasonArchiveOutput"
+    );
+
+  const outputStatus =
+    document.getElementById(
+      "mmrSeasonArchiveOutputStatus"
+    );
+
+  const outputCode =
+    document.getElementById(
+      "mmrSeasonArchiveCode"
+    );
+
+  const copyButton =
+    document.getElementById(
+      "mmrSeasonArchiveCopyButton"
+    );
+
+  const copyStatus =
+    document.getElementById(
+      "mmrSeasonArchiveCopyStatus"
+    );
 
 if (
   !statusElement ||
@@ -25101,7 +25477,12 @@ if (
   !archiveElement ||
   !messageElement ||
   !button ||
-  !buttonText
+  !buttonText ||
+  !outputPanel ||
+  !outputStatus ||
+  !outputCode ||
+  !copyButton ||
+  !copyStatus
 ) {
   return;
 }
@@ -25284,35 +25665,122 @@ if (seasonState.archived) {
   // GENERATE OFFICIAL ARCHIVE
   // =================================================
 
-  button.addEventListener(
-    "click",
-    () => {
+button.addEventListener(
+  "click",
+  () => {
 
-      const latestState =
-        getMMRSeasonArchiveState(
-          currentYear
-        );
-
-
-      if (
-        !latestState.canArchive
-      ) {
-
-        console.warn(
-          `Season ${currentYear} is not ready to archive.`
-        );
-
-        return;
-      }
-
-
-      printMMROfficialSeasonArchive(
+    const latestState =
+      getMMRSeasonArchiveState(
         currentYear
       );
 
-    }
-  );
 
+    if (
+      !latestState.canArchive
+    ) {
+
+      console.warn(
+        `Season ${currentYear} is not ready to archive.`
+      );
+
+      return;
+    }
+
+
+    const result =
+      createMMROfficialSeasonArchive(
+        currentYear
+      );
+
+
+    if (
+      !result ||
+      !result.success ||
+      !result.code
+    ) {
+
+      console.warn(
+        result?.message ||
+        `Unable to generate ${currentYear} season archive.`
+      );
+
+      return;
+    }
+
+
+    outputCode.value =
+      result.code;
+
+    outputStatus.textContent =
+      "READY";
+
+    copyStatus.textContent =
+      "";
+
+    outputPanel.hidden =
+      false;
+
+
+    outputPanel.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest"
+    });
+
+
+    console.log(
+      `Official ${currentYear} season archive generated.`
+    );
+
+  }
+);
+  
+// =================================================
+// COPY OFFICIAL ARCHIVE
+// =================================================
+
+copyButton.addEventListener(
+  "click",
+  async () => {
+
+    const archiveCode =
+      outputCode.value;
+
+
+    if (!archiveCode) {
+
+      copyStatus.textContent =
+        "NO ARCHIVE DATA TO COPY";
+
+      return;
+    }
+
+
+    try {
+
+      await navigator.clipboard.writeText(
+        archiveCode
+      );
+
+      copyStatus.textContent =
+        "OFFICIAL ARCHIVE COPIED";
+
+    } catch (error) {
+
+      outputCode.focus();
+      outputCode.select();
+
+      copyStatus.textContent =
+        "SELECTED — PRESS CTRL + C";
+
+      console.warn(
+        "Clipboard copy unavailable.",
+        error
+      );
+
+    }
+
+  }
+);
 }  
 // =====================================================
 // FIND PLAYER
