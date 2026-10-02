@@ -13463,7 +13463,873 @@ body.mmr-profile-open {
       (var(--hellfire-profile-strength) * 2px)
     );
 }
+/* =====================================================
+   UNDEFEATED SEASON LIGHTNING
+   ADVANCED PROFILE FX
+===================================================== */
 
+.mmr-profile-modal.season-lightning-active {
+  --season-lightning-core:
+    rgba(225, 252, 255, 1);
+
+  --season-lightning-blue:
+    rgba(65, 210, 255, 0.95);
+
+  --season-lightning-violet:
+    rgba(119, 82, 255, 0.72);
+
+  --season-lightning-glow:
+    rgba(50, 196, 255, 0.42);
+}
+
+
+/* -----------------------------------------------------
+   MASTER FX CONTAINER
+----------------------------------------------------- */
+
+.season-lightning-fx {
+  display: none;
+
+  position: absolute;
+
+  inset: 0;
+
+  overflow: hidden;
+
+  border-radius: inherit;
+
+  pointer-events: none;
+
+  z-index: 18;
+}
+
+
+/* Keep profile content above the electric atmosphere. */
+
+.mmr-profile-modal.season-lightning-active
+.mmr-profile-sticky-header {
+  position: relative;
+
+  z-index: 21;
+}
+
+
+/* -----------------------------------------------------
+   ELECTRIC ATMOSPHERE
+----------------------------------------------------- */
+
+.season-lightning-aura {
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 15% 18%,
+      rgba(91, 220, 255, 0.14),
+      transparent 28%
+    ),
+
+    radial-gradient(
+      circle at 84% 32%,
+      rgba(111, 78, 255, 0.12),
+      transparent 31%
+    ),
+
+    radial-gradient(
+      circle at 48% 92%,
+      rgba(42, 194, 255, 0.10),
+      transparent 34%
+    );
+
+  opacity:
+    0.56;
+
+  animation:
+    seasonLightningAuraPulse
+    4.8s
+    ease-in-out
+    infinite;
+}
+
+
+/* -----------------------------------------------------
+   ELECTRIC BOLTS
+----------------------------------------------------- */
+
+.season-lightning-bolt {
+  position: absolute;
+
+  width:
+    3px;
+
+  height:
+    38%;
+
+  opacity:
+    0;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(216, 250, 255, 0.95) 16%,
+      rgba(67, 209, 255, 1) 46%,
+      rgba(238, 253, 255, 1) 58%,
+      rgba(104, 78, 255, 0.82) 78%,
+      transparent 100%
+    );
+
+  box-shadow:
+    0 0 3px
+    rgba(229, 253, 255, 1),
+
+    0 0 7px
+    rgba(60, 205, 255, 0.92),
+
+    0 0 15px
+    rgba(104, 75, 255, 0.48);
+
+  clip-path:
+    polygon(
+      46% 0%,
+      100% 0%,
+      61% 30%,
+      92% 30%,
+      34% 61%,
+      66% 61%,
+      0% 100%,
+      24% 67%,
+      4% 67%,
+      43% 37%,
+      17% 37%
+    );
+
+  transform-origin:
+    50% 0%;
+}
+
+
+/* Bolt 1 — upper left */
+
+.lightning-bolt-1 {
+  left:
+    5%;
+
+  top:
+    -3%;
+
+  height:
+    46%;
+
+  transform:
+    rotate(18deg)
+    scaleY(1.12);
+
+  animation:
+    seasonLightningStrikeOne
+    5.4s
+    steps(1, end)
+    infinite;
+}
+
+
+/* Bolt 2 — upper right */
+
+.lightning-bolt-2 {
+  right:
+    7%;
+
+  top:
+    3%;
+
+  height:
+    34%;
+
+  transform:
+    rotate(-21deg)
+    scaleY(0.96);
+
+  animation:
+    seasonLightningStrikeTwo
+    6.7s
+    steps(1, end)
+    infinite;
+}
+
+
+/* Bolt 3 — lower left */
+
+.lightning-bolt-3 {
+  left:
+    13%;
+
+  bottom:
+    -7%;
+
+  height:
+    31%;
+
+  transform:
+    rotate(154deg)
+    scaleY(0.92);
+
+  animation:
+    seasonLightningStrikeThree
+    7.9s
+    steps(1, end)
+    infinite;
+}
+
+
+/* Bolt 4 — lower right */
+
+.lightning-bolt-4 {
+  right:
+    16%;
+
+  bottom:
+    -6%;
+
+  height:
+    38%;
+
+  transform:
+    rotate(-151deg)
+    scaleY(1.05);
+
+  animation:
+    seasonLightningStrikeFour
+    9.1s
+    steps(1, end)
+    infinite;
+}
+
+
+/* -----------------------------------------------------
+   FULL PROFILE ELECTRIC FLASH
+----------------------------------------------------- */
+
+.season-lightning-flash {
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity:
+    0;
+
+  background:
+    radial-gradient(
+      circle at 50% 40%,
+      rgba(217, 250, 255, 0.13),
+      rgba(75, 202, 255, 0.05) 36%,
+      transparent 68%
+    );
+
+  box-shadow:
+    inset 0 0 24px
+    rgba(78, 207, 255, 0.08);
+
+  animation:
+    seasonLightningProfileFlash
+    8.3s
+    steps(1, end)
+    infinite;
+}
+
+
+/* -----------------------------------------------------
+   ELECTRIC BORDER
+----------------------------------------------------- */
+
+.mmr-profile-modal.season-lightning-active {
+  box-shadow:
+    0 0 7px
+    rgba(196, 246, 255, 0.28),
+
+    0 0 18px
+    rgba(56, 200, 255, 0.20),
+
+    0 0 32px
+    rgba(103, 75, 255, 0.10);
+}
+
+
+/* =====================================================
+   ADVANCED LIGHTNING ANIMATIONS
+===================================================== */
+
+@keyframes seasonLightningAuraPulse {
+
+  0%,
+  100% {
+    opacity:
+      0.38;
+
+    filter:
+      brightness(0.90);
+  }
+
+  45% {
+    opacity:
+      0.58;
+
+    filter:
+      brightness(1.05);
+  }
+
+  52% {
+    opacity:
+      0.82;
+
+    filter:
+      brightness(1.32);
+  }
+
+  58% {
+    opacity:
+      0.46;
+
+    filter:
+      brightness(0.96);
+  }
+
+}
+
+
+/* -----------------------------------------------------
+   STRIKE 1
+----------------------------------------------------- */
+
+@keyframes seasonLightningStrikeOne {
+
+  0%,
+  6%,
+  9%,
+  54%,
+  57%,
+  100% {
+    opacity:
+      0;
+  }
+
+  7% {
+    opacity:
+      1;
+  }
+
+  8% {
+    opacity:
+      0.28;
+  }
+
+  55% {
+    opacity:
+      0.92;
+  }
+
+  56% {
+    opacity:
+      0.18;
+  }
+
+}
+
+
+/* -----------------------------------------------------
+   STRIKE 2
+----------------------------------------------------- */
+
+@keyframes seasonLightningStrikeTwo {
+
+  0%,
+  21%,
+  25%,
+  76%,
+  80%,
+  100% {
+    opacity:
+      0;
+  }
+
+  22% {
+    opacity:
+      0.82;
+  }
+
+  23% {
+    opacity:
+      0.18;
+  }
+
+  24% {
+    opacity:
+      1;
+  }
+
+  77% {
+    opacity:
+      0.94;
+  }
+
+  78% {
+    opacity:
+      0.16;
+  }
+
+  79% {
+    opacity:
+      0.70;
+  }
+
+}
+
+
+/* -----------------------------------------------------
+   STRIKE 3
+----------------------------------------------------- */
+
+@keyframes seasonLightningStrikeThree {
+
+  0%,
+  34%,
+  38%,
+  88%,
+  92%,
+  100% {
+    opacity:
+      0;
+  }
+
+  35% {
+    opacity:
+      0.72;
+  }
+
+  36% {
+    opacity:
+      1;
+  }
+
+  37% {
+    opacity:
+      0.12;
+  }
+
+  89% {
+    opacity:
+      0.88;
+  }
+
+  90% {
+    opacity:
+      0.24;
+  }
+
+  91% {
+    opacity:
+      0.68;
+  }
+
+}
+
+
+/* -----------------------------------------------------
+   STRIKE 4
+----------------------------------------------------- */
+
+@keyframes seasonLightningStrikeFour {
+
+  0%,
+  12%,
+  16%,
+  63%,
+  67%,
+  100% {
+    opacity:
+      0;
+  }
+
+  13% {
+    opacity:
+      0.94;
+  }
+
+  14% {
+    opacity:
+      0.20;
+  }
+
+  15% {
+    opacity:
+      0.78;
+  }
+
+  64% {
+    opacity:
+      1;
+  }
+
+  65% {
+    opacity:
+      0.14;
+  }
+
+  66% {
+    opacity:
+      0.84;
+  }
+
+}
+
+
+/* -----------------------------------------------------
+   PROFILE FLASH
+----------------------------------------------------- */
+
+@keyframes seasonLightningProfileFlash {
+
+  0%,
+  39%,
+  43%,
+  84%,
+  88%,
+  100% {
+    opacity:
+      0;
+  }
+
+  40% {
+    opacity:
+      0.72;
+  }
+
+  41% {
+    opacity:
+      0.12;
+  }
+
+  42% {
+    opacity:
+      0.42;
+  }
+
+  85% {
+    opacity:
+      0.58;
+  }
+
+  86% {
+    opacity:
+      0.08;
+  }
+
+  87% {
+    opacity:
+      0.34;
+  }
+
+}    
+/* =====================================================
+   UNDEFEATED SEASON LIGHTNING BADGE
+===================================================== */
+
+.mmr-profile-season-lightning-badge {
+  display: none;
+
+  position: absolute;
+
+  left: 34px;
+  top: 50%;
+
+  transform:
+    translateY(-50%);
+
+  align-items: center;
+
+  gap: 7px;
+
+  padding:
+    5px 9px;
+
+  border:
+    1px solid
+    rgba(89, 218, 255, 0.72);
+
+  border-radius:
+    7px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(7, 35, 63, 0.90),
+      rgba(9, 12, 31, 0.94)
+    );
+
+  box-shadow:
+    0 0 10px
+    rgba(52, 196, 255, 0.24),
+
+    0 0 18px
+    rgba(104, 77, 255, 0.10),
+
+    inset 0 0 9px
+    rgba(114, 226, 255, 0.08);
+
+  pointer-events: none;
+
+  z-index: 20;
+
+  overflow: hidden;
+}
+
+
+/* -----------------------------------------------------
+   LIGHTNING BADGE ELECTRIC SWEEP
+----------------------------------------------------- */
+
+.mmr-profile-season-lightning-badge::before {
+  content: "";
+
+  position: absolute;
+
+  top: -40%;
+  bottom: -40%;
+
+  left: -35%;
+
+  width: 22%;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(207, 248, 255, 0.72),
+      transparent
+    );
+
+  transform:
+    skewX(-18deg);
+
+  opacity:
+    0;
+
+  animation:
+    seasonLightningBadgeSweep
+    3.8s
+    ease-in-out
+    infinite;
+}
+
+
+/* -----------------------------------------------------
+   LIGHTNING ICON
+----------------------------------------------------- */
+
+.mmr-profile-season-lightning-badge
+.season-lightning-badge-icon {
+  position: relative;
+
+  z-index: 1;
+
+  font-size:
+    17px;
+
+  color:
+    #eafcff;
+
+  filter:
+    drop-shadow(
+      0 0 4px
+      rgba(197, 247, 255, 1)
+    )
+
+    drop-shadow(
+      0 0 8px
+      rgba(43, 187, 255, 0.88)
+    );
+
+  animation:
+    seasonLightningBadgeBolt
+    2.1s
+    steps(1, end)
+    infinite;
+}
+
+
+/* -----------------------------------------------------
+   LIGHTNING BADGE CONTENT
+----------------------------------------------------- */
+
+.mmr-profile-season-lightning-badge
+.season-lightning-badge-content {
+  position: relative;
+
+  z-index: 1;
+
+  display: flex;
+
+  flex-direction: column;
+
+  line-height:
+    1.05;
+}
+
+
+.mmr-profile-season-lightning-badge
+strong {
+  color:
+    rgba(204, 248, 255, 1);
+
+  font-size:
+    8px;
+
+  letter-spacing:
+    1.2px;
+
+  text-shadow:
+    0 0 6px
+    rgba(64, 205, 255, 0.72),
+
+    0 0 12px
+    rgba(111, 75, 255, 0.28);
+}
+
+
+.mmr-profile-season-lightning-badge
+small {
+  margin-top:
+    3px;
+
+  color:
+    rgba(113, 218, 255, 0.96);
+
+  font-size:
+    6px;
+
+  letter-spacing:
+    0.7px;
+}
+
+
+/* =====================================================
+   SEASON LIGHTNING BADGE ANIMATIONS
+===================================================== */
+
+@keyframes seasonLightningBadgeBolt {
+
+  0%,
+  8%,
+  12%,
+  72%,
+  76%,
+  100% {
+    opacity:
+      1;
+
+    transform:
+      translate(0, 0)
+      scale(1);
+  }
+
+  9% {
+    opacity:
+      0.38;
+
+    transform:
+      translate(-1px, 0)
+      scale(1.18);
+  }
+
+  10% {
+    opacity:
+      1;
+
+    transform:
+      translate(1px, -1px)
+      scale(1.28);
+  }
+
+  11% {
+    opacity:
+      0.55;
+
+    transform:
+      translate(0, 1px)
+      scale(1.08);
+  }
+
+  73% {
+    opacity:
+      0.45;
+
+    transform:
+      translate(1px, 0)
+      scale(1.20);
+  }
+
+  74% {
+    opacity:
+      1;
+
+    transform:
+      translate(-1px, -1px)
+      scale(1.30);
+  }
+
+  75% {
+    opacity:
+      0.62;
+
+    transform:
+      translate(0, 0)
+      scale(1.08);
+  }
+
+}
+
+
+@keyframes seasonLightningBadgeSweep {
+
+  0%,
+  62% {
+    left:
+      -35%;
+
+    opacity:
+      0;
+  }
+
+  66% {
+    opacity:
+      0.75;
+  }
+
+  76% {
+    left:
+      118%;
+
+    opacity:
+      0;
+  }
+
+  100% {
+    left:
+      118%;
+
+    opacity:
+      0;
+  }
+
+}
 
 /* -----------------------------------------------------
    HELLFIRE BADGE
@@ -24726,7 +25592,181 @@ function isMMRYearArchived(year) {
   );
 
 }
+// =====================================================
+// UNDEFEATED SEASON LIGHTNING ENGINE
+// =====================================================
+//
+// A player earns Season Lightning when:
+//
+// 1. The PREVIOUS season is officially archived.
+// 2. The player played at least 1 match.
+// 3. The player won at least 1 match.
+// 4. The player had 0 losses.
+//
+// The reward remains active for the entire
+// following season.
+//
+// Example:
+// 2026 = 4W / 0L
+// → Lightning active throughout Season 2027.
+//
+// =====================================================
 
+function getMMRSeasonLightningStatus(
+  playerName,
+  activeSeasonYear = new Date().getFullYear()
+) {
+
+  const currentSeason =
+    Number(activeSeasonYear);
+
+  const qualifyingSeason =
+    currentSeason - 1;
+// ===============================================
+// TEMPORARY LIGHTNING VISUAL TEST
+// ===============================================
+//
+// DEVELOPMENT ONLY.
+// Remove this block after visual testing.
+//
+
+if (
+  playerName === "Kipp"
+) {
+
+  return {
+    active: true,
+    activeSeason: currentSeason,
+    qualifyingSeason: qualifyingSeason,
+    matches: 1,
+    wins: 1,
+    losses: 0
+  };
+
+}
+
+  // ===============================================
+  // SAFETY CHECK
+  // ===============================================
+
+  if (
+    !playerName ||
+    !Number.isInteger(currentSeason)
+  ) {
+
+    return {
+      active: false,
+      activeSeason: currentSeason,
+      qualifyingSeason: qualifyingSeason,
+      matches: 0,
+      wins: 0,
+      losses: 0
+    };
+
+  }
+
+
+  // ===============================================
+  // PREVIOUS SEASON MUST BE OFFICIALLY ARCHIVED
+  // ===============================================
+
+  if (
+    !isMMRYearArchived(
+      qualifyingSeason
+    )
+  ) {
+
+    return {
+      active: false,
+      activeSeason: currentSeason,
+      qualifyingSeason: qualifyingSeason,
+      matches: 0,
+      wins: 0,
+      losses: 0
+    };
+
+  }
+
+
+  // ===============================================
+  // FIND PLAYER IN FROZEN SEASON ARCHIVE
+  // ===============================================
+
+  const seasonArchive =
+    mmrAnnualArchive[
+      qualifyingSeason
+    ];
+
+
+  const playerRecord =
+    Array.isArray(seasonArchive)
+      ? seasonArchive.find(
+          player =>
+            player.playerName ===
+            playerName
+        )
+      : null;
+
+
+  if (!playerRecord) {
+
+    return {
+      active: false,
+      activeSeason: currentSeason,
+      qualifyingSeason: qualifyingSeason,
+      matches: 0,
+      wins: 0,
+      losses: 0
+    };
+
+  }
+
+
+  const matches =
+    Number(
+      playerRecord.matches
+    ) || 0;
+
+  const wins =
+    Number(
+      playerRecord.wins
+    ) || 0;
+
+  const losses =
+    Number(
+      playerRecord.losses
+    ) || 0;
+
+
+  // ===============================================
+  // UNDEFEATED SEASON ELIGIBILITY
+  // ===============================================
+
+  const active =
+    matches >= 1 &&
+    wins >= 1 &&
+    losses === 0;
+
+
+  return {
+
+    active,
+
+    activeSeason:
+      currentSeason,
+
+    qualifyingSeason:
+      qualifyingSeason,
+
+    matches,
+
+    wins,
+
+    losses
+
+  };
+
+}
 
 // =====================================================
 // GET ANNUAL RECORD
@@ -27078,8 +28118,19 @@ const playerStats =
 
 const hellfire =
   getHellfireStatus(playerName);
-  
- const latestMatch =
+
+
+// ===============================================
+// UNDEFEATED SEASON LIGHTNING STATUS
+// ===============================================
+
+const seasonLightning =
+  getMMRSeasonLightningStatus(
+    playerName
+  );
+
+
+const latestMatch =
   getLatestMMRMatch(playerName);
 
 
@@ -27191,6 +28242,139 @@ if (profileModal) {
     competitiveTier;
 
 }
+// =====================================================
+// UNDEFEATED SEASON LIGHTNING PROFILE STATE
+// =====================================================
+
+if (profileModal) {
+
+  // Remove Lightning state left by
+  // the previously opened player.
+
+  profileModal.classList.remove(
+    "season-lightning-active"
+  );
+
+
+  delete profileModal.dataset.seasonLightning;
+  delete profileModal.dataset.lightningSourceSeason;
+  delete profileModal.dataset.lightningActiveSeason;
+
+
+  // Apply Lightning only when the player
+  // earned it from the previous official
+  // archived season.
+
+  if (seasonLightning.active) {
+
+    profileModal.classList.add(
+      "season-lightning-active"
+    );
+
+
+    profileModal.dataset.seasonLightning =
+      "active";
+
+    profileModal.dataset.lightningSourceSeason =
+      seasonLightning.qualifyingSeason;
+
+    profileModal.dataset.lightningActiveSeason =
+      seasonLightning.activeSeason;
+
+  }
+
+}
+// =====================================================
+// UNDEFEATED SEASON LIGHTNING FX LAYER
+// =====================================================
+
+if (profileModal) {
+
+  let lightningFX =
+    profileModal.querySelector(
+      ".season-lightning-fx"
+    );
+
+
+  // Create the FX layer only once.
+
+  if (!lightningFX) {
+
+    lightningFX =
+      document.createElement("div");
+
+    lightningFX.className =
+      "season-lightning-fx";
+
+    lightningFX.setAttribute(
+      "aria-hidden",
+      "true"
+    );
+
+
+    lightningFX.innerHTML = `
+
+      <span class="season-lightning-aura"></span>
+
+      <span
+        class="
+          season-lightning-bolt
+          lightning-bolt-1
+        "
+      ></span>
+
+      <span
+        class="
+          season-lightning-bolt
+          lightning-bolt-2
+        "
+      ></span>
+
+      <span
+        class="
+          season-lightning-bolt
+          lightning-bolt-3
+        "
+      ></span>
+
+      <span
+        class="
+          season-lightning-bolt
+          lightning-bolt-4
+        "
+      ></span>
+
+      <span
+        class="
+          season-lightning-flash
+        "
+      ></span>
+
+    `;
+
+
+    profileModal.appendChild(
+      lightningFX
+    );
+
+  }
+
+
+  if (seasonLightning.active) {
+
+    lightningFX.style.display =
+      "block";
+
+  } else {
+
+    lightningFX.style.display =
+      "none";
+
+  }
+
+}
+
+
 // =====================================================
 // HELLFIRE PROFILE STATE
 // =====================================================
@@ -27369,6 +28553,85 @@ if (profileModal) {
   }
 
 }
+// =====================================================
+// UNDEFEATED SEASON LIGHTNING PROFILE BADGE
+// =====================================================
+
+if (profileModal) {
+
+  let lightningBadge =
+    profileModal.querySelector(
+      ".mmr-profile-season-lightning-badge"
+    );
+
+
+  // Create the badge only once.
+
+  if (!lightningBadge) {
+
+    lightningBadge =
+      document.createElement("div");
+
+    lightningBadge.className =
+      "mmr-profile-season-lightning-badge";
+
+
+    const stickyHeader =
+      profileModal.querySelector(
+        ".mmr-profile-sticky-header"
+      );
+
+
+    if (stickyHeader) {
+
+      stickyHeader.appendChild(
+        lightningBadge
+      );
+
+    }
+
+  }
+
+
+  // Show the badge only for players
+  // who earned Season Lightning.
+
+  if (
+    lightningBadge &&
+    seasonLightning.active
+  ) {
+
+    lightningBadge.innerHTML = `
+      <span class="season-lightning-badge-icon">
+        ⚡
+      </span>
+
+      <span class="season-lightning-badge-content">
+
+        <strong>
+          UNDEFEATED
+        </strong>
+
+        <small>
+          ${seasonLightning.qualifyingSeason}
+          SEASON · 0 LOSSES
+        </small>
+
+      </span>
+    `;
+
+    lightningBadge.style.display =
+      "flex";
+
+
+  } else if (lightningBadge) {
+
+    lightningBadge.style.display =
+      "none";
+
+  }
+
+}  
 // =====================================================
 // HELLFIRE PROFILE BADGE
 // =====================================================
