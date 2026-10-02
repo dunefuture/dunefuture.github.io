@@ -19874,6 +19874,1351 @@ strong {
 
   }
 
+}
+/* =====================================================
+   MMR SEASON ARCHIVE CONTROL
+   PREMIUM COMMAND PANEL
+===================================================== */
+
+.mmr-season-control {
+  position: relative;
+
+  width: min(100%, 1100px);
+
+  margin:
+    42px auto
+    72px;
+
+  padding:
+    30px;
+
+  box-sizing:
+    border-box;
+
+  overflow:
+    hidden;
+
+  border:
+    1px solid
+    rgba(224, 50, 255, 0.32);
+
+  border-radius:
+    18px;
+
+  background:
+    radial-gradient(
+      circle at 85% 0%,
+      rgba(205, 42, 255, 0.12),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 0% 100%,
+      rgba(105, 26, 170, 0.10),
+      transparent 40%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(17, 11, 23, 0.98),
+      rgba(7, 6, 11, 0.99)
+    );
+
+  box-shadow:
+    0 20px 60px
+      rgba(0, 0, 0, 0.45),
+
+    0 0 30px
+      rgba(211, 41, 255, 0.07),
+
+    inset 0 1px 0
+      rgba(255, 255, 255, 0.035);
+}
+
+
+/* =====================================================
+   TOP ACCENT
+===================================================== */
+
+.mmr-season-control::before {
+  content: "";
+
+  position:
+    absolute;
+
+  top:
+    0;
+
+  left:
+    8%;
+
+  width:
+    84%;
+
+  height:
+    1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(224, 57, 255, 0.85),
+      rgba(123, 87, 255, 0.65),
+      transparent
+    );
+
+  box-shadow:
+    0 0 18px
+    rgba(220, 48, 255, 0.50);
+
+  pointer-events:
+    none;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.mmr-season-control-header {
+  position:
+    relative;
+
+  z-index:
+    1;
+
+  display:
+    flex;
+
+  align-items:
+    flex-start;
+
+  justify-content:
+    space-between;
+
+  gap:
+    24px;
+
+  margin-bottom:
+    26px;
+}
+
+
+.mmr-season-control-kicker {
+  margin-bottom:
+    8px;
+
+  color:
+    #e63cff;
+
+  font-size:
+    11px;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    0.20em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.mmr-season-control-title {
+  margin:
+    0;
+
+  color:
+    #ffffff;
+
+  font-size:
+    clamp(
+      25px,
+      4vw,
+      38px
+    );
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    0.035em;
+
+  line-height:
+    1.05;
+
+  text-transform:
+    uppercase;
+
+  text-shadow:
+    0 0 24px
+    rgba(220, 52, 255, 0.12);
+}
+
+
+.mmr-season-control-description {
+  max-width:
+    650px;
+
+  margin:
+    12px 0 0;
+
+  color:
+    rgba(
+      226,
+      218,
+      235,
+      0.68
+    );
+
+  font-size:
+    13px;
+
+  line-height:
+    1.65;
+}
+
+
+/* =====================================================
+   LIVE / READY / ARCHIVED STATUS
+===================================================== */
+
+.mmr-season-control-status {
+  flex:
+    0 0 auto;
+
+  min-width:
+    88px;
+
+  padding:
+    9px 14px;
+
+  box-sizing:
+    border-box;
+
+  border-radius:
+    999px;
+
+  text-align:
+    center;
+
+  font-size:
+    10px;
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    0.14em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.mmr-season-control-status.live {
+  color:
+    #67ffb1;
+
+  border:
+    1px solid
+    rgba(63, 255, 157, 0.28);
+
+  background:
+    rgba(26, 181, 105, 0.08);
+
+  box-shadow:
+    inset 0 0 18px
+      rgba(55, 255, 159, 0.04),
+
+    0 0 16px
+      rgba(55, 255, 159, 0.05);
+}
+
+
+.mmr-season-control-status.ready {
+  color:
+    #f2d36b;
+
+  border:
+    1px solid
+    rgba(255, 210, 77, 0.34);
+
+  background:
+    rgba(255, 191, 38, 0.08);
+
+  box-shadow:
+    0 0 18px
+    rgba(255, 196, 43, 0.08);
+}
+
+
+.mmr-season-control-status.archived {
+  color:
+    #dcb7ff;
+
+  border:
+    1px solid
+    rgba(193, 112, 255, 0.34);
+
+  background:
+    rgba(142, 54, 205, 0.10);
+
+  box-shadow:
+    0 0 18px
+    rgba(189, 75, 255, 0.08);
+}
+
+
+/* =====================================================
+   RESPONSIVE HEADER
+===================================================== */
+
+@media (
+  max-width: 650px
+) {
+
+  .mmr-season-control {
+    padding:
+      22px 18px;
+
+    border-radius:
+      14px;
+  }
+
+
+  .mmr-season-control-header {
+    flex-direction:
+      column;
+  }
+
+
+  .mmr-season-control-status {
+    align-self:
+      flex-start;
+  }
+
+}  
+/* =====================================================
+   MMR SEASON ARCHIVE
+   STAGE 2 — STATUS CARDS
+===================================================== */
+
+.mmr-season-control-grid {
+  position: relative;
+  z-index: 1;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 12px;
+
+  margin-bottom: 18px;
+}
+
+
+.mmr-season-control-card {
+  position: relative;
+
+  min-height: 92px;
+
+  padding:
+    17px 18px;
+
+  box-sizing:
+    border-box;
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    rgba(214, 71, 255, 0.14);
+
+  border-radius:
+    12px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.025),
+      rgba(178, 45, 255, 0.025)
+    );
+
+  box-shadow:
+    inset 0 1px 0
+      rgba(255, 255, 255, 0.025);
+
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+
+.mmr-season-control-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 3px;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ef43ff,
+      #7c4dff
+    );
+
+  opacity: 0.65;
+
+  box-shadow:
+    0 0 12px
+    rgba(226, 61, 255, 0.35);
+}
+
+
+.mmr-season-control-card:hover {
+  transform:
+    translateY(-2px);
+
+  border-color:
+    rgba(222, 72, 255, 0.30);
+
+  box-shadow:
+    0 8px 24px
+      rgba(0, 0, 0, 0.20),
+
+    inset 0 1px 0
+      rgba(255, 255, 255, 0.04);
+}
+
+
+.mmr-season-control-card span {
+  display: block;
+
+  margin-bottom: 10px;
+
+  color:
+    rgba(211, 194, 221, 0.55);
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.16em;
+
+  text-transform: uppercase;
+}
+
+
+.mmr-season-control-card strong {
+  display: block;
+
+  color: #ffffff;
+
+  font-size: 22px;
+
+  font-weight: 900;
+
+  letter-spacing: 0.04em;
+
+  line-height: 1;
+
+  text-transform: uppercase;
+
+  text-shadow:
+    0 0 18px
+    rgba(220, 59, 255, 0.10);
+}
+
+
+/* =====================================================
+   ARCHIVE STATUS CARD
+===================================================== */
+
+#mmrSeasonControlArchive {
+  color: #69ffb2;
+
+  text-shadow:
+    0 0 12px
+      rgba(76, 255, 167, 0.25),
+
+    0 0 28px
+      rgba(76, 255, 167, 0.10);
+}
+
+
+/* =====================================================
+   RESPONSIVE STATUS CARDS
+===================================================== */
+
+@media (max-width: 850px) {
+
+  .mmr-season-control-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+
+@media (max-width: 480px) {
+
+  .mmr-season-control-grid {
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .mmr-season-control-card {
+    min-height: 78px;
+  }
+
+} 
+/* =====================================================
+   MMR SEASON ARCHIVE
+   STAGE 3 — SEASON STATUS MESSAGE
+===================================================== */
+
+.mmr-season-control-message {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  min-height: 48px;
+
+  margin-bottom: 18px;
+
+  padding:
+    0 16px;
+
+  box-sizing: border-box;
+
+  border:
+    1px solid
+    rgba(102, 255, 177, 0.12);
+
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(35, 255, 146, 0.045),
+      rgba(180, 51, 255, 0.025)
+    );
+
+  color:
+    rgba(230, 225, 235, 0.76);
+
+  font-size: 11px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.025em;
+
+  line-height: 1.5;
+}
+
+
+/* =====================================================
+   LIVE INDICATOR
+===================================================== */
+
+.mmr-season-control-indicator {
+  position: relative;
+
+  flex:
+    0 0 auto;
+
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background:
+    #58ffa7;
+
+  box-shadow:
+    0 0 8px
+      rgba(75, 255, 163, 0.90),
+
+    0 0 18px
+      rgba(75, 255, 163, 0.38);
+}
+
+
+.mmr-season-control-indicator::after {
+  content: "";
+
+  position: absolute;
+
+  inset: -5px;
+
+  border:
+    1px solid
+    rgba(85, 255, 171, 0.30);
+
+  border-radius: 50%;
+
+  animation:
+    mmrSeasonLivePulse
+    2.2s
+    ease-out
+    infinite;
+}
+
+
+/* =====================================================
+   LIVE PULSE
+===================================================== */
+
+@keyframes mmrSeasonLivePulse {
+
+  0% {
+    transform:
+      scale(0.55);
+
+    opacity:
+      0.85;
+  }
+
+  70% {
+    transform:
+      scale(1.35);
+
+    opacity:
+      0;
+  }
+
+  100% {
+    transform:
+      scale(1.35);
+
+    opacity:
+      0;
+  }
+
+}
+
+
+/* =====================================================
+   MESSAGE TEXT
+===================================================== */
+
+#mmrSeasonControlMessage {
+  display: block;
+
+  min-width: 0;
+}
+
+
+/* =====================================================
+   ACCESSIBILITY
+===================================================== */
+
+@media (
+  prefers-reduced-motion: reduce
+) {
+
+  .mmr-season-control-indicator::after {
+    animation:
+      none;
+  }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (
+  max-width: 480px
+) {
+
+  .mmr-season-control-message {
+    padding:
+      12px 14px;
+
+    align-items:
+      flex-start;
+  }
+
+}
+/* =====================================================
+   MMR SEASON ARCHIVE
+   STAGE 4 — PREMIUM ARCHIVE BUTTON
+===================================================== */
+
+.mmr-season-archive-button {
+  position: relative;
+  overflow: hidden;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  width: 100%;
+
+  margin-top: 20px;
+  padding: 16px 22px;
+
+  border-radius: 12px;
+
+  border:
+    1px solid
+    rgba(218, 55, 255, 0.45);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(36, 13, 45, 0.96),
+      rgba(20, 8, 28, 0.98)
+    );
+
+  color:
+    rgba(255, 255, 255, 0.92);
+
+  font-size: 12px;
+  font-weight: 900;
+
+  letter-spacing: 1.8px;
+
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  box-shadow:
+    inset 0 0 0 1px
+      rgba(255, 255, 255, 0.025),
+    0 0 18px
+      rgba(218, 55, 255, 0.08);
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+
+/* =====================================================
+   BUTTON ICON
+===================================================== */
+
+.mmr-season-archive-button
+.archive-button-icon {
+  position: relative;
+  z-index: 2;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 22px;
+  height: 22px;
+
+  color: #f04cff;
+
+  font-size: 11px;
+
+  filter:
+    drop-shadow(
+      0 0 6px
+      rgba(240, 76, 255, 0.65)
+    );
+
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease,
+    filter 0.3s ease;
+}
+
+
+.mmr-season-archive-button
+#mmrSeasonArchiveButtonText {
+  position: relative;
+  z-index: 2;
+}
+
+
+/* =====================================================
+   ENERGY SWEEP
+===================================================== */
+
+.mmr-season-archive-button::before {
+  content: "";
+
+  position: absolute;
+
+  top: -70%;
+  left: -35%;
+
+  width: 28%;
+  height: 240%;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.30),
+      transparent
+    );
+
+  transform:
+    rotate(20deg)
+    translateX(-250%);
+
+  transition:
+    opacity 0.25s ease;
+}
+
+
+/* =====================================================
+   INNER ENERGY GLOW
+===================================================== */
+
+.mmr-season-archive-button::after {
+  content: "";
+
+  position: absolute;
+  inset: 1px;
+
+  border-radius: 10px;
+
+  pointer-events: none;
+
+  opacity: 0;
+
+  background:
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(218, 55, 255, 0.22),
+      transparent 62%
+    );
+
+  transition:
+    opacity 0.3s ease;
+}
+
+
+/* =====================================================
+   ACTIVE / READY STATE
+   Button enabled on archive date
+===================================================== */
+
+.mmr-season-archive-button:not(:disabled) {
+  border-color:
+    rgba(235, 74, 255, 0.78);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(78, 15, 91, 0.98),
+      rgba(37, 8, 48, 0.98)
+    );
+
+  color: #ffffff;
+
+  cursor: pointer;
+
+  box-shadow:
+    inset 0 0 0 1px
+      rgba(255, 255, 255, 0.05),
+    0 0 18px
+      rgba(218, 55, 255, 0.24),
+    0 0 42px
+      rgba(218, 55, 255, 0.10);
+
+  animation:
+    mmrArchiveButtonPulse
+    2.8s
+    ease-in-out
+    infinite;
+}
+
+
+.mmr-season-archive-button:not(:disabled)::after {
+  opacity: 1;
+}
+
+
+.mmr-season-archive-button:not(:disabled):hover {
+  transform:
+    translateY(-2px);
+
+  border-color:
+    rgba(245, 122, 255, 1);
+
+  box-shadow:
+    inset 0 0 0 1px
+      rgba(255, 255, 255, 0.08),
+    0 0 24px
+      rgba(218, 55, 255, 0.38),
+    0 0 55px
+      rgba(218, 55, 255, 0.16);
+}
+
+
+.mmr-season-archive-button:not(:disabled):hover
+.archive-button-icon {
+  transform:
+    rotate(45deg)
+    scale(1.12);
+
+  color: #ffffff;
+
+  filter:
+    drop-shadow(
+      0 0 9px
+      rgba(240, 76, 255, 0.95)
+    );
+}
+
+
+.mmr-season-archive-button:not(:disabled):hover::before {
+  opacity: 1;
+
+  animation:
+    mmrArchiveButtonSweep
+    1.15s
+    ease
+    forwards;
+}
+
+
+.mmr-season-archive-button:not(:disabled):active {
+  transform:
+    translateY(0)
+    scale(0.995);
+}
+
+
+/* =====================================================
+   DISABLED / SEASON IN PROGRESS
+===================================================== */
+
+.mmr-season-archive-button:disabled {
+  border-color:
+    rgba(255, 255, 255, 0.08);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(20, 18, 24, 0.90),
+      rgba(13, 11, 17, 0.94)
+    );
+
+  color:
+    rgba(255, 255, 255, 0.34);
+
+  cursor: not-allowed;
+
+  box-shadow:
+    inset 0 0 0 1px
+      rgba(255, 255, 255, 0.018);
+
+  opacity: 0.82;
+}
+
+
+.mmr-season-archive-button:disabled
+.archive-button-icon {
+  color:
+    rgba(255, 255, 255, 0.25);
+
+  filter: none;
+}
+
+
+/* =====================================================
+   ANIMATIONS
+===================================================== */
+
+@keyframes mmrArchiveButtonPulse {
+
+  0%,
+  100% {
+    box-shadow:
+      inset 0 0 0 1px
+        rgba(255, 255, 255, 0.05),
+      0 0 18px
+        rgba(218, 55, 255, 0.20),
+      0 0 38px
+        rgba(218, 55, 255, 0.08);
+  }
+
+  50% {
+    box-shadow:
+      inset 0 0 0 1px
+        rgba(255, 255, 255, 0.08),
+      0 0 25px
+        rgba(218, 55, 255, 0.36),
+      0 0 52px
+        rgba(218, 55, 255, 0.14);
+  }
+
+}
+
+
+@keyframes mmrArchiveButtonSweep {
+
+  0% {
+    transform:
+      rotate(20deg)
+      translateX(-250%);
+  }
+
+  100% {
+    transform:
+      rotate(20deg)
+      translateX(650%);
+  }
+
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (
+  prefers-reduced-motion: reduce
+) {
+
+  .mmr-season-archive-button {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .mmr-season-archive-button::before {
+    animation: none !important;
+  }
+
+  .mmr-season-archive-button
+  .archive-button-icon {
+    transition: none !important;
+  }
+
+}
+/* =====================================================
+   MMR SEASON ARCHIVE
+   STAGE 5 — DYNAMIC ARCHIVE STATUS VISUAL
+===================================================== */
+
+
+/* =====================================================
+   BASE STATUS
+===================================================== */
+
+.mmr-season-control-status {
+  position: relative;
+  overflow: hidden;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 92px;
+
+  padding: 9px 16px;
+
+  border-radius: 999px;
+
+  font-size: 10px;
+  font-weight: 900;
+
+  letter-spacing: 1.6px;
+
+  text-transform: uppercase;
+
+  transition:
+    color 0.35s ease,
+    border-color 0.35s ease,
+    background 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+
+/* =====================================================
+   STATUS INNER SHINE
+===================================================== */
+
+.mmr-season-control-status::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 1px;
+
+  border-radius: inherit;
+
+  pointer-events: none;
+
+  opacity: 0.55;
+
+  background:
+    linear-gradient(
+      115deg,
+      transparent 15%,
+      rgba(255, 255, 255, 0.08) 45%,
+      transparent 72%
+    );
+}
+
+
+/* =====================================================
+   LIVE
+===================================================== */
+
+.mmr-season-control-status.live {
+  color: #f36cff;
+
+  border:
+    1px solid
+    rgba(231, 64, 255, 0.55);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(81, 17, 94, 0.72),
+      rgba(34, 10, 43, 0.88)
+    );
+
+  box-shadow:
+    inset 0 0 12px
+      rgba(224, 55, 255, 0.08),
+    0 0 14px
+      rgba(224, 55, 255, 0.14);
+
+  animation:
+    mmrSeasonLivePulse
+    2.8s
+    ease-in-out
+    infinite;
+}
+
+
+/* =====================================================
+   READY TO ARCHIVE
+===================================================== */
+
+.mmr-season-control-status.ready {
+  color: #ffd86b;
+
+  border:
+    1px solid
+    rgba(255, 201, 72, 0.75);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(100, 67, 10, 0.82),
+      rgba(47, 29, 4, 0.94)
+    );
+
+  box-shadow:
+    inset 0 0 14px
+      rgba(255, 205, 76, 0.12),
+    0 0 18px
+      rgba(255, 190, 50, 0.24),
+    0 0 38px
+      rgba(255, 178, 36, 0.10);
+
+  animation:
+    mmrSeasonReadyPulse
+    2.2s
+    ease-in-out
+    infinite;
+}
+
+
+/* =====================================================
+   ARCHIVED
+===================================================== */
+
+.mmr-season-control-status.archived {
+  color: #6dffe0;
+
+  border:
+    1px solid
+    rgba(80, 255, 214, 0.60);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(10, 83, 68, 0.78),
+      rgba(5, 39, 35, 0.94)
+    );
+
+  box-shadow:
+    inset 0 0 14px
+      rgba(75, 255, 211, 0.10),
+    0 0 18px
+      rgba(65, 255, 211, 0.16);
+}
+
+
+/* =====================================================
+   MESSAGE INDICATOR — BASE
+===================================================== */
+
+.mmr-season-control-indicator {
+  position: relative;
+
+  flex: 0 0 auto;
+
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: #e548ff;
+
+  box-shadow:
+    0 0 8px
+      rgba(229, 72, 255, 0.72);
+}
+
+
+/* =====================================================
+   LIVE INDICATOR PULSE
+===================================================== */
+
+.mmr-season-control-indicator::after {
+  content: "";
+
+  position: absolute;
+
+  inset: -4px;
+
+  border-radius: 50%;
+
+  border:
+    1px solid
+    rgba(229, 72, 255, 0.45);
+
+  opacity: 0;
+
+  animation:
+    mmrSeasonIndicatorPulse
+    2s
+    ease-out
+    infinite;
+}
+
+
+/* =====================================================
+   LIVE ANIMATION
+===================================================== */
+
+@keyframes mmrSeasonLivePulse {
+
+  0%,
+  100% {
+    box-shadow:
+      inset 0 0 12px
+        rgba(224, 55, 255, 0.08),
+      0 0 13px
+        rgba(224, 55, 255, 0.12);
+  }
+
+  50% {
+    box-shadow:
+      inset 0 0 16px
+        rgba(224, 55, 255, 0.13),
+      0 0 22px
+        rgba(224, 55, 255, 0.26);
+  }
+
+}
+
+
+/* =====================================================
+   READY ANIMATION
+===================================================== */
+
+@keyframes mmrSeasonReadyPulse {
+
+  0%,
+  100% {
+    box-shadow:
+      inset 0 0 14px
+        rgba(255, 205, 76, 0.10),
+      0 0 16px
+        rgba(255, 190, 50, 0.20),
+      0 0 34px
+        rgba(255, 178, 36, 0.08);
+  }
+
+  50% {
+    box-shadow:
+      inset 0 0 18px
+        rgba(255, 216, 105, 0.18),
+      0 0 26px
+        rgba(255, 196, 58, 0.38),
+      0 0 52px
+        rgba(255, 178, 36, 0.16);
+  }
+
+}
+
+
+/* =====================================================
+   INDICATOR ANIMATION
+===================================================== */
+
+@keyframes mmrSeasonIndicatorPulse {
+
+  0% {
+    transform: scale(0.65);
+    opacity: 0.8;
+  }
+
+  70% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+
+}
+
+
+/* =====================================================
+   ACCESSIBILITY — REDUCED MOTION
+===================================================== */
+
+@media (
+  prefers-reduced-motion: reduce
+) {
+
+  .mmr-season-control-status {
+    animation: none !important;
+  }
+
+  .mmr-season-control-indicator::after {
+    animation: none !important;
+  }
+
 }    
 </style>
 
