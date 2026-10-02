@@ -24965,18 +24965,14 @@ function getMMRSeasonArchiveState(year) {
     now.getDate();
 
 
-  // ===============================================
-  // CHECK IF YEAR IS ALREADY ARCHIVED
-  // ===============================================
+// ===============================================
+// CHECK IF YEAR IS OFFICIALLY ARCHIVED
+// ===============================================
 
-  const archivedYears =
-    getStoredMMRSeasonArchives();
-
-  const archived =
-    Boolean(
-      archivedYears &&
-      archivedYears[numericYear]
-    );
+const archived =
+  isMMRYearArchived(
+    numericYear
+  );
 
 
   // ===============================================
