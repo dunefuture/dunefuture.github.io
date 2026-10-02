@@ -24536,13 +24536,8 @@ function getMMRSeasonClosingInfo(year) {
   const targetYear =
     Number(year);
 
-  const archived =
-    isMMRYearArchived(
-      targetYear
-    );
-
-  const finished =
-    isMMRSeasonFinished(
+  const seasonState =
+    getMMRSeasonArchiveState(
       targetYear
     );
 
@@ -24553,20 +24548,20 @@ function getMMRSeasonClosingInfo(year) {
       targetYear,
 
     archived:
-      archived,
+      seasonState.archived,
 
     finished:
-      finished,
+      seasonState.canArchive ||
+      seasonState.archived,
 
     canArchive:
-      finished &&
-      !archived,
+      seasonState.canArchive,
 
     status:
-      archived
+      seasonState.archived
         ? "ARCHIVED"
         : (
-            finished
+            seasonState.canArchive
               ? "READY TO ARCHIVE"
               : "LIVE"
           )
@@ -25299,7 +25294,22 @@ function saveStoredMMRSeasonArchives(
 
   }
 
-}  
+}
+// =====================================================
+// MMR SEASON ARCHIVE TEST MODE
+// =====================================================
+
+// TEMPORARY DEVELOPMENT FLAG.
+// Set to true only while testing the
+// official season archive workflow.
+//
+// IMPORTANT:
+// This does NOT archive the season.
+// It only allows the archive workflow
+// to be tested before December 31.
+
+const MMR_SEASON_ARCHIVE_TEST_MODE =
+  true;  
 // =====================================================
 // MMR SEASON ARCHIVE STATE
 // =====================================================
@@ -25336,27 +25346,40 @@ const archived =
   // DETERMINE WHETHER SEASON CAN BE ARCHIVED
   // ===============================================
 
-  let canArchive =
-    false;
+let canArchive =
+  false;
 
 
-  if (
-    numericYear < currentYear
-  ) {
+// ===============================================
+// TEST MODE OVERRIDE
+// ===============================================
 
-    canArchive =
-      true;
+if (
+  MMR_SEASON_ARCHIVE_TEST_MODE &&
+  numericYear === currentYear &&
+  !archived
+) {
 
-  } else if (
-    numericYear === currentYear &&
-    currentMonth === 11 &&
-    currentDate === 31
-  ) {
+  canArchive =
+    true;
 
-    canArchive =
-      true;
+} else if (
+  numericYear < currentYear
+) {
 
-  }
+  canArchive =
+    true;
+
+} else if (
+  numericYear === currentYear &&
+  currentMonth === 11 &&
+  currentDate === 31
+) {
+
+  canArchive =
+    true;
+
+}
 
 
   // ===============================================
