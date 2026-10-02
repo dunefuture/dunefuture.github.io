@@ -13563,57 +13563,90 @@ body.mmr-profile-open {
   position: absolute;
 
   width:
-    3px;
+    14px;
 
   height:
-    38%;
+    42%;
 
   opacity:
     0;
 
-  pointer-events: none;
+  pointer-events:
+    none;
 
   background:
     linear-gradient(
-      180deg,
-      transparent 0%,
-      rgba(216, 250, 255, 0.95) 16%,
-      rgba(67, 209, 255, 1) 46%,
-      rgba(238, 253, 255, 1) 58%,
-      rgba(104, 78, 255, 0.82) 78%,
-      transparent 100%
+      90deg,
+      rgba(52, 174, 255, 0.08) 0%,
+      rgba(87, 211, 255, 0.72) 24%,
+      rgba(232, 253, 255, 1) 43%,
+      #ffffff 50%,
+      rgba(220, 250, 255, 1) 57%,
+      rgba(108, 87, 255, 0.78) 78%,
+      rgba(77, 59, 255, 0.06) 100%
     );
-
-  box-shadow:
-    0 0 3px
-    rgba(229, 253, 255, 1),
-
-    0 0 7px
-    rgba(60, 205, 255, 0.92),
-
-    0 0 15px
-    rgba(104, 75, 255, 0.48);
 
   clip-path:
     polygon(
-      46% 0%,
-      100% 0%,
-      61% 30%,
-      92% 30%,
-      34% 61%,
-      66% 61%,
+      38% 0%,
+      74% 0%,
+
+      57% 15%,
+      88% 15%,
+
+      46% 34%,
+      76% 34%,
+
+      31% 54%,
+      62% 54%,
+
+      18% 73%,
+      49% 73%,
+
       0% 100%,
-      24% 67%,
-      4% 67%,
-      43% 37%,
-      17% 37%
+      28% 79%,
+
+      8% 79%,
+      38% 60%,
+
+      12% 60%,
+      47% 40%,
+
+      21% 40%,
+      57% 21%,
+
+      31% 21%
+    );
+
+  filter:
+    drop-shadow(
+      0 0 2px
+      rgba(255, 255, 255, 1)
+    )
+
+    drop-shadow(
+      0 0 5px
+      rgba(111, 226, 255, 1)
+    )
+
+    drop-shadow(
+      0 0 11px
+      rgba(34, 180, 255, 0.96)
+    )
+
+    drop-shadow(
+      0 0 19px
+      rgba(101, 72, 255, 0.72)
     );
 
   transform-origin:
     50% 0%;
+
+  will-change:
+    opacity,
+    transform,
+    filter;
 }
-
-
 /* Bolt 1 — upper left */
 
 .lightning-bolt-1 {
@@ -13708,8 +13741,487 @@ body.mmr-profile-open {
     steps(1, end)
     infinite;
 }
+/* =====================================================
+   LIGHTNING SECONDARY BRANCHES
+===================================================== */
+
+.season-lightning-branch {
+  position: absolute;
+
+  width:
+    8px;
+
+  height:
+    19%;
+
+  opacity:
+    0;
+
+  pointer-events:
+    none;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(92, 211, 255, 0.48) 25%,
+      rgba(231, 253, 255, 1) 43%,
+      #ffffff 50%,
+      rgba(188, 242, 255, 0.92) 58%,
+      rgba(91, 76, 255, 0.46) 78%,
+      transparent 100%
+    );
+
+  clip-path:
+    polygon(
+      43% 0%,
+      78% 0%,
+
+      56% 21%,
+      91% 21%,
+
+      42% 46%,
+      70% 46%,
+
+      26% 70%,
+      54% 70%,
+
+      0% 100%,
+      30% 76%,
+
+      10% 76%,
+      39% 53%,
+
+      17% 53%,
+      51% 28%,
+
+      28% 28%
+    );
+
+  filter:
+    drop-shadow(
+      0 0 2px
+      rgba(255, 255, 255, 0.96)
+    )
+
+    drop-shadow(
+      0 0 5px
+      rgba(101, 226, 255, 0.88)
+    )
+
+    drop-shadow(
+      0 0 11px
+      rgba(40, 180, 255, 0.62)
+    );
+
+  transform-origin:
+    50% 0%;
+
+  will-change:
+    opacity,
+    transform,
+    filter;
+}
 
 
+/* -----------------------------------------------------
+   BRANCH 1
+   Linked visually to upper-left discharge
+----------------------------------------------------- */
+
+.lightning-branch-1 {
+  left:
+    10%;
+
+  top:
+    16%;
+
+  height:
+    20%;
+
+  transform:
+    rotate(67deg)
+    scaleY(0.92);
+
+  animation:
+    seasonLightningBranchOne
+    5.4s
+    steps(1, end)
+    infinite;
+}
+
+
+/* -----------------------------------------------------
+   BRANCH 2
+   Upper-right secondary discharge
+----------------------------------------------------- */
+
+.lightning-branch-2 {
+  right:
+    12%;
+
+  top:
+    18%;
+
+  height:
+    17%;
+
+  transform:
+    rotate(-72deg)
+    scaleY(0.82);
+
+  animation:
+    seasonLightningBranchTwo
+    6.7s
+    steps(1, end)
+    infinite;
+}
+
+
+/* -----------------------------------------------------
+   BRANCH 3
+   Lower-left return arc
+----------------------------------------------------- */
+
+.lightning-branch-3 {
+  left:
+    17%;
+
+  bottom:
+    13%;
+
+  height:
+    16%;
+
+  transform:
+    rotate(112deg)
+    scaleY(0.78);
+
+  animation:
+    seasonLightningBranchThree
+    7.9s
+    steps(1, end)
+    infinite;
+}
+
+
+/* -----------------------------------------------------
+   BRANCH 4
+   Lower-right return arc
+----------------------------------------------------- */
+
+.lightning-branch-4 {
+  right:
+    19%;
+
+  bottom:
+    12%;
+
+  height:
+    21%;
+
+  transform:
+    rotate(-111deg)
+    scaleY(0.88);
+
+  animation:
+    seasonLightningBranchFour
+    9.1s
+    steps(1, end)
+    infinite;
+}
+/* =====================================================
+   LIGHTNING IMPACT + CORONA NODES
+===================================================== */
+
+.season-lightning-impact {
+  position: absolute;
+
+  width:
+    10px;
+
+  height:
+    10px;
+
+  border-radius:
+    50%;
+
+  opacity:
+    0;
+
+  pointer-events:
+    none;
+
+  background:
+    radial-gradient(
+      circle,
+      #ffffff 0%,
+      rgba(231, 253, 255, 1) 18%,
+      rgba(99, 224, 255, 0.94) 36%,
+      rgba(54, 177, 255, 0.48) 56%,
+      transparent 74%
+    );
+
+  box-shadow:
+    0 0 4px
+    rgba(255, 255, 255, 1),
+
+    0 0 9px
+    rgba(137, 236, 255, 0.96),
+
+    0 0 18px
+    rgba(45, 190, 255, 0.82),
+
+    0 0 30px
+    rgba(104, 76, 255, 0.46);
+
+  transform:
+    translate(-50%, -50%)
+    scale(0.2);
+
+  will-change:
+    opacity,
+    transform,
+    filter;
+}
+
+
+/* -----------------------------------------------------
+   CORONA SHOCK RING
+----------------------------------------------------- */
+
+.season-lightning-impact::before {
+  content: "";
+
+  position: absolute;
+
+  left:
+    50%;
+
+  top:
+    50%;
+
+  width:
+    18px;
+
+  height:
+    18px;
+
+  border:
+    1px solid
+    rgba(180, 244, 255, 0.88);
+
+  border-radius:
+    50%;
+
+  transform:
+    translate(-50%, -50%)
+    scale(0.15);
+
+  opacity:
+    0;
+
+  box-shadow:
+    0 0 7px
+    rgba(88, 218, 255, 0.62),
+
+    inset 0 0 5px
+    rgba(220, 251, 255, 0.28);
+}
+
+
+/* -----------------------------------------------------
+   MICRO ARC CROSS
+----------------------------------------------------- */
+
+.season-lightning-impact::after {
+  content: "";
+
+  position: absolute;
+
+  left:
+    50%;
+
+  top:
+    50%;
+
+  width:
+    28px;
+
+  height:
+    2px;
+
+  transform:
+    translate(-50%, -50%)
+    rotate(-18deg);
+
+  opacity:
+    0;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(108, 222, 255, 0.48),
+      #ffffff,
+      rgba(112, 92, 255, 0.48),
+      transparent
+    );
+
+  filter:
+    drop-shadow(
+      0 0 4px
+      rgba(93, 218, 255, 0.86)
+    );
+}
+
+
+/* -----------------------------------------------------
+   IMPACT 1 — UPPER LEFT
+----------------------------------------------------- */
+
+.lightning-impact-1 {
+  left:
+    6%;
+
+  top:
+    31%;
+
+  animation:
+    seasonLightningImpactOne
+    5.4s
+    steps(1, end)
+    infinite;
+}
+
+
+.lightning-impact-1::before {
+  animation:
+    seasonLightningShockOne
+    5.4s
+    linear
+    infinite;
+}
+
+
+.lightning-impact-1::after {
+  animation:
+    seasonLightningMicroArcOne
+    5.4s
+    steps(1, end)
+    infinite;
+}
+
+
+/* -----------------------------------------------------
+   IMPACT 2 — UPPER RIGHT
+----------------------------------------------------- */
+
+.lightning-impact-2 {
+  right:
+    7%;
+
+  top:
+    27%;
+
+  animation:
+    seasonLightningImpactTwo
+    6.7s
+    steps(1, end)
+    infinite;
+}
+
+
+.lightning-impact-2::before {
+  animation:
+    seasonLightningShockTwo
+    6.7s
+    linear
+    infinite;
+}
+
+
+.lightning-impact-2::after {
+  animation:
+    seasonLightningMicroArcTwo
+    6.7s
+    steps(1, end)
+    infinite;
+}
+
+
+/* -----------------------------------------------------
+   IMPACT 3 — LOWER LEFT
+----------------------------------------------------- */
+
+.lightning-impact-3 {
+  left:
+    14%;
+
+  bottom:
+    8%;
+
+  animation:
+    seasonLightningImpactThree
+    7.9s
+    steps(1, end)
+    infinite;
+}
+
+
+.lightning-impact-3::before {
+  animation:
+    seasonLightningShockThree
+    7.9s
+    linear
+    infinite;
+}
+
+
+.lightning-impact-3::after {
+  animation:
+    seasonLightningMicroArcThree
+    7.9s
+    steps(1, end)
+    infinite;
+}
+
+
+/* -----------------------------------------------------
+   IMPACT 4 — LOWER RIGHT
+----------------------------------------------------- */
+
+.lightning-impact-4 {
+  right:
+    16%;
+
+  bottom:
+    7%;
+
+  animation:
+    seasonLightningImpactFour
+    9.1s
+    steps(1, end)
+    infinite;
+}
+
+
+.lightning-impact-4::before {
+  animation:
+    seasonLightningShockFour
+    9.1s
+    linear
+    infinite;
+}
+
+
+.lightning-impact-4::after {
+  animation:
+    seasonLightningMicroArcFour
+    9.1s
+    steps(1, end)
+    infinite;
+}
 /* -----------------------------------------------------
    FULL PROFILE ELECTRIC FLASH
 ----------------------------------------------------- */
@@ -13819,10 +14331,29 @@ body.mmr-profile-open {
       0;
   }
 
-  7% {
-    opacity:
-      1;
-  }
+7% {
+  opacity:
+    1;
+
+  filter:
+    brightness(2.4)
+    drop-shadow(
+      0 0 3px
+      #ffffff
+    )
+    drop-shadow(
+      0 0 8px
+      rgba(119, 232, 255, 1)
+    )
+    drop-shadow(
+      0 0 18px
+      rgba(43, 188, 255, 1)
+    )
+    drop-shadow(
+      0 0 30px
+      rgba(103, 75, 255, 0.88)
+    );
+}
 
   8% {
     opacity:
@@ -13987,8 +14518,843 @@ body.mmr-profile-open {
   }
 
 }
+/* =====================================================
+   SYNCHRONIZED SECONDARY DISCHARGES
+===================================================== */
 
 
+/* -----------------------------------------------------
+   BRANCH 1
+   Follows main Strike 1
+----------------------------------------------------- */
+
+@keyframes seasonLightningBranchOne {
+
+  0%,
+  7%,
+  9%,
+  55%,
+  57%,
+  100% {
+    opacity:
+      0;
+  }
+
+  7.35% {
+    opacity:
+      0.92;
+
+    filter:
+      brightness(2.1)
+      drop-shadow(
+        0 0 3px
+        #ffffff
+      )
+      drop-shadow(
+        0 0 8px
+        rgba(107, 229, 255, 1)
+      )
+      drop-shadow(
+        0 0 17px
+        rgba(42, 184, 255, 0.86)
+      );
+  }
+
+  7.65% {
+    opacity:
+      0.24;
+  }
+
+  8% {
+    opacity:
+      0.76;
+  }
+
+  55.35% {
+    opacity:
+      0.78;
+  }
+
+  55.7% {
+    opacity:
+      0.14;
+  }
+
+}
+
+
+/* -----------------------------------------------------
+   BRANCH 2
+   Follows main Strike 2
+----------------------------------------------------- */
+
+@keyframes seasonLightningBranchTwo {
+
+  0%,
+  22%,
+  25%,
+  77%,
+  80%,
+  100% {
+    opacity:
+      0;
+  }
+
+  22.35% {
+    opacity:
+      0.78;
+
+    filter:
+      brightness(1.9)
+      drop-shadow(
+        0 0 3px
+        #ffffff
+      )
+      drop-shadow(
+        0 0 7px
+        rgba(112, 231, 255, 0.96)
+      )
+      drop-shadow(
+        0 0 15px
+        rgba(55, 177, 255, 0.76)
+      );
+  }
+
+  22.7% {
+    opacity:
+      0.16;
+  }
+
+  23.15% {
+    opacity:
+      0.88;
+  }
+
+  24% {
+    opacity:
+      0.28;
+  }
+
+  77.35% {
+    opacity:
+      0.72;
+  }
+
+  78% {
+    opacity:
+      0.12;
+  }
+
+}
+
+
+/* -----------------------------------------------------
+   BRANCH 3
+   Follows main Strike 3
+----------------------------------------------------- */
+
+@keyframes seasonLightningBranchThree {
+
+  0%,
+  35%,
+  38%,
+  89%,
+  92%,
+  100% {
+    opacity:
+      0;
+  }
+
+  35.4% {
+    opacity:
+      0.72;
+
+    filter:
+      brightness(1.85)
+      drop-shadow(
+        0 0 3px
+        #ffffff
+      )
+      drop-shadow(
+        0 0 7px
+        rgba(103, 225, 255, 0.92)
+      )
+      drop-shadow(
+        0 0 14px
+        rgba(66, 174, 255, 0.72)
+      );
+  }
+
+  35.8% {
+    opacity:
+      0.20;
+  }
+
+  36.2% {
+    opacity:
+      0.82;
+  }
+
+  37% {
+    opacity:
+      0.10;
+  }
+
+  89.4% {
+    opacity:
+      0.68;
+  }
+
+  90% {
+    opacity:
+      0.12;
+  }
+
+}
+
+
+/* -----------------------------------------------------
+   BRANCH 4
+   Follows main Strike 4
+----------------------------------------------------- */
+
+@keyframes seasonLightningBranchFour {
+
+  0%,
+  13%,
+  16%,
+  64%,
+  67%,
+  100% {
+    opacity:
+      0;
+  }
+
+  13.35% {
+    opacity:
+      0.86;
+
+    filter:
+      brightness(2)
+      drop-shadow(
+        0 0 3px
+        #ffffff
+      )
+      drop-shadow(
+        0 0 8px
+        rgba(111, 230, 255, 0.98)
+      )
+      drop-shadow(
+        0 0 16px
+        rgba(47, 182, 255, 0.80)
+      );
+  }
+
+  13.7% {
+    opacity:
+      0.18;
+  }
+
+  14.1% {
+    opacity:
+      0.78;
+  }
+
+  15% {
+    opacity:
+      0.14;
+  }
+
+  64.35% {
+    opacity:
+      0.76;
+  }
+
+  65% {
+    opacity:
+      0.10;
+  }
+
+}
+/* =====================================================
+   LIGHTNING IMPACT TIMING ENGINE
+===================================================== */
+
+
+/* -----------------------------------------------------
+   IMPACT 1
+----------------------------------------------------- */
+
+@keyframes seasonLightningImpactOne {
+
+  0%,
+  7.30%,
+  8.35%,
+  55.30%,
+  56.20%,
+  100% {
+    opacity:
+      0;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0.18);
+  }
+
+  7.38% {
+    opacity:
+      1;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.55);
+
+    filter:
+      brightness(2.8);
+  }
+
+  7.55% {
+    opacity:
+      0.42;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0.82);
+  }
+
+  7.76% {
+    opacity:
+      0.96;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.18);
+  }
+
+  8.12% {
+    opacity:
+      0.18;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0.68);
+  }
+
+  55.38% {
+    opacity:
+      0.90;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.32);
+  }
+
+  55.72% {
+    opacity:
+      0.16;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0.72);
+  }
+
+}
+
+
+/* -----------------------------------------------------
+   IMPACT 2
+----------------------------------------------------- */
+
+@keyframes seasonLightningImpactTwo {
+
+  0%,
+  22.30%,
+  24.45%,
+  77.30%,
+  79.10%,
+  100% {
+    opacity:
+      0;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0.18);
+  }
+
+  22.40% {
+    opacity:
+      0.94;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.42);
+
+    filter:
+      brightness(2.5);
+  }
+
+  22.72% {
+    opacity:
+      0.22;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0.76);
+  }
+
+  23.18% {
+    opacity:
+      1;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.24);
+  }
+
+  23.82% {
+    opacity:
+      0.16;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0.66);
+  }
+
+  77.40% {
+    opacity:
+      0.88;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.30);
+  }
+
+  78.10% {
+    opacity:
+      0.12;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0.70);
+  }
+
+}
+
+
+/* -----------------------------------------------------
+   IMPACT 3
+----------------------------------------------------- */
+
+@keyframes seasonLightningImpactThree {
+
+  0%,
+  35.30%,
+  37.70%,
+  89.30%,
+  91.10%,
+  100% {
+    opacity:
+      0;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0.18);
+  }
+
+  35.45% {
+    opacity:
+      0.90;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.38);
+
+    filter:
+      brightness(2.35);
+  }
+
+  35.82% {
+    opacity:
+      0.20;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0.74);
+  }
+
+  36.24% {
+    opacity:
+      0.86;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.16);
+  }
+
+  36.95% {
+    opacity:
+      0.12;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0.64);
+  }
+
+  89.45% {
+    opacity:
+      0.82;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.26);
+  }
+
+  90.15% {
+    opacity:
+      0.10;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0.68);
+  }
+
+}
+
+
+/* -----------------------------------------------------
+   IMPACT 4
+----------------------------------------------------- */
+
+@keyframes seasonLightningImpactFour {
+
+  0%,
+  13.30%,
+  15.65%,
+  64.30%,
+  66.10%,
+  100% {
+    opacity:
+      0;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0.18);
+  }
+
+  13.40% {
+    opacity:
+      1;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.48);
+
+    filter:
+      brightness(2.65);
+  }
+
+  13.72% {
+    opacity:
+      0.24;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0.76);
+  }
+
+  14.14% {
+    opacity:
+      0.92;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.20);
+  }
+
+  14.88% {
+    opacity:
+      0.14;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0.66);
+  }
+
+  64.40% {
+    opacity:
+      0.88;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.30);
+  }
+
+  65.12% {
+    opacity:
+      0.10;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0.70);
+  }
+
+}
+
+
+/* =====================================================
+   CORONA SHOCK RINGS
+===================================================== */
+
+@keyframes seasonLightningShockOne {
+
+  0%,
+  7.34% {
+    opacity:
+      0;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0.15);
+  }
+
+  7.42% {
+    opacity:
+      0.92;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0.30);
+  }
+
+  8.20% {
+    opacity:
+      0;
+
+    transform:
+      translate(-50%, -50%)
+      scale(2.35);
+  }
+
+  100% {
+    opacity:
+      0;
+  }
+
+}
+
+
+@keyframes seasonLightningShockTwo {
+
+  0%,
+  22.36% {
+    opacity:
+      0;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0.15);
+  }
+
+  22.45% {
+    opacity:
+      0.84;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0.30);
+  }
+
+  23.45% {
+    opacity:
+      0;
+
+    transform:
+      translate(-50%, -50%)
+      scale(2.20);
+  }
+
+  100% {
+    opacity:
+      0;
+  }
+
+}
+
+
+@keyframes seasonLightningShockThree {
+
+  0%,
+  35.40% {
+    opacity:
+      0;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0.15);
+  }
+
+  35.50% {
+    opacity:
+      0.80;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0.28);
+  }
+
+  36.55% {
+    opacity:
+      0;
+
+    transform:
+      translate(-50%, -50%)
+      scale(2.10);
+  }
+
+  100% {
+    opacity:
+      0;
+  }
+
+}
+
+
+@keyframes seasonLightningShockFour {
+
+  0%,
+  13.36% {
+    opacity:
+      0;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0.15);
+  }
+
+  13.45% {
+    opacity:
+      0.88;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0.30);
+  }
+
+  14.40% {
+    opacity:
+      0;
+
+    transform:
+      translate(-50%, -50%)
+      scale(2.28);
+  }
+
+  100% {
+    opacity:
+      0;
+  }
+
+}
+
+
+/* =====================================================
+   MICRO ARC DISCHARGES
+===================================================== */
+
+@keyframes seasonLightningMicroArcOne {
+
+  0%,
+  7.34%,
+  7.58%,
+  7.82%,
+  100% {
+    opacity:
+      0;
+  }
+
+  7.42% {
+    opacity:
+      1;
+  }
+
+  7.66% {
+    opacity:
+      0.74;
+  }
+
+}
+
+
+@keyframes seasonLightningMicroArcTwo {
+
+  0%,
+  22.36%,
+  22.68%,
+  23.08%,
+  100% {
+    opacity:
+      0;
+  }
+
+  22.44% {
+    opacity:
+      0.92;
+  }
+
+  22.78% {
+    opacity:
+      0.68;
+  }
+
+}
+
+
+@keyframes seasonLightningMicroArcThree {
+
+  0%,
+  35.40%,
+  35.74%,
+  36.12%,
+  100% {
+    opacity:
+      0;
+  }
+
+  35.48% {
+    opacity:
+      0.88;
+  }
+
+  35.84% {
+    opacity:
+      0.62;
+  }
+
+}
+
+
+@keyframes seasonLightningMicroArcFour {
+
+  0%,
+  13.36%,
+  13.66%,
+  14.04%,
+  100% {
+    opacity:
+      0;
+  }
+
+  13.44% {
+    opacity:
+      0.96;
+  }
+
+  13.76% {
+    opacity:
+      0.70;
+  }
+
+}
 /* -----------------------------------------------------
    PROFILE FLASH
 ----------------------------------------------------- */
@@ -28343,7 +29709,60 @@ if (profileModal) {
           lightning-bolt-4
         "
       ></span>
+      <span
+        class="
+          season-lightning-branch
+          lightning-branch-1
+        "
+      ></span>
 
+      <span
+        class="
+          season-lightning-branch
+          lightning-branch-2
+        "
+      ></span>
+
+      <span
+        class="
+          season-lightning-branch
+          lightning-branch-3
+        "
+      ></span>
+
+      <span
+        class="
+          season-lightning-branch
+          lightning-branch-4
+        "
+      ></span>
+            <span
+        class="
+          season-lightning-impact
+          lightning-impact-1
+        "
+      ></span>
+
+      <span
+        class="
+          season-lightning-impact
+          lightning-impact-2
+        "
+      ></span>
+
+      <span
+        class="
+          season-lightning-impact
+          lightning-impact-3
+        "
+      ></span>
+
+      <span
+        class="
+          season-lightning-impact
+          lightning-impact-4
+        "
+      ></span>
       <span
         class="
           season-lightning-flash
