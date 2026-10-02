@@ -25511,44 +25511,14 @@ if (
 }
 
 
-  // =================================================
-  // GET CURRENT SEASON
-  // =================================================
-
-  const availableYears =
-    getMMRAvailableYears();
+// =================================================
+// GET ACTIVE CALENDAR SEASON
+// =================================================
 
 
-  if (
-    availableYears.length === 0
-  ) {
 
-    statusElement.textContent =
-      "NO SEASON";
-
-    yearElement.textContent =
-      "—";
-
-    matchesElement.textContent =
-      "0";
-
-    playersElement.textContent =
-      "0";
-
-    button.disabled =
-      true;
-
-    buttonText.textContent =
-      "NO SEASON DATA";
-
-    return;
-  }
-
-
-  const currentYear =
-    availableYears[0];
-
-
+const currentYear =
+  new Date().getFullYear();
   // =================================================
   // GET SEASON STATE
   // =================================================
@@ -25559,17 +25529,36 @@ if (
     );
 
 
-  const annualRecord =
-    getMMRAnnualRecord(
-      currentYear
-    );
+
 
 
   const seasonMatches =
     getMMRMatchesByYear(
       currentYear
     );
+const seasonPlayerNames =
+  new Set();
 
+
+seasonMatches.forEach(match => {
+
+  if (match.winner) {
+    seasonPlayerNames.add(
+      match.winner
+    );
+  }
+
+  if (match.loser) {
+    seasonPlayerNames.add(
+      match.loser
+    );
+  }
+
+});
+
+
+const seasonPlayerCount =
+  seasonPlayerNames.size;
 
   // =================================================
   // UPDATE PANEL DATA
@@ -25583,8 +25572,8 @@ if (
     seasonMatches.length;
 
 
-  playersElement.textContent =
-    annualRecord.length;
+playersElement.textContent =
+  seasonPlayerCount;
 
 
   statusElement.textContent =
