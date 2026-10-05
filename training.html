@@ -461,7 +461,232 @@ grid-template-columns:
 
       font-size: 11px;
     }
+/* =====================================================
+   RECENT TRAINING SESSIONS
+===================================================== */
 
+.training-sessions-board {
+  margin-top: 22px;
+}
+
+
+/* SESSION LIST */
+
+.training-session-list {
+  display: grid;
+  gap: 10px;
+}
+
+
+/* SESSION CARD */
+
+.training-session-card {
+  position: relative;
+
+  overflow: hidden;
+
+  padding: 16px 18px;
+
+  border:
+    1px solid rgba(34,211,238,.10);
+
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(34,211,238,.035),
+      rgba(255,255,255,.012)
+    );
+
+  transition:
+    transform .18s ease,
+    border-color .18s ease,
+    background .18s ease;
+}
+
+
+.training-session-card:hover {
+  transform:
+    translateY(-2px);
+
+  border-color:
+    rgba(34,211,238,.28);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(34,211,238,.065),
+      rgba(255,255,255,.018)
+    );
+}
+
+
+/* =====================================================
+   SESSION TOP
+===================================================== */
+
+.training-session-top {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 12px;
+
+  margin-bottom: 16px;
+}
+
+
+.training-session-label {
+  color: #67e8f9;
+
+  font-size: 7px;
+  font-weight: 900;
+
+  letter-spacing: 1.2px;
+}
+
+
+.training-session-id {
+  color: #686271;
+
+  font-size: 7px;
+  font-weight: 800;
+
+  letter-spacing: .7px;
+}
+
+
+/* =====================================================
+   SESSION SCORE
+===================================================== */
+
+.training-session-score {
+  display: grid;
+
+  grid-template-columns:
+    minmax(100px, 1fr)
+    auto
+    minmax(100px, 1fr);
+
+  align-items: center;
+
+  gap: 18px;
+
+  padding:
+    12px 0 16px;
+}
+
+
+.training-session-player {
+  color: #f4f1f5;
+
+  font-size: 13px;
+  font-weight: 900;
+
+  letter-spacing: .3px;
+}
+
+
+.training-session-player:first-child {
+  text-align: right;
+}
+
+
+.training-session-player:last-child {
+  text-align: left;
+}
+
+
+.training-session-result {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  min-width: 100px;
+}
+
+
+.training-session-number {
+  color: #ffffff;
+
+  font-size: 22px;
+  font-weight: 900;
+
+  line-height: 1;
+}
+
+
+.training-session-dash {
+  color: #4f4a55;
+
+  font-size: 12px;
+  font-weight: 900;
+}
+
+
+/* WINNER */
+
+.training-session-player.winner {
+  color: #39ff88;
+
+  text-shadow:
+    0 0 10px rgba(57,255,136,.16);
+}
+
+
+/* =====================================================
+   SESSION META
+===================================================== */
+
+.training-session-meta {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 8px;
+
+  padding-top: 12px;
+
+  border-top:
+    1px solid rgba(255,255,255,.045);
+}
+
+
+.training-session-meta-item {
+  padding:
+    5px 8px;
+
+  border:
+    1px solid rgba(255,255,255,.055);
+
+  border-radius: 999px;
+
+  color: #827c89;
+
+  font-size: 7px;
+  font-weight: 900;
+
+  letter-spacing: .55px;
+}
+
+
+.training-session-meta-item.safe {
+  color: #39ff88;
+
+  border-color:
+    rgba(57,255,136,.18);
+
+  background:
+    rgba(57,255,136,.035);
+}
     /* =====================================================
        MOBILE
     ===================================================== */
@@ -723,7 +948,46 @@ grid-template-columns:
         </div>
 
       </section>
+<!-- =====================================================
+     RECENT TRAINING SESSIONS
+====================================================== -->
 
+<section class="training-board training-sessions-board">
+
+  <div class="training-board-header">
+
+    <div class="training-board-kicker">
+      SESSION HISTORY
+    </div>
+
+    <h2 class="training-board-title">
+      RECENT TRAINING SESSIONS
+    </h2>
+
+    <div class="training-board-subtitle">
+      Practice session results ·
+      Zero impact on competitive MMR
+    </div>
+
+  </div>
+
+
+  <div id="trainingSessions">
+
+    <div class="training-empty">
+
+      <strong>
+        NO TRAINING SESSIONS RECORDED
+      </strong>
+
+      Completed Training Sessions
+      will appear here.
+
+    </div>
+
+  </div>
+
+</section>
 
     </div>
 
@@ -1081,6 +1345,199 @@ function getTrainingLeaderboard() {
   return leaderboard;
 
 }
+// =====================================================
+// BUILD TRAINING SESSIONS
+// =====================================================
+//
+// Groups individual Training games by sessionId.
+//
+// Example:
+//
+// TS-2026-001
+// Game 1: ALGERINO defeats Harun
+// Game 2: Harun defeats ALGERINO
+// Game 3: ALGERINO defeats Harun
+//
+// Result:
+// ALGERINO 2 - 1 Harun
+//
+// IMPORTANT:
+// This function NEVER modifies MMR.
+// =====================================================
+
+function getTrainingSessions() {
+
+  const sessions = new Map();
+
+
+  trainingMatches.forEach(
+    (match, matchIndex) => {
+
+      if (
+        !match ||
+        !match.sessionId ||
+        !match.winner ||
+        !match.loser
+      ) {
+        return;
+      }
+
+
+      // -----------------------------------------------
+      // CREATE SESSION
+      // -----------------------------------------------
+
+      if (!sessions.has(match.sessionId)) {
+
+        sessions.set(
+          match.sessionId,
+          {
+            sessionId: match.sessionId,
+            date: match.date || "",
+            games: [],
+            players: new Map(),
+            newestIndex: matchIndex
+          }
+        );
+
+      }
+
+
+      const session =
+        sessions.get(match.sessionId);
+
+
+      // -----------------------------------------------
+      // STORE GAME
+      // -----------------------------------------------
+
+      session.games.push(match);
+
+
+      // -----------------------------------------------
+      // REGISTER PLAYERS
+      // -----------------------------------------------
+
+      if (!session.players.has(match.winner)) {
+
+        session.players.set(
+          match.winner,
+          {
+            name: match.winner,
+            wins: 0
+          }
+        );
+
+      }
+
+
+      if (!session.players.has(match.loser)) {
+
+        session.players.set(
+          match.loser,
+          {
+            name: match.loser,
+            wins: 0
+          }
+        );
+
+      }
+
+
+      // -----------------------------------------------
+      // COUNT SESSION WINS
+      // -----------------------------------------------
+
+      session.players.get(
+        match.winner
+      ).wins++;
+
+    }
+  );
+
+
+  // =====================================================
+  // FINAL SESSION DATA
+  // =====================================================
+
+  return Array.from(
+    sessions.values()
+  )
+    .map(session => {
+
+      const players =
+        Array.from(
+          session.players.values()
+        );
+
+
+      // -----------------------------------------------
+      // SORT BY SESSION WINS
+      // -----------------------------------------------
+
+      players.sort(
+        (a, b) =>
+          b.wins - a.wins
+      );
+
+
+      const playerA =
+        players[0] || {
+          name: "Unknown",
+          wins: 0
+        };
+
+
+      const playerB =
+        players[1] || {
+          name: "Unknown",
+          wins: 0
+        };
+
+
+      return {
+
+        sessionId:
+          session.sessionId,
+
+        date:
+          session.date,
+
+        games:
+          session.games.length,
+
+        playerA:
+          playerA.name,
+
+        playerB:
+          playerB.name,
+
+        scoreA:
+          playerA.wins,
+
+        scoreB:
+          playerB.wins,
+
+        winner:
+          playerA.wins > playerB.wins
+            ? playerA.name
+            : null,
+
+        newestIndex:
+          session.newestIndex
+
+      };
+
+    })
+
+    // Newest Training Session first.
+    .sort(
+      (a, b) =>
+        a.newestIndex -
+        b.newestIndex
+    );
+
+}    
     // =====================================================
     // RENDER TRAINING LEADERBOARD
     // =====================================================
@@ -1254,9 +1711,157 @@ return `
           .join("");
 
     }
+// =====================================================
+// RENDER TRAINING SESSIONS
+// =====================================================
+
+function renderTrainingSessions() {
+
+  const container =
+    document.getElementById(
+      "trainingSessions"
+    );
 
 
-    renderTrainingLeaderboard();
+  if (!container) {
+    return;
+  }
+
+
+  const sessions =
+    getTrainingSessions();
+
+
+  // =====================================================
+  // EMPTY STATE
+  // =====================================================
+
+  if (sessions.length === 0) {
+
+    container.innerHTML = `
+
+      <div class="training-empty">
+
+        <strong>
+          NO TRAINING SESSIONS RECORDED
+        </strong>
+
+        Completed Training Sessions
+        will appear here.
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  // =====================================================
+  // SESSION CARDS
+  // =====================================================
+
+  container.innerHTML = `
+
+    <div class="training-session-list">
+
+      ${sessions.map(session => {
+
+        const playerAClass =
+          session.winner === session.playerA
+            ? "training-session-player winner"
+            : "training-session-player";
+
+
+        const playerBClass =
+          session.winner === session.playerB
+            ? "training-session-player winner"
+            : "training-session-player";
+
+
+        return `
+
+          <div class="training-session-card">
+
+            <div class="training-session-top">
+
+              <div class="training-session-label">
+                TRAINING SESSION
+              </div>
+
+              <div class="training-session-id">
+                ${session.sessionId}
+              </div>
+
+            </div>
+
+
+            <div class="training-session-score">
+
+              <div class="${playerAClass}">
+                ${session.playerA}
+              </div>
+
+
+              <div class="training-session-result">
+
+                <span class="training-session-number">
+                  ${session.scoreA}
+                </span>
+
+                <span class="training-session-dash">
+                  —
+                </span>
+
+                <span class="training-session-number">
+                  ${session.scoreB}
+                </span>
+
+              </div>
+
+
+              <div class="${playerBClass}">
+                ${session.playerB}
+              </div>
+
+            </div>
+
+
+            <div class="training-session-meta">
+
+              <span class="training-session-meta-item">
+                ${session.date}
+              </span>
+
+              <span class="training-session-meta-item">
+                ${session.games}
+                ${session.games === 1 ? "GAME" : "GAMES"}
+              </span>
+
+              <span class="
+                training-session-meta-item
+                safe
+              ">
+                0 MMR IMPACT
+              </span>
+
+            </div>
+
+          </div>
+
+        `;
+
+      }).join("")}
+
+    </div>
+
+  `;
+
+}
+
+renderTrainingLeaderboard();
+renderTrainingSessions();
 
   </script>
 
