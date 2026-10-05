@@ -1101,6 +1101,481 @@ grid-template-columns:
   }
 
 }
+/* =====================================================
+   TRAINING SESSION DETAILS
+====================================================== */
+
+.training-session-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(34, 211, 238, .08),
+      rgba(0, 0, 0, .88) 55%
+    );
+
+  backdrop-filter: blur(8px);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity .22s ease,
+    visibility .22s ease;
+}
+
+
+.training-session-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+
+/* MODAL */
+
+.training-session-modal {
+  position: relative;
+
+  width: min(620px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+
+  padding: 34px 30px 26px;
+
+  border: 1px solid rgba(34, 211, 238, .22);
+  border-radius: 16px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(13, 18, 24, .98),
+      rgba(7, 10, 15, .99)
+    );
+
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, .65),
+    0 0 40px rgba(34, 211, 238, .06);
+
+  transform:
+    translateY(14px)
+    scale(.98);
+
+  transition:
+    transform .22s ease;
+}
+
+
+.training-session-overlay.active
+.training-session-modal {
+  transform:
+    translateY(0)
+    scale(1);
+}
+
+
+/* CLOSE */
+
+.training-session-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, .08);
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, .025);
+
+  color: #77717d;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    color .18s ease,
+    border-color .18s ease,
+    background .18s ease,
+    transform .18s ease;
+}
+
+
+.training-session-close:hover {
+  color: #67e8f9;
+
+  border-color:
+    rgba(34, 211, 238, .28);
+
+  background:
+    rgba(34, 211, 238, .06);
+
+  transform: rotate(90deg);
+}
+
+
+/* HEADER */
+
+.training-session-detail-header {
+  padding:
+    8px 34px
+    22px;
+
+  text-align: center;
+}
+
+
+.training-session-detail-kicker {
+  margin-bottom: 8px;
+
+  color: #67e8f9;
+
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 1.8px;
+}
+
+
+.training-session-detail-title {
+  margin: 0;
+
+  color: #f5f3f6;
+
+  font-size: 25px;
+  font-weight: 900;
+  letter-spacing: .6px;
+}
+
+
+.training-session-detail-id {
+  margin-top: 9px;
+
+  color: #625d68;
+
+  font-size: 7px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+
+/* SCORE */
+
+.training-session-detail-score {
+  display: grid;
+
+  grid-template-columns:
+    minmax(100px, 1fr)
+    auto
+    minmax(100px, 1fr);
+
+  align-items: center;
+
+  gap: 20px;
+
+  padding: 20px 0;
+
+  border-top:
+    1px solid
+    rgba(255, 255, 255, .055);
+
+  border-bottom:
+    1px solid
+    rgba(255, 255, 255, .055);
+}
+
+
+.training-session-detail-player {
+  color: #f5f3f6;
+
+  font-size: 14px;
+  font-weight: 900;
+
+  letter-spacing: .35px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+.training-session-detail-player:first-child {
+  text-align: right;
+}
+
+
+.training-session-detail-player:last-child {
+  text-align: left;
+}
+
+
+.training-session-detail-player.winner {
+  color: #39ff88;
+
+  text-shadow:
+    0 0 12px
+    rgba(57, 255, 136, .18);
+}
+
+
+.training-session-detail-result {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  min-width: 105px;
+}
+
+
+.training-session-detail-result strong {
+  color: #fff;
+
+  font-size: 26px;
+  font-weight: 900;
+}
+
+
+.training-session-detail-result span {
+  color: #4f4a55;
+
+  font-size: 13px;
+  font-weight: 900;
+}
+
+
+/* META */
+
+.training-session-detail-meta {
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 15px 0;
+}
+
+
+.training-session-detail-meta > span {
+  padding: 5px 9px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, .055);
+
+  border-radius: 999px;
+
+  color: #827c89;
+
+  font-size: 7px;
+  font-weight: 900;
+  letter-spacing: .55px;
+}
+
+
+.training-session-detail-meta > span.safe {
+  color: #39ff88;
+
+  border-color:
+    rgba(57, 255, 136, .18);
+
+  background:
+    rgba(57, 255, 136, .035);
+}
+
+
+/* GAME HISTORY */
+
+.training-session-games {
+  margin-top: 12px;
+}
+
+
+.training-session-games-title {
+  margin-bottom: 10px;
+
+  color: #67e8f9;
+
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 1.2px;
+}
+
+
+.training-session-game-list {
+  display: grid;
+  gap: 7px;
+}
+
+
+.training-session-game {
+  display: grid;
+
+  grid-template-columns:
+    70px
+    minmax(90px, 1fr)
+    auto;
+
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 11px 12px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, .045);
+
+  border-radius: 8px;
+
+  background:
+    rgba(255, 255, 255, .015);
+}
+
+
+.training-session-game-number {
+  color: #686271;
+
+  font-size: 7px;
+  font-weight: 900;
+  letter-spacing: .8px;
+}
+
+
+.training-session-game-winner {
+  color: #f5f3f6;
+
+  font-size: 9px;
+  font-weight: 900;
+}
+
+
+.training-session-game-result {
+  color: #39ff88;
+
+  font-size: 7px;
+  font-weight: 900;
+  letter-spacing: .65px;
+}
+
+
+.training-session-game-empty {
+  padding: 24px;
+
+  border:
+    1px dashed
+    rgba(255, 255, 255, .07);
+
+  border-radius: 8px;
+
+  text-align: center;
+
+  color: #5d5862;
+
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: .8px;
+}
+
+
+/* FOOTER */
+
+.training-session-detail-footer {
+  margin-top: 24px;
+
+  text-align: center;
+
+  color: #4f4a55;
+
+  font-size: 7px;
+  font-weight: 900;
+  letter-spacing: 1.3px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+  .training-session-overlay {
+    padding: 14px;
+  }
+
+
+  .training-session-modal {
+    padding:
+      30px 18px
+      22px;
+  }
+
+
+  .training-session-detail-title {
+    font-size: 21px;
+  }
+
+
+  .training-session-detail-score {
+    grid-template-columns:
+      minmax(70px, 1fr)
+      auto
+      minmax(70px, 1fr);
+
+    gap: 10px;
+  }
+
+
+  .training-session-detail-player {
+    font-size: 11px;
+  }
+
+
+  .training-session-detail-result {
+    min-width: 78px;
+    gap: 8px;
+  }
+
+
+  .training-session-detail-result strong {
+    font-size: 21px;
+  }
+
+
+  .training-session-game {
+    grid-template-columns:
+      58px
+      minmax(80px, 1fr)
+      auto;
+
+    gap: 8px;
+
+    padding: 10px;
+  }
+
+}    
   </style>
 </head>
 
@@ -1500,6 +1975,147 @@ grid-template-columns:
   </div>
 
 </div>
+<!-- =====================================================
+     TRAINING SESSION DETAILS
+====================================================== -->
+
+<div
+  id="trainingSessionOverlay"
+  class="training-session-overlay"
+  aria-hidden="true"
+>
+
+  <div
+    class="training-session-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="trainingSessionTitle"
+  >
+
+    <!-- CLOSE -->
+
+    <button
+      type="button"
+      class="training-session-close"
+      id="trainingSessionClose"
+      aria-label="Close Training Session Details"
+    >
+      ×
+    </button>
+
+
+    <!-- HEADER -->
+
+    <div class="training-session-detail-header">
+
+      <div class="training-session-detail-kicker">
+        TRAINING SESSION
+      </div>
+
+      <h2
+        class="training-session-detail-title"
+        id="trainingSessionTitle"
+      >
+        SESSION DETAILS
+      </h2>
+
+      <div
+        class="training-session-detail-id"
+        id="trainingSessionDetailId"
+      >
+        TS-0000-000
+      </div>
+
+    </div>
+
+
+    <!-- SCORE -->
+
+    <div class="training-session-detail-score">
+
+      <div
+        class="training-session-detail-player"
+        id="trainingSessionPlayerA"
+      >
+        PLAYER A
+      </div>
+
+      <div class="training-session-detail-result">
+
+        <strong id="trainingSessionScoreA">
+          0
+        </strong>
+
+        <span>
+          —
+        </span>
+
+        <strong id="trainingSessionScoreB">
+          0
+        </strong>
+
+      </div>
+
+      <div
+        class="training-session-detail-player"
+        id="trainingSessionPlayerB"
+      >
+        PLAYER B
+      </div>
+
+    </div>
+
+
+    <!-- SESSION META -->
+
+    <div class="training-session-detail-meta">
+
+      <span id="trainingSessionDate">
+        DATE
+      </span>
+
+      <span id="trainingSessionGameCount">
+        0 GAMES
+      </span>
+
+      <span class="safe">
+        0 MMR IMPACT
+      </span>
+
+    </div>
+
+
+    <!-- GAME HISTORY -->
+
+    <div class="training-session-games">
+
+      <div class="training-session-games-title">
+        GAME HISTORY
+      </div>
+
+      <div
+        id="trainingSessionGameList"
+        class="training-session-game-list"
+      >
+
+        <div class="training-session-game-empty">
+          NO GAME DATA
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <div class="training-session-detail-footer">
+      PRACTICE · EXPERIMENT · IMPROVE
+    </div>
+
+  </div>
+
+</div>  
   <!-- =====================================================
        TRAINING ENGINE
        IMPORTANT:
@@ -1536,7 +2152,34 @@ grid-template-columns:
 // =====================================================
 
 const trainingMatches = [
+  // =====================================================
+  // TEMPORARY STAGE 6 TEST
+  // DELETE AFTER SESSION DETAILS TEST
+  // =====================================================
 
+  // Game 3 — newest
+  {
+    sessionId: "TEST-SESSION-001",
+    winner: "ALGERINO",
+    loser: "Harun",
+    date: "5 October 2026"
+  },
+
+  // Game 2
+  {
+    sessionId: "TEST-SESSION-001",
+    winner: "Harun",
+    loser: "ALGERINO",
+    date: "5 October 2026"
+  },
+
+  // Game 1 — oldest
+  {
+    sessionId: "TEST-SESSION-001",
+    winner: "ALGERINO",
+    loser: "Harun",
+    date: "5 October 2026"
+  },
  
 
   // =====================================================
@@ -2286,11 +2929,17 @@ function renderTrainingSessions() {
             : "training-session-player";
 
 
-        return `
+return `
 
-          <div class="training-session-card">
+  <div
+    class="training-session-card training-session-clickable"
+    data-training-session="${session.sessionId}"
+    role="button"
+    tabindex="0"
+    title="View ${session.sessionId} Details"
+  >
 
-            <div class="training-session-top">
+    <div class="training-session-top">
 
               <div class="training-session-label">
                 TRAINING SESSION
@@ -2365,6 +3014,248 @@ function renderTrainingSessions() {
   `;
 
 }
+// =====================================================
+// TRAINING SESSION DETAILS ENGINE
+// =====================================================
+
+function getTrainingSessionDetails(sessionId) {
+
+  const session =
+    getTrainingSessions().find(
+      item =>
+        item.sessionId === sessionId
+    );
+
+  if (!session) {
+    return null;
+  }
+
+
+  // ===================================================
+  // GET ALL GAMES FROM THIS SESSION
+  // ===================================================
+  //
+  // trainingMatches is stored newest game first.
+  // Session Details displays games chronologically:
+  // Game 1 -> Game 2 -> Game 3.
+  // ===================================================
+
+  const games =
+    trainingMatches
+      .filter(
+        match =>
+          match &&
+          match.sessionId === sessionId &&
+          match.winner &&
+          match.loser
+      )
+      .slice()
+      .reverse();
+
+
+  return {
+    ...session,
+    gameHistory: games
+  };
+
+}
+
+
+// =====================================================
+// OPEN TRAINING SESSION DETAILS
+// =====================================================
+
+function openTrainingSessionDetails(sessionId) {
+
+  const session =
+    getTrainingSessionDetails(
+      sessionId
+    );
+
+  if (!session) {
+    return;
+  }
+
+
+  const overlay =
+    document.getElementById(
+      "trainingSessionOverlay"
+    );
+
+  if (!overlay) {
+    return;
+  }
+
+
+  // ===================================================
+  // SESSION HEADER
+  // ===================================================
+
+  document.getElementById(
+    "trainingSessionTitle"
+  ).textContent =
+    `${session.playerA} vs ${session.playerB}`;
+
+
+  document.getElementById(
+    "trainingSessionDetailId"
+  ).textContent =
+    session.sessionId;
+
+
+  // ===================================================
+  // PLAYERS + SCORE
+  // ===================================================
+
+  const playerAElement =
+    document.getElementById(
+      "trainingSessionPlayerA"
+    );
+
+  const playerBElement =
+    document.getElementById(
+      "trainingSessionPlayerB"
+    );
+
+
+  playerAElement.textContent =
+    session.playerA;
+
+  playerBElement.textContent =
+    session.playerB;
+
+
+  playerAElement.classList.toggle(
+    "winner",
+    session.winner === session.playerA
+  );
+
+  playerBElement.classList.toggle(
+    "winner",
+    session.winner === session.playerB
+  );
+
+
+  document.getElementById(
+    "trainingSessionScoreA"
+  ).textContent =
+    session.scoreA;
+
+
+  document.getElementById(
+    "trainingSessionScoreB"
+  ).textContent =
+    session.scoreB;
+
+
+  // ===================================================
+  // META
+  // ===================================================
+
+  document.getElementById(
+    "trainingSessionDate"
+  ).textContent =
+    session.date || "DATE UNKNOWN";
+
+
+  document.getElementById(
+    "trainingSessionGameCount"
+  ).textContent =
+    `${session.games} ${
+      session.games === 1
+        ? "GAME"
+        : "GAMES"
+    }`;
+
+
+  // ===================================================
+  // GAME HISTORY
+  // ===================================================
+
+  const gameList =
+    document.getElementById(
+      "trainingSessionGameList"
+    );
+
+
+  if (session.gameHistory.length === 0) {
+
+    gameList.innerHTML = `
+      <div class="training-session-game-empty">
+        NO GAME DATA
+      </div>
+    `;
+
+  } else {
+
+    gameList.innerHTML =
+      session.gameHistory
+        .map(
+          (game, index) => `
+            <div class="training-session-game">
+
+              <div class="training-session-game-number">
+                GAME ${index + 1}
+              </div>
+
+              <div class="training-session-game-winner">
+                ${game.winner}
+              </div>
+
+              <div class="training-session-game-result">
+                WIN
+              </div>
+
+            </div>
+          `
+        )
+        .join("");
+
+  }
+
+
+  // ===================================================
+  // OPEN MODAL
+  // ===================================================
+
+  overlay.classList.add(
+    "active"
+  );
+
+  overlay.setAttribute(
+    "aria-hidden",
+    "false"
+  );
+
+}
+
+
+// =====================================================
+// CLOSE TRAINING SESSION DETAILS
+// =====================================================
+
+function closeTrainingSessionDetails() {
+
+  const overlay =
+    document.getElementById(
+      "trainingSessionOverlay"
+    );
+
+  if (!overlay) {
+    return;
+  }
+
+
+  overlay.classList.remove(
+    "active"
+  );
+
+  overlay.setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
+}    
 // =====================================================
 // TRAINING PLAYER PROFILE ENGINE
 // =====================================================
@@ -2537,10 +3428,14 @@ renderTrainingSessions();
 
 
 // =====================================================
-// TRAINING PLAYER PROFILE EVENTS
+// TRAINING INTERACTION EVENTS
 // =====================================================
 
 document.addEventListener("click", event => {
+
+  // ===================================================
+  // PLAYER PROFILE
+  // ===================================================
 
   const playerButton =
     event.target.closest(
@@ -2560,12 +3455,38 @@ document.addEventListener("click", event => {
   }
 
 
-  const closeButton =
+  // ===================================================
+  // SESSION DETAILS
+  // ===================================================
+
+  const sessionCard =
+    event.target.closest(
+      "[data-training-session]"
+    );
+
+  if (sessionCard) {
+
+    const sessionId =
+      sessionCard.dataset.trainingSession;
+
+    openTrainingSessionDetails(
+      sessionId
+    );
+
+    return;
+  }
+
+
+  // ===================================================
+  // CLOSE PLAYER PROFILE
+  // ===================================================
+
+  const profileCloseButton =
     event.target.closest(
       "#trainingProfileClose"
     );
 
-  if (closeButton) {
+  if (profileCloseButton) {
 
     closeTrainingPlayerProfile();
 
@@ -2573,32 +3494,119 @@ document.addEventListener("click", event => {
   }
 
 
-  const overlay =
+  // ===================================================
+  // CLOSE SESSION DETAILS
+  // ===================================================
+
+  const sessionCloseButton =
+    event.target.closest(
+      "#trainingSessionClose"
+    );
+
+  if (sessionCloseButton) {
+
+    closeTrainingSessionDetails();
+
+    return;
+  }
+
+
+  // ===================================================
+  // CLICK OUTSIDE PLAYER PROFILE
+  // ===================================================
+
+  const profileOverlay =
     document.getElementById(
       "trainingProfileOverlay"
     );
 
   if (
-    overlay &&
-    event.target === overlay
+    profileOverlay &&
+    event.target === profileOverlay
   ) {
+
     closeTrainingPlayerProfile();
+
+    return;
+  }
+
+
+  // ===================================================
+  // CLICK OUTSIDE SESSION DETAILS
+  // ===================================================
+
+  const sessionOverlay =
+    document.getElementById(
+      "trainingSessionOverlay"
+    );
+
+  if (
+    sessionOverlay &&
+    event.target === sessionOverlay
+  ) {
+
+    closeTrainingSessionDetails();
+
   }
 
 });
 
 
+// =====================================================
+// KEYBOARD EVENTS
+// =====================================================
+
 document.addEventListener(
   "keydown",
   event => {
 
+    // -------------------------------------------------
+    // ESCAPE
+    // -------------------------------------------------
+
     if (event.key === "Escape") {
+
       closeTrainingPlayerProfile();
+      closeTrainingSessionDetails();
+
+      return;
+    }
+
+
+    // -------------------------------------------------
+    // SESSION CARD KEYBOARD ACCESS
+    // -------------------------------------------------
+
+    if (
+      event.key === "Enter" ||
+      event.key === " "
+    ) {
+
+      const sessionCard =
+        event.target.closest(
+          "[data-training-session]"
+        );
+
+      if (!sessionCard) {
+        return;
+      }
+
+
+      event.preventDefault();
+
+
+      const sessionId =
+        sessionCard.dataset.trainingSession;
+
+
+      openTrainingSessionDetails(
+        sessionId
+      );
+
     }
 
   }
 );
-
 </script>
 
 
