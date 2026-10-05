@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Training Sessions — Dune Future</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* =====================================================
+       DUNE FUTURE — PRACTICE / TRAINING SYSTEM
+       Independent from the Competitive MMR System
+    ===================================================== */
+
+    .training-page {
+      min-height: calc(100vh - 140px);
+      padding: 90px 20px 70px;
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(34, 211, 238, 0.08),
+          transparent 32%
+        ),
+        #07060b;
+      color: #fff;
+    }
+
+    .training-container {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* =====================================================
+       HERO
+    ===================================================== */
+
+    .training-heading {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .training-eyebrow {
+      margin-bottom: 12px;
+
+      color: #67e8f9;
+
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 3px;
+    }
+
+    .training-heading h1 {
+      margin: 0;
+
+      font-size: 42px;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .training-heading h1 span {
+      color: #22d3ee;
+
+      text-shadow:
+        0 0 18px rgba(34, 211, 238, 0.35);
+    }
+
+    .training-description {
+      margin-top: 12px;
+
+      color: #8f8999;
+
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+
+    /* =====================================================
+       NO MMR RISK BADGE
+    ===================================================== */
+
+    .training-safe-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      margin-top: 18px;
+      padding: 9px 14px;
+
+      border:
+        1px solid rgba(57, 255, 136, 0.28);
+
+      border-radius: 999px;
+
+      background:
+        rgba(57, 255, 136, 0.055);
+
+      color: #39ff88;
+
+      font-size: 8px;
+      font-weight: 900;
+      letter-spacing: 1.4px;
+    }
+
+    .training-safe-dot {
+      width: 6px;
+      height: 6px;
+
+      border-radius: 50%;
+
+      background: #39ff88;
+
+      box-shadow:
+        0 0 10px rgba(57, 255, 136, 0.8);
+    }
+
+    /* =====================================================
+       SYSTEM INFORMATION
+    ===================================================== */
+
+    .training-system-info {
+      max-width: 760px;
+      margin: 0 auto 30px;
+      padding: 18px 20px;
+
+      border:
+        1px solid rgba(34, 211, 238, 0.16);
+
+      border-radius: 12px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(34, 211, 238, 0.055),
+          rgba(168, 85, 247, 0.035)
+        );
+
+      text-align: center;
+
+      color: #8d8795;
+
+      font-size: 9px;
+      line-height: 1.8;
+    }
+
+    .training-system-info strong {
+      color: #67e8f9;
+    }
+
+    /* =====================================================
+       SUMMARY CARDS
+    ===================================================== */
+
+    .training-summary {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 12px;
+
+      max-width: 760px;
+      margin: 0 auto 28px;
+    }
+
+    .training-summary-card {
+      padding: 18px;
+
+      border:
+        1px solid rgba(255,255,255,0.065);
+
+      border-radius: 11px;
+
+      background:
+        rgba(255,255,255,0.018);
+
+      text-align: center;
+    }
+
+    .training-summary-card span {
+      display: block;
+
+      margin-bottom: 8px;
+
+      color: #686271;
+
+      font-size: 7px;
+      font-weight: 900;
+      letter-spacing: 1.3px;
+    }
+
+    .training-summary-card strong {
+      color: #ffffff;
+
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    /* =====================================================
+       LEADERBOARD
+    ===================================================== */
+
+    .training-board {
+      max-width: 760px;
+      margin: 0 auto;
+
+      padding: 22px;
+
+      border:
+        1px solid rgba(34, 211, 238, 0.20);
+
+      border-radius: 16px;
+
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(34, 211, 238, 0.065),
+          transparent 48%
+        ),
+        #0e0d13;
+    }
+
+    .training-board-header {
+      margin-bottom: 18px;
+    }
+
+    .training-board-kicker {
+      margin-bottom: 5px;
+
+      color: #22d3ee;
+
+      font-size: 7px;
+      font-weight: 900;
+      letter-spacing: 1.6px;
+    }
+
+    .training-board-title {
+      margin: 0;
+
+      color: #ffffff;
+
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: .6px;
+    }
+
+    .training-board-subtitle {
+      margin-top: 6px;
+
+      color: #686271;
+
+      font-size: 8px;
+      line-height: 1.6;
+    }
+
+    /* =====================================================
+       TABLE
+    ===================================================== */
+
+    .training-table-header,
+    .training-row {
+      display: grid;
+
+      grid-template-columns:
+        55px
+        1fr
+        80px
+        65px
+        65px
+        85px;
+
+      align-items: center;
+    }
+
+    .training-table-header {
+      padding: 0 12px 10px;
+
+      color: #625d68;
+
+      font-size: 7px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .training-table-header div:not(:nth-child(2)) {
+      text-align: center;
+    }
+
+    .training-row {
+      min-height: 48px;
+
+      margin-bottom: 6px;
+      padding: 0 12px;
+
+      border:
+        1px solid rgba(255,255,255,0.045);
+
+      border-radius: 8px;
+
+      background:
+        rgba(255,255,255,0.018);
+
+      transition:
+        transform .18s ease,
+        border-color .18s ease,
+        background .18s ease;
+    }
+
+    .training-row:hover {
+      transform:
+        translateX(4px);
+
+      border-color:
+        rgba(34,211,238,.25);
+
+      background:
+        rgba(34,211,238,.04);
+    }
+
+    .training-rank {
+      text-align: center;
+
+      color: #77717f;
+
+      font-size: 9px;
+      font-weight: 900;
+    }
+
+    .training-player {
+      color: #f4f1f5;
+
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .training-stat {
+      text-align: center;
+
+      color: #a7a1ad;
+
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .training-wins {
+      color: #39ff88;
+    }
+
+    .training-losses {
+      color: #ff5570;
+    }
+
+    .training-winrate {
+      color: #67e8f9;
+    }
+
+    /* =====================================================
+       EMPTY STATE
+    ===================================================== */
+
+    .training-empty {
+      padding: 42px 20px;
+
+      text-align: center;
+
+      border:
+        1px dashed rgba(255,255,255,.08);
+
+      border-radius: 10px;
+
+      color: #686271;
+
+      font-size: 9px;
+      line-height: 1.8;
+    }
+
+    .training-empty strong {
+      display: block;
+
+      margin-bottom: 6px;
+
+      color: #9c96a4;
+
+      font-size: 11px;
+    }
+
+    /* =====================================================
+       MOBILE
+    ===================================================== */
+
+    @media (max-width: 700px) {
+
+      .training-page {
+        padding:
+          60px 14px 50px;
+      }
+
+      .training-heading h1 {
+        font-size: 29px;
+      }
+
+      .training-summary {
+        grid-template-columns: 1fr;
+      }
+
+      .training-board {
+        padding: 14px;
+      }
+
+      .training-table-header,
+      .training-row {
+        grid-template-columns:
+          40px
+          1fr
+          55px
+          55px;
+      }
+
+      .training-table-header div:nth-child(5),
+      .training-table-header div:nth-child(6),
+      .training-row > div:nth-child(5),
+      .training-row > div:nth-child(6) {
+        display: none;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+  <!-- =====================================================
+       NAVIGATION
+  ====================================================== -->
+
+  <nav class="nav">
+
+    <a class="brand" href="index.html">
+      ◈ DUNE <em>FUTURE</em>
+    </a>
+
+    <div class="links">
+
+      <a href="index.html">HOME</a>
+      <a href="players.html">PLAYERS</a>
+      <a href="mmr.html">MMR</a>
+
+      <a
+        href="training.html"
+        class="active"
+      >
+        TRAINING
+      </a>
+
+      <a href="matches.html">MATCHES</a>
+      <a href="rankings.html">RANKINGS</a>
+      <a href="guides.html">GUIDES</a>
+      <a href="gallery.html">GALLERY</a>
+
+      <a
+        class="join"
+        href="https://discord.gg/j5vbakqmg"
+      >
+        JOIN DISCORD
+      </a>
+
+    </div>
+
+  </nav>
+
+
+  <!-- =====================================================
+       TRAINING PAGE
+  ====================================================== -->
+
+  <main class="training-page">
+
+    <div class="training-container">
+
+
+      <!-- HERO -->
+
+      <div class="training-heading">
+
+        <div class="training-eyebrow">
+          PRACTICE ENVIRONMENT
+        </div>
+
+        <h1>
+          DUNE FUTURE
+          <span>TRAINING</span>
+        </h1>
+
+        <div class="training-description">
+          Practice · Experiment · Improve
+        </div>
+
+        <div class="training-safe-badge">
+          <span class="training-safe-dot"></span>
+          NO MMR POINTS AT RISK
+        </div>
+
+      </div>
+
+
+      <!-- SYSTEM INFORMATION -->
+
+      <div class="training-system-info">
+
+        <strong>
+          PRACTICE / TRAINING SESSION
+        </strong>
+
+        matches are completely independent
+        from the competitive MMR system.
+
+        Win or lose, your
+        <strong>MMR rating will not change.</strong>
+
+      </div>
+
+
+      <!-- SUMMARY -->
+
+      <div class="training-summary">
+
+        <div class="training-summary-card">
+          <span>TRAINING PLAYERS</span>
+          <strong id="trainingPlayerCount">
+            0
+          </strong>
+        </div>
+
+        <div class="training-summary-card">
+          <span>SESSIONS PLAYED</span>
+          <strong id="trainingMatchCount">
+            0
+          </strong>
+        </div>
+
+        <div class="training-summary-card">
+          <span>MMR IMPACT</span>
+          <strong>
+            0
+          </strong>
+        </div>
+
+      </div>
+
+
+      <!-- TRAINING LEADERBOARD -->
+
+      <section class="training-board">
+
+        <div class="training-board-header">
+
+          <div class="training-board-kicker">
+            PRACTICE PERFORMANCE
+          </div>
+
+          <h2 class="training-board-title">
+            TRAINING LEADERBOARD
+          </h2>
+
+          <div class="training-board-subtitle">
+            Training statistics only ·
+            Does not affect competitive ranking
+          </div>
+
+        </div>
+
+
+        <div class="training-table-header">
+
+          <div>RANK</div>
+          <div>PLAYER</div>
+          <div>PLAYED</div>
+          <div>W</div>
+          <div>L</div>
+          <div>WIN RATE</div>
+
+        </div>
+
+
+        <div id="trainingLeaderboard">
+
+          <div class="training-empty">
+
+            <strong>
+              NO TRAINING SESSIONS RECORDED
+            </strong>
+
+            Training matches will appear here
+            once they are added to the
+            Training System.
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+    </div>
+
+  </main>
+
+
+  <!-- =====================================================
+       TRAINING ENGINE
+       IMPORTANT:
+       This data is completely separate from mmrMatches.
+  ====================================================== -->
+
+  <script>
+
+    const trainingMatches = [
+
+      // Training matches will be recorded here.
+      //
+      // Example:
+      //
+      // {
+      //   winner: "Player A",
+      //   loser: "Player B",
+      //   date: "5 October 2026"
+      // }
+
+    ];
+
+
+    // =====================================================
+    // BUILD TRAINING STATISTICS
+    // =====================================================
+
+    function getTrainingLeaderboard() {
+
+      const players = {};
+
+      trainingMatches.forEach(match => {
+
+        if (!players[match.winner]) {
+          players[match.winner] = {
+            name: match.winner,
+            played: 0,
+            wins: 0,
+            losses: 0
+          };
+        }
+
+        if (!players[match.loser]) {
+          players[match.loser] = {
+            name: match.loser,
+            played: 0,
+            wins: 0,
+            losses: 0
+          };
+        }
+
+
+        players[match.winner].played++;
+        players[match.winner].wins++;
+
+
+        players[match.loser].played++;
+        players[match.loser].losses++;
+
+      });
+
+
+      return Object.values(players)
+        .map(player => ({
+
+          ...player,
+
+          winRate:
+            player.played > 0
+              ? (
+                  player.wins /
+                  player.played *
+                  100
+                )
+              : 0
+
+        }))
+        .sort((a, b) => {
+
+          if (b.winRate !== a.winRate) {
+            return b.winRate - a.winRate;
+          }
+
+          if (b.wins !== a.wins) {
+            return b.wins - a.wins;
+          }
+
+          return a.name.localeCompare(b.name);
+
+        });
+
+    }
+
+
+    // =====================================================
+    // RENDER TRAINING LEADERBOARD
+    // =====================================================
+
+    function renderTrainingLeaderboard() {
+
+      const board =
+        document.getElementById(
+          "trainingLeaderboard"
+        );
+
+      const playerCount =
+        document.getElementById(
+          "trainingPlayerCount"
+        );
+
+      const matchCount =
+        document.getElementById(
+          "trainingMatchCount"
+        );
+
+
+      const leaderboard =
+        getTrainingLeaderboard();
+
+
+      playerCount.textContent =
+        leaderboard.length;
+
+      matchCount.textContent =
+        trainingMatches.length;
+
+
+      if (leaderboard.length === 0) {
+        return;
+      }
+
+
+      board.innerHTML =
+        leaderboard
+          .map((player, index) => {
+
+            const winRate =
+              player.winRate.toFixed(1);
+
+            return `
+
+              <div class="training-row">
+
+                <div class="training-rank">
+                  #${index + 1}
+                </div>
+
+                <div class="training-player">
+                  ${player.name}
+                </div>
+
+                <div class="training-stat">
+                  ${player.played}
+                </div>
+
+                <div class="
+                  training-stat
+                  training-wins
+                ">
+                  ${player.wins}
+                </div>
+
+                <div class="
+                  training-stat
+                  training-losses
+                ">
+                  ${player.losses}
+                </div>
+
+                <div class="
+                  training-stat
+                  training-winrate
+                ">
+                  ${winRate}%
+                </div>
+
+              </div>
+
+            `;
+
+          })
+          .join("");
+
+    }
+
+
+    renderTrainingLeaderboard();
+
+  </script>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
