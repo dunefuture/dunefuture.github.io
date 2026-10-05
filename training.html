@@ -1110,8 +1110,22 @@ function getTrainingLeaderboard() {
       playerCount.textContent =
         leaderboard.length;
 
-      matchCount.textContent =
-        trainingMatches.length;
+// =====================================================
+// COUNT UNIQUE TRAINING SESSIONS
+// Multiple games with the same sessionId
+// are counted as one Training Session.
+// =====================================================
+
+const trainingSessionCount =
+  new Set(
+    trainingMatches
+      .filter(match => match && match.sessionId)
+      .map(match => match.sessionId)
+  ).size;
+
+
+matchCount.textContent =
+  trainingSessionCount;
 
 
       if (leaderboard.length === 0) {
