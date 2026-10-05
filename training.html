@@ -769,7 +769,338 @@ grid-template-columns:
 }
 
     }
+/* =====================================================
+   TRAINING PLAYER PROFILE
+====================================================== */
 
+.training-profile-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(34, 211, 238, .08),
+      rgba(0, 0, 0, .88) 55%
+    );
+
+  backdrop-filter: blur(8px);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity .22s ease,
+    visibility .22s ease;
+}
+
+
+.training-profile-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+
+/* MODAL */
+
+.training-profile-modal {
+  position: relative;
+
+  width: min(520px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+
+  padding: 34px 30px 26px;
+
+  border: 1px solid rgba(34, 211, 238, .22);
+  border-radius: 16px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(13, 18, 24, .98),
+      rgba(7, 10, 15, .99)
+    );
+
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, .65),
+    0 0 40px rgba(34, 211, 238, .06);
+
+  transform: translateY(14px) scale(.98);
+
+  transition:
+    transform .22s ease;
+}
+
+
+.training-profile-overlay.active
+.training-profile-modal {
+  transform: translateY(0) scale(1);
+}
+
+
+/* CLOSE */
+
+.training-profile-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, .025);
+
+  color: #77717d;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    color .18s ease,
+    border-color .18s ease,
+    background .18s ease,
+    transform .18s ease;
+}
+
+
+.training-profile-close:hover {
+  color: #67e8f9;
+  border-color: rgba(34, 211, 238, .28);
+  background: rgba(34, 211, 238, .06);
+  transform: rotate(90deg);
+}
+
+
+/* HEADER */
+
+.training-profile-header {
+  text-align: center;
+  padding: 8px 30px 24px;
+}
+
+
+.training-profile-kicker {
+  margin-bottom: 8px;
+
+  color: #67e8f9;
+
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 1.8px;
+}
+
+
+.training-profile-name {
+  margin: 0;
+
+  color: #f5f3f6;
+
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: .6px;
+}
+
+
+.training-profile-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 12px;
+  padding: 6px 12px;
+
+  border: 1px solid rgba(250, 204, 21, .25);
+  border-radius: 999px;
+
+  background: rgba(250, 204, 21, .055);
+
+  color: #facc15;
+
+  font-size: 7px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+.training-profile-status.ranked {
+  color: #39ff88;
+
+  border-color:
+    rgba(57, 255, 136, .30);
+
+  background:
+    rgba(57, 255, 136, .07);
+
+  box-shadow:
+    0 0 14px
+    rgba(57, 255, 136, .06);
+}
+
+/* PRIMARY STATS */
+
+.training-profile-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  border-top: 1px solid rgba(255, 255, 255, .055);
+  border-bottom: 1px solid rgba(255, 255, 255, .055);
+}
+
+
+.training-profile-stat {
+  padding: 18px 8px;
+  text-align: center;
+}
+
+
+.training-profile-stat + .training-profile-stat {
+  border-left: 1px solid rgba(255, 255, 255, .045);
+}
+
+
+.training-profile-stat span {
+  display: block;
+  margin-bottom: 7px;
+
+  color: #716b78;
+
+  font-size: 7px;
+  font-weight: 900;
+  letter-spacing: .8px;
+}
+
+
+.training-profile-stat strong {
+  color: #f5f3f6;
+
+  font-size: 18px;
+  font-weight: 900;
+}
+
+
+/* TRAINING RECORD */
+
+.training-profile-record {
+  margin-top: 22px;
+}
+
+
+.training-profile-record-title {
+  margin-bottom: 10px;
+
+  color: #67e8f9;
+
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 1.2px;
+}
+
+
+.training-profile-record-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 11px 2px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, .04);
+}
+
+
+.training-profile-record-row span {
+  color: #77717d;
+
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .65px;
+}
+
+
+.training-profile-record-row strong {
+  color: #f5f3f6;
+
+  font-size: 10px;
+  font-weight: 900;
+}
+
+
+.training-profile-safe {
+  color: #39ff88 !important;
+
+  text-shadow:
+    0 0 9px rgba(57, 255, 136, .22);
+}
+
+
+/* FOOTER */
+
+.training-profile-footer {
+  margin-top: 24px;
+
+  text-align: center;
+
+  color: #4f4a55;
+
+  font-size: 7px;
+  font-weight: 900;
+  letter-spacing: 1.3px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+  .training-profile-overlay {
+    padding: 14px;
+  }
+
+  .training-profile-modal {
+    padding:
+      30px 18px
+      22px;
+  }
+
+  .training-profile-name {
+    font-size: 23px;
+  }
+
+  .training-profile-stats {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+  .training-profile-stat:nth-child(3) {
+    border-left: 0;
+    border-top:
+      1px solid
+      rgba(255, 255, 255, .045);
+  }
+
+  .training-profile-stat:nth-child(4) {
+    border-top:
+      1px solid
+      rgba(255, 255, 255, .045);
+  }
+
+}
   </style>
 </head>
 
@@ -993,7 +1324,182 @@ grid-template-columns:
 
   </main>
 
+<!-- =====================================================
+     TRAINING PLAYER PROFILE
+====================================================== -->
 
+<div
+  id="trainingProfileOverlay"
+  class="training-profile-overlay"
+  aria-hidden="true"
+>
+
+  <div
+    class="training-profile-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="trainingProfileName"
+  >
+
+    <!-- CLOSE -->
+
+    <button
+      type="button"
+      class="training-profile-close"
+      id="trainingProfileClose"
+      aria-label="Close Training Profile"
+    >
+      ×
+    </button>
+
+
+    <!-- HEADER -->
+
+    <div class="training-profile-header">
+
+      <div class="training-profile-kicker">
+        TRAINING PROFILE
+      </div>
+
+      <h2
+        class="training-profile-name"
+        id="trainingProfileName"
+      >
+        PLAYER
+      </h2>
+
+      <div
+        class="training-profile-status"
+        id="trainingProfileStatus"
+      >
+        PROVISIONAL
+      </div>
+
+    </div>
+
+
+    <!-- PRIMARY STATS -->
+
+    <div class="training-profile-stats">
+
+      <div class="training-profile-stat">
+
+        <span>PLAYED</span>
+
+        <strong id="trainingProfilePlayed">
+          0
+        </strong>
+
+      </div>
+
+
+      <div class="training-profile-stat">
+
+        <span>WINS</span>
+
+        <strong id="trainingProfileWins">
+          0
+        </strong>
+
+      </div>
+
+
+      <div class="training-profile-stat">
+
+        <span>LOSSES</span>
+
+        <strong id="trainingProfileLosses">
+          0
+        </strong>
+
+      </div>
+
+
+      <div class="training-profile-stat">
+
+        <span>WIN RATE</span>
+
+        <strong id="trainingProfileWinRate">
+          0.0%
+        </strong>
+
+      </div>
+
+    </div>
+
+
+    <!-- TRAINING RECORD -->
+
+    <div class="training-profile-record">
+
+      <div class="training-profile-record-title">
+        TRAINING RECORD
+      </div>
+
+
+      <div class="training-profile-record-row">
+
+        <span>
+          CURRENT STREAK
+        </span>
+
+        <strong id="trainingProfileCurrentStreak">
+          —
+        </strong>
+
+      </div>
+
+
+      <div class="training-profile-record-row">
+
+        <span>
+          BEST STREAK
+        </span>
+
+        <strong id="trainingProfileBestStreak">
+          —
+        </strong>
+
+      </div>
+
+
+      <div class="training-profile-record-row">
+
+        <span>
+          SESSIONS PLAYED
+        </span>
+
+        <strong id="trainingProfileSessions">
+          0
+        </strong>
+
+      </div>
+
+
+      <div class="training-profile-record-row">
+
+        <span>
+          MMR IMPACT
+        </span>
+
+        <strong class="training-profile-safe">
+          0
+        </strong>
+
+      </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <div class="training-profile-footer">
+      PRACTICE · EXPERIMENT · IMPROVE
+    </div>
+
+  </div>
+
+</div>
   <!-- =====================================================
        TRAINING ENGINE
        IMPORTANT:
@@ -1632,9 +2138,16 @@ return `
     </div>
 
 
-    <div class="training-player">
-      ${player.name}
-    </div>
+<div class="training-player">
+  <button
+    type="button"
+    class="training-player-link"
+    data-training-player="${player.name}"
+    title="View ${player.name} Training Profile"
+  >
+    ${player.name}
+  </button>
+</div>
 
 
     <div class="training-status">
@@ -1848,14 +2361,244 @@ function renderTrainingSessions() {
   `;
 
 }
+// =====================================================
+// TRAINING PLAYER PROFILE ENGINE
+// =====================================================
 
+function getTrainingPlayerProfile(playerName) {
+
+  const leaderboard = getTrainingLeaderboard();
+
+  const player = leaderboard.find(
+    item => item.name === playerName
+  );
+
+  if (!player) {
+    return null;
+  }
+
+
+  // ===================================================
+  // COUNT UNIQUE TRAINING SESSIONS
+  // ===================================================
+
+  const sessionIds = new Set();
+
+  trainingMatches.forEach(match => {
+
+    if (!match || !match.sessionId) {
+      return;
+    }
+
+    if (
+      match.winner === playerName ||
+      match.loser === playerName
+    ) {
+      sessionIds.add(match.sessionId);
+    }
+
+  });
+
+
+  return {
+    ...player,
+    sessionsPlayed: sessionIds.size
+  };
+
+}
+
+
+// =====================================================
+// OPEN TRAINING PLAYER PROFILE
+// =====================================================
+
+function openTrainingPlayerProfile(playerName) {
+
+  const player =
+    getTrainingPlayerProfile(playerName);
+
+  if (!player) {
+    return;
+  }
+
+
+  const overlay =
+    document.getElementById(
+      "trainingProfileOverlay"
+    );
+
+  if (!overlay) {
+    return;
+  }
+
+
+  document.getElementById(
+    "trainingProfileName"
+  ).textContent = player.name;
+
+
+  const statusElement =
+    document.getElementById(
+      "trainingProfileStatus"
+    );
+
+  statusElement.textContent =
+    player.status;
+
+
+  statusElement.classList.toggle(
+    "ranked",
+    player.status === "RANKED"
+  );
+
+
+  document.getElementById(
+    "trainingProfilePlayed"
+  ).textContent = player.played;
+
+
+  document.getElementById(
+    "trainingProfileWins"
+  ).textContent = player.wins;
+
+
+  document.getElementById(
+    "trainingProfileLosses"
+  ).textContent = player.losses;
+
+
+  document.getElementById(
+    "trainingProfileWinRate"
+  ).textContent =
+    `${player.winRate.toFixed(1)}%`;
+
+
+  document.getElementById(
+    "trainingProfileCurrentStreak"
+  ).textContent =
+    player.currentStreak > 0
+      ? `🔥 ${player.currentStreak}`
+      : "—";
+
+
+  document.getElementById(
+    "trainingProfileBestStreak"
+  ).textContent =
+    player.bestStreak > 0
+      ? player.bestStreak
+      : "—";
+
+
+  document.getElementById(
+    "trainingProfileSessions"
+  ).textContent =
+    player.sessionsPlayed;
+
+
+  overlay.classList.add("active");
+
+  overlay.setAttribute(
+    "aria-hidden",
+    "false"
+  );
+
+}
+
+
+// =====================================================
+// CLOSE TRAINING PLAYER PROFILE
+// =====================================================
+
+function closeTrainingPlayerProfile() {
+
+  const overlay =
+    document.getElementById(
+      "trainingProfileOverlay"
+    );
+
+  if (!overlay) {
+    return;
+  }
+
+  overlay.classList.remove("active");
+
+  overlay.setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
+}
 renderTrainingLeaderboard();
 renderTrainingSessions();
 
-  </script>
+
+// =====================================================
+// TRAINING PLAYER PROFILE EVENTS
+// =====================================================
+
+document.addEventListener("click", event => {
+
+  const playerButton =
+    event.target.closest(
+      "[data-training-player]"
+    );
+
+  if (playerButton) {
+
+    const playerName =
+      playerButton.dataset.trainingPlayer;
+
+    openTrainingPlayerProfile(
+      playerName
+    );
+
+    return;
+  }
 
 
-  <script src="script.js"></script>
+  const closeButton =
+    event.target.closest(
+      "#trainingProfileClose"
+    );
+
+  if (closeButton) {
+
+    closeTrainingPlayerProfile();
+
+    return;
+  }
+
+
+  const overlay =
+    document.getElementById(
+      "trainingProfileOverlay"
+    );
+
+  if (
+    overlay &&
+    event.target === overlay
+  ) {
+    closeTrainingPlayerProfile();
+  }
+
+});
+
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    if (event.key === "Escape") {
+      closeTrainingPlayerProfile();
+    }
+
+  }
+);
+
+</script>
+
+
+<script src="script.js"></script>
 
 </body>
 </html>
