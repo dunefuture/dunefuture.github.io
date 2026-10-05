@@ -263,13 +263,15 @@
     .training-row {
       display: grid;
 
-      grid-template-columns:
-        55px
-        1fr
-        80px
-        65px
-        65px
-        85px;
+grid-template-columns:
+  55px
+  minmax(120px, 1fr)
+  105px
+  70px
+  55px
+  55px
+  85px
+  80px;
 
       align-items: center;
     }
@@ -355,7 +357,81 @@
     .training-winrate {
       color: #67e8f9;
     }
+/* =====================================================
+   TRAINING STATUS
+===================================================== */
 
+.training-status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.training-status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 76px;
+
+  padding: 5px 8px;
+
+  border-radius: 999px;
+
+  font-size: 7px;
+  font-weight: 900;
+  letter-spacing: .7px;
+}
+
+
+/* RANKED */
+
+.training-status-badge.ranked {
+  color: #39ff88;
+
+  border:
+    1px solid rgba(57,255,136,.30);
+
+  background:
+    rgba(57,255,136,.07);
+
+  box-shadow:
+    0 0 12px rgba(57,255,136,.05);
+}
+
+
+/* PROVISIONAL */
+
+.training-status-badge.provisional {
+  color: #facc15;
+
+  border:
+    1px solid rgba(250,204,21,.28);
+
+  background:
+    rgba(250,204,21,.06);
+}
+
+
+/* =====================================================
+   TRAINING STREAK
+===================================================== */
+
+.training-streak {
+  text-align: center;
+
+  color: #8b8590;
+
+  font-size: 9px;
+  font-weight: 900;
+}
+
+.training-streak.active {
+  color: #fb923c;
+
+  text-shadow:
+    0 0 8px rgba(251,146,60,.30);
+}
     /* =====================================================
        EMPTY STATE
     ===================================================== */
@@ -409,21 +485,63 @@
         padding: 14px;
       }
 
-      .training-table-header,
-      .training-row {
-        grid-template-columns:
-          40px
-          1fr
-          55px
-          55px;
-      }
+.training-table-header,
+.training-row {
+  grid-template-columns:
+    38px
+    minmax(90px, 1fr)
+    82px
+    52px
+    68px;
+}
 
-      .training-table-header div:nth-child(5),
-      .training-table-header div:nth-child(6),
-      .training-row > div:nth-child(5),
-      .training-row > div:nth-child(6) {
-        display: none;
-      }
+
+/* =====================================================
+   MOBILE COLUMN VISIBILITY
+
+   Visible:
+   1 = Rank
+   2 = Player
+   3 = Status
+   4 = Played
+   8 = Streak
+
+   Hidden:
+   5 = Wins
+   6 = Losses
+   7 = Win Rate
+===================================================== */
+
+.training-table-header div:nth-child(5),
+.training-table-header div:nth-child(6),
+.training-table-header div:nth-child(7),
+.training-row > div:nth-child(5),
+.training-row > div:nth-child(6),
+.training-row > div:nth-child(7) {
+  display: none;
+}
+
+
+.training-status-badge {
+  min-width: 68px;
+
+  padding:
+    4px 6px;
+
+  font-size: 6px;
+
+  letter-spacing:
+    .45px;
+}
+
+
+.training-player {
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
 
     }
 
@@ -574,16 +692,18 @@
         </div>
 
 
-        <div class="training-table-header">
+<div class="training-table-header">
 
-          <div>RANK</div>
-          <div>PLAYER</div>
-          <div>PLAYED</div>
-          <div>W</div>
-          <div>L</div>
-          <div>WIN RATE</div>
+  <div>RANK</div>
+  <div>PLAYER</div>
+  <div>STATUS</div>
+  <div>PLAYED</div>
+  <div>W</div>
+  <div>L</div>
+  <div>WIN RATE</div>
+  <div>STREAK</div>
 
-        </div>
+</div>
 
 
         <div id="trainingLeaderboard">
@@ -618,92 +738,324 @@
 
   <script>
 
-    const trainingMatches = [
+// =====================================================
+// TRAINING MATCH DATABASE
+// =====================================================
+//
+// IMPORTANT:
+// Training matches are completely independent
+// from the competitive MMR system.
+//
+// These results NEVER modify:
+// - MMR Points
+// - MMR Ranking
+// - MMR Tier
+// - MMR History
+// - Competitive Season Archive
+//
+// Each game belongs to a Training Session.
+// Multiple games may share the same sessionId.
+//
+// Example:
+// {
+//   sessionId: "TS-2026-001",
+//   winner: "Player A",
+//   loser: "Player B",
+//   date: "5 October 2026"
+// }
+// =====================================================
 
-      // Training matches will be recorded here.
-      //
-      // Example:
-      //
-      // {
-      //   winner: "Player A",
-      //   loser: "Player B",
-      //   date: "5 October 2026"
-      // }
+const trainingMatches = [
 
-    ];
+  // Training matches will be recorded here.
+
+];
 
 
     // =====================================================
     // BUILD TRAINING STATISTICS
     // =====================================================
 
-    function getTrainingLeaderboard() {
+function getTrainingLeaderboard() {
 
-      const players = {};
+  const players = {};
 
-      trainingMatches.forEach(match => {
+  // =====================================================
+  // CREATE PLAYER RECORD
+  // =====================================================
 
-        if (!players[match.winner]) {
-          players[match.winner] = {
-            name: match.winner,
-            played: 0,
-            wins: 0,
-            losses: 0
-          };
-        }
+  function ensurePlayer(playerName) {
 
-        if (!players[match.loser]) {
-          players[match.loser] = {
-            name: match.loser,
-            played: 0,
-            wins: 0,
-            losses: 0
-          };
-        }
+    if (!players[playerName]) {
+
+      players[playerName] = {
+        name: playerName,
+
+        played: 0,
+        wins: 0,
+        losses: 0,
+
+        currentStreak: 0,
+        bestStreak: 0,
+
+        lastResult: null,
+        lastMatchIndex: -1
+      };
+
+    }
+
+    return players[playerName];
+  }
 
 
-        players[match.winner].played++;
-        players[match.winner].wins++;
+  // =====================================================
+  // PROCESS MATCHES
+  //
+  // IMPORTANT:
+  // trainingMatches is stored newest → oldest.
+  //
+  // Streak calculation must therefore be processed
+  // oldest → newest.
+  // =====================================================
+
+  const chronologicalMatches =
+    [...trainingMatches].reverse();
 
 
-        players[match.loser].played++;
-        players[match.loser].losses++;
+  chronologicalMatches.forEach(
+    (match, chronologicalIndex) => {
+
+      if (
+        !match ||
+        !match.winner ||
+        !match.loser
+      ) {
+        return;
+      }
+
+
+      const winner =
+        ensurePlayer(match.winner);
+
+      const loser =
+        ensurePlayer(match.loser);
+
+
+      // -----------------------------------------------
+      // TOTAL MATCHES
+      // -----------------------------------------------
+
+      winner.played++;
+      winner.wins++;
+
+      loser.played++;
+      loser.losses++;
+
+
+      // -----------------------------------------------
+      // WIN STREAK
+      // -----------------------------------------------
+
+      winner.currentStreak++;
+
+      if (
+        winner.currentStreak >
+        winner.bestStreak
+      ) {
+        winner.bestStreak =
+          winner.currentStreak;
+      }
+
+
+      loser.currentStreak = 0;
+
+
+      // -----------------------------------------------
+      // LATEST RESULT
+      // -----------------------------------------------
+
+      winner.lastResult = "W";
+      loser.lastResult = "L";
+
+      winner.lastMatchIndex =
+        chronologicalIndex;
+
+      loser.lastMatchIndex =
+        chronologicalIndex;
+
+    }
+  );
+
+
+  // =====================================================
+  // FINAL PLAYER STATISTICS
+  // =====================================================
+
+  const leaderboard =
+    Object.values(players)
+      .map(player => {
+
+        const winRate =
+          player.played > 0
+            ? (
+                player.wins /
+                player.played
+              ) * 100
+            : 0;
+
+
+        const ranked =
+          player.played >= 5;
+
+
+        return {
+
+          ...player,
+
+          winRate,
+
+          status:
+            ranked
+              ? "RANKED"
+              : "PROVISIONAL",
+
+          matchesUntilRanked:
+            ranked
+              ? 0
+              : 5 - player.played
+
+        };
 
       });
 
 
-      return Object.values(players)
-        .map(player => ({
+  // =====================================================
+  // TRAINING RANKING RULES
+  //
+  // 1. RANKED players first
+  // 2. Win Rate
+  // 3. Total Wins
+  // 4. Best Win Streak
+  // 5. Head-to-Head
+  // 6. Player Name
+  // =====================================================
 
-          ...player,
+  leaderboard.sort((a, b) => {
 
-          winRate:
-            player.played > 0
-              ? (
-                  player.wins /
-                  player.played *
-                  100
-                )
-              : 0
+    // -----------------------------------------------
+    // RANKED > PROVISIONAL
+    // -----------------------------------------------
 
-        }))
-        .sort((a, b) => {
+    if (a.status !== b.status) {
 
-          if (b.winRate !== a.winRate) {
-            return b.winRate - a.winRate;
-          }
-
-          if (b.wins !== a.wins) {
-            return b.wins - a.wins;
-          }
-
-          return a.name.localeCompare(b.name);
-
-        });
+      return a.status === "RANKED"
+        ? -1
+        : 1;
 
     }
 
 
+    // -----------------------------------------------
+    // WIN RATE
+    // -----------------------------------------------
+
+    if (b.winRate !== a.winRate) {
+      return b.winRate - a.winRate;
+    }
+
+
+    // -----------------------------------------------
+    // TOTAL WINS
+    // -----------------------------------------------
+
+    if (b.wins !== a.wins) {
+      return b.wins - a.wins;
+    }
+
+
+    // -----------------------------------------------
+    // BEST STREAK
+    // -----------------------------------------------
+
+    if (
+      b.bestStreak !==
+      a.bestStreak
+    ) {
+      return (
+        b.bestStreak -
+        a.bestStreak
+      );
+    }
+
+
+    // -----------------------------------------------
+    // HEAD-TO-HEAD
+    //
+    // Find the latest Training match
+    // between these two players.
+    // Because trainingMatches is newest → oldest,
+    // the first matching result is the latest H2H.
+    // -----------------------------------------------
+
+    const latestHeadToHead =
+      trainingMatches.find(match => {
+
+        if (!match) {
+          return false;
+        }
+
+        return (
+
+          (
+            match.winner === a.name &&
+            match.loser === b.name
+          )
+
+          ||
+
+          (
+            match.winner === b.name &&
+            match.loser === a.name
+          )
+
+        );
+
+      });
+
+
+    if (latestHeadToHead) {
+
+      if (
+        latestHeadToHead.winner ===
+        a.name
+      ) {
+        return -1;
+      }
+
+      if (
+        latestHeadToHead.winner ===
+        b.name
+      ) {
+        return 1;
+      }
+
+    }
+
+
+    // -----------------------------------------------
+    // FINAL FALLBACK
+    // -----------------------------------------------
+
+    return a.name.localeCompare(
+      b.name
+    );
+
+  });
+
+
+  return leaderboard;
+
+}
     // =====================================================
     // RENDER TRAINING LEADERBOARD
     // =====================================================
@@ -746,50 +1098,119 @@
         leaderboard
           .map((player, index) => {
 
-            const winRate =
-              player.winRate.toFixed(1);
+const winRate =
+  player.winRate.toFixed(1);
 
-            return `
 
-              <div class="training-row">
+// =====================================================
+// DISPLAY RANK
+// Only RANKED players receive an official rank.
+// =====================================================
 
-                <div class="training-rank">
-                  #${index + 1}
-                </div>
+const displayRank =
+  player.status === "RANKED"
+    ? `#${index + 1}`
+    : "—";
 
-                <div class="training-player">
-                  ${player.name}
-                </div>
 
-                <div class="training-stat">
-                  ${player.played}
-                </div>
+// =====================================================
+// STATUS BADGE
+// =====================================================
 
-                <div class="
-                  training-stat
-                  training-wins
-                ">
-                  ${player.wins}
-                </div>
+const statusClass =
+  player.status === "RANKED"
+    ? "ranked"
+    : "provisional";
 
-                <div class="
-                  training-stat
-                  training-losses
-                ">
-                  ${player.losses}
-                </div>
 
-                <div class="
-                  training-stat
-                  training-winrate
-                ">
-                  ${winRate}%
-                </div>
+// =====================================================
+// STREAK DISPLAY
+// =====================================================
 
-              </div>
+const streakDisplay =
+  player.currentStreak > 0
+    ? `🔥 ${player.currentStreak}`
+    : "—";
 
-            `;
+const streakClass =
+  player.currentStreak > 0
+    ? "training-streak active"
+    : "training-streak";
 
+
+return `
+
+  <div class="training-row">
+
+    <div class="training-rank">
+      ${displayRank}
+    </div>
+
+
+    <div class="training-player">
+      ${player.name}
+    </div>
+
+
+    <div class="training-status">
+
+      <span
+        class="
+          training-status-badge
+          ${statusClass}
+        "
+        title="${
+          player.status === "RANKED"
+            ? "Official Training Rank"
+            : `${player.matchesUntilRanked} match${
+                player.matchesUntilRanked === 1
+                  ? ""
+                  : "es"
+              } until ranked`
+        }"
+      >
+        ${player.status}
+      </span>
+
+    </div>
+
+
+    <div class="training-stat">
+      ${player.played}
+    </div>
+
+
+    <div class="
+      training-stat
+      training-wins
+    ">
+      ${player.wins}
+    </div>
+
+
+    <div class="
+      training-stat
+      training-losses
+    ">
+      ${player.losses}
+    </div>
+
+
+    <div class="
+      training-stat
+      training-winrate
+    ">
+      ${winRate}%
+    </div>
+
+
+    <div class="${streakClass}">
+      ${streakDisplay}
+    </div>
+
+  </div>
+
+`;
           })
           .join("");
 
