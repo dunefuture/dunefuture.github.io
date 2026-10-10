@@ -462,6 +462,145 @@ grid-template-columns:
       font-size: 11px;
     }
 /* =====================================================
+   STAGE 7D - TRAINING SHOWCASE
+====================================================== */
+
+.training-showcase-board {
+  margin-top: 22px;
+}
+
+.training-showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+/* SHOWCASE CARDS */
+
+.training-showcase-card {
+  min-width: 0;
+  padding: 18px;
+
+  border: 1px solid rgba(34, 211, 238, .14);
+  border-radius: 12px;
+
+  background: linear-gradient(
+    145deg,
+    rgba(34, 211, 238, .045),
+    rgba(255, 255, 255, .012)
+  );
+
+  transition:
+    transform .2s ease,
+    border-color .2s ease;
+}
+
+.training-showcase-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(34, 211, 238, .35);
+}
+
+/* CARD CONTENT */
+
+.training-showcase-icon {
+  margin-bottom: 12px;
+  font-size: 23px;
+}
+
+.training-showcase-label {
+  margin-bottom: 8px;
+
+  color: #67e8f9;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.training-showcase-player {
+  color: #f5f3f6;
+  font-size: 17px;
+  font-weight: 900;
+  overflow-wrap: anywhere;
+}
+
+.training-showcase-value {
+  margin-top: 8px;
+
+  color: #39ff88;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.training-showcase-description {
+  margin-top: 10px;
+
+  color: #817c89;
+  font-size: 9px;
+  line-height: 1.6;
+}
+
+/* ACHIEVEMENT CARDS */
+
+.training-showcase-card.achievement-unlocked {
+  border-color: rgba(57, 255, 136, .28);
+
+  background: linear-gradient(
+    145deg,
+    rgba(57, 255, 136, .065),
+    rgba(34, 211, 238, .02)
+  );
+}
+
+.training-showcase-card.achievement-locked {
+  opacity: .7;
+}
+
+/* PROGRESS BAR */
+
+.training-showcase-progress {
+  height: 5px;
+  margin-top: 12px;
+  overflow: hidden;
+
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .075);
+}
+
+.training-showcase-progress-fill {
+  height: 100%;
+  width: 0;
+  border-radius: inherit;
+
+  background: linear-gradient(
+    90deg,
+    #0891b2,
+    #22d3ee
+  );
+}
+
+.training-showcase-card.achievement-unlocked
+.training-showcase-progress-fill {
+  background: linear-gradient(
+    90deg,
+    #16a34a,
+    #39ff88
+  );
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 800px) {
+  .training-showcase-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .training-showcase-grid {
+    grid-template-columns: 1fr;
+  }
+}    
+/* =====================================================
    RECENT TRAINING SESSIONS
 ===================================================== */
 
@@ -1994,6 +2133,76 @@ grid-template-columns:
         </div>
 
       </section>
+      <!-- =====================================================
+     STAGE 7D - TRAINING HALL OF FAME
+====================================================== -->
+
+<section
+  class="training-board training-showcase-board"
+  id="trainingHallOfFame"
+>
+
+  <div class="training-board-header">
+
+    <div class="training-board-kicker">
+      TRAINING RECORDS
+    </div>
+
+    <h2 class="training-board-title">
+      TRAINING HALL OF FAME
+    </h2>
+
+    <div class="training-board-subtitle">
+      Outstanding practice performances ·
+      No impact on competitive MMR
+    </div>
+
+  </div>
+
+  <div
+    class="training-showcase-grid"
+    id="trainingRecordsShowcase"
+  >
+    <!-- Records rendered by JavaScript -->
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     STAGE 7D - ACHIEVEMENT SHOWCASE
+====================================================== -->
+
+<section
+  class="training-board training-showcase-board"
+  id="trainingAchievementShowcase"
+>
+
+  <div class="training-board-header">
+
+    <div class="training-board-kicker">
+      PLAYER ACHIEVEMENTS
+    </div>
+
+    <h2 class="training-board-title">
+      ACHIEVEMENT SHOWCASE
+    </h2>
+
+    <div class="training-board-subtitle">
+      Training milestones ·
+      Earn badges through practice
+    </div>
+
+  </div>
+
+  <div
+    class="training-showcase-grid"
+    id="trainingAchievementsShowcase"
+  >
+    <!-- Achievement cards rendered by JavaScript -->
+  </div>
+
+</section>
 <!-- =====================================================
      RECENT TRAINING SESSIONS
 ====================================================== -->
@@ -2771,6 +2980,68 @@ function getTrainingLeaderboard() {
 
 }
 // =====================================================
+// STAGE 7D - TRAINING HALL OF FAME RECORDS ENGINE
+// =====================================================
+
+function getTrainingHallOfFame() {
+
+  const players = getTrainingLeaderboard();
+
+  const categories = [
+    {
+      id: "most-wins",
+      label: "MOST WINS",
+      icon: "🏆",
+      stat: "wins",
+      unit: "WINS",
+      description: "Highest number of Training victories."
+    },
+    {
+      id: "best-streak",
+      label: "BEST STREAK",
+      icon: "🔥",
+      stat: "bestStreak",
+      unit: "CONSECUTIVE WINS",
+      description: "Longest Training winning streak."
+    },
+    {
+      id: "most-active",
+      label: "MOST ACTIVE",
+      icon: "⚔️",
+      stat: "played",
+      unit: "GAMES PLAYED",
+      description: "Highest number of Training games played."
+    }
+  ];
+
+  return categories.map(category => {
+
+    const highestValue = players.length
+      ? Math.max(
+          ...players.map(player => player[category.stat])
+        )
+      : 0;
+
+    const holders = highestValue > 0
+      ? players
+          .filter(player =>
+            player[category.stat] === highestValue
+          )
+          .map(player => player.name)
+          .sort((a, b) => a.localeCompare(b))
+      : [];
+
+    return {
+      ...category,
+      value: highestValue,
+      holders,
+      hasRecord: holders.length > 0
+    };
+
+  });
+
+}    
+// =====================================================
 // BUILD TRAINING SESSIONS
 // =====================================================
 //
@@ -3143,6 +3414,205 @@ return `
           .join("");
 
     }
+// =====================================================
+// STAGE 7D - RENDER TRAINING HALL OF FAME
+// =====================================================
+
+function renderTrainingHallOfFame() {
+
+  const container =
+    document.getElementById(
+      "trainingRecordsShowcase"
+    );
+
+  if (!container) {
+    return;
+  }
+
+  const records =
+    getTrainingHallOfFame();
+
+  container.replaceChildren();
+
+  records.forEach(record => {
+
+    const card = document.createElement("div");
+    card.className = "training-showcase-card";
+
+    const icon = document.createElement("div");
+    icon.className = "training-showcase-icon";
+    icon.textContent = record.icon;
+
+    const label = document.createElement("div");
+    label.className = "training-showcase-label";
+    label.textContent = record.label;
+
+    const player = document.createElement("div");
+    player.className = "training-showcase-player";
+
+    player.textContent = record.hasRecord
+      ? record.holders.join(" & ")
+      : "NO RECORD YET";
+
+    const value = document.createElement("div");
+    value.className = "training-showcase-value";
+
+    value.textContent = record.hasRecord
+      ? `${record.value} ${record.unit}`
+      : "AWAITING TRAINING DATA";
+
+    const description = document.createElement("div");
+    description.className = "training-showcase-description";
+    description.textContent = record.description;
+
+    card.appendChild(icon);
+    card.appendChild(label);
+    card.appendChild(player);
+    card.appendChild(value);
+    card.appendChild(description);
+
+    container.appendChild(card);
+
+  });
+
+} 
+// =====================================================
+// STAGE 7D - RENDER TRAINING ACHIEVEMENT SHOWCASE
+// =====================================================
+
+function renderTrainingAchievementShowcase() {
+
+  const container =
+    document.getElementById(
+      "trainingAchievementsShowcase"
+    );
+
+  if (!container) {
+    return;
+  }
+
+  const players = getTrainingLeaderboard();
+
+  container.replaceChildren();
+
+  if (players.length === 0) {
+
+    const empty = document.createElement("div");
+    empty.className = "training-empty";
+    empty.textContent =
+      "No Training achievements available yet.";
+
+    container.appendChild(empty);
+    return;
+
+  }
+
+  const playerAchievements = players
+    .map(player =>
+      getTrainingPlayerAchievements(player.name)
+    )
+    .filter(Boolean);
+
+  if (playerAchievements.length === 0) {
+    return;
+  }
+
+  const definitions =
+    playerAchievements[0].achievements;
+
+  definitions.forEach(definition => {
+
+    const results = playerAchievements
+      .map(player => ({
+        playerName: player.playerName,
+        achievement: player.achievements.find(
+          item => item.id === definition.id
+        )
+      }))
+      .filter(item => item.achievement);
+
+    const unlocked = results
+      .filter(item => item.achievement.unlocked)
+      .sort((a, b) =>
+        a.playerName.localeCompare(b.playerName)
+      );
+
+    const closest = results
+      .filter(item => !item.achievement.unlocked)
+      .sort((a, b) =>
+        b.achievement.progressPercent -
+          a.achievement.progressPercent ||
+        a.playerName.localeCompare(b.playerName)
+      )[0];
+
+    const card = document.createElement("div");
+
+    card.className =
+      "training-showcase-card " +
+      (unlocked.length > 0
+        ? "achievement-unlocked"
+        : "achievement-locked");
+
+    const icon = document.createElement("div");
+    icon.className = "training-showcase-icon";
+    icon.textContent = definition.icon;
+
+    const label = document.createElement("div");
+    label.className = "training-showcase-label";
+    label.textContent = definition.name;
+
+    const player = document.createElement("div");
+    player.className = "training-showcase-player";
+
+    player.textContent = unlocked.length > 0
+      ? unlocked.map(item => item.playerName).join(" & ")
+      : closest
+        ? closest.playerName
+        : "NOT YET UNLOCKED";
+
+    const value = document.createElement("div");
+    value.className = "training-showcase-value";
+
+    value.textContent = unlocked.length > 0
+      ? `${unlocked.length} PLAYER(S) UNLOCKED`
+      : closest
+        ? `${closest.achievement.currentProgress}/${definition.requirement}`
+        : "LOCKED";
+
+    const description = document.createElement("div");
+    description.className =
+      "training-showcase-description";
+
+    description.textContent =
+      definition.description;
+
+    const progress = document.createElement("div");
+    progress.className = "training-showcase-progress";
+
+    const fill = document.createElement("div");
+    fill.className =
+      "training-showcase-progress-fill";
+
+    fill.style.width = unlocked.length > 0
+      ? "100%"
+      : closest
+        ? `${closest.achievement.progressPercent}%`
+        : "0%";
+
+    progress.appendChild(fill);
+
+    card.appendChild(icon);
+    card.appendChild(label);
+    card.appendChild(player);
+    card.appendChild(value);
+    card.appendChild(description);
+    card.appendChild(progress);
+
+    container.appendChild(card);
+
+  });
+
+}    
 // =====================================================
 // RENDER TRAINING SESSIONS
 // =====================================================
@@ -4117,7 +4587,13 @@ function closeTrainingPlayerProfile() {
   );
 
 }
+// =====================================================
+// INITIALIZE TRAINING PAGE
+// =====================================================
+
 renderTrainingLeaderboard();
+renderTrainingHallOfFame();
+renderTrainingAchievementShowcase();
 renderTrainingSessions();
 
 
