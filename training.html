@@ -3231,6 +3231,143 @@ function closeTrainingSessionDetails() {
     "true"
   );
 
+}
+// =====================================================
+// TRAINING RECORDS ENGINE - STAGE 7A
+// =====================================================
+//
+// Records are calculated from official Training games.
+//
+// IMPORTANT:
+// - Training records NEVER modify MMR.
+// - No separate database is required.
+// - All records update automatically.
+// =====================================================
+
+function getTrainingPlayerRecords(playerName) {
+
+  const player =
+    getTrainingPlayerProfile(playerName);
+
+  if (!player) {
+    return null;
+  }
+
+
+  // ===================================================
+  // OPPONENT RECORDS
+  // ===================================================
+
+  const opponents = new Map();
+
+
+  trainingMatches.forEach(match => {
+
+    if (
+      !match ||
+      !match.sessionId ||
+      !match.winner ||
+      !match.loser ||
+      match.winner === match.loser
+    ) {
+      return;
+    }
+
+
+    if (
+      match.winner !== playerName &&
+      match.loser !== playerName
+    ) {
+      return;
+    }
+
+
+    const isWin =
+      match.winner === playerName;
+
+    const opponentName =
+      isWin
+        ? match.loser
+        : match.winner;
+
+
+    if (!opponents.has(opponentName)) {
+
+      opponents.set(opponentName, {
+        name: opponentName,
+        played: 0,
+        wins: 0,
+        losses: 0
+      });
+
+    }
+
+
+    const record =
+      opponents.get(opponentName);
+
+
+    record.played++;
+
+
+    if (isWin) {
+      record.wins++;
+    } else {
+      record.losses++;
+    }
+
+  });
+
+
+  // ===================================================
+  // SORT OPPONENTS BY GAMES PLAYED
+  // ===================================================
+
+  const opponentRecords =
+    Array.from(opponents.values())
+      .sort((a, b) => {
+
+        if (b.played !== a.played) {
+          return b.played - a.played;
+        }
+
+        return a.name.localeCompare(b.name);
+
+      });
+
+
+  // ===================================================
+  // MOST FACED OPPONENT
+  // ===================================================
+
+  const mostFacedOpponent =
+    opponentRecords[0] || null;
+
+
+  // ===================================================
+  // COMPLETE TRAINING RECORD
+  // ===================================================
+
+  return {
+
+    name: player.name,
+
+    played: player.played,
+    wins: player.wins,
+    losses: player.losses,
+    winRate: player.winRate,
+
+    currentStreak: player.currentStreak,
+    bestStreak: player.bestStreak,
+
+    sessionsPlayed: player.sessionsPlayed,
+
+    mostFacedOpponent,
+
+    opponentRecords
+
+  };
+
 }    
 // =====================================================
 // TRAINING PLAYER PROFILE ENGINE
