@@ -3368,6 +3368,133 @@ function getTrainingPlayerRecords(playerName) {
 
   };
 
+} 
+// =====================================================
+// TRAINING ACHIEVEMENTS ENGINE - STAGE 7B
+// =====================================================
+//
+// Achievements are calculated from Training history.
+//
+// IMPORTANT:
+// - Training achievements NEVER modify MMR.
+// - Achievements are based on official Training games.
+// - Unlocked achievements remain unlocked while
+//   their supporting match history is retained.
+// =====================================================
+
+function getTrainingPlayerAchievements(playerName) {
+
+  const records =
+    getTrainingPlayerRecords(playerName);
+
+  if (!records) {
+    return null;
+  }
+
+
+  // ===================================================
+  // ACHIEVEMENT DEFINITIONS
+  // ===================================================
+
+  const achievements = [
+
+    {
+      id: "first-blood",
+      name: "FIRST BLOOD",
+      icon: "⚔️",
+      description: "Win your first Training game.",
+      requirement: 1,
+      progress: records.wins
+    },
+
+    {
+      id: "hot-streak",
+      name: "HOT STREAK",
+      icon: "🔥",
+      description: "Reach a 3-game Training win streak.",
+      requirement: 3,
+      progress: records.bestStreak
+    },
+
+    {
+      id: "training-veteran",
+      name: "TRAINING VETERAN",
+      icon: "🛡️",
+      description: "Play 25 Training games.",
+      requirement: 25,
+      progress: records.played
+    },
+
+    {
+      id: "practice-master",
+      name: "PRACTICE MASTER",
+      icon: "🏆",
+      description: "Win 20 Training games.",
+      requirement: 20,
+      progress: records.wins
+    }
+
+  ];
+
+
+  // ===================================================
+  // CALCULATE ACHIEVEMENT STATUS
+  // ===================================================
+
+  const results = achievements.map(achievement => {
+
+    const unlocked =
+      achievement.progress >= achievement.requirement;
+
+    return {
+
+      ...achievement,
+
+      unlocked,
+
+      currentProgress: Math.min(
+        achievement.progress,
+        achievement.requirement
+      ),
+
+      progressPercent: Math.min(
+        100,
+        (
+          achievement.progress /
+          achievement.requirement
+        ) * 100
+      )
+
+    };
+
+  });
+
+
+  // ===================================================
+  // ACHIEVEMENT SUMMARY
+  // ===================================================
+
+  const unlockedCount =
+    results.filter(
+      achievement => achievement.unlocked
+    ).length;
+
+
+  return {
+
+    playerName,
+
+    totalAchievements: results.length,
+
+    unlockedCount,
+
+    lockedCount:
+      results.length - unlockedCount,
+
+    achievements: results
+
+  };
+
 }    
 // =====================================================
 // TRAINING PLAYER PROFILE ENGINE
