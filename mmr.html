@@ -25835,6 +25835,82 @@ const mmrMatches = [
   }
 
 ];
+
+  // =====================================================
+  // DUNE FUTURE 2027 — UNDEFEATED LEGACY BONUS ENGINE
+  // PREVIEW ONLY — DOES NOT MODIFY 2026 MMR
+  // =====================================================
+
+  function calculateMMR2027UndefeatedBonus(
+    matches = mmrMatches
+  ) {
+
+    const playerStats = {};
+
+    if (!Array.isArray(matches)) {
+      return playerStats;
+    }
+
+    for (const match of matches) {
+
+      if (!match || !match.winner || !match.loser) {
+        continue;
+      }
+
+      // Only official 2026 match records
+      if (
+        typeof match.date !== "string" ||
+        !/\b2026\b/.test(match.date)
+      ) {
+        continue;
+      }
+
+      const winner = match.winner;
+      const loser = match.loser;
+
+      if (!playerStats[winner]) {
+        playerStats[winner] = {
+          wins: 0,
+          losses: 0,
+          bonus: 0,
+          undefeated: false
+        };
+      }
+
+      if (!playerStats[loser]) {
+        playerStats[loser] = {
+          wins: 0,
+          losses: 0,
+          bonus: 0,
+          undefeated: false
+        };
+      }
+
+      playerStats[winner].wins++;
+      playerStats[loser].losses++;
+
+    }
+
+    for (const player of Object.keys(playerStats)) {
+
+      const stats = playerStats[player];
+
+      stats.undefeated =
+        stats.wins > 0 &&
+        stats.losses === 0;
+
+      stats.bonus = stats.undefeated
+        ? Math.min(stats.wins * 100, 500)
+        : 0;
+
+    }
+
+    return playerStats;
+  }
+
+  // Read-only preview for the future 2027 reset.
+  // Does not change player ratings or leaderboard.
+  
   // =====================================================
 // WINNING STREAK ENGINE
 // =====================================================
