@@ -23969,7 +23969,231 @@ strong {
     transform: none;
   }
 
-}    
+}
+
+/* =========================================
+   DUNE FUTURE — MMR 2027 ANNOUNCEMENT
+   ========================================= */
+
+.mmr-2027-announcement {
+  max-width: 1100px;
+  margin: 36px auto 48px;
+  padding: 32px;
+  border: 1px solid rgba(168, 85, 247, .55);
+  border-radius: 22px;
+  background: linear-gradient(145deg, #101327, #17112c 60%, #0b101b);
+  box-shadow: 0 0 35px rgba(139, 92, 246, .12);
+  color: #e5e7eb;
+}
+
+.mmr-2027-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+
+.mmr-2027-tag,
+.mmr-2027-coming {
+  padding: 7px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.mmr-2027-tag {
+  color: #d8b4fe;
+  background: rgba(168, 85, 247, .15);
+}
+
+.mmr-2027-coming {
+  color: #facc15;
+  background: rgba(250, 204, 21, .12);
+  border: 1px solid rgba(250, 204, 21, .3);
+}
+
+.mmr-2027-announcement h2 {
+  margin: 0 0 12px;
+  text-align: center;
+  color: #fff;
+  font-size: clamp(23px, 4vw, 34px);
+}
+
+.mmr-2027-subtitle {
+  text-align: center;
+  color: #c4b5fd;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.mmr-2027-effective {
+  text-align: center;
+  color: #a1a1aa;
+  font-size: 13px;
+}
+
+.mmr-2027-section {
+  margin-top: 26px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(168, 85, 247, .25);
+}
+
+.mmr-2027-section h3 {
+  color: #facc15;
+  font-size: 17px;
+  margin: 0 0 15px;
+}
+
+.mmr-2027-section p {
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+.mmr-2027-important {
+  padding: 13px;
+  border-left: 3px solid #a78bfa;
+  background: rgba(168, 85, 247, .09);
+  border-radius: 6px;
+  color: #ddd6fe;
+}
+
+.mmr-2027-tiers {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.mmr-2027-tiers > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 13px;
+  background: rgba(255, 255, 255, .04);
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.mmr-2027-tiers span {
+  color: #c4b5fd;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.mmr-2027-price {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin: 20px 0;
+  padding: 20px;
+  text-align: center;
+  border: 1px solid rgba(250, 204, 21, .35);
+  border-radius: 14px;
+  background: rgba(250, 204, 21, .06);
+}
+
+.mmr-2027-price > div {
+  font-size: 12px;
+  color: #facc15;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.mmr-2027-price strong {
+  font-size: clamp(20px, 4vw, 30px);
+  color: #fff;
+}
+
+.mmr-2027-price small {
+  color: #a1a1aa;
+}
+
+.mmr-2027-reward-list {
+  display: grid;
+  gap: 8px;
+}
+
+.mmr-2027-reward-list > div {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, .04);
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.mmr-2027-reward-list span {
+  color: #facc15;
+}
+
+.mmr-2027-reward-list small {
+  color: #a1a1aa;
+  text-align: right;
+}
+
+.mmr-2027-total {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  margin-top: 20px;
+  padding: 20px;
+  background: rgba(250, 204, 21, .08);
+  border: 1px solid rgba(250, 204, 21, .3);
+  border-radius: 14px;
+  text-align: center;
+}
+
+.mmr-2027-total strong {
+  color: #facc15;
+  font-size: 26px;
+}
+
+.mmr-2027-note,
+.mmr-2027-footer {
+  color: #a1a1aa;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.mmr-2027-footer {
+  margin-top: 25px;
+  text-align: center;
+  font-weight: 700;
+  color: #c4b5fd;
+}
+
+@media (max-width: 650px) {
+  .mmr-2027-announcement {
+    padding: 18px;
+    margin: 24px 10px 35px;
+  }
+
+  .mmr-2027-tiers {
+    grid-template-columns: 1fr;
+  }
+
+  .mmr-2027-reward-list > div {
+    grid-template-columns: 1fr auto;
+  }
+
+  .mmr-2027-reward-list small {
+    grid-column: 1 / -1;
+  }
+
+  .mmr-2027-tiers > div {
+    flex-wrap: wrap;
+  }
+}
+    
 </style>
 
 <link rel="stylesheet" href="style.css">
@@ -24029,6 +24253,122 @@ TOP 20 · LAST UPDATED <span id="mmrLastUpdated">—</span>
 
       </div>
 
+
+<!-- DUNE FUTURE MMR 2027 ANNOUNCEMENT -->
+<section class="mmr-2027-announcement" id="mmr2027Announcement">
+
+  <div class="mmr-2027-header">
+    <span class="mmr-2027-tag">OFFICIAL ANNOUNCEMENT</span>
+    <span class="mmr-2027-coming">COMING 2027</span>
+  </div>
+
+  <h2>🏆 DUNE FUTURE MMR SYSTEM 2027</h2>
+  <p class="mmr-2027-subtitle">
+    NEW RANKS. NEW RULES. NEW CHAMPIONS.
+  </p>
+  <p class="mmr-2027-effective">
+    Effective January 1, 2027
+  </p>
+
+  <div class="mmr-2027-section">
+    <h3>🔄 ONE-TIME MMR RESET</h3>
+    <p>
+      All competitive MMR points will reset to 0 on
+      January 1, 2027.
+    </p>
+    <p>
+      Players with at least one official MMR match and
+      zero losses will receive 100 starting MMR and
+      an exclusive undefeated visual effect.
+    </p>
+    <p class="mmr-2027-important">
+      IMPORTANT: This reset happens ONLY in 2027.
+      From 2028 onward, MMR points will carry forward
+      without annual resets.
+    </p>
+  </div>
+
+  <div class="mmr-2027-section">
+    <h3>🎖️ NEW RANK TIERS</h3>
+
+    <div class="mmr-2027-tiers">
+      <div>👑 MASTER <span>1,275+ MMR</span></div>
+      <div>💎 DIAMOND <span>1,025–1,250 MMR</span></div>
+      <div>🔮 PLATINUM <span>775–1,000 MMR</span></div>
+      <div>🥇 GOLD <span>525–750 MMR</span></div>
+      <div>🥈 SILVER <span>275–500 MMR</span></div>
+      <div>🥉 BRONZE <span>100–250 MMR</span></div>
+      <div>⚪ UNRANKED <span>0–99 MMR</span></div>
+    </div>
+  </div>
+
+  <div class="mmr-2027-section">
+    <h3>⚔️ SAME-TIER MATCH RULE</h3>
+    <p>
+      MMR points will only change when both players
+      belong to the same rank tier before the match.
+    </p>
+    <p>Same Tier: Winner +25 MMR / Loser -25 MMR.</p>
+    <p>Different Tiers: 0 MMR change for both players.</p>
+    <p>
+      Minimum MMR is 0. UNRANKED players can earn
+      +25 MMR by defeating another UNRANKED player.
+    </p>
+  </div>
+
+  <div class="mmr-2027-section mmr-2027-rewards">
+    <h3>₿ PLAY 2 EARN — ANNUAL TOP 10 REWARDS</h3>
+    <p>
+      Starting in 2027, the final TOP 10 Competitive
+      MMR players will be eligible for annual
+      Bitcoin rewards.
+    </p>
+
+    <div class="mmr-2027-price">
+      <div>LIVE BTC/IDR MARKET PRICE</div>
+      <strong id="mmr2027BtcPrice">Loading price...</strong>
+      <small id="mmr2027PriceUpdated">
+        Fetching latest market data
+      </small>
+    </div>
+
+    <div class="mmr-2027-reward-list">
+      <div data-btc="0.001">🥇 #1 <span>0.001 BTC</span><small class="reward-idr"></small></div>
+      <div data-btc="0.00075">🥈 #2 <span>0.00075 BTC</span><small class="reward-idr"></small></div>
+      <div data-btc="0.000625">🥉 #3 <span>0.000625 BTC</span><small class="reward-idr"></small></div>
+      <div data-btc="0.0004">#4 <span>0.0004 BTC</span><small class="reward-idr"></small></div>
+      <div data-btc="0.0003">#5 <span>0.0003 BTC</span><small class="reward-idr"></small></div>
+      <div data-btc="0.0002">#6 <span>0.0002 BTC</span><small class="reward-idr"></small></div>
+      <div data-btc="0.00015">#7 <span>0.00015 BTC</span><small class="reward-idr"></small></div>
+      <div data-btc="0.0001">#8 <span>0.0001 BTC</span><small class="reward-idr"></small></div>
+      <div data-btc="0.000075">#9 <span>0.000075 BTC</span><small class="reward-idr"></small></div>
+      <div data-btc="0.00005">#10 <span>0.00005 BTC</span><small class="reward-idr"></small></div>
+    </div>
+
+    <div class="mmr-2027-total">
+      <span>TOTAL ANNUAL REWARD POOL</span>
+      <strong>0.00365000 BTC</strong>
+      <span id="mmr2027TotalIdr">
+        IDR estimate loading...
+      </span>
+    </div>
+
+    <p class="mmr-2027-note">
+      Rewards are distributed once per year based on
+      final annual leaderboard standings.
+      BTC amounts are fixed; IDR estimates fluctuate
+      with market prices. Distribution details will
+      be announced separately.
+    </p>
+  </div>
+
+  <p class="mmr-2027-footer">
+    THE ROAD TO MASTER BEGINS IN 2027.
+    The current 2026 MMR system remains unchanged.
+  </p>
+
+</section>
+<!-- END MMR 2027 ANNOUNCEMENT -->
 
       <!-- TOP 3 -->
 
@@ -31235,6 +31575,154 @@ initializeMMRSeasonArchiveControl();
 initializeAdaptiveProfileHeader();
 
 </script>
+
+<!-- DUNE FUTURE 2027 — LIVE BTC/IDR -->
+<script>
+(function () {
+  "use strict";
+
+  const API_URL =
+    "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=idr&include_last_updated_at=true";
+
+  const REFRESH_INTERVAL = 5 * 60 * 1000;
+  const TOTAL_REWARD_BTC = 0.00365;
+
+  const priceElement =
+    document.getElementById("mmr2027BtcPrice");
+
+  const updatedElement =
+    document.getElementById("mmr2027PriceUpdated");
+
+  const totalElement =
+    document.getElementById("mmr2027TotalIdr");
+
+  if (!priceElement || !updatedElement || !totalElement) {
+    return;
+  }
+
+  const formatIDR = (value) =>
+    new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      maximumFractionDigits: 0
+    }).format(value);
+
+  function clearRewardEstimates() {
+    document.querySelectorAll(
+      "#mmr2027Announcement .reward-idr"
+    ).forEach(element => {
+      element.textContent = "IDR unavailable";
+    });
+  }
+
+  function updateRewardEstimates(btcPrice) {
+    document.querySelectorAll(
+      "#mmr2027Announcement .mmr-2027-reward-list [data-btc]"
+    ).forEach(row => {
+      const btcAmount = Number(row.dataset.btc);
+      const idrElement = row.querySelector(".reward-idr");
+
+      if (!idrElement || !Number.isFinite(btcAmount)) {
+        return;
+      }
+
+      idrElement.textContent =
+        "≈ " + formatIDR(btcAmount * btcPrice);
+    });
+
+    totalElement.textContent =
+      "≈ " + formatIDR(TOTAL_REWARD_BTC * btcPrice);
+  }
+
+  async function fetchBTCPrice() {
+    try {
+      const response = await fetch(API_URL, {
+        cache: "no-store"
+      });
+
+      if (!response.ok) {
+        throw new Error("BTC API request failed");
+      }
+
+      const data = await response.json();
+
+      const btcPrice = Number(data?.bitcoin?.idr);
+      const updatedAt = Number(
+        data?.bitcoin?.last_updated_at
+      );
+
+      if (
+        !Number.isFinite(btcPrice) ||
+        btcPrice <= 0
+      ) {
+        throw new Error("Invalid BTC price");
+      }
+
+      // Do not present excessively old prices as live.
+      const ageSeconds = Date.now() / 1000 - updatedAt;
+
+      if (
+        !Number.isFinite(updatedAt) ||
+        updatedAt <= 0 ||
+        ageSeconds > 3600 ||
+        ageSeconds < -300
+      ) {
+        throw new Error("BTC price data is stale");
+      }
+
+      priceElement.textContent =
+        formatIDR(btcPrice);
+
+      updatedElement.textContent =
+        "Market data updated: " +
+        new Date(updatedAt * 1000).toLocaleString(
+          "id-ID",
+          {
+            timeZone: "Asia/Jakarta",
+            dateStyle: "medium",
+            timeStyle: "short"
+          }
+        ) +
+        " WIB · Source: CoinGecko";
+
+      updateRewardEstimates(btcPrice);
+
+    } catch (error) {
+      console.warn(
+        "Dune Future BTC/IDR price unavailable:",
+        error
+      );
+
+      priceElement.textContent =
+        "Price temporarily unavailable";
+
+      updatedElement.textContent =
+        "Unable to retrieve current BTC/IDR market data";
+
+      totalElement.textContent =
+        "IDR estimate unavailable";
+
+      clearRewardEstimates();
+    }
+  }
+
+  fetchBTCPrice();
+
+  setInterval(() => {
+    if (!document.hidden) {
+      fetchBTCPrice();
+    }
+  }, REFRESH_INTERVAL);
+
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) {
+      fetchBTCPrice();
+    }
+  });
+
+})();
+</script>
+<!-- END LIVE BTC/IDR -->
 
 </body>
 </html>
