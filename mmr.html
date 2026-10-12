@@ -24193,6 +24193,168 @@ strong {
     flex-wrap: wrap;
   }
 }
+
+/* =========================================
+   MMR 2027 — UNDEFEATED LEGACY BONUS
+   ========================================= */
+
+.mmr-2027-undefeated-bonus {
+  margin: 18px 0;
+  padding: 20px;
+  border: 1px solid rgba(250, 204, 21, 0.4);
+  border-radius: 14px;
+  background: linear-gradient(
+    135deg,
+    rgba(120, 53, 15, 0.25),
+    rgba(76, 29, 149, 0.2)
+  );
+}
+
+.mmr-2027-undefeated-bonus h4 {
+  margin: 0 0 16px;
+  color: #facc15;
+  font-size: 16px;
+  letter-spacing: 0.6px;
+}
+
+.mmr-2027-undefeated-bonus > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 9px;
+  background: rgba(0, 0, 0, 0.22);
+  color: #e5e7eb;
+  font-size: 14px;
+}
+
+.mmr-2027-undefeated-bonus > div span {
+  color: #facc15;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.mmr-2027-undefeated-bonus > div:nth-of-type(5) {
+  border-color: rgba(250, 204, 21, 0.55);
+  background: rgba(250, 204, 21, 0.1);
+}
+
+.mmr-2027-undefeated-bonus > p {
+  margin: 12px 0 0;
+  color: #cbd5e1;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+@media (max-width: 650px) {
+  .mmr-2027-undefeated-bonus {
+    padding: 14px;
+  }
+
+  .mmr-2027-undefeated-bonus > div {
+    padding: 10px;
+    font-size: 12px;
+  }
+}
+
+/* =========================================
+   MMR 2027 — COLLAPSIBLE ANNOUNCEMENT
+   ========================================= */
+
+.mmr-2027-announcement > summary {
+  list-style: none;
+}
+
+.mmr-2027-announcement > summary::-webkit-details-marker {
+  display: none;
+}
+
+.mmr-2027-toggle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 12px;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 14px;
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.18),
+    rgba(250, 204, 21, 0.07)
+  );
+}
+
+.mmr-2027-toggle > span:first-child {
+  color: #ffffff;
+  font-size: clamp(18px, 3vw, 25px);
+  font-weight: 900;
+  letter-spacing: 0.5px;
+}
+
+.mmr-2027-toggle-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  border: 1px solid rgba(250, 204, 21, 0.6);
+  border-radius: 30px;
+  background: rgba(250, 204, 21, 0.1);
+  color: #facc15;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  transition: all 0.25s ease;
+}
+
+.mmr-2027-toggle:hover .mmr-2027-toggle-action {
+  background: rgba(250, 204, 21, 0.2);
+  box-shadow: 0 0 18px rgba(250, 204, 21, 0.15);
+}
+
+.mmr-2027-toggle:focus-visible {
+  outline: 2px solid #facc15;
+  outline-offset: 4px;
+}
+
+.mmr-2027-announcement[open] .mmr-2027-toggle {
+  margin-bottom: 25px;
+}
+
+.mmr-2027-announcement[open] .mmr-2027-toggle-action {
+  background: rgba(168, 85, 247, 0.2);
+  border-color: #a78bfa;
+  color: #ddd6fe;
+}
+
+@media (max-width: 650px) {
+  .mmr-2027-toggle {
+    padding: 12px 8px;
+  }
+
+  .mmr-2027-toggle-action {
+    padding: 11px 16px;
+    font-size: 10px;
+  }
+}
+
+/* MMR 2027 — DYNAMIC VIEW / HIDE LABEL */
+
+.mmr-2027-hide-text {
+  display: none;
+}
+
+.mmr-2027-announcement[open] .mmr-2027-view-text {
+  display: none;
+}
+
+.mmr-2027-announcement[open] .mmr-2027-hide-text {
+  display: inline;
+}
     
 </style>
 
@@ -24255,7 +24417,22 @@ TOP 20 · LAST UPDATED <span id="mmrLastUpdated">—</span>
 
 
 <!-- DUNE FUTURE MMR 2027 ANNOUNCEMENT -->
-<section class="mmr-2027-announcement" id="mmr2027Announcement">
+
+<details class="mmr-2027-announcement" id="mmr2027Announcement">
+  <summary class="mmr-2027-toggle">
+    <span>🏆 DUNE FUTURE MMR SYSTEM 2027</span>
+
+<span class="mmr-2027-toggle-action">
+  <span class="mmr-2027-view-text">
+    ▼ VIEW ANNOUNCEMENT
+  </span>
+  <span class="mmr-2027-hide-text">
+    ▲ HIDE ANNOUNCEMENT
+  </span>
+</span>
+
+  </summary>
+
 
   <div class="mmr-2027-header">
     <span class="mmr-2027-tag">OFFICIAL ANNOUNCEMENT</span>
@@ -24276,11 +24453,35 @@ TOP 20 · LAST UPDATED <span id="mmrLastUpdated">—</span>
       All competitive MMR points will reset to 0 on
       January 1, 2027.
     </p>
-    <p>
-      Players with at least one official MMR match and
-      zero losses will receive 100 starting MMR and
-      an exclusive undefeated visual effect.
-    </p>
+
+<p>
+  Players who finish 2026 with at least one official
+  Competitive MMR win and ZERO losses will receive
+  an exclusive UNDEFEATED LEGACY BONUS when the
+  one-time MMR reset takes place on January 1, 2027.
+</p>
+
+<div class="mmr-2027-undefeated-bonus">
+  <h4>🏆 UNDEFEATED LEGACY BONUS</h4>
+
+  <div>1 Win / 0 Losses <span>+100 MMR</span></div>
+  <div>2 Wins / 0 Losses <span>+200 MMR</span></div>
+  <div>3 Wins / 0 Losses <span>+300 MMR</span></div>
+  <div>4 Wins / 0 Losses <span>+400 MMR</span></div>
+  <div>5+ Wins / 0 Losses <span>+500 MMR</span></div>
+
+  <p>
+    Maximum bonus: 500 MMR.
+    Players with any official Competitive MMR loss
+    are not eligible for this bonus.
+  </p>
+
+  <p>
+    Eligible undefeated players will also receive
+    an exclusive visual effect.
+  </p>
+</div>
+
     <p class="mmr-2027-important">
       IMPORTANT: This reset happens ONLY in 2027.
       From 2028 onward, MMR points will carry forward
@@ -24367,7 +24568,7 @@ TOP 20 · LAST UPDATED <span id="mmrLastUpdated">—</span>
     The current 2026 MMR system remains unchanged.
   </p>
 
-</section>
+</details>
 <!-- END MMR 2027 ANNOUNCEMENT -->
 
       <!-- TOP 3 -->
