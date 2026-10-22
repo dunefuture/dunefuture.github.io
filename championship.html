@@ -285,6 +285,7 @@ import { getFirestore, doc, getDoc, collection, getDocs } from "https://www.gsta
 import {
   getAuth,
   signInWithEmailAndPassword,
+createUserWithEmailAndPassword,  
 onAuthStateChanged,
 signOut
 } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js";
@@ -362,6 +363,61 @@ signOutButton.addEventListener("click", async () => {
     authMessage.textContent = "Unable to sign out. Please try again.";
   } finally {
     signOutButton.disabled = false;
+  }
+});
+
+/* DUNE FUTURE CHAMPIONSHIP — CREATE ACCOUNT */
+
+registerButton.addEventListener("click", async () => {
+  const email = document
+    .getElementById("championshipEmail")
+    .value.trim();
+
+  const password = document
+    .getElementById("championshipPassword")
+    .value;
+
+  if (!email || !password) {
+    authMessage.textContent =
+      "Please enter your email and password.";
+    return;
+  }
+
+  if (password.length < 6) {
+    authMessage.textContent =
+      "Password must contain at least 6 characters.";
+    return;
+  }
+
+  registerButton.disabled = true;
+  authMessage.textContent = "Creating account...";
+
+  try {
+    await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+    loginForm.reset();
+    authMessage.textContent =
+      "Account created successfully.";
+
+  } catch (error) {
+    console.error("Registration error:", error.code);
+
+    if (error.code === "auth/email-already-in-use") {
+      authMessage.textContent =
+        "This email is already registered.";
+    } else if (error.code === "auth/weak-password") {
+      authMessage.textContent =
+        "Please choose a stronger password.";
+    } else {
+      authMessage.textContent =
+        "Unable to create account. Please try again.";
+    }
+  } finally {
+    registerButton.disabled = false;
   }
 });
 
