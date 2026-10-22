@@ -325,130 +325,64 @@
   }
 }
 
-/* CHAMPIONSHIP — PLAYER PROFILE FORM FIX */
-
+/* PLAYER PROFILE — FINAL LAYOUT OVERRIDES */
 #championshipPlayerProfile .championship-profile-box {
   width: 100%;
   max-width: 420px;
   box-sizing: border-box;
 }
-
-#championshipProfileForm {
+#championshipPlayerProfile #championshipProfileForm {
   display: flex;
   flex-direction: column;
+  align-items: stretch;
   gap: 12px;
   width: 100%;
 }
-
-#championshipProfileForm label {
-  display: block;
-  color: #f5c35c;
-  font-size: 13px;
-  font-weight: 600;
-}
-
-#championshipProfileForm input {
+#championshipPlayerProfile #championshipProfileForm label {
   display: block;
   width: 100%;
+  margin: 4px 0 0;
   box-sizing: border-box;
-  padding: 13px 14px;
-  background: #20202e;
-  border: 1px solid #414154;
-  border-radius: 7px;
-  color: #ffffff;
-  font-size: 14px;
 }
-
-#championshipProfileForm input:focus {
-  outline: none;
-  border-color: #f5c35c;
-}
-
-#championshipProfileSubmitBtn {
-  display: block;
-  width: 100%;
-  padding: 14px;
-  margin-top: 8px;
-  background: #e2b14d;
-  border: none;
-  border-radius: 7px;
-  color: #08080d;
-  font-weight: 800;
-  letter-spacing: 1px;
-  cursor: pointer;
-}
-
-#championshipProfileSubmitBtn:hover {
-  background: #f5c96d;
-}
-
-/* CHAMPIONSHIP 2027 — PLAYER PROFILE FINAL FIX */
-
-#championshipPlayerProfile .championship-auth-box {
-  width: 100%;
-  max-width: 420px;
-  box-sizing: border-box;
-  padding: 26px;
-}
-
-#championshipProfileForm {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  width: 100%;
-}
-
-#championshipProfileForm label {
-  display: block;
-  width: 100%;
-  color: #f5c35c;
-  font-size: 13px;
-  font-weight: 600;
-  margin-top: 8px;
-}
-
-#championshipProfileForm input {
+#championshipPlayerProfile #championshipProfileForm input {
   display: block;
   width: 100%;
   min-width: 0;
   box-sizing: border-box;
   padding: 13px 14px;
+  color: #fff;
   background: #20202e;
-  color: #ffffff;
   border: 1px solid #454052;
-  border-radius: 7px;
+  border-radius: 8px;
+  font: inherit;
   font-size: 14px;
 }
-
-#championshipProfileForm input:focus {
-  outline: none;
-  border-color: #e4b44c;
-  box-shadow: 0 0 0 2px rgba(228,180,76,.15);
+#championshipPlayerProfile #championshipProfileForm input:focus {
+  outline: 2px solid #e2b149;
+  outline-offset: 2px;
 }
-
-#championshipProfileSubmitBtn {
+#championshipPlayerProfile #championshipProfileSubmitBtn {
   display: block;
   width: 100%;
   box-sizing: border-box;
-  padding: 14px;
   margin-top: 12px;
-  background: #e4b44c;
-  color: #111111;
-  border: none;
-  border-radius: 7px;
+  padding: 14px;
+  color: #111018;
+  background: #e2b149;
+  border: 0;
+  border-radius: 8px;
+  font-size: 13px;
   font-weight: 800;
   cursor: pointer;
 }
-
-#championshipProfileSubmitBtn:hover {
-  background: #f5cb70;
+#championshipPlayerProfile #championshipProfileSubmitBtn:hover {
+  background: #f5cd73;
 }
-
-#championshipProfileSubmitBtn:disabled {
+#championshipPlayerProfile #championshipProfileSubmitBtn:disabled {
   opacity: .6;
   cursor: not-allowed;
 }
-  
+
 </style>
   
 </head>
