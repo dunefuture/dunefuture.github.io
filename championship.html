@@ -14,5 +14,50 @@
     <p>Championship information and registration coming soon.</p>
   </main>
 
+  <!-- DUNE FUTURE CHAMPIONSHIP — FIREBASE -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
+    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCCNc31MUDiy7IRGV_YYCczxrwgiMYTNd4",
+      authDomain: "dune-future-championship.firebaseapp.com",
+      projectId: "dune-future-championship",
+      storageBucket: "dune-future-championship.firebasestorage.app",
+      messagingSenderId: "498314023446",
+      appId: "1:498314023446:web:464458363fa98428c31b37"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    async function loadChampionship() {
+      try {
+        const tournamentRef = doc(
+          db,
+          "tournaments",
+          "dune-future-championship-2027"
+        );
+
+        const tournamentSnap = await getDoc(tournamentRef);
+
+        if (tournamentSnap.exists()) {
+          const tournament = tournamentSnap.data();
+
+          console.log("DUNE FUTURE CHAMPIONSHIP CONNECTED");
+          console.log("Tournament:", tournament.name);
+          console.log("Year:", tournament.year);
+          console.log("Status:", tournament.status);
+        } else {
+          console.warn("Tournament document not found.");
+        }
+      } catch (error) {
+        console.error("Firebase connection error:", error);
+      }
+    }
+
+    loadChampionship();
+  </script>
+
 </body>
 </html>
