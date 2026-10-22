@@ -81,6 +81,104 @@
     padding: 6px 8px;
   }
 }
+/* DUNE FUTURE — PLAYER AUTHENTICATION */
+
+#championshipAuth {
+  margin: 42px 0;
+  max-width: 900px;
+}
+
+.championship-auth-box {
+  max-width: 480px;
+  padding: 30px;
+  background: linear-gradient(145deg, #191929, #0b0b14);
+  border: 1px solid rgba(226, 177, 73, 0.45);
+  border-top: 3px solid #e2b149;
+  border-radius: 16px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+}
+
+.championship-auth-box h3 {
+  color: #f3cb75;
+  font-size: 24px;
+  margin: 0 0 22px;
+  letter-spacing: 1px;
+}
+
+#championshipLoginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#championshipLoginForm label {
+  color: #d6c4a1;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+#championshipLoginForm input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 14px;
+  color: #fff;
+  background: #20202e;
+  border: 1px solid #454052;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+#championshipLoginForm input:focus {
+  outline: 2px solid #e2b149;
+  outline-offset: 2px;
+}
+
+#championshipLoginBtn,
+#championshipRegisterBtn {
+  width: 100%;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+#championshipLoginBtn {
+  margin-top: 12px;
+  color: #17120a;
+  background: #e2b149;
+  border: none;
+}
+
+#championshipRegisterBtn {
+  margin-top: 12px;
+  color: #e2b149;
+  background: transparent;
+  border: 1px solid #e2b149;
+}
+
+#championshipLoginBtn:hover {
+  background: #f3cb75;
+}
+
+#championshipRegisterBtn:hover {
+  background: rgba(226, 177, 73, 0.12);
+}
+
+#championshipAuthMessage {
+  color: #f3cb75;
+  font-size: 13px;
+  margin-top: 16px;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 600px) {
+  .championship-auth-box {
+    padding: 20px 16px;
+  }
+}  
 </style>
   
 </head>
@@ -90,7 +188,45 @@
     <h1>🏆 DUNE FUTURE CHAMPIONSHIP 2027</h1>
     <p>Official Tournament Portal</p>
     <p>Championship information and registration coming soon.</p>
+<!-- CHAMPIONSHIP PLAYER AUTHENTICATION -->
+<section id="championshipAuth">
+  <h2>⚔️ PLAYER REGISTRATION — 2027</h2>
+  <p>Create your account or sign in to join the Championship.</p>
 
+  <div class="championship-auth-box">
+    <h3>PLAYER ACCOUNT</h3>
+
+    <form id="championshipLoginForm">
+      <label for="championshipEmail">Email Address</label>
+      <input
+        type="email"
+        id="championshipEmail"
+        placeholder="Enter your email"
+        autocomplete="email"
+        required
+      >
+
+      <label for="championshipPassword">Password</label>
+      <input
+        type="password"
+        id="championshipPassword"
+        placeholder="Enter your password"
+        autocomplete="current-password"
+        required
+      >
+
+      <button type="submit" id="championshipLoginBtn">
+        SIGN IN
+      </button>
+    </form>
+
+    <button type="button" id="championshipRegisterBtn">
+      CREATE ACCOUNT
+    </button>
+
+    <p id="championshipAuthMessage" role="status" aria-live="polite"></p>
+  </div>
+</section>
     <!-- OFFICIAL CHAMPIONSHIP PARTICIPANTS -->
     <section id="championshipParticipants">
       <h2>🏆 OFFICIAL PARTICIPANTS — 2027</h2>
