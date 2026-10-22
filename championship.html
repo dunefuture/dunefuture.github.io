@@ -179,6 +179,26 @@
     padding: 20px 16px;
   }
 }  
+/* CHAMPIONSHIP — SIGN OUT BUTTON */
+
+#championshipSignOutBtn:not([hidden]) {
+  display: block;
+  width: 100%;
+  margin-top: 14px;
+  padding: 14px;
+  color: #f3cb75;
+  background: rgba(226, 177, 73, 0.08);
+  border: 1px solid #e2b149;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+#championshipSignOutBtn:hover {
+  background: rgba(226, 177, 73, 0.18);
+}  
 </style>
   
 </head>
@@ -225,6 +245,14 @@
     </button>
 
     <p id="championshipAuthMessage" role="status" aria-live="polite"></p>
+<!-- PLAYER SIGN OUT -->
+<button
+  type="button"
+  id="championshipSignOutBtn"
+  hidden
+>
+  SIGN OUT
+</button>    
   </div>
 </section>
     <!-- OFFICIAL CHAMPIONSHIP PARTICIPANTS -->
@@ -246,7 +274,8 @@ import { getFirestore, doc, getDoc, collection, getDocs } from "https://www.gsta
 import {
   getAuth,
   signInWithEmailAndPassword,
-  onAuthStateChanged
+onAuthStateChanged,
+signOut
 } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js";
     const firebaseConfig = {
       apiKey: "AIzaSyCCNc31MUDiy7IRGV_YYCczxrwgiMYTNd4",
@@ -287,12 +316,44 @@ loginForm.addEventListener("submit", async (event) => {
   }
 });
 
+
+const signOutButton = document.getElementById("championshipSignOutBtn");
+const registerButton = document.getElementById("championshipRegisterBtn");
+
 onAuthStateChanged(auth, (user) => {
   if (user) {
     console.log("Championship user authenticated.");
+
     authMessage.textContent = "Signed in successfully.";
+    loginForm.hidden = true;
+    registerButton.hidden = true;
+    signOutButton.hidden = false;
+
+  } else {
+    console.log("Championship user signed out.");
+
+    authMessage.textContent = "Please sign in to continue.";
+    loginForm.hidden = false;
+    registerButton.hidden = false;
+    signOutButton.hidden = true;
   }
-});    
+});
+
+signOutButton.addEventListener("click", async () => {
+  signOutButton.disabled = true;
+
+  try {
+    await signOut(auth);
+    loginForm.reset();
+    authMessage.textContent = "Successfully signed out.";
+  } catch (error) {
+    console.error("Sign out error:", error.code);
+    authMessage.textContent = "Unable to sign out. Please try again.";
+  } finally {
+    signOutButton.disabled = false;
+  }
+});
+
     async function loadChampionship() {
       try {
         const tournamentRef = doc(
