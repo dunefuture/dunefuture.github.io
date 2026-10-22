@@ -487,3 +487,10 @@ html{scrollbar-gutter:stable}
 .nav.df-global-nav>.links>a.active:after{content:"";position:absolute;left:0;right:0;bottom:-10px;height:2px;background:#ed49ff;border-radius:10px;box-shadow:0 0 8px #ed49ff}
 .nav.df-global-nav>.join{display:inline-flex!important;flex:0 0 auto!important;align-items:center!important;justify-content:center!important;position:static!important;width:auto!important;min-width:125px!important;height:42px!important;margin:0!important;padding:0 18px!important;white-space:nowrap!important;font-family:Arial,sans-serif!important;font-size:11px!important;font-weight:900!important;letter-spacing:0!important;color:#fff!important;background:linear-gradient(135deg,#9146ff,#ed49ff)!important;border:0!important;border-radius:8px!important;box-shadow:none!important}
 @media(max-width:1120px){.nav.df-global-nav>.links{overflow-x:auto!important;scrollbar-width:none!important}.nav.df-global-nav>.links::-webkit-scrollbar{display:none}.nav.df-global-nav{padding:0 20px!important;gap:12px!important}.nav.df-global-nav>.brand{font-size:14px!important}.nav.df-global-nav>.join{min-width:108px!important;padding:0 10px!important;font-size:10px!important}}
+
+/* Navigation v3: identical positions even when active link changes */
+.nav.df-global-nav>.links>a,.nav.df-global-nav>.links>a.active{font-weight:700!important;text-shadow:none!important;letter-spacing:0!important}
+.nav.df-global-nav>.links>a{color:#aaa4b5!important}
+.nav.df-global-nav>.links>a.active{color:#ed49ff!important;text-shadow:0 0 12px #ed49ff55!important}
+.nav.df-global-nav>.brand{margin-right:auto!important}
+@media(min-width:1121px){.nav.df-global-nav>.links{gap:clamp(9px,1.15vw,22px)!important}}
