@@ -504,7 +504,19 @@
   <!-- DUNE FUTURE CHAMPIONSHIP — FIREBASE -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
-import { getFirestore, doc, getDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js";
+
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  getDocs,
+  query,
+  where,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js";
+
 import {
   getAuth,
   signInWithEmailAndPassword,
@@ -684,7 +696,14 @@ async function loadChampionshipParticipants() {
       "participants"
     );
 
-    const snapshot = await getDocs(participantsRef);
+
+const snapshot = await getDocs(
+  query(
+    participantsRef,
+    where("status", "==", "approved")
+  )
+);
+
 
     const participants = snapshot.docs
       .map(doc => doc.data())
