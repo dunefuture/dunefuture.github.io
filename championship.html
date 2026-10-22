@@ -243,7 +243,11 @@
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
 import { getFirestore, doc, getDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js";
     const firebaseConfig = {
       apiKey: "AIzaSyCCNc31MUDiy7IRGV_YYCczxrwgiMYTNd4",
       authDomain: "dune-future-championship.firebaseapp.com",
@@ -256,6 +260,39 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-auth
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 const auth = getAuth(app);
+// DUNE FUTURE CHAMPIONSHIP — PLAYER LOGIN
+
+const loginForm = document.getElementById("championshipLoginForm");
+const authMessage = document.getElementById("championshipAuthMessage");
+const loginButton = document.getElementById("championshipLoginBtn");
+
+loginForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const email = document.getElementById("championshipEmail").value.trim();
+  const password = document.getElementById("championshipPassword").value;
+
+  loginButton.disabled = true;
+  authMessage.textContent = "Signing in...";
+
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    authMessage.textContent = "Successfully signed in.";
+    loginForm.reset();
+  } catch (error) {
+    console.error("Authentication error code:", error.code);
+    authMessage.textContent = "Sign in failed. Check your email and password.";
+  } finally {
+    loginButton.disabled = false;
+  }
+});
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    console.log("Championship user authenticated.");
+    authMessage.textContent = "Signed in successfully.";
+  }
+});    
     async function loadChampionship() {
       try {
         const tournamentRef = doc(
