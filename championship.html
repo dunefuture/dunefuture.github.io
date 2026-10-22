@@ -12,12 +12,23 @@
     <h1>🏆 DUNE FUTURE CHAMPIONSHIP 2027</h1>
     <p>Official Tournament Portal</p>
     <p>Championship information and registration coming soon.</p>
+
+    <!-- OFFICIAL CHAMPIONSHIP PARTICIPANTS -->
+    <section id="championshipParticipants">
+      <h2>🏆 OFFICIAL PARTICIPANTS — 2027</h2>
+      <p>Approved players competing in Dune Future Championship 2027.</p>
+
+      <div id="championshipParticipantsList">
+        <p>Loading participants...</p>
+      </div>
+    </section>
+
   </main>
 
   <!-- DUNE FUTURE CHAMPIONSHIP — FIREBASE -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
-    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js";
+import { getFirestore, doc, getDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyCCNc31MUDiy7IRGV_YYCczxrwgiMYTNd4",
@@ -55,8 +66,50 @@
         console.error("Firebase connection error:", error);
       }
     }
+async function loadChampionshipParticipants() {
+  const container = document.getElementById("championshipParticipantsList");
 
+  if (!container) return;
+
+  try {
+    const participantsRef = collection(
+      db,
+      "tournaments",
+      "dune-future-championship-2027",
+      "participants"
+    );
+
+    const snapshot = await getDocs(participantsRef);
+
+    const participants = snapshot.docs
+      .map(doc => doc.data())
+      .filter(player => player.status === "approved")
+      .sort((a, b) =>
+        (a.name || "").localeCompare(b.name || "")
+      );
+
+    container.replaceChildren();
+
+    if (participants.length === 0) {
+      container.textContent = "No approved participants yet.";
+      return;
+    }
+
+    participants.forEach((player, index) => {
+      const item = document.createElement("p");
+      item.textContent = `${index + 1}. ${player.name || player.discordUsername || "Unknown Player"}`;
+      container.appendChild(item);
+    });
+
+    console.log("Approved participants loaded:", participants.length);
+
+  } catch (error) {
+    console.error("Participants loading error:", error);
+    container.textContent = "Unable to load participants.";
+  }
+}
     loadChampionship();
+    loadChampionshipParticipants();
   </script>
 
 </body>
