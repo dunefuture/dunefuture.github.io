@@ -202,13 +202,16 @@
 
 /* CHAMPIONSHIP — AUTH VISIBILITY FIX */
 
+
 #championshipAuth [hidden],
 #championshipAuth [hidden] *,
 #championshipLoginForm[hidden],
 #championshipRegisterBtn[hidden],
-#championshipSignOutBtn[hidden] {
+#championshipSignOutBtn[hidden],
+#championshipPlayerProfile[hidden] {
   display: none !important;
 }
+
   
 </style>
   
@@ -266,6 +269,56 @@
 </button>    
   </div>
 </section>
+
+<!-- CHAMPIONSHIP PLAYER PROFILE REGISTRATION -->
+<section id="championshipPlayerProfile" hidden>
+  <h2>⚔️ PLAYER PROFILE — 2027</h2>
+  <p>Complete your player profile to register for the Championship.</p>
+
+  <div class="championship-auth-box">
+    <h3>PLAYER INFORMATION</h3>
+
+    <form id="championshipProfileForm">
+
+      <label for="championshipPlayerName">
+        In-Game Name
+      </label>
+      <input
+        type="text"
+        id="championshipPlayerName"
+        placeholder="Enter your Dune player name"
+        maxlength="40"
+        autocomplete="off"
+        required
+      >
+
+      <label for="championshipDiscordName">
+        Discord Username
+      </label>
+      <input
+        type="text"
+        id="championshipDiscordName"
+        placeholder="Enter your Discord username"
+        maxlength="40"
+        autocomplete="off"
+        required
+      >
+
+      <button type="submit" id="championshipProfileSubmitBtn">
+        SUBMIT REGISTRATION
+      </button>
+
+    </form>
+
+    <p
+      id="championshipProfileMessage"
+      role="status"
+      aria-live="polite"
+    ></p>
+
+  </div>
+</section>
+    
     <!-- OFFICIAL CHAMPIONSHIP PARTICIPANTS -->
     <section id="championshipParticipants">
       <h2>🏆 OFFICIAL PARTICIPANTS — 2027</h2>
@@ -332,6 +385,8 @@ loginForm.addEventListener("submit", async (event) => {
 const signOutButton = document.getElementById("championshipSignOutBtn");
 const registerButton = document.getElementById("championshipRegisterBtn");
 
+const playerProfileSection = document.getElementById("championshipPlayerProfile");
+
 onAuthStateChanged(auth, (user) => {
   if (user) {
     console.log("Championship user authenticated.");
@@ -340,7 +395,7 @@ onAuthStateChanged(auth, (user) => {
     loginForm.hidden = true;
     registerButton.hidden = true;
     signOutButton.hidden = false;
-
+playerProfileSection.hidden = false;
   } else {
     console.log("Championship user signed out.");
 
@@ -348,6 +403,7 @@ onAuthStateChanged(auth, (user) => {
     loginForm.hidden = false;
     registerButton.hidden = false;
     signOutButton.hidden = true;
+    playerProfileSection.hidden = true;
   }
 });
 
