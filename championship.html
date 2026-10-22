@@ -411,6 +411,7 @@ html{scroll-behavior:smooth}body{background:#07080c;color:#f5f3ee}.champ-main{ov
 </style>
   
 <link rel="stylesheet" href="navigation-unified.css?v=20261022-final1">
+<link rel="stylesheet" href="championship-public.css?v=20261023">
 </head>
 <body>
 
@@ -420,48 +421,24 @@ html{scroll-behavior:smooth}body{background:#07080c;color:#f5f3ee}.champ-main{ov
     <header class="champ-hero">
       <div class="champ-hero-content"><div class="champ-eyebrow"><span class="champ-live-dot"></span> DUNE 2000 • OFFICIAL TOURNAMENT PORTAL <span class="champ-season">SEASON 2027</span></div>
       <p class="champ-hero-overline">THE NEXT ERA OF COMPETITION</p><h1>DUNE FUTURE<br><span>CHAMPIONSHIP</span><strong>2027<span class="champ-hero-period">.</span></strong></h1>
-      <p class="champ-hero-lead">Legends are forged in battle. Join the Dune Future community championship, secure your player profile, and earn your place among the official contenders.</p>
-      <div class="champ-hero-actions"><a class="champ-primary" href="#championshipAuth">ENTER THE CHAMPIONSHIP <span>↗</span></a><a class="champ-secondary" href="#championshipParticipants">VIEW CONTENDERS ↓</a></div>
+      <p class="champ-hero-lead">Legends are forged in battle. Join the Dune Future community championship, follow the standings and official announcements.</p>
+      <div class="champ-hero-actions"><a class="champ-primary" href="#championshipAuth">REGISTRATION COMING SOON <span>↗</span></a><a class="champ-secondary" href="#championshipParticipants">VIEW CONTENDERS ↓</a></div>
       <div class="champ-hero-meta"><div><span>01 /</span> PLAYER REGISTRATION</div><div><span>02 /</span> ADMIN APPROVAL</div><div><span>03 /</span> OFFICIAL ROSTER</div></div></div>
       <div class="champ-hero-art" aria-hidden="true"><div class="champ-orbit champ-orbit-one"></div><div class="champ-orbit champ-orbit-two"></div><div class="champ-art-center">D<span>F</span><small>XXVII</small></div><div class="champ-art-label champ-art-label-top">EST. DUNE FUTURE</div><div class="champ-art-label champ-art-label-bottom">THE ARENA AWAITS</div></div>
     </header>
     <div class="champ-ticker"><span>◈ THE CHAMPIONSHIP AWAITS</span><span>✦ STRATEGY • SKILL • LEGACY</span><span>◈ DUNE FUTURE 2027</span><span>✦ THE ROAD TO GLORY</span></div>
-    <section class="champ-intro" aria-label="Tournament overview"><div><div class="champ-kicker">THE COMPETITION</div><h2>ONE ARENA.<br><span>ONE LEGACY.</span></h2></div><div class="champ-intro-copy"><p>A new chapter of Dune 2000 competition begins. Create your account, prepare your player identity, and follow the official championship roster as competitors are confirmed.</p><div class="champ-pill-row"><span>⚔ DUNE 2000</span><span>✦ COMMUNITY EVENT</span><span>◆ 2027 EDITION</span></div></div></section>
-    <div class="champ-section-rule"><span>01 — JOIN THE COMPETITION</span><span>PLAYER PORTAL</span></div>
-    <div class="champ-portal-grid">
-      <section id="championshipAuth" class="champ-panel"><div class="champ-panel-top"><span class="champ-kicker">ACCESS / 01</span><span class="champ-panel-icon">↗</span></div><h2>PLAYER <em>ACCOUNT</em></h2><p class="champ-panel-description">Create your account or sign in to join the Championship.</p>
-        <div class="championship-auth-box"><h3>SECURE ACCESS</h3><form id="championshipLoginForm"><label for="championshipEmail">EMAIL ADDRESS</label><input type="email" id="championshipEmail" placeholder="Enter your email" autocomplete="email" required><label for="championshipPassword">PASSWORD</label><input type="password" id="championshipPassword" placeholder="Enter your password" autocomplete="current-password" required><button type="submit" id="championshipLoginBtn">SIGN IN ↗</button></form><button type="button" id="championshipRegisterBtn">CREATE ACCOUNT</button><p id="championshipAuthMessage" role="status" aria-live="polite"></p><button type="button" id="championshipSignOutBtn" hidden>SIGN OUT</button></div>
-      </section>
-      <section id="championshipPlayerProfile" class="champ-panel" hidden><div class="champ-panel-top"><span class="champ-kicker">PROFILE / 02</span><span class="champ-panel-icon">✦</span></div><h2>PLAYER <em>PROFILE</em></h2><p class="champ-panel-description">Complete your player profile to register for the Championship.</p><div class="championship-profile-box"><h3>PLAYER INFORMATION</h3><form id="championshipProfileForm"><label for="championshipPlayerName">IN-GAME NAME</label><input type="text" id="championshipPlayerName" placeholder="Enter your Dune player name" maxlength="40" autocomplete="off" required><label for="championshipDiscordName">DISCORD USERNAME</label><input type="text" id="championshipDiscordName" placeholder="Enter your Discord username" maxlength="40" autocomplete="off" required><button type="submit" id="championshipProfileSubmitBtn">SUBMIT REGISTRATION ↗</button></form><p id="championshipProfileMessage" role="status" aria-live="polite"></p></div></section>
-      <aside class="champ-side-panel"><div class="champ-kicker">HOW IT WORKS</div><h3>YOUR ROAD<br>TO THE <em>ARENA.</em></h3><div class="champ-step"><b>01</b><div><strong>CREATE AN ACCOUNT</strong><p>Sign up securely with your email and password.</p></div></div><div class="champ-step"><b>02</b><div><strong>COMPLETE YOUR PROFILE</strong><p>Enter your in-game name and Discord identity.</p></div></div><div class="champ-step"><b>03</b><div><strong>AWAIT CONFIRMATION</strong><p>Approved competitors appear on the official roster.</p></div></div><div class="champ-side-foot">BUILT FOR THE DUNE FUTURE COMMUNITY <span>↗</span></div></aside>
-    </div>
+    <section class="champ-intro" aria-label="Tournament overview"><div><div class="champ-kicker">THE COMPETITION</div><h2>ONE ARENA.<br><span>ONE LEGACY.</span></h2></div><div class="champ-intro-copy"><p>A new chapter of Dune 2000 competition begins. Follow the official championship roster and provisional standings as competitors are confirmed. Registration will open only after an owner announcement.</p><div class="champ-pill-row"><span>⚔ DUNE 2000</span><span>✦ COMMUNITY EVENT</span><span>◆ 2027 EDITION</span></div></div></section>
+    <div class="champ-section-rule"><span>01 — REGISTRATION STATUS</span><span>PLAYER PORTAL</span></div>
+    <section id="championshipAuth" class="champ-registration-closed" aria-labelledby="registrationClosedHeading"><h2 id="registrationClosedHeading">REGISTRATION: COMING SOON</h2><p>Player registration is closed. The owner will announce when registration opens.</p><button type="button" disabled aria-disabled="true">Registration closed</button></section>
     <div class="champ-section-rule"><span>02 — THE OFFICIAL ROSTER</span><span>CONFIRMED CONTENDERS</span></div>
     <section id="championshipParticipants" class="champ-roster"><div class="champ-roster-heading"><div><div class="champ-kicker">THE CONTENDERS / 2027</div><h2>OFFICIAL <em>PARTICIPANTS.</em></h2><p>Approved players competing in Dune Future Championship 2027.</p></div><div class="champ-roster-stamp">DF<span>27</span><small>OFFICIAL ROSTER</small></div></div><div id="championshipParticipantsList"><p>Loading participants...</p></div></section>
+    <section id="championshipStandings" class="champ-standings" aria-labelledby="championshipStandingsHeading"><div class="champ-kicker">CHAMPIONSHIP 2027 / STANDINGS</div><h2 id="championshipStandingsHeading">PARTICIPANT LEADERBOARD</h2><p>21 positions · 20 matches per player · 5 points per confirmed win · maximum 100 points. BYEs award zero points.</p><p>The first three display positions are green reward positions. Standings and reward eligibility are provisional. No official winners are declared before owner confirmation. Equal points use confirmed head-to-head results for two players, or a confirmed-match mini-league for larger groups; unresolved ties share rank and require review.</p><p id="championshipStandingsStatus" role="status" aria-live="polite">Lineup to be announced. All positions are unassigned; no results or winners have been confirmed.</p><p id="standingsScrollHint">Swipe or scroll the table horizontally on narrow screens to view every statistic.</p><div class="champ-standings-scroll" role="region" aria-label="Championship leaderboard" aria-describedby="standingsScrollHint" tabindex="0"><table><caption>Provisional standings — fixed display positions 01–21</caption><thead><tr><th scope="col">Position</th><th scope="col">Rank</th><th scope="col">Player Name</th><th scope="col">Matches Played</th><th scope="col">Wins</th><th scope="col">Losses</th><th scope="col">Total Points</th></tr></thead><tbody id="championshipStandingsBody"><tr data-position="01" class="champ-reward-position"><td>01<small>🏆 REWARD POSITION</small></td><td>—</td><td>TBA</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr data-position="02" class="champ-reward-position"><td>02<small>🏆 REWARD POSITION</small></td><td>—</td><td>TBA</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr data-position="03" class="champ-reward-position"><td>03<small>🏆 REWARD POSITION</small></td><td>—</td><td>TBA</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr data-position="04"><td>04</td><td>—</td><td>TBA</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr data-position="05"><td>05</td><td>—</td><td>TBA</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr data-position="06"><td>06</td><td>—</td><td>TBA</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr data-position="07"><td>07</td><td>—</td><td>TBA</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr data-position="08"><td>08</td><td>—</td><td>TBA</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr data-position="09"><td>09</td><td>—</td><td>TBA</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr data-position="10"><td>10</td><td>—</td><td>TBA</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr data-position="11"><td>11</td><td>—</td><td>TBA</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr data-position="12"><td>12</td><td>—</td><td>TBA</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr data-position="13"><td>13</td><td>—</td><td>TBA</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr data-position="14"><td>14</td><td>—</td><td>TBA</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr data-position="15"><td>15</td><td>—</td><td>TBA</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr data-position="16"><td>16</td><td>—</td><td>TBA</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr data-position="17"><td>17</td><td>—</td><td>TBA</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr data-position="18"><td>18</td><td>—</td><td>TBA</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr data-position="19"><td>19</td><td>—</td><td>TBA</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr data-position="20"><td>20</td><td>—</td><td>TBA</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr data-position="21"><td>21</td><td>—</td><td>TBA</td><td>0</td><td>0</td><td>0</td><td>0</td></tr></tbody></table></div><noscript><p>JavaScript is needed to load published standings. The unassigned positions remain visible above.</p></noscript></section>
     <footer class="champ-footer"><a href="index.html">◈ DUNE <em>FUTURE</em></a><span>CHAMPIONSHIP 2027 • OFFICIAL TOURNAMENT PORTAL</span><span>© 2026 DUNE FUTURE</span></footer>
   </main>
-  <!-- DUNE FUTURE CHAMPIONSHIP — FIREBASE -->
+  <!-- Existing approved participant roster: read-only and separate from lineup. -->
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
-
-import {
-  getFirestore,
-  doc,
-  getDoc,
-  setDoc,
-  collection,
-  getDocs,
-  query,
-  where,
-  serverTimestamp
-} from "https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js";
-
-import {
-  getAuth,
-  signInWithEmailAndPassword,
-createUserWithEmailAndPassword,  
-onAuthStateChanged,
-signOut
-} from "https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
+import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js";
     const firebaseConfig = {
       apiKey: "AIzaSyCCNc31MUDiy7IRGV_YYCczxrwgiMYTNd4",
       authDomain: "dune-future-championship.firebaseapp.com",
@@ -470,157 +447,8 @@ signOut
       messagingSenderId: "498314023446",
       appId: "1:498314023446:web:464458363fa98428c31b37"
     };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-const auth = getAuth(app);
-// DUNE FUTURE CHAMPIONSHIP — PLAYER LOGIN
-
-const loginForm = document.getElementById("championshipLoginForm");
-const authMessage = document.getElementById("championshipAuthMessage");
-const loginButton = document.getElementById("championshipLoginBtn");
-
-loginForm.addEventListener("submit", async (event) => {
-  event.preventDefault();
-
-  const email = document.getElementById("championshipEmail").value.trim();
-  const password = document.getElementById("championshipPassword").value;
-
-  loginButton.disabled = true;
-  authMessage.textContent = "Signing in...";
-
-  try {
-    await signInWithEmailAndPassword(auth, email, password);
-    authMessage.textContent = "Successfully signed in.";
-    loginForm.reset();
-  } catch (error) {
-    console.error("Authentication error code:", error.code);
-    authMessage.textContent = "Sign in failed. Check your email and password.";
-  } finally {
-    loginButton.disabled = false;
-  }
-});
-
-
-const signOutButton = document.getElementById("championshipSignOutBtn");
-const registerButton = document.getElementById("championshipRegisterBtn");
-
-const playerProfileSection = document.getElementById("championshipPlayerProfile");
-
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    console.log("Championship user authenticated.");
-
-    authMessage.textContent = "Signed in successfully.";
-    loginForm.hidden = true;
-    registerButton.hidden = true;
-    signOutButton.hidden = false;
-playerProfileSection.hidden = false;
-  } else {
-    console.log("Championship user signed out.");
-
-    authMessage.textContent = "Please sign in to continue.";
-    loginForm.hidden = false;
-    registerButton.hidden = false;
-    signOutButton.hidden = true;
-    playerProfileSection.hidden = true;
-  }
-});
-
-signOutButton.addEventListener("click", async () => {
-  signOutButton.disabled = true;
-
-  try {
-    await signOut(auth);
-    loginForm.reset();
-    authMessage.textContent = "Successfully signed out.";
-  } catch (error) {
-    console.error("Sign out error:", error.code);
-    authMessage.textContent = "Unable to sign out. Please try again.";
-  } finally {
-    signOutButton.disabled = false;
-  }
-});
-
-/* DUNE FUTURE CHAMPIONSHIP — CREATE ACCOUNT */
-
-registerButton.addEventListener("click", async () => {
-  const email = document
-    .getElementById("championshipEmail")
-    .value.trim();
-
-  const password = document
-    .getElementById("championshipPassword")
-    .value;
-
-  if (!email || !password) {
-    authMessage.textContent =
-      "Please enter your email and password.";
-    return;
-  }
-
-  if (password.length < 6) {
-    authMessage.textContent =
-      "Password must contain at least 6 characters.";
-    return;
-  }
-
-  registerButton.disabled = true;
-  authMessage.textContent = "Creating account...";
-
-  try {
-    await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-
-    loginForm.reset();
-    authMessage.textContent =
-      "Account created successfully.";
-
-  } catch (error) {
-    console.error("Registration error:", error.code);
-
-    if (error.code === "auth/email-already-in-use") {
-      authMessage.textContent =
-        "This email is already registered.";
-    } else if (error.code === "auth/weak-password") {
-      authMessage.textContent =
-        "Please choose a stronger password.";
-    } else {
-      authMessage.textContent =
-        "Unable to create account. Please try again.";
-    }
-  } finally {
-    registerButton.disabled = false;
-  }
-});
-
-    async function loadChampionship() {
-      try {
-        const tournamentRef = doc(
-          db,
-          "tournaments",
-          "dune-future-championship-2027"
-        );
-
-        const tournamentSnap = await getDoc(tournamentRef);
-
-        if (tournamentSnap.exists()) {
-          const tournament = tournamentSnap.data();
-
-          console.log("DUNE FUTURE CHAMPIONSHIP CONNECTED");
-          console.log("Tournament:", tournament.name);
-          console.log("Year:", tournament.year);
-          console.log("Status:", tournament.status);
-        } else {
-          console.warn("Tournament document not found.");
-        }
-      } catch (error) {
-        console.error("Firebase connection error:", error);
-      }
-    }
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 async function loadChampionshipParticipants() {
   const container = document.getElementById("championshipParticipantsList");
 
@@ -647,7 +475,7 @@ const snapshot = await getDocs(
       .map(doc => doc.data())
       .filter(player => player.status === "approved")
       .sort((a, b) =>
-        (a.name || "").localeCompare(b.name || "")
+        String(a.name || "").localeCompare(String(b.name || ""))
       );
 
     container.replaceChildren();
@@ -669,7 +497,7 @@ participants.forEach((player, index) => {
   const name = document.createElement("span");
   name.className = "championship-player-name";
   name.textContent =
-    player.name || player.discordUsername || "Unknown Player";
+    typeof player.name === "string" && player.name.trim() ? player.name : "Confirmed participant";
 
   const status = document.createElement("span");
   status.className = "championship-player-status";
@@ -687,9 +515,9 @@ participants.forEach((player, index) => {
     container.textContent = "Unable to load participants.";
   }
 }
-    loadChampionship();
     loadChampionshipParticipants();
   </script>
+  <script type="module" src="championship-public.mjs?v=20261023"></script>
 
 </body>
 </html>
