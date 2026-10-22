@@ -5,6 +5,84 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dune Future Championship 2027</title>
   <link rel="stylesheet" href="style.css">
+
+<style>
+/* DUNE FUTURE CHAMPIONSHIP - PARTICIPANTS */
+
+#championshipParticipantsList {
+  display: grid;
+  gap: 12px;
+  margin-top: 22px;
+  max-width: 900px;
+}
+
+.championship-player-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 22px;
+  background: linear-gradient(135deg, #191929, #0c0c16);
+  border: 1px solid rgba(226, 177, 73, 0.35);
+  border-left: 4px solid #e2b149;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.championship-player-card:hover {
+  transform: translateY(-3px);
+  border-color: #f3cb75;
+}
+
+.championship-player-number {
+  color: #f3cb75;
+  font-size: 26px;
+  font-weight: 900;
+  min-width: 44px;
+}
+
+.championship-player-name {
+  flex: 1;
+  min-width: 0;
+  color: #ffffff;
+  font-size: 19px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.championship-player-status {
+  color: #67e8a5;
+  background: rgba(30, 120, 75, 0.2);
+  border: 1px solid rgba(103, 232, 165, 0.35);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .championship-player-card {
+    gap: 10px;
+    padding: 14px 12px;
+  }
+
+  .championship-player-number {
+    font-size: 20px;
+    min-width: 30px;
+  }
+
+  .championship-player-name {
+    font-size: 15px;
+  }
+
+  .championship-player-status {
+    font-size: 10px;
+    padding: 6px 8px;
+  }
+}
+</style>
+  
 </head>
 <body>
 
@@ -95,11 +173,28 @@ async function loadChampionshipParticipants() {
       return;
     }
 
-    participants.forEach((player, index) => {
-      const item = document.createElement("p");
-      item.textContent = `${index + 1}. ${player.name || player.discordUsername || "Unknown Player"}`;
-      container.appendChild(item);
-    });
+
+participants.forEach((player, index) => {
+  const card = document.createElement("div");
+  card.className = "championship-player-card";
+
+  const number = document.createElement("span");
+  number.className = "championship-player-number";
+  number.textContent = String(index + 1).padStart(2, "0");
+
+  const name = document.createElement("span");
+  name.className = "championship-player-name";
+  name.textContent =
+    player.name || player.discordUsername || "Unknown Player";
+
+  const status = document.createElement("span");
+  status.className = "championship-player-status";
+  status.textContent = "✓ APPROVED";
+
+  card.append(number, name, status);
+  container.appendChild(card);
+});
+
 
     console.log("Approved participants loaded:", participants.length);
 
