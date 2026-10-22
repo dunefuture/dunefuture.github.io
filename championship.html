@@ -212,6 +212,118 @@
   display: none !important;
 }
 
+
+/* =========================================
+   DUNE FUTURE CHAMPIONSHIP 2027
+   PLAYER PROFILE — DESIGN UPGRADE 7C.3.1
+========================================= */
+
+#championshipPlayerProfile {
+  margin-top: 42px;
+  margin-bottom: 42px;
+}
+
+#championshipPlayerProfile .championship-profile-box {
+  width: 100%;
+  max-width: 414px;
+  box-sizing: border-box;
+  padding: 26px;
+  background: linear-gradient(
+    145deg,
+    #171725,
+    #0d0d17
+  );
+  border: 1px solid #e2b149;
+  border-top: 3px solid #e2b149;
+  border-radius: 14px;
+  box-shadow: 0 12px 32px rgba(0,0,0,.25);
+}
+
+#championshipPlayerProfile h3 {
+  color: #f5c35c;
+  font-size: 21px;
+  letter-spacing: 1px;
+  margin: 0 0 22px;
+}
+
+#championshipProfileForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#championshipProfileForm label {
+  display: block;
+  color: #f5d18a;
+  font-size: 12px;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+#championshipProfileForm input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 14px;
+  color: #ffffff;
+  background: #20202e;
+  border: 1px solid #3c3c50;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+#championshipProfileForm input:focus {
+  border-color: #e2b149;
+  box-shadow: 0 0 0 3px rgba(226,177,73,.14);
+}
+
+#championshipProfileForm input::placeholder {
+  color: #88889a;
+}
+
+#championshipProfileSubmitBtn {
+  width: 100%;
+  padding: 14px;
+  margin-top: 12px;
+  background: linear-gradient(
+    90deg,
+    #e2b149,
+    #f5cd73
+  );
+  color: #111018;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: filter .2s, transform .2s;
+}
+
+#championshipProfileSubmitBtn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+#championshipProfileSubmitBtn:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+#championshipProfileMessage {
+  margin-top: 16px;
+  color: #f5c35c;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+@media (max-width: 480px) {
+  #championshipPlayerProfile .championship-profile-box {
+    padding: 20px;
+  }
+}
   
 </style>
   
