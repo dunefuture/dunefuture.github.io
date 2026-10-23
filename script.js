@@ -3,10 +3,10 @@ document.addEventListener("DOMContentLoaded",()=>{let p=location.pathname.split(
 // DUNE FUTURE - DISCORD INVITE
 // ==========================================
 
-const DISCORD_INVITE = "https://discord.gg/j5vbakqmg";
+const DISCORD_INVITE = "https://discord.gg/vwzzRkhTW5";
 
 document.querySelectorAll(
-  'a[href*="discord.gg"], a[href*="discord.com/invite"]'
+  'a[href="https://discord.gg/Qub8xkjbK7"], a[href="https://discord.gg/j5vbakqmg"]'
 ).forEach(link => {
   link.href = DISCORD_INVITE;
   link.target = "_blank";
