@@ -17,7 +17,7 @@ test('account preview is a fail-closed static page with no SDK or forms', async 
   assert.match(html, /REGISTRATION CLOSED/);
   assert.match(html, /href="\.\/championship\.html"/);
   assert.doesNotMatch(html, /<\s*(?:script|form|input|iframe)\b/i);
-  assert.doesNotMatch(html, /firebase(?:app|auth|firestore)|initializeApp|gtag\s*\(|googletagmanager|https?:\/\//i);
+  assert.doesNotMatch(html, /firebase(?:-app|-auth|-firestore)|initializeApp|gtag\s*\(|googletagmanager|https?:\/\//i);
 });
 
 test('static public standings contain exactly 21 empty slots and no private records', async () => {
