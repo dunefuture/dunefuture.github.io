@@ -7,6 +7,8 @@ on:
       - 'championship-account-preview.html'
       - 'championship-public.json'
       - 'tests/championship-closed.test.mjs'
+      - 'tests/championship-public-privacy.test.mjs'
+      - 'championship-standings.mjs'
       - 'tests/championship-browser-smoke.mjs'
       - '.github/workflows/championship-closed-checks.yml'
   workflow_dispatch:
@@ -28,7 +30,7 @@ jobs:
         with:
           node-version: '24'
       - name: Verify CLOSED preview and public roster contracts
-        run: node --test tests/championship-closed.test.mjs
+        run: node --test tests/championship-closed.test.mjs tests/championship-public-privacy.test.mjs
 
   browser-preview:
     runs-on: ubuntu-24.04
