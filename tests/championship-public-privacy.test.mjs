@@ -41,11 +41,10 @@ test('reject unsafe public names, duplicate slots and premature match results', 
   assert.throws(() => readPublicData(premature), /Schedule requires finalized lineup/);
 });
 
-test('reject unknown match-level and result-level fields before public display', () => {
+test('reject prematurely finalized roster without a complete 210-match schedule', () => {
   const data = copy();
   data.lineupStatus = 'finalized';
   data.slots.forEach((slot, i) => { slot.name = 'Player ' + String(i + 1); });
-  // The parser must reject a private match field even before validating 210 fixtures.
   data.matches = [{ id:'rr-01-02', round:1, a:'01', b:'02', result:null, uid:'private' }];
-  assert.throws(() => readPublicData(data), /Invalid public data|Invalid public data fields/);
+  assert.throws(() => readPublicData(data), /Finalized lineup and 210 matches required/);
 });
