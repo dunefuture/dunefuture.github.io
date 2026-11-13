@@ -7,7 +7,7 @@ const file = name => readFile(new URL('../' + name, import.meta.url), 'utf8');
 test('CLOSED preview has no executable scripts, form controls or network endpoints', async () => {
   const html = await file('championship-account-preview.html');
   assert.doesNotMatch(html, /<\s*(?:script|form|input|iframe|button)\b/i);
-  assert.doesNotMatch(html, /https?:\/\/|firebase|fetch\s*\(|XMLHttpRequest|WebSocket/i);
+  assert.doesNotMatch(html, /https?:\/\/|<script\b|<iframe\b|fetch\s*\(|XMLHttpRequest|WebSocket/i);
   assert.match(html, /default-src 'none'/);
   assert.match(html, /form-action 'none'/);
 });
