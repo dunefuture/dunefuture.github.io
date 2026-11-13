@@ -9,6 +9,7 @@ on:
       - 'tests/championship-closed.test.mjs'
       - 'tests/championship-public-privacy.test.mjs'
       - 'tests/championship-publication-gate.test.mjs'
+      - 'tests/championship-reader-boundary.test.mjs'
       - 'championship-standings.mjs'
       - 'scripts/validate-championship-public.mjs'
       - 'tests/championship-browser-smoke.mjs'
@@ -32,7 +33,7 @@ jobs:
         with:
           node-version: '24'
       - name: Verify CLOSED preview and public roster contracts
-        run: node --test tests/championship-closed.test.mjs tests/championship-public-privacy.test.mjs tests/championship-publication-gate.test.mjs
+        run: node --test tests/championship-closed.test.mjs tests/championship-public-privacy.test.mjs tests/championship-publication-gate.test.mjs tests/championship-reader-boundary.test.mjs
       - name: Validate published public JSON with strict allowlist
         run: node scripts/validate-championship-public.mjs championship-public.json
 
