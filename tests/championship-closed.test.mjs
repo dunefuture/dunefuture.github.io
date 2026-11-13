@@ -31,3 +31,24 @@ test('static public standings contain exactly 21 empty slots and no private reco
   }
   assert.deepEqual(data.matches, []);
 });
+
+test('preview has responsive viewport, readable focus treatment and no remote dependencies', async () => {
+  const html = await file('championship-account-preview.html');
+  assert.match(html, /<meta name="viewport" content="width=device-width, initial-scale=1">/);
+  assert.match(html, /width:min\(100%,640px\)/);
+  assert.match(html, /clamp\(24px,5vw,48px\)/);
+  assert.match(html, /a:focus-visible/);
+  assert.match(html, /role="status"/);
+  assert.doesNotMatch(html, /<\s*(?:link|img|video|audio)\b/i);
+});
+
+test('existing public participants reader is read-only and not confused with enrollment ledger', async () => {
+  const html = await file('championship.html');
+  const start = html.indexOf('const participantsRef = collection(');
+  assert.ok(start >= 0, 'existing approved participants reader must be reviewed if removed');
+  const reader = html.slice(start, html.indexOf('loadChampionshipParticipants();', start));
+  assert.match(reader, /"tournaments",\s*"dune-future-championship-2027",\s*"participants"/);
+  assert.match(reader, /where\("status",\s*"==",\s*"approved"\)/);
+  assert.doesNotMatch(reader, /\b(?:setDoc|addDoc|updateDoc|deleteDoc|writeBatch|runTransaction)\s*\(/);
+  assert.doesNotMatch(reader, /["'](?:phase1Registrations|registrations|phase1PersonReviews|phase1PersonSeats|phase1Audit)["']/);
+});
