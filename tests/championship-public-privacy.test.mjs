@@ -83,3 +83,11 @@ test('reject private match and result fields in an otherwise valid fixture', () 
   resultPrivate.matches[0].result = { status: 'confirmed', winner: resultPrivate.matches[0].a, registrationId: 'private' };
   assert.throws(() => readPublicData(resultPrivate), /Invalid public data fields/);
 });
+
+test('draft cannot quietly publish names even if the public parser accepts partial draft names', () => {
+  const data = copy();
+  data.slots[0].name = 'Not yet approved';
+  // readPublicData accepts partial draft names for historical compatibility;
+  // the separate offline publication gate rejects this before publishing.
+  assert.equal(readPublicData(data).slots[0].playerName, 'Not yet approved');
+});
