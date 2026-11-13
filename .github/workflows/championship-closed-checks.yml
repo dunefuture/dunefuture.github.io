@@ -7,6 +7,7 @@ on:
       - 'championship-account-preview.html'
       - 'championship-public.json'
       - 'tests/championship-closed.test.mjs'
+      - 'tests/championship-browser-smoke.mjs'
       - '.github/workflows/championship-closed-checks.yml'
   workflow_dispatch:
 
@@ -28,3 +29,30 @@ jobs:
           node-version: '24'
       - name: Verify CLOSED preview and public roster contracts
         run: node --test tests/championship-closed.test.mjs
+
+  browser-preview:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - name: Check out review source
+        uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - name: Set up Node.js 24
+        uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+      - name: Install isolated browser test dependencies
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Run desktop and mobile CLOSED preview smoke tests
+        run: node tests/championship-browser-smoke.mjs
+      - name: Upload review screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: closed-preview-desktop-mobile
+          path: artifacts/closed-preview/*.png
+          if-no-files-found: ignore
+          retention-days: 7
