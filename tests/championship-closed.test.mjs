@@ -52,3 +52,12 @@ test('existing public participants reader is read-only and not confused with enr
   assert.doesNotMatch(reader, /\b(?:setDoc|addDoc|updateDoc|deleteDoc|writeBatch|runTransaction)\s*\(/);
   assert.doesNotMatch(reader, /["'](?:phase1Registrations|registrations|phase1PersonReviews|phase1PersonSeats|phase1Audit)["']/);
 });
+
+test('CLOSED preview enforces deny-by-default browser content policy', async () => {
+  const html = await file('championship-account-preview.html');
+  const csp = html.match(/<meta http-equiv="Content-Security-Policy" content="([^"]+)">/);
+  assert.ok(csp, 'CSP meta policy required');
+  for (const directive of ["default-src 'none'", "connect-src 'none'", "form-action 'none'", "object-src 'none'", "frame-src 'none'"]) {
+    assert.ok(csp[1].includes(directive), 'missing CSP directive: ' + directive);
+  }
+});
