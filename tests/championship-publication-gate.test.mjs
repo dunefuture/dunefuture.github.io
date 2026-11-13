@@ -46,3 +46,15 @@ test('offline publication gate rejects a malformed roster without leaking input'
   data.slots = [{ id: '01', name: null, uid: 'private-secret-identifier' }];
   await check(data, 1);
 });
+
+test('offline publication gate rejects invalid match records without echoing secrets', async () => {
+  const data = structuredClone(baseline);
+  data.matches = [{ id: 'private-secret-identifier', round: 1, a: '01', b: '02', result: null }];
+  await check(data, 1);
+});
+
+test('offline publication gate rejects unknown root fields', async () => {
+  const data = structuredClone(baseline);
+  data.privateSource = 'private-secret-identifier';
+  await check(data, 1);
+});
