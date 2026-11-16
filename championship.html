@@ -492,7 +492,7 @@ async function loadChampionshipParticipants() {
       if(Object.keys(player).sort().join(",")!=="name,status" ||
          player.status!=="approved" ||
          typeof player.name!=="string" ||
-         player.name.length<1 || player.name.length>40 ||
+         player.name.length<1 || player.name.length>40 || !player.name.trim() ||
          /[\x00-\x1f\x7f]/.test(player.name))return [];
       return [{name:player.name,seatId:seatIds[index]}];
     });
