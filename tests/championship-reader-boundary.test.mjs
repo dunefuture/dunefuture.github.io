@@ -30,3 +30,9 @@ test('approved public roster preserves canonical seat IDs when some seats are em
   assert.match(html, /number\.textContent = player\.seatId;/);
   assert.doesNotMatch(html, /number\.textContent = String\(index \+ 1\)/);
 });
+
+test('public roster rejects whitespace-only nicknames before rendering', () => {
+  assert.match(html, /!player\.name\.trim\(\)/);
+  assert.match(html, /player\.name\.length<1 \|\| player\.name\.length>40/);
+  assert.match(html, /name\.textContent\s*=/);
+});
