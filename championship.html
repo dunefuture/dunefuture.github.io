@@ -493,7 +493,7 @@ async function loadChampionshipParticipants() {
          player.status!=="approved" ||
          typeof player.name!=="string" ||
          player.name.length<1 || player.name.length>40 ||
-         /[\\x00-\\x1f\\x7f]/.test(player.name))return [];
+         /[\x00-\x1f\x7f]/.test(player.name))return [];
       return [{name:player.name,seatId:seatIds[index]}];
     });
     participants.sort((a,b)=>a.seatId.localeCompare(b.seatId));
