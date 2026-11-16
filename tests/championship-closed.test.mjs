@@ -44,12 +44,14 @@ test('preview has responsive viewport, readable focus treatment and no remote de
 
 test('existing public participants reader is read-only and not confused with enrollment ledger', async () => {
   const html = await file('championship.html');
-  const start = html.indexOf('const participantsRef = collection(');
-  assert.ok(start >= 0, 'existing approved participants reader must be reviewed if removed');
+  const start = html.indexOf('const seatIds = Array.from(');
+  assert.ok(start >= 0, 'approved public roster must use bounded seat reads');
   const reader = html.slice(start, html.indexOf('loadChampionshipParticipants();', start));
-  assert.match(reader, /"tournaments",\s*"dune-future-championship-2027",\s*"participants"/);
-  assert.match(reader, /where\("status",\s*"==",\s*"approved"\)/);
-  assert.doesNotMatch(reader, /\b(?:setDoc|addDoc|updateDoc|deleteDoc|writeBatch|runTransaction)\s*\(/);
+  assert.match(reader, /phase1Roster/);
+  assert.match(reader, /length:21/);
+  assert.match(reader, /getDoc\(doc\(db,"phase1Roster",seat\)\)/);
+  assert.match(reader, /player\.status!=="approved"/);
+  assert.doesNotMatch(reader, /\b(?:getDocs|setDoc|addDoc|updateDoc|deleteDoc|writeBatch|runTransaction)\s*\(/);
   assert.doesNotMatch(reader, /["'](?:phase1Registrations|registrations|phase1PersonReviews|phase1PersonSeats|phase1Audit)["']/);
 });
 
