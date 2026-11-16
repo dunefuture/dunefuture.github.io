@@ -24,3 +24,9 @@ test('standings use only static public JSON, without Firebase registration impor
   assert.doesNotMatch(reader, /firebase|phase1Registrations|phase1Roster|registrationId|discordId/i);
   assert.match(reader, /credentials:\s*'omit'/);
 });
+
+test('approved public roster preserves canonical seat IDs when some seats are empty', () => {
+  assert.match(html, /return \[\{name:player\.name,seatId:seatIds\[index\]\}\]/);
+  assert.match(html, /number\.textContent = player\.seatId;/);
+  assert.doesNotMatch(html, /number\.textContent = String\(index \+ 1\)/);
+});
