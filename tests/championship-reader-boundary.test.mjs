@@ -7,11 +7,15 @@ import { readFile } from 'node:fs/promises';
 const html = await readFile(new URL('../championship.html', import.meta.url), 'utf8');
 const reader = await readFile(new URL('../championship-public.mjs', import.meta.url), 'utf8');
 
-test('legacy Firebase participant reader remains isolated and requires review before replacement', () => {
-  assert.match(html, /where\("status",\s*"==",\s*"approved"\)/);
-  assert.match(html, /"participants"/);
-  assert.doesNotMatch(html, /collection\([^)]*["']phase1Registrations["']/);
-  assert.doesNotMatch(html, /collection\([^)]*["']phase1Roster["']/);
+test('public participant reader uses only fixed seat GETs and excludes private collections', () => {
+  assert.match(html, /Array\.from\(\{length:21\}/);
+  assert.match(html, /getDoc\(doc\(db,"phase1Roster",seat\)\)/);
+  assert.match(html, /player\.status!=="approved"/);
+  assert.doesNotMatch(html, /where\("status",\s*"==",\s*"approved"\)/);
+  assert.doesNotMatch(html, /getDocs\s*\(/);
+  assert.doesNotMatch(html, /collection\s*\(\s*db\s*,\s*["']phase1Roster/);
+  assert.doesNotMatch(html, /(?:phase1Registrations|phase1PersonReviews|phase1PersonSeats|phase1Audit)/);
+
 });
 
 test('standings use only static public JSON, without Firebase registration imports', () => {
