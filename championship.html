@@ -506,13 +506,13 @@ async function loadChampionshipParticipants() {
     }
 
 
-participants.forEach((player, index) => {
+participants.forEach((player) => {
   const card = document.createElement("div");
   card.className = "championship-player-card";
 
   const number = document.createElement("span");
   number.className = "championship-player-number";
-  number.textContent = String(index + 1).padStart(2, "0");
+  number.textContent = player.seatId;
 
   const name = document.createElement("span");
   name.className = "championship-player-name";
