@@ -465,7 +465,7 @@ html{scroll-behavior:smooth}body{background:#07080c;color:#f5f3ee}.champ-main{ov
   <!-- Existing approved participant roster: read-only and separate from lineup. -->
   <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
-import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js";
     const firebaseConfig = {
       apiKey: "AIzaSyCCNc31MUDiy7IRGV_YYCczxrwgiMYTNd4",
       authDomain: "dune-future-championship.firebaseapp.com",
@@ -482,28 +482,21 @@ async function loadChampionshipParticipants() {
   if (!container) return;
 
   try {
-    const participantsRef = collection(
-      db,
-      "tournaments",
-      "dune-future-championship-2027",
-      "participants"
-    );
-
-
-const snapshot = await getDocs(
-  query(
-    participantsRef,
-    where("status", "==", "approved")
-  )
-);
-
-
-    const participants = snapshot.docs
-      .map(doc => doc.data())
-      .filter(player => player.status === "approved")
-      .sort((a, b) =>
-        String(a.name || "").localeCompare(String(b.name || ""))
-      );
+    // Public rules permit fixed-seat document GETs, not collection LIST queries.
+    // Never read private registration or identity collections here.
+    const seatIds = Array.from({length:21},(_,i)=>String(i+1).padStart(2,"0"));
+    const snapshots = await Promise.all(seatIds.map(seat=>getDoc(doc(db,"phase1Roster",seat))));
+    const participants = snapshots.flatMap((snapshot,index)=>{
+      if(!snapshot.exists())return [];
+      const player=snapshot.data();
+      if(Object.keys(player).sort().join(",")!=="name,status" ||
+         player.status!=="approved" ||
+         typeof player.name!=="string" ||
+         player.name.length<1 || player.name.length>40 ||
+         /[\\x00-\\x1f\\x7f]/.test(player.name))return [];
+      return [{name:player.name,seatId:seatIds[index]}];
+    });
+    participants.sort((a,b)=>a.seatId.localeCompare(b.seatId));
 
     container.replaceChildren();
 
